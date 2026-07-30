@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.pyo
+data/state/pstarts_last.json
+data/state/gw_history.csv
+scripts/fpl_boot.json
+scripts/*.tmp
+.DS_Store
+Thumbs.db

@@ -1,0 +1,24 @@
+club,club_fpl,short,pts_2025_26,exp_pts_2026_27,adjustment,status
+Arsenal,Arsenal,ARS,85,78.5,-6.5,stay
+Man City,Man City,MCI,78,75.5,-2.5,stay
+Man Utd,Man Utd,MUN,71,69.5,-1.5,stay
+Aston Villa,Aston Villa,AVL,65,58.0,-7.0,stay
+Liverpool,Liverpool,LIV,60,71.0,11.0,stay
+Bournemouth,Bournemouth,BOU,57,49.0,-8.0,stay
+Sunderland,Sunderland,SUN,54,42.5,-11.5,stay
+Brighton,Brighton,BHA,53,53.0,0.0,stay
+Brentford,Brentford,BRE,53,49.0,-4.0,stay
+Chelsea,Chelsea,CHE,52,68.0,16.0,stay
+Fulham,Fulham,FUL,52,44.5,-7.5,stay
+Newcastle,Newcastle,NEW,49,52.5,3.5,stay
+Everton,Everton,EVE,49,49.5,0.5,stay
+Leeds,Leeds,LEE,47,46.0,-1.0,stay
+Crystal Palace,Crystal Palace,CRY,45,46.0,1.0,stay
+Nottingham Forest,Nott'm Forest,NFO,44,48.0,4.0,stay
+Tottenham,Spurs,TOT,41,61.0,20.0,stay
+West Ham,West Ham,WHU,39,,,relegated
+Burnley,Burnley,BUR,22,,,relegated
+Wolves,Wolves,WOL,20,,,relegated
+Ipswich,Ipswich,IPS,,33.0,,promoted
+Coventry,Coventry,COV,,33.0,,promoted
+Hull,Hull,HUL,,24.0,,promoted

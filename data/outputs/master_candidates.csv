@@ -1,0 +1,559 @@
+code,web_name,element_type,team_name,now_cost,status,news,chance_of_playing_next_round,birth_date,pos,price,age,tp_2526,n60,ncam,pts_start,club_2526,P_start,cameo_share,club_2526_sh,moved,type
+154561,Raya,1,ARS,60,a,,,,GK,6.0,,162.0,36.0,0.0,4.5,Arsenal,0.95,0.0,ARS,False,A-clean
+109745,Arrizabalaga,1,ARS,50,a,,,,GK,5.0,,2.0,1.0,0.0,2.0,Arsenal,0.03,0.0,ARS,False,A-clean
+437495,Meslier,1,ARS,50,a,,,,GK,5.0,,0.0,0.0,0.0,,Leeds,0.0,,LEE,True,A-clean
+226597,Gabriel,2,ARS,80,a,,,,DEF,8.0,,209.0,29.0,2.0,7.137931034482759,Arsenal,0.76,0.06,ARS,False,A-clean
+445122,J.Timber,2,ARS,65,i,Groin injury - Expected back 21 Aug,0.0,,DEF,6.5,,149.0,25.0,4.0,5.76,Arsenal,0.66,0.14,ARS,False,A-clean
+462424,Saliba,2,ARS,60,i,Back injury - Unknown return date,0.0,,DEF,6.0,,137.0,28.0,3.0,4.785714285714286,Arsenal,0.74,0.1,ARS,False,A-clean
+499169,Lewis-Skelly,3,ARS,55,a,,,,MID,5.5,,29.0,5.0,15.0,3.2,Arsenal,0.13,0.75,ARS,False,B-cameo
+466075,Calafiori,2,ARS,55,a,,,,DEF,5.5,,109.0,19.0,6.0,5.421052631578948,Arsenal,0.5,0.24,ARS,False,A-clean
+448104,Hincapie,2,ARS,55,a,,,,DEF,5.5,,87.0,17.0,7.0,4.588235294117647,Arsenal,0.45,0.29,ARS,False,B-cameo
+198869,White,2,ARS,55,i,Knee injury - Expected back 21 Aug,0.0,,DEF,5.5,,45.0,7.0,5.0,5.714285714285714,Arsenal,0.18,0.42,ARS,False,B-cameo
+500040,Mosquera,2,ARS,55,a,,,,DEF,5.5,,40.0,8.0,12.0,3.625,Arsenal,0.21,0.6,ARS,False,B-cameo
+223340,Saka,3,ARS,95,a,,,,MID,9.5,,157.0,23.0,7.0,5.521739130434782,Arsenal,0.61,0.23,ARS,False,A-clean
+204480,Rice,3,ARS,75,a,,,,MID,7.5,,184.0,34.0,1.0,5.382352941176471,Arsenal,0.89,0.03,ARS,False,A-clean
+232413,Eze,3,ARS,65,a,,,,MID,6.5,,113.0,19.0,13.0,4.894736842105263,Arsenal,0.5,0.41,ARS,False,B-cameo
+184029,Ødegaard,3,ARS,65,a,,,,MID,6.5,,74.0,11.0,13.0,4.181818181818182,Arsenal,0.29,0.54,ARS,False,B-cameo
+248857,Madueke,3,ARS,65,a,,,,MID,6.5,,72.0,10.0,15.0,5.7,Arsenal,0.26,0.6,ARS,False,B-cameo
+195384,Merino,3,ARS,60,a,,,,MID,6.0,,67.0,8.0,14.0,5.25,Arsenal,0.21,0.64,ARS,False,B-cameo
+444145,Martinelli,3,ARS,65,a,,,,MID,6.5,,57.0,5.0,24.0,4.2,Arsenal,0.13,0.83,ARS,False,B-cameo
+481655,Zubimendi,3,ARS,55,a,,,,MID,5.5,,133.0,31.0,6.0,4.129032258064516,Arsenal,0.82,0.16,ARS,False,A-clean
+616077,Dowman,3,ARS,55,a,,,,MID,5.5,,16.0,1.0,5.0,3.0,Arsenal,0.03,0.83,ARS,False,B-cameo
+128295,Nørgaard,3,ARS,50,a,,,,MID,5.0,,7.0,0.0,7.0,,Arsenal,0.0,1.0,ARS,False,B-cameo
+499175,Nwaneri,3,ARS,55,a,,,,MID,5.5,,8.0,1.0,5.0,3.0,Arsenal,0.03,0.83,ARS,False,B-cameo
+438098,Fábio Vieira,3,ARS,55,a,,,,MID,5.5,,0.0,0.0,0.0,,Arsenal,0.0,,ARS,False,A-clean
+200641,Nelson,3,ARS,55,a,,,,MID,5.5,,13.0,0.0,10.0,,Brentford,0.0,1.0,BRE,True,B-cameo
+224117,Gyökeres,4,ARS,75,a,,,,FWD,7.5,,128.0,21.0,14.0,4.380952380952381,Arsenal,0.55,0.4,ARS,False,B-cameo
+219847,Havertz,4,ARS,75,a,,,,FWD,7.5,,36.0,5.0,7.0,4.6,Arsenal,0.13,0.58,ARS,False,B-cameo
+205651,G.Jesus,4,ARS,60,a,,,,FWD,6.0,,24.0,1.0,13.0,5.0,Arsenal,0.03,0.93,ARS,False,B-cameo
+439509,Tzolis,3,ARS,65,a,,,2002-01-30,MID,6.5,25.0,,,,,,,,,False,A-clean
+98980,Martinez,1,AVL,50,a,,,,GK,5.0,,120.0,31.0,1.0,3.838709677419355,Aston Villa,0.82,0.03,AVL,False,A-clean
+72147,M.Bizot,1,AVL,45,a,,,,GK,4.5,,16.0,6.0,1.0,2.3333333333333335,Aston Villa,0.16,0.14,AVL,False,A-clean
+101188,Digne,2,AVL,45,a,,,,DEF,4.5,,97.0,19.0,12.0,4.2631578947368425,Aston Villa,0.5,0.39,AVL,False,B-cameo
+199798,Konsa,2,AVL,45,a,,,,DEF,4.5,,100.0,34.0,0.0,2.9411764705882355,Aston Villa,0.89,0.0,AVL,False,A-clean
+199796,Cash,2,AVL,45,a,,,,DEF,4.5,,117.0,33.0,2.0,3.5454545454545454,Aston Villa,0.87,0.06,AVL,False,A-clean
+149484,Mings,2,AVL,45,a,,,,DEF,4.5,,50.0,14.0,3.0,3.357142857142857,Aston Villa,0.37,0.18,AVL,False,A-clean
+244954,Pau,2,AVL,45,a,,,,DEF,4.5,,64.0,18.0,3.0,3.388888888888889,Aston Villa,0.47,0.14,AVL,False,A-clean
+515597,Bogarde,3,AVL,50,a,,,,MID,5.0,,40.0,10.0,18.0,2.6,Aston Villa,0.26,0.64,AVL,False,B-cameo
+441302,Maatsen,2,AVL,45,a,,,,DEF,4.5,,54.0,17.0,13.0,2.4705882352941178,Aston Villa,0.45,0.43,AVL,False,B-cameo
+184667,Lindelöf,2,AVL,45,a,,,,DEF,4.5,,29.0,10.0,7.0,2.2,Aston Villa,0.26,0.41,AVL,False,B-cameo
+606798,A.García,2,AVL,40,a,,,,DEF,4.0,,5.0,0.0,6.0,,Aston Villa,0.0,1.0,AVL,False,B-cameo
+578545,Nedeljkovic,2,AVL,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+195546,Buendía,3,AVL,60,a,,,,MID,6.0,,102.0,15.0,21.0,3.3333333333333335,Aston Villa,0.39,0.58,AVL,False,B-cameo
+485337,Guessand,3,AVL,55,a,,,,MID,5.5,,44.0,7.0,14.0,3.142857142857143,Aston Villa,0.18,0.67,AVL,False,B-cameo
+215711,Bailey,3,AVL,55,a,,,,MID,5.5,,21.0,3.0,10.0,4.0,Aston Villa,0.08,0.77,AVL,False,B-cameo
+122806,McGinn,3,AVL,55,a,,,,MID,5.5,,103.0,25.0,5.0,3.92,Aston Villa,0.66,0.17,AVL,False,A-clean
+88894,Barkley,3,AVL,50,a,,,,MID,5.0,,56.0,7.0,14.0,4.857142857142857,Aston Villa,0.18,0.67,AVL,False,B-cameo
+226944,Kamara,3,AVL,50,d,Knee injury - 75% chance of playing,75.0,,MID,5.0,,61.0,16.0,2.0,3.6875,Aston Villa,0.42,0.11,AVL,False,A-clean
+449871,Onana,3,AVL,50,i,Knee injury - Unknown return date,0.0,,MID,5.0,,76.0,20.0,5.0,3.55,Aston Villa,0.53,0.2,AVL,False,A-clean
+469247,Iling Jr,3,AVL,50,a,,,,MID,5.0,,0.0,0.0,0.0,,Aston Villa,0.0,,AVL,False,A-clean
+645618,Burrowes,3,AVL,45,a,,,,MID,4.5,,1.0,0.0,1.0,,Aston Villa,0.0,1.0,AVL,False,B-cameo
+577285,George Hemmings,3,AVL,45,a,,,,MID,4.5,,2.0,0.0,2.0,,Aston Villa,0.0,1.0,AVL,False,B-cameo
+653481,Alysson,3,AVL,50,a,,,,MID,5.0,,3.0,0.0,3.0,,Aston Villa,0.0,1.0,AVL,False,B-cameo
+614071,Manzambi,3,AVL,60,a,,,,MID,6.0,,,,,,,,,,False,A-clean
+448089,Gomes,3,AVL,55,a,,,,MID,5.5,,107.0,31.0,4.0,3.3225806451612905,Wolves,0.82,0.11,WOL,True,A-clean
+178301,Watkins,4,AVL,80,a,,,,FWD,8.0,,167.0,32.0,5.0,4.75,Aston Villa,0.84,0.14,AVL,False,A-clean
+173879,Abraham,4,AVL,55,i,Shoulder injury - Expected back 23 Aug,0.0,,FWD,5.5,,23.0,1.0,11.0,2.0,Aston Villa,0.03,0.92,AVL,False,B-cameo
+493105,Garnacho,3,AVL,60,a,,,,MID,6.0,,56.0,10.0,13.0,3.6,Chelsea,0.26,0.57,CHE,True,B-cameo
+457569,Petrović,1,BOU,45,a,,,,GK,4.5,,124.0,37.0,0.0,3.3513513513513513,Bournemouth,0.97,0.0,BOU,False,A-clean
+40383,Forster,1,BOU,40,a,,,,GK,4.0,,0.0,0.0,0.0,,Bournemouth,0.0,,BOU,False,A-clean
+444172,Dennis,1,BOU,40,a,,,,GK,4.0,,0.0,0.0,0.0,,Bournemouth,0.0,,BOU,False,A-clean
+463981,Hill,2,BOU,55,a,,,,DEF,5.5,,110.0,22.0,6.0,4.7272727272727275,Bournemouth,0.58,0.21,BOU,False,A-clean
+494521,Truffert,2,BOU,55,a,,,,DEF,5.5,,165.0,37.0,0.0,4.45945945945946,Bournemouth,0.97,0.0,BOU,False,A-clean
+242882,Diakité,2,BOU,50,a,,,,DEF,5.0,,46.0,13.0,5.0,3.3076923076923075,Bournemouth,0.34,0.28,BOU,False,B-cameo
+620487,Milosavljević,2,BOU,50,a,,,,DEF,5.0,,19.0,4.0,3.0,4.0,Bournemouth,0.11,0.43,BOU,False,B-cameo
+54469,Smith,2,BOU,45,a,,,,DEF,4.5,,58.0,11.0,11.0,4.545454545454546,Bournemouth,0.29,0.5,BOU,False,B-cameo
+436893,J.Araujo,2,BOU,45,a,,,,DEF,4.5,,0.0,0.0,0.0,,Bournemouth,0.0,,BOU,False,A-clean
+575901,Soler,2,BOU,40,a,,,,DEF,4.0,,3.0,0.0,3.0,,Bournemouth,0.0,1.0,BOU,False,B-cameo
+499604,Rayan,3,BOU,65,a,,,,MID,6.5,,67.0,13.0,1.0,4.846153846153846,Bournemouth,0.34,0.07,BOU,False,A-clean
+201658,Tavernier,3,BOU,60,a,,,,MID,6.0,,137.0,30.0,3.0,4.466666666666667,Bournemouth,0.79,0.09,BOU,False,A-clean
+503139,Scott,3,BOU,60,a,,,,MID,6.0,,136.0,32.0,4.0,4.15625,Bournemouth,0.84,0.11,BOU,False,A-clean
+222683,Kluivert,3,BOU,60,a,,,,MID,6.0,,41.0,9.0,11.0,3.0,Bournemouth,0.24,0.55,BOU,False,B-cameo
+155408,Cook,3,BOU,50,a,,,,MID,5.0,,40.0,8.0,10.0,3.75,Bournemouth,0.21,0.56,BOU,False,B-cameo
+496208,Gannon-Doak,3,BOU,50,a,,,,MID,5.0,,11.0,0.0,8.0,,Bournemouth,0.0,1.0,BOU,False,B-cameo
+200785,Adams,3,BOU,50,a,,,,MID,5.0,,77.0,20.0,4.0,3.45,Bournemouth,0.53,0.17,BOU,False,A-clean
+111317,Brooks,3,BOU,50,a,,,,MID,5.0,,59.0,12.0,18.0,3.1666666666666665,Bournemouth,0.32,0.6,BOU,False,B-cameo
+158499,Christie,3,BOU,50,s,Suspended until 29 Aug,0.0,,MID,5.0,,47.0,6.0,19.0,4.166666666666667,Bournemouth,0.16,0.76,BOU,False,B-cameo
+614574,Tóth.A,3,BOU,50,a,,,,MID,5.0,,8.0,0.0,8.0,,Bournemouth,0.0,1.0,BOU,False,B-cameo
+489888,Adli,3,BOU,50,a,,,,MID,5.0,,67.0,8.0,23.0,5.625,Bournemouth,0.21,0.74,BOU,False,B-cameo
+560262,Kroupi.Jr,3,BOU,75,a,,,,MID,7.5,,113.0,19.0,13.0,5.315789473684211,Bournemouth,0.5,0.41,BOU,False,B-cameo
+444102,Evanilson,4,BOU,60,a,,,,FWD,6.0,,115.0,29.0,6.0,3.586206896551724,Bournemouth,0.76,0.17,BOU,False,A-clean
+168636,Enes Ünal,4,BOU,55,a,,,,FWD,5.5,,27.0,0.0,23.0,,Bournemouth,0.0,1.0,BOU,False,B-cameo
+561245,Rodríguez,4,BOU,60,a,,,,FWD,6.0,,,,,,,,,,False,A-clean
+200720,Kelleher,1,BRE,50,a,,,,GK,5.0,,143.0,37.0,0.0,3.864864864864865,Brentford,0.97,0.0,BRE,False,A-clean
+507433,Valdimarsson,1,BRE,45,a,,,,GK,4.5,,1.0,1.0,0.0,1.0,Brentford,0.03,0.0,BRE,False,A-clean
+432830,Collins,2,BRE,55,a,,,,DEF,5.5,,129.0,32.0,3.0,3.9375,Brentford,0.84,0.09,BRE,False,A-clean
+444765,Van den Berg,2,BRE,50,a,,,,DEF,5.0,,113.0,30.0,2.0,3.6,Brentford,0.79,0.06,BRE,False,A-clean
+249231,Lewis-Potter,3,BRE,55,a,,,,MID,5.5,,115.0,21.0,15.0,4.809523809523809,Brentford,0.55,0.42,BRE,False,B-cameo
+191866,Ajer,2,BRE,45,a,,,,DEF,4.5,,76.0,19.0,8.0,3.5789473684210527,Brentford,0.5,0.3,BRE,False,B-cameo
+607464,Kayode,2,BRE,45,a,,,,DEF,4.5,,113.0,37.0,0.0,3.054054054054054,Brentford,0.97,0.0,BRE,False,A-clean
+194010,Henry,2,BRE,45,a,,,,DEF,4.5,,52.0,13.0,12.0,3.0,Brentford,0.34,0.48,BRE,False,B-cameo
+472713,Hickey,2,BRE,45,a,,,,DEF,4.5,,37.0,7.0,14.0,3.4285714285714284,Brentford,0.18,0.67,BRE,False,B-cameo
+231065,Pinnock,2,BRE,45,a,,,,DEF,4.5,,14.0,4.0,0.0,3.5,Brentford,0.11,0.0,BRE,False,A-clean
+570241,Ji-soo,2,BRE,45,a,,,,DEF,4.5,,0.0,0.0,0.0,,Brentford,0.0,,BRE,False,A-clean
+513086,Schuster,2,BRE,45,a,,,,DEF,4.5,,,,,,,,,,False,A-clean
+513418,Schade,3,BRE,60,a,,,,MID,6.0,,125.0,30.0,5.0,4.1,Brentford,0.79,0.14,BRE,False,A-clean
+533463,O.Dango,3,BRE,65,a,,,,MID,6.5,,136.0,24.0,8.0,5.083333333333333,Brentford,0.63,0.25,BRE,False,B-cameo
+440089,Damsgaard,3,BRE,55,a,,,,MID,5.5,,113.0,22.0,11.0,4.363636363636363,Brentford,0.58,0.33,BRE,False,B-cameo
+207283,Jensen,3,BRE,55,a,,,,MID,5.5,,98.0,26.0,10.0,3.0,Brentford,0.68,0.28,BRE,False,B-cameo
+204580,Janelt,3,BRE,50,a,,,,MID,5.0,,74.0,15.0,10.0,4.333333333333333,Brentford,0.39,0.4,BRE,False,B-cameo
+543295,Milambo,3,BRE,50,d,Knee injury - 75% chance of playing,75.0,,MID,5.0,,1.0,0.0,1.0,,Brentford,0.0,1.0,BRE,False,B-cameo
+244858,Carvalho,3,BRE,50,i,Knee injury - Unknown return date,0.0,,MID,5.0,,13.0,1.0,5.0,2.0,Brentford,0.03,0.83,BRE,False,B-cameo
+56979,Henderson,3,BRE,50,d,Wrist injury - 75% chance of playing,75.0,,MID,5.0,,76.0,19.0,13.0,3.4210526315789473,Brentford,0.5,0.41,BRE,False,B-cameo
+508395,Yarmoliuk,3,BRE,50,a,,,,MID,5.0,,104.0,29.0,8.0,3.3448275862068964,Brentford,0.76,0.22,BRE,False,A-clean
+183656,Dasilva,3,BRE,50,a,,,,MID,5.0,,2.0,0.0,2.0,,Brentford,0.0,1.0,BRE,False,B-cameo
+444180,Anthony,3,BRE,60,a,,,,MID,6.0,,127.0,29.0,7.0,3.8620689655172415,Burnley,0.76,0.19,BUR,True,A-clean
+502500,Thiago,4,BRE,80,a,,,,FWD,8.0,,181.0,37.0,1.0,4.864864864864865,Brentford,0.97,0.03,BRE,False,A-clean
+593174,Furo,4,BRE,45,a,,,,FWD,4.5,,1.0,0.0,1.0,,Brentford,0.0,1.0,BRE,False,B-cameo
+75115,Wilson,4,BRE,55,a,,,,FWD,5.5,,80.0,8.0,24.0,3.0,West Ham,0.21,0.75,WHU,True,B-cameo
+489639,Verbruggen,1,BHA,45,a,,,,GK,4.5,,130.0,37.0,0.0,3.5135135135135136,Brighton,0.97,0.0,BHA,False,A-clean
+472739,Rushworth,1,BHA,45,a,,,,GK,4.5,,0.0,0.0,0.0,,Brighton,0.0,,BHA,False,A-clean
+49262,Steele,1,BHA,40,a,,,,GK,4.0,,0.0,0.0,0.0,,Brighton,0.0,,BHA,False,A-clean
+231416,F.Kadıoğlu,2,BHA,45,a,,,,DEF,4.5,,118.0,34.0,2.0,3.4705882352941178,Brighton,0.89,0.06,BHA,False,A-clean
+204120,Boscagli,2,BHA,45,a,,,,DEF,4.5,,39.0,7.0,4.0,5.142857142857143,Brighton,0.18,0.36,BHA,False,B-cameo
+465730,De Cuyper,2,BHA,45,a,,,,DEF,4.5,,84.0,12.0,17.0,4.916666666666667,Brighton,0.32,0.59,BHA,False,B-cameo
+83299,Dunk,2,BHA,45,a,,,,DEF,4.5,,100.0,31.0,2.0,3.161290322580645,Brighton,0.82,0.06,BHA,False,A-clean
+550090,Coppola,2,BHA,45,a,,,,DEF,4.5,,10.0,2.0,3.0,3.5,Brighton,0.05,0.6,BHA,False,B-cameo
+223434,Igor,2,BHA,45,a,,,,DEF,4.5,,6.0,1.0,3.0,3.0,West Ham,0.03,0.75,WHU,True,B-cameo
+451490,Costinha,2,BHA,45,a,,,,DEF,4.5,,,,,,,,,,False,A-clean
+454490,Svoboda,2,BHA,50,a,,,,DEF,5.0,,,,,,,,,,False,A-clean
+451340,Mitoma,3,BHA,60,i,Hamstring injury - Unknown return date,0.0,,MID,6.0,,62.0,17.0,7.0,3.2941176470588234,Brighton,0.45,0.29,BHA,False,B-cameo
+592031,Minteh,3,BHA,60,a,,,,MID,6.0,,117.0,24.0,9.0,4.375,Brighton,0.63,0.27,BHA,False,B-cameo
+532529,Hinshelwood,3,BHA,60,a,,,,MID,6.0,,91.0,19.0,7.0,4.105263157894737,Brighton,0.5,0.27,BHA,False,B-cameo
+60307,Groß,3,BHA,55,a,,,,MID,5.5,,78.0,17.0,1.0,4.529411764705882,Brighton,0.45,0.06,BHA,False,A-clean
+463067,Georginio,4,BHA,55,a,,,,FWD,5.5,,87.0,18.0,13.0,3.9444444444444446,Brighton,0.47,0.42,BHA,False,B-cameo
+219249,O'Riley,3,BHA,55,a,,,,MID,5.5,,16.0,2.0,3.0,6.0,Brighton,0.05,0.6,BHA,False,B-cameo
+514254,Gomez,3,BHA,50,a,,,,MID,5.0,,97.0,23.0,9.0,3.9565217391304346,Brighton,0.61,0.28,BHA,False,B-cameo
+536916,Buonanotte,3,BHA,50,a,,,,MID,5.0,,3.0,0.0,4.0,,Chelsea,0.0,1.0,CHE,True,B-cameo
+509416,Ayari,3,BHA,55,a,,,,MID,5.5,,98.0,20.0,8.0,4.55,Brighton,0.53,0.29,BHA,False,B-cameo
+467779,Wieffer,2,BHA,50,a,,,,DEF,5.0,,94.0,20.0,5.0,4.35,Brighton,0.53,0.2,BHA,False,A-clean
+535301,Baleba,3,BHA,50,a,,,,MID,5.0,,56.0,15.0,16.0,2.933333333333333,Brighton,0.39,0.52,BHA,False,B-cameo
+597320,Howell,3,BHA,45,a,,,,MID,4.5,,4.0,1.0,2.0,2.0,Brighton,0.03,0.67,BHA,False,B-cameo
+549074,Watson,3,BHA,50,a,,,,MID,5.0,,5.0,0.0,6.0,,Brighton,0.0,1.0,BHA,False,B-cameo
+556637,Oriola,3,BHA,45,a,,,,MID,4.5,,1.0,0.0,1.0,,Brighton,0.0,1.0,BHA,False,B-cameo
+700308,Yohanna,3,BHA,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+50175,Welbeck,4,BHA,60,a,,,,FWD,6.0,,126.0,25.0,11.0,4.2,Brighton,0.66,0.31,BHA,False,B-cameo
+608181,Tzimas,4,BHA,55,d,Knee injury - 75% chance of playing,75.0,,FWD,5.5,,16.0,0.0,9.0,,Brighton,0.0,1.0,BHA,False,B-cameo
+647850,Kostoulas,4,BHA,55,a,,,,FWD,5.5,,35.0,2.0,19.0,3.5,Brighton,0.05,0.9,BHA,False,B-cameo
+487117,Ferguson,4,BHA,50,i,Ankle injury - Expected back 10 Oct,0.0,,FWD,5.0,,0.0,0.0,0.0,,Brighton,0.0,,BHA,False,A-clean
+222694,Struijk,2,BHA,50,a,,,,DEF,5.0,,108.0,31.0,2.0,3.4193548387096775,Leeds,0.82,0.06,LEE,True,A-clean
+610799,Vuskovic,2,BHA,50,a,,,,DEF,5.0,,0.0,0.0,0.0,,Spurs,0.0,,TOT,True,A-clean
+244850,Rogers,3,CHE,75,a,,,,MID,7.5,,169.0,37.0,0.0,4.5675675675675675,Aston Villa,0.97,0.0,AVL,True,A-clean
+215059,Sánchez,1,CHE,50,a,,,,GK,5.0,,113.0,33.0,1.0,3.515151515151515,Chelsea,0.87,0.03,CHE,False,A-clean
+508479,Jörgensen,1,CHE,50,a,,,,GK,5.0,,9.0,4.0,1.0,2.0,Chelsea,0.11,0.2,CHE,False,A-clean
+225796,James,2,CHE,55,a,,,,DEF,5.5,,115.0,19.0,10.0,5.526315789473684,Chelsea,0.5,0.34,CHE,False,B-cameo
+180736,Chalobah,2,CHE,55,a,,,,DEF,5.5,,136.0,30.0,3.0,4.566666666666666,Chelsea,0.79,0.09,CHE,False,A-clean
+482609,Gusto,2,CHE,50,a,,,,DEF,5.0,,96.0,22.0,11.0,4.0,Chelsea,0.58,0.33,CHE,False,B-cameo
+444463,Fofana,2,CHE,50,s,Suspended until 6 Sep,0.0,,DEF,5.0,,65.0,18.0,6.0,3.1666666666666665,Chelsea,0.47,0.25,CHE,False,B-cameo
+242880,B.Badiashile,2,CHE,45,a,,,,DEF,4.5,,7.0,3.0,5.0,2.3333333333333335,Chelsea,0.08,0.62,CHE,False,B-cameo
+109646,Tosin,2,CHE,45,a,,,,DEF,4.5,,34.0,7.0,9.0,3.4285714285714284,Chelsea,0.18,0.56,CHE,False,B-cameo
+551210,Hato,2,CHE,45,a,,,,DEF,4.5,,19.0,9.0,12.0,1.4444444444444444,Chelsea,0.24,0.57,CHE,False,B-cameo
+460028,Colwill,2,CHE,50,a,,,,DEF,5.0,,8.0,2.0,1.0,3.5,Chelsea,0.05,0.33,CHE,False,B-cameo
+574458,M.Sarr,2,CHE,45,a,,,,DEF,4.5,,3.0,1.0,2.0,1.0,Chelsea,0.03,0.67,CHE,False,B-cameo
+577016,Acheampong,2,CHE,45,a,,,,DEF,4.5,,39.0,7.0,9.0,4.428571428571429,Chelsea,0.18,0.56,CHE,False,B-cameo
+620109,Palestra,2,CHE,55,a,,,,DEF,5.5,,,,,,,,,,False,A-clean
+220362,Disasi,2,CHE,45,a,,,,DEF,4.5,,49.0,14.0,0.0,3.5,West Ham,0.37,0.0,WHU,True,A-clean
+244851,Palmer,3,CHE,95,a,,,,MID,9.5,,114.0,21.0,5.0,4.666666666666667,Chelsea,0.55,0.19,CHE,False,A-clean
+448047,Enzo,3,CHE,70,a,,,,MID,7.0,,157.0,34.0,1.0,4.588235294117647,Chelsea,0.89,0.03,CHE,False,A-clean
+247632,Neto,3,CHE,65,a,,,,MID,6.5,,125.0,29.0,4.0,4.0,Chelsea,0.76,0.12,CHE,False,A-clean
+624773,Estêvão,3,CHE,65,a,,,,MID,6.5,,58.0,7.0,15.0,4.714285714285714,Chelsea,0.18,0.68,CHE,False,B-cameo
+463936,Gittens,3,CHE,60,a,,,,MID,6.0,,25.0,2.0,14.0,5.5,Chelsea,0.05,0.88,CHE,False,B-cameo
+486672,Caicedo,3,CHE,55,a,,,,MID,5.5,,110.0,30.0,2.0,3.7,Chelsea,0.79,0.06,CHE,False,A-clean
+514356,Lavia,3,CHE,50,a,,,,MID,5.0,,13.0,1.0,10.0,3.0,Chelsea,0.03,0.91,CHE,False,B-cameo
+491007,D.Essugo,3,CHE,45,a,,,,MID,4.5,,1.0,0.0,3.0,,Chelsea,0.0,1.0,CHE,False,B-cameo
+593117,Quenda,3,CHE,55,d,Unspecified injury - 75% chance of playing,75.0,,MID,5.5,,,,,,,,,,False,A-clean
+475168,João Pedro,4,CHE,75,a,,,,FWD,7.5,,177.0,30.0,5.0,5.433333333333334,Chelsea,0.79,0.14,CHE,False,A-clean
+517052,N.Jackson,4,CHE,65,a,,,,FWD,6.5,,0.0,0.0,0.0,,Chelsea,0.0,,CHE,False,A-clean
+463034,Delap,4,CHE,55,a,,,,FWD,5.5,,45.0,9.0,18.0,3.0,Chelsea,0.24,0.67,CHE,False,B-cameo
+499309,Marc Guiu,4,CHE,50,a,,,,FWD,5.0,,13.0,1.0,9.0,2.0,Chelsea,0.03,0.9,CHE,False,B-cameo
+567119,Mheuka,4,CHE,45,a,,,,FWD,4.5,,1.0,0.0,1.0,,Chelsea,0.0,1.0,CHE,False,B-cameo
+503037,Emegha,4,CHE,50,d,Hamstring injury - 75% chance of playing,75.0,,FWD,5.0,,,,,,,,,,False,A-clean
+428580,Onyeka,3,COV,50,a,,,,MID,5.0,,12.0,0.0,6.0,,Brentford,0.0,1.0,BRE,True,B-cameo
+484389,Dovin,1,COV,40,a,,,,GK,4.0,,,,,,,,,,False,A-clean
+110690,Wilson,1,COV,45,a,,,,GK,4.5,,,,,,,,,,False,A-clean
+461102,Thomas,2,COV,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+436761,Kitching,2,COV,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+451284,van Ewijk,2,COV,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+173878,Dasilva,2,COV,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+465390,Kesler-Hayden,2,COV,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+80178,Bidwell,2,COV,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+204813,Latibeaudiere,2,COV,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+220583,Woolfenden,2,COV,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+577411,Brau,2,COV,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+539142,Amenda,2,COV,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+480457,Rudoni,3,COV,50,d,Shoulder injury - 75% chance of playing,75.0,,MID,5.0,,,,,,,,,,False,A-clean
+168144,Grimes,3,COV,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+501459,Sakamoto,3,COV,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+241293,Mason-Clark,3,COV,55,a,,,,MID,5.5,,,,,,,,,,False,A-clean
+439668,Eccles,3,COV,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+226965,Torp,3,COV,55,a,,,,MID,5.5,,,,,,,,,,False,A-clean
+684268,Shepherd,3,COV,45,a,,,,MID,4.5,,,,,,,,,,False,A-clean
+469272,Tchaouna,3,COV,55,a,,,,MID,5.5,,59.0,12.0,16.0,3.0,Burnley,0.32,0.57,BUR,True,B-cameo
+492498,Borges Rodrigues,3,COV,45,a,,,,MID,4.5,,,,,,,,,,False,A-clean
+629397,Andrews,3,COV,45,a,,,,MID,4.5,,,,,,,,,,False,A-clean
+176412,Wright,4,COV,55,a,,,,FWD,5.5,,,,,,,,,,False,A-clean
+230730,Thomas-Asante,4,COV,50,a,,,,FWD,5.0,,,,,,,,,,False,A-clean
+218997,Simms,4,COV,50,a,,,,FWD,5.0,,,,,,,,,,False,A-clean
+551262,Markelo,4,COV,50,a,,,,FWD,5.0,,,,,,,,,,False,A-clean
+549653,Bassette,4,COV,45,a,,,,FWD,4.5,,,,,,,,,,False,A-clean
+172649,Henderson,1,CRY,50,a,,,,GK,5.0,,131.0,36.0,0.0,3.638888888888889,Crystal Palace,0.95,0.0,CRY,False,A-clean
+121709,Benitez,1,CRY,45,a,,,,GK,4.5,,7.0,1.0,0.0,7.0,Crystal Palace,0.03,0.0,CRY,False,A-clean
+437499,Lacroix,2,CRY,60,a,,,,DEF,6.0,,154.0,33.0,1.0,4.575757575757576,Crystal Palace,0.87,0.03,CRY,False,A-clean
+247348,Muñoz,2,CRY,55,a,,,,DEF,5.5,,136.0,25.0,3.0,5.36,Crystal Palace,0.66,0.11,CRY,False,A-clean
+427623,Richards,2,CRY,50,a,,,,DEF,5.0,,128.0,30.0,2.0,4.233333333333333,Crystal Palace,0.79,0.06,CRY,False,A-clean
+651426,Canvot,2,CRY,50,a,,,,DEF,5.0,,72.0,13.0,6.0,5.0,Crystal Palace,0.34,0.32,CRY,False,B-cameo
+244723,Mitchell,2,CRY,45,a,,,,DEF,4.5,,135.0,34.0,3.0,3.911764705882353,Crystal Palace,0.89,0.08,CRY,False,A-clean
+218364,Sosa,2,CRY,45,a,,,,DEF,4.5,,6.0,0.0,7.0,,Crystal Palace,0.0,1.0,CRY,False,B-cameo
+515621,Chadi Riad,2,CRY,45,a,,,,DEF,4.5,,20.0,6.0,3.0,2.3333333333333335,Crystal Palace,0.16,0.33,CRY,False,B-cameo
+242313,Mingueza,2,CRY,45,a,,,,DEF,4.5,,,,,,,,,,False,A-clean
+232185,Sarr,3,CRY,65,a,,,,MID,6.5,,117.0,22.0,5.0,5.090909090909091,Crystal Palace,0.58,0.19,CRY,False,A-clean
+242898,Johnson,3,CRY,60,a,,,,MID,6.0,,65.0,15.0,18.0,2.933333333333333,Crystal Palace,0.39,0.55,CRY,False,B-cameo
+496221,Wharton,3,CRY,55,d,Ankle injury - 75% chance of playing,75.0,,MID,5.5,,112.0,28.0,5.0,3.8214285714285716,Crystal Palace,0.74,0.15,CRY,False,A-clean
+488024,Yeremy,3,CRY,55,a,,,,MID,5.5,,77.0,19.0,15.0,3.1052631578947367,Crystal Palace,0.5,0.44,CRY,False,B-cameo
+108413,Hughes,3,CRY,45,a,,,,MID,4.5,,45.0,13.0,18.0,2.230769230769231,Crystal Palace,0.34,0.58,CRY,False,B-cameo
+152551,Lerma,3,CRY,50,a,,,,MID,5.0,,69.0,16.0,14.0,3.625,Crystal Palace,0.42,0.47,CRY,False,B-cameo
+209400,Kamada,3,CRY,50,a,,,,MID,5.0,,67.0,20.0,7.0,3.0,Crystal Palace,0.53,0.26,CRY,False,B-cameo
+489706,Devenny,3,CRY,50,a,,,,MID,5.0,,36.0,7.0,14.0,2.4285714285714284,Crystal Palace,0.18,0.67,CRY,False,B-cameo
+606921,Esse,3,CRY,50,a,,,,MID,5.0,,4.0,0.0,4.0,,Crystal Palace,0.0,1.0,CRY,False,B-cameo
+536694,M.França,3,CRY,50,a,,,,MID,5.0,,0.0,0.0,0.0,,Crystal Palace,0.0,,CRY,False,A-clean
+438464,Doucouré,3,CRY,50,a,,,,MID,5.0,,0.0,0.0,0.0,,Crystal Palace,0.0,,CRY,False,A-clean
+450542,J.Rak-Sakyi,3,CRY,50,a,,,,MID,5.0,,0.0,0.0,0.0,,Crystal Palace,0.0,,CRY,False,A-clean
+590014,Cardines,2,CRY,45,a,,,,DEF,4.5,,2.0,1.0,0.0,2.0,Crystal Palace,0.03,0.0,CRY,False,A-clean
+672492,Drakes-Thomas,3,CRY,45,a,,,,MID,4.5,,2.0,0.0,2.0,,Crystal Palace,0.0,1.0,CRY,False,B-cameo
+247412,Strand Larsen,4,CRY,60,a,,,,FWD,6.0,,75.0,23.0,12.0,2.652173913043478,Wolves,0.61,0.34,WOL,True,B-cameo
+231747,Mateta,4,CRY,65,a,,,,FWD,6.5,,114.0,24.0,7.0,3.7916666666666665,Crystal Palace,0.63,0.23,CRY,False,A-clean
+205533,Nketiah,4,CRY,55,a,,,,FWD,5.5,,23.0,2.0,10.0,5.5,Crystal Palace,0.05,0.83,CRY,False,B-cameo
+660392,Uche,4,CRY,50,u,has returned to Getafe CF,0.0,,FWD,5.0,,17.0,0.0,14.0,,Crystal Palace,0.0,1.0,CRY,False,B-cameo
+169593,Matthews,1,CRY,40,a,,,1994-02-10,GK,4.0,33.0,0.0,0.0,0.0,,Crystal Palace,0.0,,CRY,False,A-clean
+111234,Pickford,1,EVE,55,a,,,,GK,5.5,,135.0,38.0,0.0,3.5526315789473686,Everton,1.0,0.0,EVE,False,A-clean
+229600,Travers,1,EVE,50,a,,,,GK,5.0,,0.0,0.0,0.0,,Everton,0.0,,EVE,False,A-clean
+138001,King,1,EVE,45,a,,,,GK,4.5,,0.0,0.0,0.0,,Everton,0.0,,EVE,False,A-clean
+17761,Tarkowski,2,EVE,60,a,,,,DEF,6.0,,170.0,37.0,0.0,4.594594594594595,Everton,0.97,0.0,EVE,False,A-clean
+480455,Branthwaite,2,EVE,55,a,,,,DEF,5.5,,32.0,7.0,3.0,4.142857142857143,Everton,0.18,0.3,EVE,False,B-cameo
+106611,Keane,2,EVE,50,a,,,,DEF,5.0,,131.0,29.0,4.0,4.379310344827586,Everton,0.76,0.12,EVE,False,A-clean
+512462,O'Brien,2,EVE,50,a,,,,DEF,5.0,,116.0,36.0,1.0,3.1944444444444446,Everton,0.95,0.03,EVE,False,A-clean
+224967,Mykolenko,2,EVE,45,a,,,,DEF,4.5,,95.0,33.0,0.0,2.878787878787879,Everton,0.87,0.0,EVE,False,A-clean
+243571,Patterson,2,EVE,45,a,,,,DEF,4.5,,22.0,3.0,4.0,6.0,Everton,0.08,0.57,EVE,False,B-cameo
+499300,Aznou,2,EVE,40,a,,,,DEF,4.0,,0.0,0.0,0.0,,Everton,0.0,,EVE,False,A-clean
+215413,Dewsbury-Hall,3,EVE,65,a,,,,MID,6.5,,151.0,29.0,2.0,5.137931034482759,Everton,0.76,0.06,EVE,False,A-clean
+440993,Ndiaye,3,EVE,60,a,,,,MID,6.0,,128.0,32.0,0.0,4.0,Everton,0.84,0.0,EVE,False,A-clean
+232928,Garner,3,EVE,60,a,,,,MID,6.0,,159.0,38.0,0.0,4.184210526315789,Everton,1.0,0.0,EVE,False,A-clean
+490094,Iroegbunam,3,EVE,50,a,,,,MID,5.0,,68.0,16.0,13.0,3.3125,Everton,0.42,0.45,EVE,False,B-cameo
+433154,McNeil,3,EVE,55,a,,,,MID,5.5,,53.0,12.0,10.0,3.5833333333333335,Everton,0.32,0.45,EVE,False,B-cameo
+550615,George,3,EVE,55,a,,,,MID,5.5,,16.0,2.0,13.0,2.5,Chelsea,0.05,0.87,CHE,True,B-cameo
+502697,Alcaraz,3,EVE,50,a,,,,MID,5.0,,29.0,7.0,13.0,2.5714285714285716,Everton,0.18,0.65,EVE,False,B-cameo
+609873,Armstrong,3,EVE,50,a,,,,MID,5.0,,21.0,5.0,8.0,2.6,Everton,0.13,0.62,EVE,False,B-cameo
+496661,Dibling,3,EVE,55,a,,,,MID,5.5,,18.0,2.0,12.0,3.5,Everton,0.05,0.86,EVE,False,B-cameo
+513466,Röhl,3,EVE,50,a,,,,MID,5.0,,36.0,6.0,10.0,4.333333333333333,Everton,0.16,0.62,EVE,False,B-cameo
+244860,Hackney,3,EVE,55,a,,,,MID,5.5,,,,,,,,,,False,A-clean
+486385,Beto,4,EVE,55,a,,,,FWD,5.5,,104.0,16.0,21.0,4.6875,Everton,0.42,0.57,EVE,False,B-cameo
+586309,Barry,4,EVE,55,a,,,,FWD,5.5,,95.0,19.0,19.0,3.263157894736842,Everton,0.5,0.5,EVE,False,B-cameo
+80201,Leno,1,FUL,45,a,,,,GK,4.5,,122.0,38.0,0.0,3.210526315789474,Fulham,1.0,0.0,FUL,False,A-clean
+86873,Lecomte,1,FUL,40,a,,,,GK,4.0,,0.0,0.0,0.0,,Fulham,0.0,,FUL,False,A-clean
+505079,McNally,1,FUL,40,a,,,,GK,4.0,,0.0,0.0,0.0,,Fulham,0.0,,FUL,False,A-clean
+174874,Andersen,2,FUL,50,s,Suspended until 29 Aug,0.0,,DEF,5.0,,123.0,31.0,2.0,4.0,Fulham,0.82,0.06,FUL,False,A-clean
+169528,Robinson,2,FUL,45,a,,,,DEF,4.5,,65.0,16.0,6.0,3.6875,Fulham,0.42,0.27,FUL,False,B-cameo
+246301,J.Cuenca,2,FUL,45,a,,,,DEF,4.5,,39.0,10.0,5.0,3.6,Fulham,0.26,0.33,FUL,False,B-cameo
+167074,Tete,2,FUL,45,a,,,,DEF,4.5,,81.0,19.0,3.0,4.157894736842105,Fulham,0.5,0.14,FUL,False,A-clean
+232892,Bassey,2,FUL,45,a,,,,DEF,4.5,,103.0,28.0,2.0,3.607142857142857,Fulham,0.74,0.07,FUL,False,A-clean
+166477,Castagne,2,FUL,45,a,,,,DEF,4.5,,61.0,19.0,11.0,2.6315789473684212,Fulham,0.5,0.37,FUL,False,B-cameo
+153133,Iwobi,3,FUL,55,a,,,,MID,5.5,,103.0,28.0,1.0,3.642857142857143,Fulham,0.74,0.03,FUL,False,A-clean
+209289,Smith Rowe,3,FUL,55,a,,,,MID,5.5,,80.0,19.0,18.0,3.0,Fulham,0.5,0.49,FUL,False,B-cameo
+560552,Kevin,3,FUL,55,a,,,,MID,5.5,,49.0,6.0,20.0,3.1666666666666665,Fulham,0.16,0.77,FUL,False,B-cameo
+477555,Bobb,3,FUL,55,a,,,,MID,5.5,,42.0,10.0,13.0,3.0,Man City,0.26,0.57,MCI,True,B-cameo
+207189,Berge,3,FUL,50,a,,,,MID,5.0,,91.0,33.0,2.0,2.696969696969697,Fulham,0.87,0.06,FUL,False,A-clean
+76357,Cairney,3,FUL,50,a,,,,MID,5.0,,41.0,7.0,17.0,2.2857142857142856,Fulham,0.18,0.71,FUL,False,B-cameo
+212314,Lukić,3,FUL,50,a,,,,MID,5.0,,67.0,17.0,9.0,3.4705882352941178,Fulham,0.45,0.35,FUL,False,B-cameo
+577725,King,3,FUL,55,a,,,,MID,5.5,,63.0,13.0,19.0,3.3076923076923075,Fulham,0.34,0.59,FUL,False,B-cameo
+184349,Sessegnon,2,FUL,45,a,,,,DEF,4.5,,95.0,20.0,7.0,4.25,Fulham,0.53,0.26,FUL,False,B-cameo
+153366,Reed,3,FUL,45,a,,,,MID,4.5,,15.0,1.0,6.0,2.0,Fulham,0.03,0.86,FUL,False,B-cameo
+244042,Muniz,4,FUL,55,a,,,,FWD,5.5,,36.0,9.0,12.0,2.0,Fulham,0.24,0.57,FUL,False,B-cameo
+631786,Kusi-Asare,4,FUL,45,a,,,,FWD,4.5,,6.0,0.0,7.0,,Fulham,0.0,1.0,FUL,False,B-cameo
+167825,Phillips,1,HUL,40,a,,,,GK,4.0,,,,,,,,,,False,A-clean
+105666,Butland,1,HUL,45,a,,,,GK,4.5,,,,,,,,,,False,A-clean
+494950,Cartwright,1,HUL,40,a,,,,GK,4.0,,,,,,,,,,False,A-clean
+444307,Lo-Tutala,1,HUL,40,a,,,,GK,4.0,,,,,,,,,,False,A-clean
+108416,Egan,2,HUL,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+501902,Hughes,2,HUL,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+146426,Ajayi,2,HUL,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+193278,Coyle,2,HUL,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+433590,Drameh,2,HUL,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+232351,Giles,2,HUL,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+449428,Jacob,2,HUL,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+661800,McCarthy,2,HUL,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+160817,McNair,2,HUL,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+540324,Belloumi,3,HUL,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+232905,Millar,3,HUL,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+171270,Dowell,3,HUL,45,a,,,,MID,4.5,,,,,,,,,,False,A-clean
+101282,Crooks,3,HUL,45,a,,,,MID,4.5,,,,,,,,,,False,A-clean
+243413,Slater,3,HUL,45,a,,,,MID,4.5,,,,,,,,,,False,A-clean
+465525,Matazo,3,HUL,45,i,Knee injury - Unknown return date,0.0,,MID,4.5,,,,,,,,,,False,A-clean
+208481,Ömür,3,HUL,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+490161,Kamara,3,HUL,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+553783,Zambrano,3,HUL,45,a,,,,MID,4.5,,,,,,,,,,False,A-clean
+169432,McBurnie,4,HUL,55,a,,,,FWD,5.5,,,,,,,,,,False,A-clean
+213292,Akintola,3,HUL,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+470294,Gyabi,3,HUL,45,a,,,,MID,4.5,,0.0,0.0,0.0,,Leeds,0.0,,LEE,True,A-clean
+500957,Destan,4,HUL,45,a,,,,FWD,4.5,,,,,,,,,,False,A-clean
+534392,Burstow,4,HUL,45,a,,,,FWD,4.5,,,,,,,,,,False,A-clean
+169359,Targett,2,HUL,40,a,,,1995-09-18,DEF,4.0,31.0,0.0,0.0,0.0,,Newcastle,0.0,,NEW,True,A-clean
+219924,Diop,2,IPS,40,a,,,,DEF,4.0,,31.0,8.0,5.0,3.25,Fulham,0.21,0.38,FUL,True,B-cameo
+108813,Walton,1,IPS,45,a,,,,GK,4.5,,,,,,,,,,False,A-clean
+112520,Palmer,1,IPS,40,a,,,,GK,4.0,,,,,,,,,,False,A-clean
+50093,Button,1,IPS,40,a,,,,GK,4.0,,,,,,,,,,False,A-clean
+183015,Kipré,2,IPS,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+216616,O'Shea,2,IPS,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+455084,Davis,2,IPS,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+449429,Greaves,2,IPS,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+222018,Johnson,2,IPS,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+176420,Furlong,2,IPS,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+501390,Núñez,3,IPS,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+241117,Matusiwa,3,IPS,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+149929,Burns,3,IPS,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+231899,Taylor,3,IPS,45,a,,,,MID,4.5,,,,,,,,,,False,A-clean
+443261,Clarke,3,IPS,55,a,,,,MID,5.5,,,,,,,,,,False,A-clean
+229164,Ogbene,3,IPS,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+531442,Fatawu,3,IPS,55,a,,,,MID,5.5,,,,,,,,,,False,A-clean
+543968,Emersonn,4,IPS,55,a,,,,FWD,5.5,,,,,,,,,,False,A-clean
+222625,Hirst,4,IPS,50,a,,,,FWD,5.0,,,,,,,,,,False,A-clean
+481624,Philogene,3,IPS,55,a,,,,MID,5.5,,,,,,,,,,False,A-clean
+172453,Szmodics,3,IPS,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+147675,Akpom,4,IPS,50,a,,,,FWD,5.0,,,,,,,,,,False,A-clean
+557012,Walle Egeli,4,IPS,45,a,,,,FWD,4.5,,,,,,,,,,False,A-clean
+462387,Al-Hamadi,4,IPS,50,a,,,,FWD,5.0,,,,,,,,,,False,A-clean
+461587,McAteer,3,IPS,45,a,,,,MID,4.5,,,,,,,,,,False,A-clean
+232457,Mehmeti,3,IPS,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+546600,Van Oevelen,1,IPS,45,a,,,2003-08-07,GK,4.5,23.0,,,,,,,,,False,A-clean
+153682,Wilson,3,LEE,65,a,,,,MID,6.5,,168.0,30.0,6.0,5.3,Fulham,0.79,0.17,FUL,True,A-clean
+201595,Perri,1,LEE,45,a,,,,GK,4.5,,43.0,16.0,0.0,2.6875,Leeds,0.42,0.0,LEE,False,A-clean
+434752,Bijol,2,LEE,50,a,,,,DEF,5.0,,99.0,20.0,4.0,4.8,Leeds,0.53,0.17,LEE,False,A-clean
+214225,Rodon,2,LEE,45,a,,,,DEF,4.5,,109.0,32.0,2.0,3.34375,Leeds,0.84,0.06,LEE,False,A-clean
+226182,Bogle,2,LEE,45,a,,,,DEF,4.5,,96.0,31.0,2.0,3.032258064516129,Leeds,0.82,0.06,LEE,False,A-clean
+243526,Gudmundsson,2,LEE,45,a,,,,DEF,4.5,,68.0,27.0,4.0,2.4814814814814814,Leeds,0.71,0.13,LEE,False,A-clean
+220627,Justin,2,LEE,45,a,,,,DEF,4.5,,94.0,19.0,9.0,4.578947368421052,Leeds,0.5,0.32,LEE,False,B-cameo
+437738,Bornauw,2,LEE,45,a,,,,DEF,4.5,,25.0,4.0,8.0,4.5,Leeds,0.11,0.67,LEE,False,B-cameo
+522047,Muharemović,2,LEE,50,a,,,,DEF,5.0,,,,,,,,,,False,A-clean
+466525,Stach,3,LEE,60,a,,,,MID,6.0,,137.0,27.0,2.0,4.888888888888889,Leeds,0.71,0.07,LEE,False,A-clean
+435997,Okafor,3,LEE,60,a,,,,MID,6.0,,109.0,17.0,10.0,5.176470588235294,Leeds,0.45,0.37,LEE,False,B-cameo
+427637,Aaronson,3,LEE,55,a,,,,MID,5.5,,126.0,27.0,9.0,4.222222222222222,Leeds,0.71,0.25,LEE,False,B-cameo
+199598,Ampadu,3,LEE,55,a,,,,MID,5.5,,134.0,34.0,0.0,3.9411764705882355,Leeds,0.89,0.0,LEE,False,A-clean
+180135,Longstaff,3,LEE,50,a,,,,MID,5.0,,56.0,9.0,13.0,4.111111111111111,Leeds,0.24,0.59,LEE,False,B-cameo
+462635,Gelhardt,3,LEE,50,a,,,,MID,5.0,,0.0,0.0,0.0,,Leeds,0.0,,LEE,False,A-clean
+492859,Gnonto,3,LEE,50,a,,,,MID,5.0,,32.0,2.0,20.0,2.5,Leeds,0.05,0.91,LEE,False,B-cameo
+221399,Harrison,3,LEE,50,a,,,,MID,5.0,,12.0,1.0,10.0,2.0,Leeds,0.03,0.91,LEE,False,B-cameo
+200617,James,3,LEE,50,a,,,,MID,5.0,,23.0,3.0,16.0,2.3333333333333335,Leeds,0.08,0.84,LEE,False,B-cameo
+486520,Gruev,3,LEE,50,a,,,,MID,5.0,,56.0,14.0,9.0,3.2142857142857144,Leeds,0.37,0.39,LEE,False,B-cameo
+248056,Tanaka,3,LEE,50,a,,,,MID,5.0,,67.0,11.0,16.0,4.090909090909091,Leeds,0.29,0.59,LEE,False,B-cameo
+177815,Calvert-Lewin,4,LEE,60,a,,,,FWD,6.0,,142.0,29.0,5.0,4.517241379310345,Leeds,0.76,0.15,LEE,False,A-clean
+174594,Nmecha,4,LEE,55,a,,,,FWD,5.5,,73.0,9.0,21.0,4.555555555555555,Leeds,0.24,0.7,LEE,False,B-cameo
+235826,Piroe,4,LEE,50,a,,,,FWD,5.0,,17.0,1.0,15.0,2.0,Leeds,0.03,0.94,LEE,False,B-cameo
+565297,Mateo Joseph,4,LEE,45,a,,,,FWD,4.5,,0.0,0.0,0.0,,Leeds,0.0,,LEE,False,A-clean
+116535,A.Becker,1,LIV,55,a,,,,GK,5.5,,91.0,26.0,0.0,3.5,Liverpool,0.68,0.0,LIV,False,A-clean
+449027,Mamardashvili,1,LIV,50,a,,,,GK,5.0,,34.0,9.0,1.0,3.6666666666666665,Liverpool,0.24,0.1,LIV,False,A-clean
+155503,Woodman,1,LIV,40,a,,,,GK,4.0,,6.0,2.0,1.0,2.5,Liverpool,0.05,0.33,LIV,False,B-cameo
+586268,Pecsi,1,LIV,40,a,,,,GK,4.0,,0.0,0.0,0.0,,Liverpool,0.0,,LIV,False,A-clean
+432987,Jaros,1,LIV,40,a,,,,GK,4.0,,,,,,,,,,False,A-clean
+464353,Davies,1,LIV,40,a,,,,GK,4.0,,,,,,,,,,False,A-clean
+97032,Virgil,2,LIV,65,a,,,,DEF,6.5,,175.0,38.0,0.0,4.605263157894737,Liverpool,1.0,0.0,LIV,False,A-clean
+216094,Frimpong,2,LIV,55,a,,,,DEF,5.5,,63.0,10.0,11.0,4.1,Liverpool,0.26,0.52,LIV,False,B-cameo
+544877,Kerkez,2,LIV,55,a,,,,DEF,5.5,,85.0,23.0,11.0,3.347826086956522,Liverpool,0.61,0.32,LIV,False,B-cameo
+171287,Gomez,2,LIV,50,a,,,,DEF,5.0,,33.0,5.0,16.0,3.8,Liverpool,0.13,0.76,LIV,False,B-cameo
+492777,Bradley,2,LIV,50,i,Knee injury - Expected back 31 Dec,0.0,,DEF,5.0,,42.0,9.0,6.0,4.333333333333333,Liverpool,0.24,0.4,LIV,False,B-cameo
+519440,Lucky,2,LIV,40,a,,,,DEF,4.0,,0.0,0.0,0.0,,Liverpool,0.0,,LIV,False,A-clean
+606702,Jacquet,2,LIV,50,d,Shoulder injury - 75% chance of playing,75.0,,DEF,5.0,,,,,,,,,,False,A-clean
+647681,Leoni,2,LIV,40,i,Knee injury - Unknown return date,0.0,,DEF,4.0,,0.0,0.0,0.0,,Liverpool,0.0,,LIV,False,A-clean
+214285,Tsimikas,2,LIV,50,a,,,,DEF,5.0,,0.0,0.0,0.0,,Liverpool,0.0,,LIV,False,A-clean
+489580,Ramsay,2,LIV,40,a,,,,DEF,4.0,,0.0,0.0,0.0,,Liverpool,0.0,,LIV,False,A-clean
+494595,Wirtz,3,LIV,75,a,,,,MID,7.5,,125.0,27.0,6.0,4.444444444444445,Liverpool,0.71,0.18,LIV,False,A-clean
+243298,Gakpo,3,LIV,70,a,,,,MID,7.0,,131.0,31.0,5.0,4.064516129032258,Liverpool,0.82,0.14,LIV,False,A-clean
+424876,Szoboszlai,3,LIV,70,a,,,,MID,7.0,,160.0,36.0,0.0,4.444444444444445,Liverpool,0.95,0.0,LIV,False,A-clean
+611922,Ngumoha,3,LIV,60,a,,,,MID,6.0,,43.0,5.0,14.0,4.8,Liverpool,0.13,0.74,LIV,False,B-cameo
+223541,Chiesa,3,LIV,55,a,,,,MID,5.5,,37.0,1.0,25.0,2.0,Liverpool,0.03,0.96,LIV,False,B-cameo
+441266,Gravenberch,3,LIV,60,a,,,,MID,6.0,,144.0,33.0,3.0,4.303030303030303,Liverpool,0.87,0.08,LIV,False,A-clean
+243016,Mac Allister,3,LIV,55,a,,,,MID,5.5,,108.0,29.0,8.0,3.4482758620689653,Liverpool,0.76,0.22,LIV,False,A-clean
+206915,C.Jones,3,LIV,55,a,,,,MID,5.5,,81.0,18.0,16.0,3.5,Liverpool,0.47,0.47,LIV,False,B-cameo
+158983,Endo,3,LIV,50,d,Ankle injury - 75% chance of playing,75.0,,MID,5.0,,12.0,1.0,7.0,3.0,Liverpool,0.03,0.88,LIV,False,B-cameo
+591386,Nyoni,3,LIV,50,a,,,,MID,5.0,,6.0,0.0,6.0,,Liverpool,0.0,1.0,LIV,False,B-cameo
+535928,Bajcetic,3,LIV,50,i,Hamstring injury - Expected back 23 Aug,0.0,,MID,5.0,,0.0,0.0,0.0,,Liverpool,0.0,,LIV,False,A-clean
+551499,Munoz,3,LIV,65,a,,,,MID,6.5,,,,,,,,,,False,A-clean
+491501,McConnell,3,LIV,45,a,,,,MID,4.5,,0.0,0.0,0.0,,Liverpool,0.0,,LIV,False,A-clean
+219168,Isak,4,LIV,90,a,,,,FWD,9.0,,41.0,8.0,6.0,3.75,Liverpool,0.21,0.43,LIV,False,B-cameo
+510663,Ekitiké,4,LIV,75,i,Achilles injury - Expected back 31 Dec,0.0,,FWD,7.5,,125.0,19.0,9.0,6.105263157894737,Liverpool,0.5,0.32,LIV,False,B-cameo
+514514,Koumas,3,LIV,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+500058,Danns,4,LIV,45,d,Hamstring injury - 75% chance of playing,75.0,,FWD,4.5,,0.0,0.0,0.0,,Liverpool,0.0,,LIV,False,A-clean
+444884,Elliott,3,LIV,55,a,,,,MID,5.5,,5.0,0.0,5.0,,Aston Villa,0.0,1.0,AVL,True,B-cameo
+114283,Grealish,3,MCI,65,a,,,,MID,6.5,,79.0,18.0,2.0,4.277777777777778,Everton,0.47,0.1,EVE,True,A-clean
+204936,Donnarumma,1,MCI,55,a,,,,GK,5.5,,135.0,32.0,0.0,4.21875,Man City,0.84,0.0,MCI,False,A-clean
+432720,Trafford,1,MCI,50,a,,,,GK,5.0,,13.0,4.0,0.0,3.25,Man City,0.11,0.0,MCI,False,A-clean
+122074,Bettinelli,1,MCI,45,a,,,,GK,4.5,,0.0,0.0,0.0,,Man City,0.0,,MCI,False,A-clean
+472769,O'Reilly,2,MCI,65,a,,,,DEF,6.5,,160.0,27.0,6.0,5.814814814814815,Man City,0.71,0.18,MCI,False,A-clean
+209036,Guéhi,2,MCI,60,a,,,,DEF,6.0,,179.0,33.0,0.0,5.424242424242424,Crystal Palace,0.87,0.0,CRY,True,A-clean
+465351,Matheus N.,2,MCI,60,a,,,,DEF,6.0,,154.0,29.0,3.0,5.103448275862069,Man City,0.76,0.09,MCI,False,A-clean
+171314,Rúben,2,MCI,55,a,,,,DEF,5.5,,113.0,23.0,3.0,4.826086956521739,Man City,0.61,0.12,MCI,False,A-clean
+477424,Gvardiol,2,MCI,55,a,,,,DEF,5.5,,79.0,14.0,4.0,5.357142857142857,Man City,0.37,0.22,MCI,False,A-clean
+448514,Aït-Nouri,2,MCI,55,a,,,,DEF,5.5,,60.0,10.0,7.0,5.3,Man City,0.26,0.41,MCI,False,B-cameo
+578153,Khusanov,2,MCI,55,a,,,,DEF,5.5,,67.0,13.0,7.0,4.615384615384615,Man City,0.34,0.35,MCI,False,B-cameo
+494307,Alleyne,2,MCI,50,a,,,,DEF,5.0,,5.0,1.0,1.0,4.0,Man City,0.03,0.5,MCI,False,B-cameo
+477064,Lewis,2,MCI,45,a,,,,DEF,4.5,,19.0,4.0,7.0,3.0,Man City,0.11,0.64,MCI,False,B-cameo
+616222,Vitor Reis,2,MCI,45,a,,,,DEF,4.5,,0.0,0.0,0.0,,Man City,0.0,,MCI,False,A-clean
+437730,Semenyo,3,MCI,85,a,,,,MID,8.5,,202.0,33.0,2.0,5.909090909090909,Bournemouth,0.87,0.06,BOU,True,A-clean
+209244,Foden,3,MCI,70,a,,,,MID,7.0,,131.0,22.0,10.0,5.5,Man City,0.58,0.31,MCI,False,B-cameo
+466052,Cherki,3,MCI,75,a,,,,MID,7.5,,135.0,16.0,15.0,7.0625,Man City,0.42,0.48,MCI,False,B-cameo
+248875,Doku,3,MCI,75,a,,,,MID,7.5,,120.0,17.0,11.0,6.411764705882353,Man City,0.45,0.39,MCI,False,B-cameo
+438234,Marmoush,4,MCI,70,a,,,,FWD,7.0,,56.0,5.0,15.0,7.2,Man City,0.13,0.75,MCI,False,B-cameo
+220566,Rodrigo,3,MCI,65,i,Back injury - Unknown return date,0.0,,MID,6.5,,69.0,16.0,5.0,4.0,Man City,0.42,0.24,MCI,False,A-clean
+510281,Savinho,3,MCI,65,a,,,,MID,6.5,,43.0,6.0,16.0,4.0,Man City,0.16,0.73,MCI,False,B-cameo
+433036,Reijnders,3,MCI,60,a,,,,MID,6.0,,92.0,17.0,11.0,4.764705882352941,Man City,0.45,0.39,MCI,False,B-cameo
+465694,N.Gonzalez,3,MCI,55,a,,,,MID,5.5,,63.0,17.0,7.0,3.411764705882353,Man City,0.45,0.29,MCI,False,B-cameo
+91651,Kovačić,3,MCI,55,a,,,,MID,5.5,,9.0,0.0,6.0,,Man City,0.0,1.0,MCI,False,B-cameo
+575204,Echeverri,3,MCI,50,a,,,,MID,5.0,,0.0,0.0,0.0,,Man City,0.0,,MCI,False,A-clean
+155405,Phillips,3,MCI,50,a,,,,MID,5.0,,0.0,0.0,0.0,,Man City,0.0,,MCI,False,A-clean
+590039,Mukasa,3,MCI,45,a,,,,MID,4.5,,2.0,0.0,2.0,,Man City,0.0,1.0,MCI,False,B-cameo
+649208,Monga,3,MCI,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+223094,Haaland,4,MCI,155,a,,,,FWD,15.5,,239.0,32.0,2.0,7.28125,Man City,0.84,0.06,MCI,False,A-clean
+215379,Anderson,3,MCI,65,a,,,,MID,6.5,,180.0,37.0,1.0,4.837837837837838,Nott'm Forest,0.97,0.03,NFO,True,A-clean
+166989,Tielemans,3,MUN,60,d,Hamstring injury - 75% chance of playing,75.0,,MID,6.0,,68.0,20.0,5.0,3.0,Aston Villa,0.53,0.2,AVL,True,A-clean
+532605,Andrey Santos,3,MUN,50,a,,,,MID,5.0,,47.0,11.0,16.0,3.090909090909091,Chelsea,0.29,0.59,CHE,True,B-cameo
+59735,Darlow,1,MUN,45,d,Unspecified injury - 75% chance of playing,75.0,,GK,4.5,,71.0,21.0,0.0,3.380952380952381,Leeds,0.55,0.0,LEE,True,A-clean
+465247,Lammens,1,MUN,50,a,,,,GK,5.0,,109.0,32.0,0.0,3.40625,Man Utd,0.84,0.0,MUN,False,A-clean
+451302,Bayindir,1,MUN,45,a,,,,GK,4.5,,11.0,6.0,0.0,1.8333333333333333,Man Utd,0.16,0.0,MUN,False,A-clean
+21205,Heaton,1,MUN,40,a,,,,GK,4.0,,0.0,0.0,0.0,,Man Utd,0.0,,MUN,False,A-clean
+596777,Dorgu,3,MUN,60,a,,,,MID,6.0,,95.0,14.0,12.0,6.071428571428571,Man Utd,0.37,0.46,MUN,False,B-cameo
+209365,De Ligt,2,MUN,50,i,Back injury - Unknown return date,0.0,,DEF,5.0,,43.0,13.0,0.0,3.3076923076923075,Man Utd,0.34,0.0,MUN,False,A-clean
+216051,Dalot,2,MUN,50,a,,,,DEF,5.0,,111.0,28.0,6.0,3.7857142857142856,Man Utd,0.74,0.18,MUN,False,A-clean
+95658,Maguire,2,MUN,50,a,,,,DEF,5.0,,90.0,19.0,4.0,4.526315789473684,Man Utd,0.5,0.17,MUN,False,A-clean
+221820,Martinez,2,MUN,50,d,Thigh injury - 75% chance of playing,75.0,,DEF,5.0,,51.0,12.0,6.0,4.083333333333333,Man Utd,0.32,0.33,MUN,False,B-cameo
+550864,Yoro,2,MUN,50,a,,,,DEF,5.0,,56.0,17.0,15.0,2.4705882352941178,Man Utd,0.45,0.47,MUN,False,B-cameo
+606745,Heaven,2,MUN,45,a,,,,DEF,4.5,,42.0,10.0,7.0,3.5,Man Utd,0.26,0.41,MUN,False,B-cameo
+230001,Mazraoui,2,MUN,45,a,,,,DEF,4.5,,53.0,10.0,10.0,4.5,Man Utd,0.26,0.5,MUN,False,B-cameo
+106760,Shaw,2,MUN,45,a,,,,DEF,4.5,,113.0,37.0,1.0,3.027027027027027,Man Utd,0.97,0.03,MUN,False,A-clean
+577974,Amass,2,MUN,40,a,,,,DEF,4.0,,0.0,0.0,0.0,,Man Utd,0.0,,MUN,False,A-clean
+547676,Fredricson,2,MUN,40,a,,,,DEF,4.0,,1.0,0.0,1.0,,Man Utd,0.0,1.0,MUN,False,B-cameo
+141746,B.Fernandes,3,MUN,120,a,,,,MID,12.0,,235.0,34.0,1.0,6.882352941176471,Man Utd,0.89,0.03,MUN,False,A-clean
+446008,Mbeumo,3,MUN,80,a,,,,MID,8.0,,148.0,31.0,2.0,4.709677419354839,Man Utd,0.82,0.06,MUN,False,A-clean
+430871,Cunha,3,MUN,80,a,,,,MID,8.0,,143.0,28.0,5.0,4.535714285714286,Man Utd,0.74,0.15,MUN,False,A-clean
+176297,Rashford,3,MUN,70,a,,,,MID,7.0,,0.0,0.0,0.0,,Man Utd,0.0,,MUN,False,A-clean
+184341,Mount,3,MUN,55,a,,,,MID,5.5,,58.0,10.0,13.0,4.6,Man Utd,0.26,0.57,MUN,False,B-cameo
+493250,Amad,3,MUN,60,a,,,,MID,6.0,,91.0,23.0,9.0,3.4782608695652173,Man Utd,0.61,0.28,MUN,False,B-cameo
+516895,Mainoo,3,MUN,55,a,,,,MID,5.5,,73.0,16.0,12.0,3.8125,Man Utd,0.42,0.43,MUN,False,B-cameo
+232112,Ugarte,3,MUN,50,i,Knee injury - Unknown return date,0.0,,MID,5.0,,38.0,8.0,14.0,3.0,Man Utd,0.21,0.64,MUN,False,B-cameo
+547037,J.Fletcher,3,MUN,50,a,,,,MID,5.0,,3.0,0.0,3.0,,Man Utd,0.0,1.0,MUN,False,B-cameo
+576628,Lacey,3,MUN,50,a,,,,MID,5.0,,3.0,0.0,3.0,,Man Utd,0.0,1.0,MUN,False,B-cameo
+490881,Collyer,3,MUN,50,a,,,,MID,5.0,,0.0,0.0,0.0,,Man Utd,0.0,,MUN,False,A-clean
+576620,Bendito Mantato,3,MUN,45,a,,,,MID,4.5,,1.0,0.0,1.0,,Man Utd,0.0,1.0,MUN,False,B-cameo
+519913,Fletcher,3,MUN,45,a,,,,MID,4.5,,2.0,0.0,2.0,,Man Utd,0.0,1.0,MUN,False,B-cameo
+485711,Šeško,4,MUN,70,d,Shin injury - 75% chance of playing,75.0,,FWD,7.0,,111.0,14.0,16.0,4.714285714285714,Man Utd,0.37,0.53,MUN,False,B-cameo
+458249,Zirkzee,4,MUN,55,a,,,,FWD,5.5,,42.0,4.0,20.0,3.5,Man Utd,0.11,0.83,MUN,False,B-cameo
+596047,Obi,4,MUN,45,a,,,,FWD,4.5,,0.0,0.0,0.0,,Man Utd,0.0,,MUN,False,A-clean
+98747,Pope,1,NEW,50,a,,,,GK,5.0,,96.0,27.0,0.0,3.5555555555555554,Newcastle,0.71,0.0,NEW,False,A-clean
+81441,Gillespie,1,NEW,45,a,,,,GK,4.5,,0.0,0.0,0.0,,Newcastle,0.0,,NEW,False,A-clean
+554578,Jaouen,1,NEW,45,a,,,,GK,4.5,,,,,,,,,,False,A-clean
+465642,Thiaw,2,NEW,50,a,,,,DEF,5.0,,126.0,32.0,3.0,3.9375,Newcastle,0.84,0.09,NEW,False,A-clean
+119471,Schär,2,NEW,50,d,Ankle injury - 75% chance of playing,75.0,,DEF,5.0,,51.0,11.0,5.0,4.181818181818182,Newcastle,0.29,0.31,NEW,False,B-cameo
+220237,Botman,2,NEW,50,a,,,,DEF,5.0,,89.0,20.0,5.0,4.05,Newcastle,0.53,0.2,NEW,False,A-clean
+78916,Burn,2,NEW,50,a,,,,DEF,5.0,,93.0,24.0,5.0,3.6666666666666665,Newcastle,0.63,0.17,NEW,False,A-clean
+487838,Hall,2,NEW,50,a,,,,DEF,5.0,,79.0,23.0,7.0,3.1739130434782608,Newcastle,0.61,0.23,NEW,False,A-clean
+441191,Livramento,2,NEW,50,d,Calf injury - 75% chance of playing,75.0,,DEF,5.0,,59.0,14.0,3.0,4.0,Newcastle,0.37,0.18,NEW,False,A-clean
+545477,A.Murphy,2,NEW,40,a,,,,DEF,4.0,,2.0,0.0,2.0,,Newcastle,0.0,1.0,NEW,False,B-cameo
+208706,Bruno G.,3,NEW,70,a,,,,MID,7.0,,154.0,27.0,2.0,5.407407407407407,Newcastle,0.71,0.07,NEW,False,A-clean
+201666,Barnes,3,NEW,60,a,,,,MID,6.0,,106.0,18.0,19.0,4.277777777777778,Newcastle,0.47,0.51,NEW,False,B-cameo
+449434,Elanga,3,NEW,60,a,,,,MID,6.0,,48.0,11.0,21.0,2.4545454545454546,Newcastle,0.29,0.66,NEW,False,B-cameo
+232653,J.Ramsey,3,NEW,50,a,,,,MID,5.0,,62.0,13.0,15.0,3.3076923076923075,Newcastle,0.34,0.54,NEW,False,B-cameo
+114243,J.Murphy,3,NEW,60,a,,,,MID,6.0,,82.0,17.0,16.0,3.7058823529411766,Newcastle,0.45,0.48,NEW,False,B-cameo
+180974,Joelinton,3,NEW,55,d,Thigh injury - 75% chance of playing,75.0,,MID,5.5,,73.0,20.0,7.0,3.4,Newcastle,0.53,0.26,NEW,False,B-cameo
+547719,L.Miley,3,NEW,55,i,Calf injury - Expected back 30 Aug,0.0,,MID,5.5,,72.0,15.0,8.0,4.066666666666666,Newcastle,0.39,0.35,NEW,False,B-cameo
+200089,Willock,3,NEW,50,a,,,,MID,5.0,,38.0,8.0,16.0,2.75,Newcastle,0.21,0.67,NEW,False,B-cameo
+611665,Touré,3,NEW,60,a,,,,MID,6.0,,,,,,,,,,False,A-clean
+636852,Steur,3,NEW,50,a,,,,MID,5.0,,,,,,,,,,False,A-clean
+470313,Woltemade,4,NEW,60,a,,,,FWD,6.0,,108.0,21.0,12.0,4.571428571428571,Newcastle,0.55,0.36,NEW,False,B-cameo
+216646,Wissa,4,NEW,60,a,,,,FWD,6.0,,27.0,4.0,15.0,3.0,Newcastle,0.11,0.79,NEW,False,B-cameo
+538207,Osula,4,NEW,60,a,,,,FWD,6.0,,76.0,8.0,16.0,5.875,Newcastle,0.21,0.67,NEW,False,B-cameo
+599303,Neave,4,NEW,45,a,,,,FWD,4.5,,1.0,0.0,1.0,,Newcastle,0.0,1.0,NEW,False,B-cameo
+85633,Sels,1,NFO,50,a,,,,GK,5.0,,105.0,29.0,2.0,3.5517241379310347,Nott'm Forest,0.76,0.06,NFO,False,A-clean
+221389,John,1,NFO,45,a,,,,GK,4.5,,11.0,5.0,0.0,2.2,Nott'm Forest,0.13,0.0,NFO,False,A-clean
+215136,N.Williams,2,NFO,50,a,,,,DEF,5.0,,128.0,34.0,3.0,3.7941176470588234,Nott'm Forest,0.89,0.08,NFO,False,A-clean
+485047,Morato,2,NFO,50,a,,,,DEF,5.0,,53.0,14.0,7.0,3.2857142857142856,Nott'm Forest,0.37,0.33,NFO,False,B-cameo
+227444,Milenković,2,NFO,55,a,,,,DEF,5.5,,119.0,37.0,1.0,3.189189189189189,Nott'm Forest,0.97,0.03,NFO,False,A-clean
+575476,Murillo,2,NFO,55,d,Muscle injury - 75% chance of playing,75.0,,DEF,5.5,,83.0,23.0,2.0,3.4347826086956523,Nott'm Forest,0.61,0.08,NFO,False,A-clean
+159506,Aina,2,NFO,45,a,,,,DEF,4.5,,67.0,18.0,0.0,3.7222222222222223,Nott'm Forest,0.47,0.0,NFO,False,A-clean
+575458,Jair Cunha,2,NFO,45,a,,,,DEF,4.5,,13.0,4.0,5.0,2.0,Nott'm Forest,0.11,0.56,NFO,False,B-cameo
+500151,Savona,2,NFO,45,i,Knee injury - Unknown return date,0.0,,DEF,4.5,,39.0,10.0,4.0,3.8,Nott'm Forest,0.26,0.29,NFO,False,B-cameo
+204822,O.Richards,2,NFO,40,a,,,,DEF,4.0,,0.0,0.0,0.0,,Nott'm Forest,0.0,,NFO,False,A-clean
+549067,Abbott,2,NFO,40,a,,,,DEF,4.0,,3.0,1.0,2.0,1.0,Nott'm Forest,0.03,0.67,NFO,False,B-cameo
+470315,Netz,2,NFO,45,a,,,,DEF,4.5,,11.0,3.0,4.0,2.3333333333333335,Nott'm Forest,0.08,0.57,NFO,False,B-cameo
+538638,Bindon,2,NFO,40,a,,,,DEF,4.0,,,,,,,,,,False,A-clean
+222531,Gibbs-White,3,NFO,80,a,,,,MID,8.0,,188.0,35.0,2.0,5.228571428571429,Nott'm Forest,0.92,0.05,NFO,False,A-clean
+209046,Hudson-Odoi,3,NFO,60,d,Thigh injury - 75% chance of playing,75.0,,MID,6.0,,88.0,17.0,13.0,4.235294117647059,Nott'm Forest,0.45,0.43,NFO,False,B-cameo
+456512,Ndoye,3,NFO,55,a,,,,MID,5.5,,50.0,10.0,14.0,3.6,Nott'm Forest,0.26,0.58,NFO,False,B-cameo
+503301,Hutchinson,3,NFO,55,a,,,,MID,5.5,,82.0,15.0,16.0,3.533333333333333,Nott'm Forest,0.39,0.52,NFO,False,B-cameo
+476887,Bakwa,3,NFO,55,a,,,,MID,5.5,,26.0,4.0,10.0,4.0,Nott'm Forest,0.11,0.71,NFO,False,B-cameo
+432714,McAtee,3,NFO,55,a,,,,MID,5.5,,17.0,1.0,13.0,2.0,Nott'm Forest,0.03,0.93,NFO,False,B-cameo
+250199,Dominguez,3,NFO,50,a,,,,MID,5.0,,48.0,8.0,19.0,3.625,Nott'm Forest,0.21,0.7,NFO,False,B-cameo
+210462,Sangaré,3,NFO,50,a,,,,MID,5.0,,89.0,22.0,6.0,3.590909090909091,Nott'm Forest,0.58,0.21,NFO,False,A-clean
+204968,Yates,3,NFO,45,a,,,,MID,4.5,,30.0,3.0,19.0,3.3333333333333335,Nott'm Forest,0.08,0.86,NFO,False,B-cameo
+60689,Wood,4,NFO,60,a,,,,FWD,6.0,,41.0,10.0,5.0,3.6,Nott'm Forest,0.26,0.33,NFO,False,B-cameo
+482973,Igor Jesus,4,NFO,60,a,,,,FWD,6.0,,114.0,24.0,13.0,3.7916666666666665,Nott'm Forest,0.63,0.35,NFO,False,B-cameo
+210156,Awoniyi,4,NFO,55,a,,,,FWD,5.5,,43.0,2.0,15.0,9.0,Nott'm Forest,0.05,0.88,NFO,False,B-cameo
+465680,Kalimuendo,4,NFO,55,a,,,,FWD,5.5,,9.0,0.0,9.0,,Nott'm Forest,0.0,1.0,NFO,False,B-cameo
+204561,Schlager,3,NFO,50,a,,,1997-09-28,MID,5.0,29.0,,,,,,,,,False,A-clean
+469142,Van Hecke,2,TOT,50,a,,,,DEF,5.0,,148.0,35.0,0.0,4.228571428571429,Brighton,0.92,0.0,BHA,True,A-clean
+432422,Tonali,3,TOT,55,a,,,,MID,5.5,,81.0,27.0,8.0,2.740740740740741,Newcastle,0.71,0.23,NEW,True,A-clean
+184254,Vicario,1,TOT,45,a,,,,GK,4.5,,90.0,31.0,0.0,2.903225806451613,Spurs,0.82,0.0,TOT,False,A-clean
+214572,Austin,1,TOT,40,a,,,,GK,4.0,,0.0,0.0,0.0,,Spurs,0.0,,TOT,False,A-clean
+485055,Kinsky,1,TOT,45,a,,,,GK,4.5,,20.0,7.0,0.0,2.857142857142857,Spurs,0.18,0.0,TOT,False,A-clean
+67089,Dubravka,1,TOT,40,a,,,,GK,4.0,,96.0,34.0,0.0,2.823529411764706,Burnley,0.89,0.0,BUR,True,A-clean
+221466,Senesi,2,TOT,60,a,,,,DEF,6.0,,175.0,36.0,0.0,4.861111111111111,Bournemouth,0.95,0.0,BOU,True,A-clean
+441164,Pedro Porro,2,TOT,55,a,,,,DEF,5.5,,117.0,31.0,3.0,3.7096774193548385,Spurs,0.82,0.09,TOT,False,A-clean
+221632,Romero,2,TOT,50,a,,,,DEF,5.0,,91.0,20.0,3.0,4.65,Spurs,0.53,0.13,TOT,False,A-clean
+135720,Danso,2,TOT,50,a,,,,DEF,5.0,,63.0,15.0,9.0,3.8,Spurs,0.39,0.38,TOT,False,B-cameo
+122798,Robertson,2,TOT,45,a,,,,DEF,4.5,,55.0,9.0,15.0,4.888888888888889,Liverpool,0.24,0.62,LIV,True,B-cameo
+491279,Van de Ven,2,TOT,50,a,,,,DEF,5.0,,116.0,33.0,2.0,3.5757575757575757,Spurs,0.87,0.06,TOT,False,A-clean
+232859,Spence,2,TOT,45,a,,,,DEF,4.5,,78.0,22.0,8.0,3.227272727272727,Spurs,0.58,0.27,TOT,False,B-cameo
+487053,Udogie,2,TOT,45,a,,,,DEF,4.5,,29.0,13.0,7.0,1.6923076923076923,Spurs,0.34,0.35,TOT,False,B-cameo
+548308,Phillips,2,TOT,45,a,,,,DEF,4.5,,0.0,0.0,0.0,,Spurs,0.0,,TOT,False,A-clean
+115556,Davies,2,TOT,40,a,,,,DEF,4.0,,10.0,1.0,2.0,9.0,Spurs,0.03,0.67,TOT,False,B-cameo
+640419,Byfield,2,TOT,40,a,,,,DEF,4.0,,1.0,0.0,1.0,,Spurs,0.0,1.0,TOT,False,B-cameo
+499716,Rowswell,2,TOT,40,a,,,,DEF,4.0,,1.0,0.0,1.0,,Spurs,0.0,1.0,TOT,False,B-cameo
+616221,Souza,2,TOT,40,a,,,,DEF,4.0,,3.0,0.0,4.0,,Spurs,0.0,1.0,TOT,False,B-cameo
+460842,Kudus,3,TOT,65,d,Thigh injury - 75% chance of playing,75.0,,MID,6.5,,75.0,17.0,2.0,4.294117647058823,Spurs,0.45,0.11,TOT,False,A-clean
+493362,Xavi,3,TOT,60,i,Knee injury - Expected back 31 Dec,0.0,,MID,6.0,,80.0,18.0,10.0,4.055555555555555,Spurs,0.47,0.36,TOT,False,B-cameo
+511499,Tel,3,TOT,60,a,,,,MID,6.0,,78.0,12.0,19.0,4.25,Spurs,0.32,0.61,TOT,False,B-cameo
+172780,Maddison,3,TOT,65,a,,,,MID,6.5,,3.0,0.0,3.0,,Spurs,0.0,1.0,TOT,False,B-cameo
+202993,Bentancur,3,TOT,55,a,,,,MID,5.5,,86.0,21.0,5.0,3.9047619047619047,Spurs,0.55,0.19,TOT,False,A-clean
+550839,Odobert,3,TOT,55,i,Knee injury - Expected back 21 Nov,0.0,,MID,5.5,,46.0,8.0,16.0,3.0,Spurs,0.21,0.67,TOT,False,B-cameo
+482442,P.M.Sarr,3,TOT,50,a,,,,MID,5.0,,71.0,13.0,13.0,3.6923076923076925,Spurs,0.34,0.5,TOT,False,B-cameo
+232787,Gallagher,3,TOT,55,a,,,,MID,5.5,,44.0,13.0,3.0,3.1538461538461537,Spurs,0.34,0.19,TOT,False,A-clean
+570526,Bergvall,3,TOT,55,a,,,,MID,5.5,,49.0,9.0,14.0,3.6666666666666665,Spurs,0.24,0.61,TOT,False,B-cameo
+445044,Kulusevski,3,TOT,65,i,Knee injury - Unknown return date,0.0,,MID,6.5,,0.0,0.0,0.0,,Spurs,0.0,,TOT,False,A-clean
+547701,Gray,3,TOT,50,a,,,,MID,5.0,,61.0,15.0,9.0,3.6,Spurs,0.39,0.38,TOT,False,B-cameo
+499721,Moore,3,TOT,50,a,,,,MID,5.0,,0.0,0.0,0.0,,Spurs,0.0,,TOT,False,A-clean
+499726,Olusesi,3,TOT,45,a,,,,MID,4.5,,1.0,0.0,1.0,,Spurs,0.0,1.0,TOT,False,B-cameo
+551226,Fernandes,3,TOT,60,a,,,,MID,6.0,,135.0,34.0,2.0,3.764705882352941,West Ham,0.89,0.06,WHU,True,A-clean
+154566,Solanke,4,TOT,60,a,,,,FWD,6.0,,40.0,10.0,5.0,3.5,Spurs,0.26,0.33,TOT,False,B-cameo
+212319,Richarlison,4,TOT,60,a,,,,FWD,6.0,,119.0,19.0,13.0,4.947368421052632,Spurs,0.5,0.41,TOT,False,B-cameo
+490145,Scarlett,4,TOT,45,a,,,,FWD,4.5,,2.0,0.0,2.0,,Spurs,0.0,1.0,TOT,False,B-cameo
+498016,Roefs,1,SUN,50,a,,,,GK,5.0,,136.0,35.0,0.0,3.8857142857142857,Sunderland,0.92,0.0,SUN,False,A-clean
+232571,Patterson,1,SUN,40,a,,,,GK,4.0,,0.0,0.0,0.0,,Sunderland,0.0,,SUN,False,A-clean
+515046,Ellborg,1,SUN,45,a,,,,GK,4.5,,16.0,3.0,0.0,5.333333333333333,Sunderland,0.08,0.0,SUN,False,A-clean
+223827,Ballard,2,SUN,50,a,,,,DEF,5.0,,116.0,22.0,7.0,5.045454545454546,Sunderland,0.58,0.24,SUN,False,A-clean
+200834,Mukiele,2,SUN,55,a,,,,DEF,5.5,,151.0,31.0,1.0,4.838709677419355,Sunderland,0.82,0.03,SUN,False,A-clean
+487676,Hume,2,SUN,45,a,,,,DEF,4.5,,110.0,32.0,6.0,3.15625,Sunderland,0.84,0.16,SUN,False,A-clean
+201895,Alderete,2,SUN,50,a,,,,DEF,5.0,,125.0,31.0,2.0,3.870967741935484,Sunderland,0.82,0.06,SUN,False,A-clean
+434399,Reinildo,2,SUN,45,a,,,,DEF,4.5,,74.0,21.0,4.0,3.619047619047619,Sunderland,0.55,0.16,SUN,False,A-clean
+519634,Seelt,2,SUN,45,a,,,,DEF,4.5,,2.0,1.0,1.0,1.0,Sunderland,0.03,0.5,SUN,False,B-cameo
+477547,Hjelde,2,SUN,40,a,,,,DEF,4.0,,0.0,0.0,0.0,,Sunderland,0.0,,SUN,False,A-clean
+167512,O'Nien,2,SUN,40,a,,,,DEF,4.0,,26.0,6.0,6.0,3.8333333333333335,Sunderland,0.16,0.5,SUN,False,B-cameo
+105717,Masuaku,2,SUN,40,a,,,,DEF,4.0,,1.0,0.0,3.0,,Sunderland,0.0,1.0,SUN,False,B-cameo
+93605,Meunier,2,SUN,45,a,,,,DEF,4.5,,,,,,,,,,False,A-clean
+484420,E.Le Fée,3,SUN,60,a,,,,MID,6.0,,147.0,33.0,3.0,4.363636363636363,Sunderland,0.87,0.08,SUN,False,A-clean
+547027,Diarra,3,SUN,55,a,,,,MID,5.5,,65.0,15.0,5.0,3.933333333333333,Sunderland,0.39,0.25,SUN,False,B-cameo
+84450,Xhaka,3,SUN,55,a,,,,MID,5.5,,124.0,32.0,2.0,3.8125,Sunderland,0.84,0.06,SUN,False,A-clean
+577669,Sadiki,3,SUN,50,a,,,,MID,5.0,,80.0,33.0,0.0,2.4242424242424243,Sunderland,0.87,0.0,SUN,False,A-clean
+535818,Adingra,3,SUN,50,a,,,,MID,5.0,,34.0,7.0,7.0,3.857142857142857,Sunderland,0.18,0.5,SUN,False,B-cameo
+461199,Mundle,3,SUN,50,a,,,,MID,5.0,,14.0,1.0,13.0,2.0,Sunderland,0.03,0.93,SUN,False,B-cameo
+554197,Rigg,3,SUN,50,a,,,,MID,5.0,,36.0,7.0,11.0,3.142857142857143,Sunderland,0.18,0.61,SUN,False,B-cameo
+549912,Talbi,3,SUN,55,a,,,,MID,5.5,,83.0,16.0,12.0,3.8125,Sunderland,0.42,0.43,SUN,False,B-cameo
+699989,Jocelin.T,3,SUN,50,a,,,,MID,5.0,,1.0,0.0,1.0,,Sunderland,0.0,1.0,SUN,False,B-cameo
+536661,Angulo,3,SUN,50,a,,,,MID,5.0,,13.0,5.0,3.0,2.0,Sunderland,0.13,0.38,SUN,False,B-cameo
+441264,Brobbey,4,SUN,60,a,,,,FWD,6.0,,92.0,21.0,10.0,3.3333333333333335,Sunderland,0.55,0.32,SUN,False,B-cameo
+437505,Isidor,4,SUN,55,a,,,,FWD,5.5,,74.0,9.0,23.0,3.3333333333333335,Sunderland,0.24,0.72,SUN,False,B-cameo

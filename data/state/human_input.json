@@ -1,0 +1,5 @@
+{
+  "_README": "Edit weekly (2 min). Add nailed-ness the model CANNOT derive from data: World Cup returnees ramping up, training-ground news, manager press-conference quotes, confirmed benchings. Format per player:  \"WebName\": { \"p_start\": 0.0-1.0, \"note\": \"free text\" }.  p_start (optional) overrides the model's start probability; note always shows in the report.",
+  "Mosquera": { "p_start": 0.92, "note": "NAILED — Saliba out for months (back surgery)" },
+  "Walle Egeli": { "p_start": 0.35, "note": "promoted, expect rotation — bench only until confirmed" }
+}
