@@ -12,7 +12,7 @@ report is generated on priors. Each function is written to ingest a completed-GW
 from __future__ import annotations
 import math, json, numpy as np, pandas as pd
 from pathlib import Path
-import ev_v2 as V, fixture_ratings as FR, squad_engine as SE
+import ev_v2 as V, fixture_ratings as FR, squad_engine as SE, history as H
 
 STATE = Path(__file__).resolve().parent.parent / "data" / "state"
 STATE.mkdir(parents=True, exist_ok=True)
@@ -38,16 +38,71 @@ def ev_gw(code, name, pos, team, gw):
 
 
 # ======================================================= PART 1 — WEEKLY MODEL REFRESH
-def refresh_models(completed_gw=CURRENT_GW):
-    """Ingest the just-played GW into every component. Pre-season: prior state, 0 games."""
-    lines, flags = [], []
-    # 1c team strength — Bayesian prior->updated (ev_v2 team ratings already Bayesian-ready)
+INGEST_LOG = []
+
+
+def auto_ingest_and_refresh():
+    """One-command startup: detect finished-but-not-ingested gameweeks, pull them from the live
+    FPL API, and apply the Bayesian team update (1c). Per-90 rates, P(starts) recency, DC-model
+    refit and yellow-card accrual refresh automatically — ev_v2/history read the accumulating
+    store on demand. Logged, never silent, never on stale data."""
+    global CURRENT_GW, INGEST_LOG
+    log = []; boot = None; finished = None
+    try:
+        import fpl_fetch as F
+        st = F.season_state(); boot = st["bootstrap"]; finished = st["finished"]
+    except Exception as e:
+        log.append(f"⚠ FPL API unreachable ({type(e).__name__}) — running on last-ingested state")
+    if finished is not None:
+        already = set(int(x) for x in H.load_inseason().gw.unique()) if H.has_inseason() else set()
+        new = [g for g in finished if g not in already]
+        for gw in new:
+            try: log.append(f"ingested GW{gw}: {H.ingest_gw(gw, boot)} players played")
+            except Exception as e: log.append(f"GW{gw} ingest FAILED: {e}")
+        CURRENT_GW = len(finished)
+        if not finished: log.append("no completed gameweeks yet (pre-season) — models at prior")
+        elif not new: log.append(f"all {CURRENT_GW} completed GW(s) already ingested — no new data")
+    else:
+        CURRENT_GW = int(H.load_inseason().gw.max()) if H.has_inseason() else 0
+    if boot is not None and CURRENT_GW > 0 and H.has_inseason():
+        log += _apply_team_bayes(boot)
+    INGEST_LOG = log
+    return log
+
+
+def _apply_team_bayes(bootstrap):
+    """Normalise cumulative live team xG (scored & conceded) to league average, then Bayesian-update
+    each club's rating — tiered confidence (K) already baked into fixture_ratings."""
+    d = H.load_inseason()
+    tid = {e["code"]: e["team"] for e in bootstrap["elements"]}
+    shrt = {t["id"]: t["short_name"] for t in bootstrap["teams"]}
+    d = d.assign(team=d.code.map(lambda c: shrt.get(tid.get(c))))
+    scored = {(r.team, int(r.gw)): r.xG for r in d.groupby(["team", "gw"]).xG.sum().reset_index().itertuples()}
+    gws = sorted(int(x) for x in d.gw.unique())
+    lg = float(np.mean(list(scored.values()))) if scored else 1.4
+    n = 0
+    for team in [t for t in d.team.dropna().unique() if t in FR.RATINGS]:
+        att = [scored[(team, g)] for g in gws if (team, g) in scored]
+        con = []
+        for g in gws:
+            fx = FIX.get(team, {}).get(g)
+            if fx and (fx[0], g) in scored: con.append(scored[(fx[0], g)])
+        if att:
+            FR.bayes_update(team, len(att), np.mean(att) / lg,
+                            (np.mean(con) / lg) if con else FR.RATINGS[team]["defw_prior"])
+            n += 1
+    return [f"Bayesian team ratings updated from {len(gws)} live GW(s) of xG ({n} clubs)"]
+
+
+def refresh_models(completed_gw=None):
+    """Display the refreshed model state (ingest already ran in auto_ingest_and_refresh)."""
+    completed_gw = CURRENT_GW if completed_gw is None else completed_gw
+    flags = []
     disp = FR.ratings_display(games_played=completed_gw)
     for sh, name, ap, an, dp, dn, K, wp, wd in disp:
-        # 1c flag: observed xG diverges >30% from prior after 3+ games (dormant until GW3)
         if completed_gw >= 3 and (abs(an - ap) / max(ap, .1) > 0.30 or abs(dn - dp) / max(dp, .1) > 0.30):
             flags.append(f"[!] {sh}: xG rating diverges >30% from prior — HUMAN REVIEW")
-    return dict(team=disp, flags=flags, games=completed_gw)
+    return dict(team=disp, flags=flags, games=completed_gw, ingest=INGEST_LOG)
 
 
 # ======================================================= PART 2 — DECISION REPORT
@@ -186,6 +241,7 @@ def report(team_name, squad_def, itb, banked, chips, planned):
     L = []
     L.append("═" * 54); L.append(f"{team_name} — GW{gw} DECISIONS"); L.append(f"Models updated: GW{CURRENT_GW} data ingested ✓ ({rf['games']} GWs played → Bayesian {'100% prior' if rf['games']==0 else 'blended'})"); L.append("═" * 54)
     L.append("\nMODEL UPDATES THIS WEEK\n" + "━" * 24)
+    for line in rf.get("ingest", []): L.append("  ⟳ " + line)
     top = rf["team"][:3]
     for sh, name, ap, an, dp, dn, K, wp, wd in top:
         L.append(f"  {sh} att {ap:.2f}→{an:.2f} def {dp:.2f}→{dn:.2f}  [K={K}, prior {100*wp:.0f}%/data {100*wd:.0f}%]")
@@ -238,6 +294,9 @@ def report(team_name, squad_def, itb, banked, chips, planned):
 
 
 if __name__ == "__main__":
+    print("⟳ Refreshing models from live FPL API (detect → ingest → refresh)...", flush=True)
+    for line in auto_ingest_and_refresh(): print("   " + line)
+    print()
     SANTA = [("Sánchez","GK","CHE",5.0),("Leno","GK","FUL",4.5),("Senesi","DEF","TOT",6.0),("Van Hecke","DEF","TOT",5.0),
              ("Romero","DEF","TOT",5.0),("Calafiori","DEF","ARS",5.5),("Van den Berg","DEF","BRE",5.0),
              ("Mbeumo","MID","MUN",8.0),("Anderson","MID","MCI",6.5),("Enzo","MID","CHE",7.0),("Sarr","MID","CRY",6.5),
