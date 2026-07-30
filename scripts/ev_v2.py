@@ -12,6 +12,7 @@ from __future__ import annotations
 from pathlib import Path
 import math, numpy as np, pandas as pd
 import squad_engine as SE, fixture_ratings as FR
+import history as H
 
 RAW = Path(__file__).resolve().parent.parent / "data" / "raw"
 POSN = {1: "GK", 2: "DEF", 3: "MID", 4: "FWD"}
@@ -52,9 +53,23 @@ def _pos_avg_rates():
 POS_AVG = _pos_avg_rates()
 
 
+def _prior_games(el):
+    """2025-26 per-game appearance rows (oldest→newest) for the recency blend."""
+    if el is None: return []
+    sub = _g[(_g.element == el) & (_g.minutes > 0)].sort_values("GW")
+    return [dict(minutes=float(r.minutes), xG=float(r.expected_goals), xA=float(r.expected_assists),
+                 dc=float(r.defensive_contribution), saves=float(r.saves)) for r in sub.itertuples()]
+
+
 def get_per_90_rates(code):
-    """Personal per-90 rates; falls back to position average (THIN DATA) below MIN_MINUTES."""
+    """Personal per-90 rates. In-season: recency-weighted over combined (prior + in-season) history,
+    so recent form dominates and stale/old-club data fades. Pre-season: validated career-average.
+    Falls back to position average (THIN DATA) below MIN_MINUTES."""
     el = _code2id.get(code); pos = _id2pos.get(el)
+    if H.has_inseason() and code in H.inseason_codes():
+        rr = H.recency_weighted_rates(_prior_games(el) + H.inseason_rows(code), pos)
+        rr["thin"] = rr["minutes"] < MIN_MINUTES
+        return rr
     r = _raw_rates(el) if el is not None else None
     if r is None or r["minutes"] < MIN_MINUTES:
         a = dict(POS_AVG.get(pos, POS_AVG["MID"]))
@@ -138,6 +153,9 @@ P60_OVR = {"Mosquera": 0.92, "van Ewijk": 0.95, "Walle Egeli": 0.45, "Phillips":
 
 def get_minutes_probs(code, name=None):
     el = _code2id.get(code); r = _raw_rates(el) if el is not None else None
+    if H.has_inseason() and code in H.inseason_codes() and len(H.inseason_rows(code)) >= 4:
+        p = H.recency_start_prob(_prior_games(el) + H.inseason_rows(code))   # actual recent start rate
+        return dict(p60=round(min(max(p, 0.05), 0.98), 2), p_cameo=0.05, partial=30.0)
     if r is None:
         p60 = P60_OVR.get(name, 0.65); return dict(p60=p60, p_cameo=0.10, partial=30.0)
     app = _g[(_g.element == el) & (_g.minutes >= 60)]
