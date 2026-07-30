@@ -1,0 +1,60 @@
+name: Weekly FPL Report
+
+on:
+  schedule:
+    # 07:00 UTC every Saturday = 08:00 UK in summer (BST) / 07:00 in winter (GMT).
+    # Adjust the hour here if you want a different time.
+    - cron: "0 7 * * 6"
+  workflow_dispatch:   # manual trigger — tap "Run workflow" in the GitHub mobile app
+
+permissions:
+  contents: write      # needed to commit the rolling state + report back to the repo
+
+concurrency:
+  group: weekly-fpl
+  cancel-in-progress: false
+
+jobs:
+  weekly:
+    runs-on: ubuntu-latest
+    env:
+      MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}   # email step skips itself if this is unset
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run weekly loop (detect -> ingest -> refresh -> report)
+        working-directory: scripts
+        run: PYTHONIOENCODING=utf-8 python -W ignore weekly.py | tee ../report_latest.txt
+
+      - name: Build phone-friendly HTML
+        run: python scripts/to_html.py report_latest.txt report.html
+
+      - name: Commit updated state + report back to repo
+        run: |
+          git config user.name "fpl-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/state report_latest.txt || true
+          git commit -m "weekly run $(date -u +'%Y-%m-%d %H:%M UTC')" || echo "nothing to commit"
+          git pull --rebase --autostash || true
+          git push || true
+
+      - name: Email the report to your phone
+        if: env.MAIL_USERNAME != ''
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: FPL Bot <${{ secrets.MAIL_USERNAME }}>
+          to: ${{ secrets.MAIL_TO }}
+          subject: "⚽ FPL Weekly Report"
+          html_body: file://report.html

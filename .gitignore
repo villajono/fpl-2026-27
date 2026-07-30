@@ -1,9 +1,11 @@
 __pycache__/
 *.pyc
 *.pyo
-data/state/pstarts_last.json
-data/state/gw_history.csv
 scripts/fpl_boot.json
 scripts/*.tmp
+report.html
 .DS_Store
 Thumbs.db
+
+# NOTE: data/state/gw_history.csv and pstarts_last.json are intentionally TRACKED —
+# the cloud runner is ephemeral, so the rolling history must persist in the repo.

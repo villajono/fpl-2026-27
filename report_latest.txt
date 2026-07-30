@@ -1,0 +1,128 @@
+⟳ Refreshing models from live FPL API (detect → ingest → refresh)...
+   no completed gameweeks yet (pre-season) — models at prior
+
+══════════════════════════════════════════════════════
+SANTA CLAUDE (AI team) — GW1 DECISIONS
+Models updated: GW0 data ingested ✓ (0 GWs played → Bayesian 100% prior)
+══════════════════════════════════════════════════════
+
+MODEL UPDATES THIS WEEK
+━━━━━━━━━━━━━━━━━━━━━━━━
+  ⟳ no completed gameweeks yet (pre-season) — models at prior
+  CHE att 1.50→1.50 def 0.82→0.82  [K=5, prior 100%/data 0%]
+  MCI att 1.30→1.30 def 0.86→0.86  [K=9, prior 100%/data 0%]
+  LIV att 1.29→1.29 def 0.79→0.79  [K=5, prior 100%/data 0%]
+  (team ratings move once GW1 xG lands; divergence>30% after 3 GWs → flag)
+
+⚠ HUMAN CONFIRMATION (2-min review — edit data/state/human_input.json)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  No >20% P(starts) moves since last week.
+  Human nailed-ness input applied this week (WC returnees / training / manager quotes):
+    (none — add overrides to human_input.json if you have news the model can't see)
+
+CHIP EVALUATION
+━━━━━━━━━━━━━━━
+  Wildcard:    Not yet (rebuild value low pre-set)
+  Bench Boost: bench EV this GW = 13.8 — hold for DGW
+  Triple Cap:  captain EV 7.4 — hold for a DGW/elite fixture
+
+TRANSFER DECISION
+━━━━━━━━━━━━━━━━━
+  Best: OUT Leno (GK FUL £4.5) → IN Pope (NEW £5.0)
+    signal: fixture swing (forward-looking ✓, not point-chasing)
+    6-GW bench-cover-adjusted gain: +1.8  | threshold 4.0  → BANK
+    budget after: £0.5m ITB, 1 banked
+
+WATCHLIST (monitor, not acting)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  • Senesi: DC90 11.5, P(DC bonus) 66% — DC-point engine, hold
+  • Romero: DC90 9.5, P(DC bonus) 45% — DC-point engine, hold
+  • Anderson: DC90 13.9, P(DC bonus) 73% — DC-point engine, hold
+  • Gomez: DC90 10.1, P(DC bonus) 33% — DC-point engine, hold
+
+CAPTAIN
+━━━━━━━
+  Captain: Haaland — EV 7.4, MCI vs BOU
+  Vice:    Mbeumo — EV 6.3, MUN vs HUL
+
+STARTING XI — 5-3-2
+━━━━━━━━━━━━━━━━━━━━━━━━
+  GK: Sánchez
+  DEF: Calafiori, Senesi, Van Hecke, Romero, Van den Berg
+  MID: Mbeumo, Enzo, Sarr
+  FWD: Haaland, Mateta
+  Bench: Leno, Anderson, Gomez, Thiago
+
+PROJECTED XI EV BY GAMEWEEK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  GW1  GW2  GW3  GW4  GW5  GW6
+    58    56    59    61    57    54   (min 54)
+
+PLANNED TRANSFERS
+━━━━━━━━━━━━━━━━━
+  Spurs D de-stack (Romero→Gvardiol): open — spends £1 ITB, de-correlates CS
+══════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════
+HUMAN TEAM (FPL Mate) — GW1 DECISIONS
+Models updated: GW0 data ingested ✓ (0 GWs played → Bayesian 100% prior)
+══════════════════════════════════════════════════════
+
+MODEL UPDATES THIS WEEK
+━━━━━━━━━━━━━━━━━━━━━━━━
+  ⟳ no completed gameweeks yet (pre-season) — models at prior
+  CHE att 1.50→1.50 def 0.82→0.82  [K=5, prior 100%/data 0%]
+  MCI att 1.30→1.30 def 0.86→0.86  [K=9, prior 100%/data 0%]
+  LIV att 1.29→1.29 def 0.79→0.79  [K=5, prior 100%/data 0%]
+  (team ratings move once GW1 xG lands; divergence>30% after 3 GWs → flag)
+
+⚠ HUMAN CONFIRMATION (2-min review — edit data/state/human_input.json)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  No >20% P(starts) moves since last week.
+  Human nailed-ness input applied this week (WC returnees / training / manager quotes):
+    ✓ Mosquera: NAILED — Saliba out for months (back surgery)  [p_start→0.92]
+    ✓ Walle Egeli: promoted, expect rotation — bench only until confirmed  [p_start→0.35]
+
+CHIP EVALUATION
+━━━━━━━━━━━━━━━
+  Wildcard:    Not yet (rebuild value low pre-set)
+  Bench Boost: bench EV this GW = 8.9 — hold for DGW
+  Triple Cap:  captain EV 7.4 — hold for a DGW/elite fixture
+
+TRANSFER DECISION
+━━━━━━━━━━━━━━━━━
+  Best: OUT Phillips (GK HUL £4.0) → IN Dubravka (TOT £4.0)
+    signal: quality upgrade (forward-looking ✓, not point-chasing)
+    6-GW bench-cover-adjusted gain: +7.9  | threshold 4.0  → TRANSFER ✓
+    budget after: £0.0m ITB, 1 banked
+
+WATCHLIST (monitor, not acting)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  • Phillips (HUL): PRIOR-ONLY (promoted/new) — rating updating, check GW3
+  • Virgil: DC90 9.3, P(DC bonus) 44% — DC-point engine, hold
+  • van Ewijk (COV): PRIOR-ONLY (promoted/new) — rating updating, check GW3
+  • Szoboszlai: DC90 9.4, P(DC bonus) 29% — DC-point engine, hold
+  • Stach: DC90 10.1, P(DC bonus) 33% — DC-point engine, hold
+
+CAPTAIN
+━━━━━━━
+  Captain: Haaland — EV 7.4, MCI vs BOU
+  Vice:    B.Fernandes — EV 6.9, MUN vs HUL
+
+STARTING XI — 4-4-2
+━━━━━━━━━━━━━━━━━━━━━━━━
+  GK: Lammens
+  DEF: Mosquera, Virgil, N.Williams, Kayode
+  MID: B.Fernandes, Mbeumo, Gomez, Szoboszlai
+  FWD: Haaland, João Pedro
+  Bench: Phillips, Stach, van Ewijk, Walle Egeli
+
+PROJECTED XI EV BY GAMEWEEK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  GW1  GW2  GW3  GW4  GW5  GW6
+    56    56    54    54    53    50   (min 50)
+
+PLANNED TRANSFERS
+━━━━━━━━━━━━━━━━━
+  Wildcard planned GW4 — hold transfers, ride current 15
+══════════════════════════════════════════════════════
