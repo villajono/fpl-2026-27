@@ -10,9 +10,15 @@ report is generated on priors. Each function is written to ingest a completed-GW
 (fetch_gw_data) the moment real data exists — the loop is identical every week after.
 """
 from __future__ import annotations
-import math, json, numpy as np, pandas as pd
+import math, json, os, numpy as np, pandas as pd
 from pathlib import Path
+from datetime import datetime, timezone
 import ev_v2 as V, fixture_ratings as FR, squad_engine as SE, history as H
+try:
+    from zoneinfo import ZoneInfo
+    UK = ZoneInfo("Europe/London")
+except Exception:
+    UK = timezone.utc
 
 STATE = Path(__file__).resolve().parent.parent / "data" / "state"
 STATE.mkdir(parents=True, exist_ok=True)
@@ -22,6 +28,8 @@ nxt = V._nxt; ID2SH = SE.ID2SH; FX = SE.FX; POSN = {1: "GK", 2: "DEF", 3: "MID",
 DECAY = {1: 1.0, 2: 0.85, 3: 0.70, 4: 0.55, 5: 0.40, 6: 0.25}
 CURRENT_GW = 0                       # gameweeks completed (0 = pre-season); next deadline = GW CURRENT_GW+1
 HORIZON = 6
+EMAIL_WINDOW_H = 30                   # email once per GW when the deadline is within this many hours
+DL_INFO = {}                          # next-deadline info, populated at startup
 FIX = {sh: {} for sh in ID2SH.values()}
 for r in FX[FX.event.isin(range(1, 39))].itertuples():
     FIX[ID2SH[r.team_h]][r.event] = (ID2SH[r.team_a], True); FIX[ID2SH[r.team_a]][r.event] = (ID2SH[r.team_h], False)
@@ -41,18 +49,40 @@ def ev_gw(code, name, pos, team, gw):
 INGEST_LOG = []
 
 
+def _compute_deadline(boot):
+    """Next GW deadline (from the API) + whether to email now: once per GW, within EMAIL_WINDOW_H
+    of the deadline — so it fires the day before, whatever day the deadline falls on (incl. Fri-night
+    and midweek). A manual run (FORCE_EMAIL=1) always emails, for testing/retry."""
+    info = {"next_gw": None, "deadline": None, "hours": None, "should_email": False}
+    ev = next((e for e in boot["events"] if e["is_next"]), None)
+    if ev:
+        dl = datetime.fromisoformat(ev["deadline_time"].replace("Z", "+00:00"))
+        hrs = (dl - datetime.now(timezone.utc)).total_seconds() / 3600
+        info.update(next_gw=ev["id"], deadline=dl.astimezone(UK).strftime("%a %d %b, %H:%M UK"), hours=round(hrs, 1))
+        lastf = STATE / "last_emailed.json"
+        last = json.load(open(lastf)).get("gw") if lastf.exists() else None
+        force = os.environ.get("FORCE_EMAIL") == "1"
+        info["should_email"] = bool(force or (0 <= hrs <= EMAIL_WINDOW_H and ev["id"] != last))
+        # NB: last_emailed is recorded by the workflow AFTER a successful send, so a failed
+        # send simply retries on the next daily run (still within the window).
+    json.dump(info, open(STATE / "deadline.json", "w"))
+    return info
+
+
 def auto_ingest_and_refresh():
     """One-command startup: detect finished-but-not-ingested gameweeks, pull them from the live
     FPL API, and apply the Bayesian team update (1c). Per-90 rates, P(starts) recency, DC-model
     refit and yellow-card accrual refresh automatically — ev_v2/history read the accumulating
     store on demand. Logged, never silent, never on stale data."""
-    global CURRENT_GW, INGEST_LOG
+    global CURRENT_GW, INGEST_LOG, DL_INFO
     log = []; boot = None; finished = None
     try:
         import fpl_fetch as F
         st = F.season_state(); boot = st["bootstrap"]; finished = st["finished"]
     except Exception as e:
         log.append(f"⚠ FPL API unreachable ({type(e).__name__}) — running on last-ingested state")
+    if boot is not None:
+        DL_INFO = _compute_deadline(boot)
     if finished is not None:
         already = set(int(x) for x in H.load_inseason().gw.unique()) if H.has_inseason() else set()
         new = [g for g in finished if g not in already]
@@ -239,7 +269,12 @@ def report(team_name, squad_def, itb, banked, chips, planned):
     bench_ev = sum(p["e"] for p in bench if p["pos"] != "GK")
     cap_ev = caps[0][1] if caps else 0
     L = []
-    L.append("═" * 54); L.append(f"{team_name} — GW{gw} DECISIONS"); L.append(f"Models updated: GW{CURRENT_GW} data ingested ✓ ({rf['games']} GWs played → Bayesian {'100% prior' if rf['games']==0 else 'blended'})"); L.append("═" * 54)
+    L.append("═" * 54); L.append(f"{team_name} — GW{gw} DECISIONS")
+    L.append(f"Models updated: GW{CURRENT_GW} data ingested ✓ ({rf['games']} GWs played → Bayesian {'100% prior' if rf['games']==0 else 'blended'})")
+    if DL_INFO.get("deadline"):
+        L.append(f"⏰ GW{DL_INFO['next_gw']} DEADLINE: {DL_INFO['deadline']}  (in {DL_INFO['hours']}h)"
+                 + ("   ⚠ ACT BEFORE DEADLINE" if DL_INFO.get("should_email") else ""))
+    L.append("═" * 54)
     L.append("\nMODEL UPDATES THIS WEEK\n" + "━" * 24)
     for line in rf.get("ingest", []): L.append("  ⟳ " + line)
     top = rf["team"][:3]

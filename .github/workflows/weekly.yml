@@ -2,13 +2,14 @@ name: Weekly FPL Report
 
 on:
   schedule:
-    # 07:00 UTC every Saturday = 08:00 UK in summer (BST) / 07:00 in winter (GMT).
-    # Adjust the hour here if you want a different time.
-    - cron: "0 7 * * 6"
-  workflow_dispatch:   # manual trigger — tap "Run workflow" in the GitHub mobile app
+    # Runs DAILY at 07:00 UTC. The job is deadline-aware: it reads the real FPL deadline from
+    # the API and only emails ONCE per gameweek, in the ~30h before that deadline — so it never
+    # misses a Friday-night or midweek deadline. (Change 7 to a different UTC hour if you like.)
+    - cron: "0 7 * * *"
+  workflow_dispatch:   # manual trigger — one tap in the GitHub mobile app; always emails (for tests/retries)
 
 permissions:
-  contents: write      # needed to commit the rolling state + report back to the repo
+  contents: write
 
 concurrency:
   group: weekly-fpl
@@ -18,7 +19,8 @@ jobs:
   weekly:
     runs-on: ubuntu-latest
     env:
-      MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}   # email step skips itself if this is unset
+      MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+      FORCE_EMAIL: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -29,12 +31,18 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run weekly loop (detect -> ingest -> refresh -> report)
+      - name: Run weekly loop (detect -> ingest -> refresh -> report + deadline)
         working-directory: scripts
         run: PYTHONIOENCODING=utf-8 python -W ignore weekly.py | tee ../report_latest.txt
 
       - name: Build phone-friendly HTML
         run: python scripts/to_html.py report_latest.txt report.html
+
+      - name: Decide whether to email (deadline-aware, once per GW)
+        id: decide
+        run: |
+          echo "email=$(python -c "import json;print('true' if json.load(open('data/state/deadline.json')).get('should_email') else 'false')")" >> "$GITHUB_OUTPUT"
+          python -c "import json;d=json.load(open('data/state/deadline.json'));print('next GW deadline:',d.get('deadline'),'| hours away:',d.get('hours'),'| email now:',d.get('should_email'))"
 
       - name: Commit updated state + report back to repo
         run: |
@@ -46,7 +54,7 @@ jobs:
           git push || true
 
       - name: Email the report to your phone
-        if: env.MAIL_USERNAME != ''
+        if: steps.decide.outputs.email == 'true' && env.MAIL_USERNAME != ''
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
@@ -56,5 +64,16 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           from: FPL Bot <${{ secrets.MAIL_USERNAME }}>
           to: ${{ secrets.MAIL_TO }}
-          subject: "⚽ FPL Weekly Report"
+          subject: "⚽ FPL — deadline approaching, decisions inside"
           html_body: file://report.html
+
+      # Record the send ONLY for scheduled emails (not manual/forced), so each GW emails once
+      # but a failed send retries next run, and manual test-runs never suppress the real alert.
+      - name: Record successful scheduled email
+        if: steps.decide.outputs.email == 'true' && env.MAIL_USERNAME != '' && env.FORCE_EMAIL != '1' && success()
+        run: |
+          python -c "import json;d=json.load(open('data/state/deadline.json'));json.dump({'gw':d['next_gw']},open('data/state/last_emailed.json','w'))"
+          git add data/state/last_emailed.json
+          git commit -m "emailed GW$(python -c "import json;print(json.load(open('data/state/deadline.json'))['next_gw'])")" || true
+          git pull --rebase --autostash || true
+          git push || true
