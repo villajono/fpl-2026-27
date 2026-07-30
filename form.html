@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>FPL Overrides</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --line:#30363d; --txt:#e6edf3; --dim:#8b949e; --accent:#238636; --danger:#da3633; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body { margin:0; background:var(--bg); color:var(--txt); font:16px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; padding:16px; }
+  h1 { font-size:20px; margin:4px 0 2px; } .sub { color:var(--dim); font-size:13px; margin-bottom:16px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; margin-bottom:16px; }
+  label { display:block; font-size:13px; color:var(--dim); margin:14px 0 6px; }
+  select, input, button { width:100%; font-size:17px; padding:14px; border-radius:12px; border:1px solid var(--line);
+    background:#0d1117; color:var(--txt); -webkit-appearance:none; appearance:none; }
+  select:disabled { opacity:.5; }
+  .btn { background:var(--accent); border:none; color:#fff; font-weight:600; margin-top:20px; }
+  .btn:active { opacity:.8; } .btn:disabled { background:#30363d; }
+  .ov { display:flex; align-items:flex-start; gap:10px; padding:12px 0; border-bottom:1px solid var(--line); }
+  .ov:last-child { border-bottom:none; } .ov .info { flex:1; font-size:15px; } .ov .info small { color:var(--dim); display:block; margin-top:2px; }
+  .rm { width:auto; padding:8px 12px; font-size:14px; background:transparent; border:1px solid var(--danger); color:var(--danger); border-radius:10px; }
+  .empty { color:var(--dim); font-size:14px; padding:6px 0; }
+  .msg { margin-top:14px; padding:12px; border-radius:12px; font-size:15px; display:none; }
+  .ok { background:rgba(35,134,54,.15); border:1px solid var(--accent); color:#7ee787; }
+  .err { background:rgba(218,54,51,.15); border:1px solid var(--danger); color:#ff7b72; }
+  a { color:#58a6ff; }
+</style>
+</head>
+<body>
+<h1>⚽ FPL Overrides</h1>
+<div class="sub" id="gwline">Loading…</div>
+
+<!-- one-time token setup -->
+<div class="card" id="tokenCard" style="display:none">
+  <b>First-time setup (once)</b>
+  <p style="font-size:14px;color:var(--dim)">Paste a GitHub token so the form can save your overrides. It's stored only on this phone.
+     <a href="https://github.com/settings/tokens/new?scopes=repo&description=FPL%20form" target="_blank">Create one here</a>
+     (tick <b>repo</b>, generate, copy).</p>
+  <input id="tokenInput" type="password" placeholder="ghp_… paste token">
+  <button class="btn" onclick="saveToken()">Save token</button>
+</div>
+
+<!-- active overrides -->
+<div class="card" id="appCard" style="display:none">
+  <b id="ovTitle">Active overrides</b>
+  <div id="ovList"></div>
+</div>
+
+<!-- the form -->
+<div class="card" id="formCard" style="display:none">
+  <label for="club">1 · Club</label>
+  <select id="club"><option value="">Select club…</option></select>
+
+  <label for="player">2 · Player</label>
+  <select id="player" disabled><option value="">Select club first…</option></select>
+
+  <label for="pstart">3 · Will they start next gameweek?</label>
+  <select id="pstart">
+    <option value="0.95">Definitely starts (0.95)</option>
+    <option value="0.80">Likely starts (0.80)</option>
+    <option value="0.50">50/50 (0.50)</option>
+    <option value="0.25">Unlikely to start (0.25)</option>
+    <option value="0.00">Definitely won't start (0.00)</option>
+  </select>
+
+  <label for="notes">4 · Note (optional)</label>
+  <input id="notes" type="text" maxlength="80" placeholder="e.g. Kinský confirmed ahead of Dúbravka">
+
+  <button class="btn" id="submitBtn" onclick="submitOverride()">Save override</button>
+  <div class="msg" id="msg"></div>
+</div>
+
+<script>
+const REPO = "villajono/fpl-2026-27";
+const API  = `https://api.github.com/repos/${REPO}/contents/`;
+const HUMAN = "data/state/human_input.json";
+const PLAYERS = "data/state/players.json";
+let PAT = localStorage.getItem("fpl_pat") || "";
+let GW = null, players = [], human = { gameweek: null, overrides: [] }, humanSha = null;
+
+const PLABEL = { "0.95":"Definitely starts", "0.80":"Likely starts", "0.50":"50/50", "0.25":"Unlikely to start", "0.00":"Won't start" };
+const b64decode = s => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\n/g,"")), c => c.charCodeAt(0)));
+const b64encode = s => btoa(String.fromCharCode(...new TextEncoder().encode(s)));
+
+function saveToken() {
+  const v = document.getElementById("tokenInput").value.trim();
+  if (!v) return;
+  localStorage.setItem("fpl_pat", v); PAT = v;
+  document.getElementById("tokenCard").style.display = "none";
+  boot();
+}
+
+async function gh(path, opts={}) {
+  const r = await fetch(API + path, { ...opts, headers: {
+    "Authorization": "Bearer " + PAT, "Accept": "application/vnd.github+json", ...(opts.headers||{}) } });
+  if (!r.ok) throw new Error(`GitHub ${r.status} — ${(await r.text()).slice(0,120)}`);
+  return r.json();
+}
+
+async function boot() {
+  if (!PAT) { document.getElementById("tokenCard").style.display = "block"; return; }
+  try {
+    const pj = await gh(PLAYERS);
+    const pdata = JSON.parse(b64decode(pj.content));
+    GW = pdata.gameweek; players = pdata.players;
+    document.getElementById("gwline").textContent = `Overrides for GW${GW} · next gameweek only`;
+
+    let hj;
+    try { hj = await gh(HUMAN); humanSha = hj.sha; human = JSON.parse(b64decode(hj.content)); }
+    catch (e) { human = { gameweek: GW, overrides: [] }; humanSha = null; }
+    if (human.gameweek !== GW) human = { gameweek: GW, overrides: [] };   // stale week -> show none
+
+    // populate club dropdown from the model's own player list
+    const clubs = [...new Set(players.map(p => p.club))].sort();
+    const cs = document.getElementById("club");
+    clubs.forEach(c => { const o = document.createElement("option"); o.value = c; o.textContent = c; cs.appendChild(o); });
+    cs.onchange = onClub;
+
+    document.getElementById("appCard").style.display = "block";
+    document.getElementById("formCard").style.display = "block";
+    renderOverrides();
+  } catch (e) {
+    if (String(e).includes("401")) { localStorage.removeItem("fpl_pat"); PAT=""; document.getElementById("tokenCard").style.display="block";
+      show("err","Token rejected — paste a fresh one."); }
+    else show("err", "Load failed: " + e.message);
+  }
+}
+
+function onClub() {
+  const c = document.getElementById("club").value;
+  const ps = document.getElementById("player");
+  ps.innerHTML = '<option value="">Select player…</option>';
+  players.filter(p => p.club === c).sort((a,b)=>a.name.localeCompare(b.name))
+    .forEach(p => { const o = document.createElement("option"); o.value = p.id; o.textContent = `${p.name} (${p.pos})`; ps.appendChild(o); });
+  ps.disabled = !c;
+}
+
+function renderOverrides() {
+  document.getElementById("ovTitle").textContent = `Active overrides — GW${GW}`;
+  const el = document.getElementById("ovList");
+  if (!human.overrides.length) { el.innerHTML = '<div class="empty">None yet. Add one below.</div>'; return; }
+  el.innerHTML = "";
+  human.overrides.forEach(o => {
+    const d = document.createElement("div"); d.className = "ov";
+    d.innerHTML = `<div class="info">${o.player_name} (${o.club}) — <b>${PLABEL[o.p_starts_override.toFixed(2)]||o.p_starts_override}</b>` +
+      `${o.notes ? `<small>"${o.notes}"</small>` : ""}</div>`;
+    const b = document.createElement("button"); b.className = "rm"; b.textContent = "Remove";
+    b.onclick = () => removeOverride(o.player_id); d.appendChild(b); el.appendChild(d);
+  });
+}
+
+async function writeHuman(msg) {
+  const body = { message: msg, content: b64encode(JSON.stringify(human, null, 2)) };
+  if (humanSha) body.sha = humanSha;
+  const r = await gh(HUMAN, { method: "PUT", body: JSON.stringify(body) });
+  humanSha = r.content.sha;
+}
+
+async function submitOverride() {
+  const pid = document.getElementById("player").value;
+  if (!pid) { show("err", "Pick a player."); return; }
+  const p = players.find(x => String(x.id) === String(pid));
+  const val = parseFloat(document.getElementById("pstart").value);
+  const notes = document.getElementById("notes").value.trim();
+  human.gameweek = GW;
+  human.overrides = human.overrides.filter(o => o.player_id !== p.id);   // replace if same player
+  human.overrides.push({ player_id: p.id, player_name: p.name, club: p.club,
+    p_starts_override: val, notes: notes, added: new Date().toISOString().slice(0,10) });
+  const btn = document.getElementById("submitBtn"); btn.disabled = true; btn.textContent = "Saving…";
+  try {
+    await writeHuman(`GW${GW} override: ${p.name} ${val}`);
+    renderOverrides();
+    document.getElementById("notes").value = "";
+    show("ok", `GW${GW} override saved for ${p.name} ✓`);
+  } catch (e) { show("err", "Save failed: " + e.message); }
+  btn.disabled = false; btn.textContent = "Save override";
+}
+
+async function removeOverride(pid) {
+  human.overrides = human.overrides.filter(o => o.player_id !== pid);
+  try { await writeHuman(`GW${GW} remove override`); renderOverrides(); show("ok", "Override removed ✓"); }
+  catch (e) { show("err", "Remove failed: " + e.message); }
+}
+
+function show(cls, text) {
+  const m = document.getElementById("msg"); m.className = "msg " + cls; m.textContent = text; m.style.display = "block";
+  if (cls === "ok") setTimeout(() => { m.style.display = "none"; }, 4000);
+}
+
+boot();
+</script>
+</body>
+</html>

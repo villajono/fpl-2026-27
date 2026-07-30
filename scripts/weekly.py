@@ -22,7 +22,7 @@ except Exception:
 
 STATE = Path(__file__).resolve().parent.parent / "data" / "state"
 STATE.mkdir(parents=True, exist_ok=True)
-HUMAN_INPUT = json.load(open(STATE / "human_input.json", encoding="utf-8")) if (STATE / "human_input.json").exists() else {}
+OVERRIDES = {}                       # {player_id(code): override}, GW-scoped, loaded at startup from the form file
 
 nxt = V._nxt; ID2SH = SE.ID2SH; FX = SE.FX; POSN = {1: "GK", 2: "DEF", 3: "MID", 4: "FWD"}
 DECAY = {1: 1.0, 2: 0.85, 3: 0.70, 4: 0.55, 5: 0.40, 6: 0.25}
@@ -69,6 +69,28 @@ def _compute_deadline(boot):
     return info
 
 
+def _load_overrides(next_gw):
+    """Load GW-scoped P(starts) overrides written by the phone form. Auto-clears when the stored
+    gameweek is stale (a past GW has been ingested) — overrides never persist unnoticed."""
+    global OVERRIDES
+    f = STATE / "human_input.json"
+    d = json.load(open(f, encoding="utf-8")) if f.exists() else {}
+    if d.get("gameweek") != next_gw:
+        d = {"gameweek": next_gw, "overrides": []}
+        json.dump(d, open(f, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+    OVERRIDES = {int(o["player_id"]): o for o in d.get("overrides", [])}
+
+
+def _write_players_json(next_gw):
+    """Player list for the phone override form — the model's OWN universe, so the form's IDs
+    always match what weekly.py looks up (no string matching, no mismatch)."""
+    posn = {1: "GK", 2: "DEF", 3: "MID", 4: "FWD"}
+    rows = [{"id": int(r.code), "name": r.web_name, "club": r.team_name, "pos": posn[int(r.element_type)]}
+            for r in V._nxt[V._nxt.status == "a"].itertuples() if pd.notna(r.code)]
+    json.dump({"gameweek": next_gw, "players": sorted(rows, key=lambda x: (x["club"], x["name"]))},
+              open(STATE / "players.json", "w", encoding="utf-8"), ensure_ascii=False)
+
+
 def auto_ingest_and_refresh():
     """One-command startup: detect finished-but-not-ingested gameweeks, pull them from the live
     FPL API, and apply the Bayesian team update (1c). Per-90 rates, P(starts) recency, DC-model
@@ -96,6 +118,9 @@ def auto_ingest_and_refresh():
         CURRENT_GW = int(H.load_inseason().gw.max()) if H.has_inseason() else 0
     if boot is not None and CURRENT_GW > 0 and H.has_inseason():
         log += _apply_team_bayes(boot)
+    next_gw = DL_INFO.get("next_gw") or (CURRENT_GW + 1)
+    _load_overrides(next_gw); _write_players_json(next_gw)     # GW-scoped overrides + form player list
+    log.append(f"overrides: {len(OVERRIDES)} active for GW{next_gw}; players.json refreshed for the form")
     INGEST_LOG = log
     return log
 
@@ -137,9 +162,9 @@ def refresh_models(completed_gw=None):
 
 # ======================================================= PART 2 — DECISION REPORT
 def p_start(code, name):
-    hi = HUMAN_INPUT.get(name)
-    if hi and "p_start" in hi:                      # human override wins (nailed-ness model can't derive)
-        return float(hi["p_start"])
+    ov = OVERRIDES.get(code)                          # phone-form override wins (nailed-ness model can't derive)
+    if ov is not None:
+        return float(ov["p_starts_override"])
     return V.get_minutes_probs(code, name)["p60"]
 
 
@@ -153,9 +178,10 @@ def human_confirmation(squad):
         if prev is not None and abs(model_p - prev) > 0.20:
             moves.append(f"{p['name']}: P(start) {prev:.2f} → {model_p:.2f} "
                          f"({'nailed upgrade' if model_p > prev else 'rotation risk emerging'}) — confirm?")
-        hi = HUMAN_INPUT.get(p["name"])
-        if hi and hi.get("note"):
-            applied.append(f"{p['name']}: {hi.get('note')}" + (f"  [p_start→{hi['p_start']}]" if 'p_start' in hi else ""))
+        ov = OVERRIDES.get(p["code"])
+        if ov:
+            applied.append(f"{ov['player_name']} ({ov['club']}): p_start→{ov['p_starts_override']}"
+                           + (f" — {ov['notes']}" if ov.get("notes") else ""))
     json.dump(cur, open(STATE / "pstarts_last.json", "w", encoding="utf-8"))
     return moves, applied
 

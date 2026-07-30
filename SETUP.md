@@ -55,20 +55,30 @@ email until the secrets are added.
 
 ---
 
-## Part 3 — Telling the model things it can't see (team news)
+## Part 3 — Overriding "will they start?" from your phone (the form)
 
-When you know something the data doesn't — a returnee easing back in, a manager quote, a confirmed
-benching — edit the override file from your phone:
+When you know something the data doesn't — a returnee, a manager quote, a confirmed benching — use
+the simple form. No typing player names, no JSON, no typos possible — everything is dropdowns.
 
-1. GitHub mobile app → your repo → open **`data/state/human_input.json`**.
-2. Tap the **pencil** (edit), add or change a line, for example:
-   ```
-   "Kinský": { "p_start": 0.95, "note": "confirmed Spurs #1 for GW1" }
-   ```
-3. Tap **Commit changes**.
+### One-time setup (2 minutes)
+1. **Turn on GitHub Pages:** repo → **Settings** → **Pages** → under "Build and deployment":
+   Source = **Deploy from a branch**, Branch = **main**, folder = **/ (root)** → **Save**. Wait ~1 min.
+2. **Open the form** on your iPhone: **https://villajono.github.io/fpl-2026-27/form.html**
+3. First time only, it asks for a **GitHub token** so it can save your choices. Tap the "Create one
+   here" link → tick **repo** → **Generate token** → copy → paste into the form → **Save token**.
+   (The token is stored only on your phone, never in the page.)
+4. **Add to Home Screen:** in Safari tap **Share → Add to Home Screen**, name it "FPL". One-tap app.
 
-The next run (automatic or manual) picks it up. Keep the JSON punctuation intact (quotes, colons,
-commas) — copy the format of the examples already in the file if unsure.
+### Using it (30 seconds, any week)
+- Pick **Club** → **Player** (the list fills in for that club) → **Will they start next gameweek?**
+  (Definitely / Likely / 50-50 / Unlikely / Won't) → optional **Note** → **Save override**.
+  You'll see "GW_N override saved ✓".
+- Your active overrides show at the top, each with a **Remove** button.
+- **Overrides apply to the next gameweek only** and clear automatically once that gameweek is played.
+  If the same call still applies next week, just re-add it — it keeps you actively confirming rather
+  than stale overrides lingering unnoticed.
+
+The next report run reads your overrides and adjusts each player's P(starts) accordingly.
 
 ---
 
