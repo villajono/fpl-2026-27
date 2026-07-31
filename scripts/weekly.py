@@ -259,9 +259,9 @@ def build_pool():
     for r in nxt[nxt.status == "a"].itertuples():
         team = r.team_name
         if team not in FIX: continue
-        rt = V.get_per_90_rates(int(r.code))
-        if rt["thin"]: continue
         code = int(r.code); pos = POSN[int(r.element_type)]
+        rt = V.get_per_90_rates(code, pos)
+        if rt["thin"]: continue
         ev = [ev_gw(code, r.web_name, pos, team, CURRENT_GW + o) for o in range(1, HORIZON + 1)]
         rows.append(dict(code=code, name=r.web_name, pos=pos, team=team, price=r.now_cost / 10,
                          ev=ev, defw=FR.RATINGS.get(team, {}).get("defw", 1)))
@@ -295,12 +295,12 @@ def best_transfer(squad, itb, hold=HORIZON):
     for p in squad: club[p["team"]] = club.get(p["team"], 0) + 1
     best = None
     for out in squad:
-        p60o = p_start(out["code"], out["name"])
         out_ev = [ev_gw(out["code"], out["name"], out["pos"], out["team"], CURRENT_GW + o) for o in range(1, hold + 1)]
         bc = min([q for q in squad if q["pos"] == out["pos"] and q is not out], key=lambda q: q["price"], default=None)
         bc_ev = ([ev_gw(bc["code"], bc["name"], bc["pos"], bc["team"], CURRENT_GW + o) for o in range(1, hold + 1)]
                  if bc else [0.0] * hold)
-        eff_out = [out_ev[o] + (1 - p60o) * bc_ev[o] for o in range(hold)]      # bench cover — small when 'out' is nailed
+        pz = _p_zero(out["code"], out["name"])                                  # 0-min prob (autosub trigger), NOT 1-p60
+        eff_out = [out_ev[o] + pz * bc_ev[o] for o in range(hold)]              # bench cover — small when 'out' is nailed
         for c in POOL:
             if c["pos"] != out["pos"] or (c["name"], c["team"]) in held: continue
             if c["price"] > out["price"] + itb + 1e-9: continue

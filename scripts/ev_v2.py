@@ -61,11 +61,13 @@ def _prior_games(el):
                  dc=float(r.defensive_contribution), saves=float(r.saves)) for r in sub.itertuples()]
 
 
-def get_per_90_rates(code):
+def get_per_90_rates(code, pos_hint=None):
     """Personal per-90 rates. In-season: recency-weighted over combined (prior + in-season) history,
     so recent form dominates and stale/old-club data fades. Pre-season: validated career-average.
-    Falls back to position average (THIN DATA) below MIN_MINUTES."""
-    el = _code2id.get(code); pos = _id2pos.get(el)
+    Falls back to position average (THIN DATA) below MIN_MINUTES.
+    pos_hint: true position for players with no 2025-26 record (else the fallback defaults to MID,
+    inflating a defender's attacking rates and voiding their DC threshold)."""
+    el = _code2id.get(code); pos = _id2pos.get(el) or pos_hint
     if H.has_inseason() and code in H.inseason_codes():
         rr = H.recency_weighted_rates(_prior_games(el) + H.inseason_rows(code), pos)
         rr["thin"] = rr["minutes"] < MIN_MINUTES
@@ -169,7 +171,7 @@ def get_minutes_probs(code, name=None):
 
 
 def compute_ev_v2(code, name, pos, team, opp, home, breakdown=False):
-    rates = get_per_90_rates(code); mp = get_minutes_probs(code, name)
+    rates = get_per_90_rates(code, pos); mp = get_minutes_probs(code, name)
     cs_prob = get_cs_probability(team, opp, home); cs_pts = get_cs_pts(pos)
     save_pts = 1.0 / 3.0 if pos == "GK" else 0.0
     orat = FR.RATINGS.get(opp, {"att": 1.0, "defw": 1.0})
@@ -178,7 +180,7 @@ def compute_ev_v2(code, name, pos, team, opp, home, breakdown=False):
     p_dc_full = get_p_dc_bonus(rates, 90); p_dc_part = get_p_dc_bonus(rates, mp["partial"])
     xg, xa, sv = rates["xG90"], rates["xA90"], rates["sv90"]
     ev_full = cs_prob * cs_pts + 2 + xg * 6 * att_f + xa * 3 * att_f + p_dc_full * 2 + sv * save_pts * sv_f
-    ev_part = (mp["partial"] / 90.0) * (xg * 6 * att_f + xa * 3 * att_f + p_dc_part * 2 * 0.5 + sv * save_pts * sv_f)
+    ev_part = 1 + (mp["partial"] / 90.0) * (xg * 6 * att_f + xa * 3 * att_f + sv * save_pts * sv_f) + p_dc_part * 2
     ev = mp["p60"] * ev_full + mp["p_cameo"] * ev_part
     if breakdown:
         f = mp["p60"]
