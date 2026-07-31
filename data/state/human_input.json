@@ -24,6 +24,14 @@
       "p_starts_override": 0.5,
       "notes": "",
       "added": "2026-07-31"
+    },
+    {
+      "player_id": 114283,
+      "player_name": "Grealish",
+      "club": "MCI",
+      "p_starts_override": 0,
+      "notes": "",
+      "added": "2026-07-31"
     }
   ]
 }
