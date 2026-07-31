@@ -1,4 +1,13 @@
 {
   "gameweek": 1,
-  "overrides": []
+  "overrides": [
+    {
+      "player_id": 101188,
+      "player_name": "Digne",
+      "club": "AVL",
+      "p_starts_override": 0,
+      "notes": "Being transferred to psg",
+      "added": "2026-07-31"
+    }
+  ]
 }
