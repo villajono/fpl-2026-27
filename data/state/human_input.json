@@ -8,6 +8,14 @@
       "p_starts_override": 0,
       "notes": "Being transferred to psg",
       "added": "2026-07-31"
+    },
+    {
+      "player_id": 95658,
+      "player_name": "Maguire",
+      "club": "MUN",
+      "p_starts_override": 0.95,
+      "notes": "",
+      "added": "2026-07-31"
     }
   ]
 }
