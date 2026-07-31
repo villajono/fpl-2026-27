@@ -211,9 +211,20 @@ def select_xi(squad, gw):
     return xi, bench, form
 
 
+def _p_zero(code, name):
+    """P(player plays 0 minutes) — the only case that triggers an auto-sub. A 1-59 min cameo does NOT.
+    So this is (1 - p60 - p_cameo), NOT (1 - p60): the latter wrongly counts cameos as blanks."""
+    ov = OVERRIDES.get(code)
+    if ov is not None:
+        p60 = float(ov["p_starts_override"])
+        return max(0.0, 1 - p60 - (0.05 if p60 > 0 else 0.0))   # overridden-out player: ~certain 0 minutes
+    mp = V.get_minutes_probs(code, name)
+    return max(0.0, 1 - mp["p60"] - mp["p_cameo"])
+
+
 def _autosub_ev(xi, bench):
     """Small auto-sub contribution: bench outfielders cover XI blanks. Poisson on expected blanks."""
-    lam = sum(1 - p_start(p["code"], p["name"]) for p in xi if p["pos"] != "GK")
+    lam = sum(_p_zero(p["code"], p["name"]) for p in xi if p["pos"] != "GK")
     bo = sorted([p for p in bench if p["pos"] != "GK"], key=lambda p: -p["e"])
     auto = 0.0
     for j, p in enumerate(bo[:3]):
