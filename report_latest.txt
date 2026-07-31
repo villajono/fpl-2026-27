@@ -1,14 +1,17 @@
 ⟳ Refreshing models from live FPL API (detect → ingest → refresh)...
    no completed gameweeks yet (pre-season) — models at prior
+   overrides: 2 active for GW1; players.json refreshed for the form
 
 ══════════════════════════════════════════════════════
 SANTA CLAUDE (AI team) — GW1 DECISIONS
 Models updated: GW0 data ingested ✓ (0 GWs played → Bayesian 100% prior)
+⏰ GW1 DEADLINE: Fri 21 Aug, 18:30 UK  (in 511.8h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━
   ⟳ no completed gameweeks yet (pre-season) — models at prior
+  ⟳ overrides: 2 active for GW1; players.json refreshed for the form
   CHE att 1.50→1.50 def 0.82→0.82  [K=5, prior 100%/data 0%]
   MCI att 1.30→1.30 def 0.86→0.86  [K=9, prior 100%/data 0%]
   LIV att 1.29→1.29 def 0.79→0.79  [K=5, prior 100%/data 0%]
@@ -66,11 +69,13 @@ PLANNED TRANSFERS
 ══════════════════════════════════════════════════════
 HUMAN TEAM (FPL Mate) — GW1 DECISIONS
 Models updated: GW0 data ingested ✓ (0 GWs played → Bayesian 100% prior)
+⏰ GW1 DEADLINE: Fri 21 Aug, 18:30 UK  (in 511.8h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━
   ⟳ no completed gameweeks yet (pre-season) — models at prior
+  ⟳ overrides: 2 active for GW1; players.json refreshed for the form
   CHE att 1.50→1.50 def 0.82→0.82  [K=5, prior 100%/data 0%]
   MCI att 1.30→1.30 def 0.86→0.86  [K=9, prior 100%/data 0%]
   LIV att 1.29→1.29 def 0.79→0.79  [K=5, prior 100%/data 0%]
@@ -80,8 +85,7 @@ MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   No >20% P(starts) moves since last week.
   Human nailed-ness input applied this week (WC returnees / training / manager quotes):
-    ✓ Mosquera: NAILED — Saliba out for months (back surgery)  [p_start→0.92]
-    ✓ Walle Egeli: promoted, expect rotation — bench only until confirmed  [p_start→0.35]
+    (none — add overrides to human_input.json if you have news the model can't see)
 
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
