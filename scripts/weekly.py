@@ -186,13 +186,10 @@ def human_confirmation(squad):
     return moves, applied
 
 
-def select_captain(squad, gw):
-    c = []
-    for p in squad:
-        if p_start(p["code"], p["name"]) < 0.85 or p["pos"] == "GK": continue
-        e = ev_gw(p["code"], p["name"], p["pos"], p["team"], gw)
-        c.append((p, e))
-    c.sort(key=lambda x: -x[1]); return c
+def select_captain(xi):
+    """Captain = the single starting-XI player with the highest single-GW EV. Nothing else —
+    no reliability discount, no rank, no template. EV already prices minutes and fixture."""
+    return sorted([(p, p["e"]) for p in xi], key=lambda x: -x[1])
 
 
 def select_xi(squad, gw):
@@ -214,16 +211,33 @@ def select_xi(squad, gw):
     return xi, bench, form
 
 
+def _autosub_ev(xi, bench):
+    """Small auto-sub contribution: bench outfielders cover XI blanks. Poisson on expected blanks."""
+    lam = sum(1 - p_start(p["code"], p["name"]) for p in xi if p["pos"] != "GK")
+    bo = sorted([p for p in bench if p["pos"] != "GK"], key=lambda p: -p["e"])
+    auto = 0.0
+    for j, p in enumerate(bo[:3]):
+        pge = 1 - sum(math.exp(-lam) * lam ** k / math.factorial(k) for k in range(j + 1))
+        auto += pge * p["e"]                                          # bench EV × P(>=j+1 starters blank)
+    return auto
+
+
 def trajectory(squad):
+    """Per-GW projected WEEKLY points = XI points + captain bonus (doubled best XI EV) + small auto-sub.
+    Never total-squad points."""
     warn = []; table = []
     for off in range(1, HORIZON + 1):
-        gw = CURRENT_GW + off; avail = {"GK": 0, "DEF": 0, "MID": 0, "FWD": 0}; tot = 0
-        xi, _, _ = select_xi(squad, gw); tot = sum(p["e"] for p in xi)
+        gw = CURRENT_GW + off
+        xi, bench, _ = select_xi(squad, gw)
+        xi_ev = sum(p["e"] for p in xi)
+        cap_bonus = max((p["e"] for p in xi), default=0.0)          # captain doubles the highest XI EV
+        auto = _autosub_ev(xi, bench)
+        avail = {"GK": 0, "DEF": 0, "MID": 0, "FWD": 0}
         for p in squad:
             if FIX[p["team"]].get(gw) and p_start(p["code"], p["name"]) > 0.5: avail[p["pos"]] += 1
         for pos, mn in [("GK", 1), ("DEF", 3), ("MID", 2), ("FWD", 1)]:
             if avail[pos] < mn: warn.append(("HIGH", gw, f"only {avail[pos]} {pos} available"))
-        table.append((gw, tot))
+        table.append((gw, xi_ev, cap_bonus, auto, xi_ev + cap_bonus + auto))
     return table, warn
 
 
@@ -248,26 +262,59 @@ def fixture_swing(team):
     return up  # higher = easier upcoming attacking fixtures (pre-season: no 'recent' half)
 
 
-def best_transfer(squad, itb):
+def _has_dgw(team, gw):
+    return len(FX[(FX.event == gw) & ((FX.team_h == SE._id(team)) | (FX.team_a == SE._id(team)))]) >= 2
+
+
+def _can_field_xi(squad, gw):
+    a = {"GK": 0, "DEF": 0, "MID": 0, "FWD": 0}
+    for p in squad:
+        if FIX[p["team"]].get(gw) and p_start(p["code"], p["name"]) > 0.5: a[p["pos"]] += 1
+    return a["GK"] >= 1 and a["DEF"] >= 3 and a["MID"] >= 2 and a["FWD"] >= 1 and sum(a.values()) >= 11
+
+
+def best_transfer(squad, itb, hold=HORIZON):
+    """Best single swap over the realistic HOLDING PERIOD (equal-weighted — points matter equally,
+    no discount). effective_out = EV(out) + P(out blanks)·EV(bench cover): the loss is small in weeks
+    'out' wouldn't have started anyway. Returns the full-hold gain plus GW+1 / GW+2 gains for the hit
+    decision. This is 'materially better for the next {hold} weeks', NOT highest remaining-season EV."""
     if POOL is None: build_pool()
     held = {(p["name"], p["team"]) for p in squad}
     club = {}
     for p in squad: club[p["team"]] = club.get(p["team"], 0) + 1
     best = None
     for out in squad:
-        out_ev6 = [ev_gw(out["code"], out["name"], out["pos"], out["team"], CURRENT_GW + o) for o in range(1, HORIZON + 1)]
-        bench_cover = min([q for q in squad if q["pos"] == out["pos"] and q is not out],
-                          key=lambda q: q["price"], default=None)
+        p60o = p_start(out["code"], out["name"])
+        out_ev = [ev_gw(out["code"], out["name"], out["pos"], out["team"], CURRENT_GW + o) for o in range(1, hold + 1)]
+        bc = min([q for q in squad if q["pos"] == out["pos"] and q is not out], key=lambda q: q["price"], default=None)
+        bc_ev = ([ev_gw(bc["code"], bc["name"], bc["pos"], bc["team"], CURRENT_GW + o) for o in range(1, hold + 1)]
+                 if bc else [0.0] * hold)
+        eff_out = [out_ev[o] + (1 - p60o) * bc_ev[o] for o in range(hold)]      # bench cover — small when 'out' is nailed
         for c in POOL:
             if c["pos"] != out["pos"] or (c["name"], c["team"]) in held: continue
             if c["price"] > out["price"] + itb + 1e-9: continue
             if club.get(c["team"], 0) + (0 if c["team"] == out["team"] else 1) > 3: continue
-            gain = sum((c["ev"][o] - out_ev6[o]) * DECAY[o + 1] for o in range(HORIZON))
+            diff = [c["ev"][o] - eff_out[o] for o in range(hold)]               # equal weight, no decay
+            gain = sum(diff)
             if best is None or gain > best["gain"]:
                 sig = "fixture swing" if fixture_swing(c["team"]) > fixture_swing(out["team"]) + 0.05 else "quality upgrade"
                 if c["pos"] == "DEF" and c["defw"] < out["defw"] - 0.1: sig = "better clean-sheet team"
-                best = dict(out=out, inn=c, gain=gain, signal=sig)
+                best = dict(out=out, inn=c, gain=gain, gw1=diff[0], gw2=(diff[1] if hold > 1 else 0.0), signal=sig, hold=hold)
     return best
+
+
+def should_take_hit(tv, squad, gw):
+    """A −4 hit is justified ONLY for: a DGW with immediate gain over 4, an unfieldable XI, or a clear
+    2-week gain materially above the cost. Everything else waits for next week's free transfer — a
+    long-horizon gain buys only ONE extra week of ownership, almost never worth 4 points."""
+    if tv is None: return False, "no improving transfer"
+    if _has_dgw(tv["inn"]["team"], gw) and tv["gw1"] > 4.0:
+        return True, "DGW — immediate gain clears 4 pts"
+    if not _can_field_xi(squad, gw):
+        return True, "cannot field a full XI — hit justified"
+    if tv["gw1"] + tv["gw2"] > 6.0:
+        return True, "clear 2-week gain materially exceeds the 4-pt cost"
+    return False, "hit not justified — bank, take it free next week"
 
 
 def watchlist(squad):
@@ -289,7 +336,7 @@ def report(team_name, squad_def, itb, banked, chips, planned):
     squad = [dict(name=n, pos=po, team=t, price=pr, code=code_of(n, po, t)) for (n, po, t, pr) in squad_def]
     gw = CURRENT_GW + 1
     rf = refresh_models()
-    xi, bench, form = select_xi(squad, gw); caps = select_captain(squad, gw)
+    xi, bench, form = select_xi(squad, gw); caps = select_captain(xi)
     table, warn = trajectory(squad)
     tv = best_transfer(squad, itb)
     bench_ev = sum(p["e"] for p in bench if p["pos"] != "GK")
@@ -323,30 +370,34 @@ def report(team_name, squad_def, itb, banked, chips, planned):
     L.append(f"  Bench Boost: bench EV this GW = {bench_ev:.1f} — {'strong' if bench_ev>18 else 'hold for DGW'}")
     L.append(f"  Triple Cap:  captain EV {cap_ev:.1f} — hold for a DGW/elite fixture")
     L.append("\nTRANSFER DECISION\n" + "━" * 17)
-    if tv:
-        o, i = tv["out"], tv["inn"]
-        thr = 4.0 * (1.5 if banked < 1 else 1.0)
-        dec = "TRANSFER ✓" if tv["gain"] > thr and banked >= 1 else "BANK"
-        L.append(f"  Best: OUT {o['name']} ({o['pos']} {o['team']} £{o['price']}) → IN {i['name']} ({i['team']} £{i['price']})")
-        L.append(f"    signal: {tv['signal']} (forward-looking ✓, not point-chasing)")
-        L.append(f"    6-GW bench-cover-adjusted gain: {tv['gain']:+.1f}  | threshold {thr:.1f}  → {dec}")
-        L.append(f"    budget after: £{itb - (i['price']-o['price']):.1f}m ITB, {banked} banked")
+    if tv and tv["gain"] > 0:
+        o, i = tv["out"], tv["inn"]; FREE_THR = 2.0
+        if banked >= 1:
+            dec = "TRANSFER ✓ (free)" if tv["gain"] > FREE_THR else "BANK (no clearly better free move)"
+        else:
+            take, why = should_take_hit(tv, squad, gw)
+            dec = f"TAKE −4 HIT ✓ — {why}" if take else f"BANK — {why}"
+        L.append(f"  Best target: OUT {o['name']} ({o['pos']} {o['team']}) → IN {i['name']} ({i['team']} £{i['price']})")
+        L.append(f"    {tv['signal']} · effective-out adjusted for bench cover · {tv['hold']}-GW hold")
+        L.append(f"    gain: GW+1 {tv['gw1']:+.1f} · GW+1&2 {tv['gw1']+tv['gw2']:+.1f} · full {tv['hold']}-GW {tv['gain']:+.1f}")
+        L.append(f"    → {dec}    (budget after £{itb - (i['price']-o['price']):.1f}m ITB, {banked} banked)")
     else:
-        L.append("  No positive-gain transfer — BANK")
+        L.append("  No improving transfer available — BANK")
     L.append("\nWATCHLIST (monitor, not acting)\n" + "━" * 31)
     for w in watchlist(squad): L.append("  • " + w)
-    L.append("\nCAPTAIN\n" + "━" * 7)
+    L.append("\nCAPTAIN — highest-EV starter (doubles)\n" + "━" * 7)
     if caps:
         c0 = caps[0][0]; c1 = caps[1][0] if len(caps) > 1 else None
-        L.append(f"  Captain: {c0['name']} — EV {caps[0][1]:.1f}, {c0['team']} vs {FIX[c0['team']].get(gw,('?',))[0]}")
-        if c1: L.append(f"  Vice:    {c1['name']} — EV {caps[1][1]:.1f}, {c1['team']} vs {FIX[c1['team']].get(gw,('?',))[0]}")
+        L.append(f"  Captain: {c0['name']} — EV {caps[0][1]:.1f} (×2 = {2*caps[0][1]:.1f}), {c0['team']} vs {FIX[c0['team']].get(gw,('?',))[0]}")
+        if c1: L.append(f"  Vice:    {c1['name']} — EV {caps[1][1]:.1f}")
     L.append(f"\nSTARTING XI — {form[0]}-{form[1]}-{form[2]}\n" + "━" * 24)
     for pos in ["GK", "DEF", "MID", "FWD"]:
         L.append(f"  {pos}: " + ", ".join(f"{p['name']}" for p in xi if p["pos"] == pos))
     L.append("  Bench: " + ", ".join(p["name"] for p in bench))
-    L.append("\nPROJECTED XI EV BY GAMEWEEK\n" + "━" * 27)
-    L.append("  " + "  ".join(f"GW{g}" for g, _ in table))
-    L.append("  " + "  ".join(f"{t:4.0f}" for _, t in table) + f"   (min {min(t for _,t in table):.0f})")
+    L.append("\nPROJECTED WEEKLY POINTS (XI + captain + auto-sub)\n" + "━" * 27)
+    L.append("  " + "  ".join(f"GW{r[0]}" for r in table))
+    L.append("  " + "  ".join(f"{r[4]:4.0f}" for r in table) + f"   (min {min(r[4] for r in table):.0f})")
+    L.append(f"  GW{table[0][0]} = XI {table[0][1]:.0f} + captain bonus {table[0][2]:.0f} + auto-sub {table[0][3]:.1f}  (auto-sub small by design)")
     for lvl, g, msg in warn[:3]: L.append(f"  [{lvl}] GW{g}: {msg}")
     L.append("\nPLANNED TRANSFERS\n" + "━" * 17)
     for pt in planned: L.append("  " + pt)
