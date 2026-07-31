@@ -16,6 +16,14 @@
       "p_starts_override": 0.95,
       "notes": "",
       "added": "2026-07-31"
+    },
+    {
+      "player_id": 466052,
+      "player_name": "Cherki",
+      "club": "MCI",
+      "p_starts_override": 0.5,
+      "notes": "",
+      "added": "2026-07-31"
     }
   ]
 }
