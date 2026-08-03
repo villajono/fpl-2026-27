@@ -343,6 +343,151 @@ def watchlist(squad):
 
 
 # ======================================================= PART 3 — OUTPUT
+# ======================================================= CHIP ENGINE (ported from backtest.py → live data)
+# Multi-fixture schedule (FIX only holds one fixture/team/GW; DGW/BGW need the full list).
+SCHED = {sh: {} for sh in ID2SH.values()}
+for _r in FX[FX.event.isin(range(1, 39))].itertuples():
+    SCHED[ID2SH[_r.team_h]].setdefault(_r.event, []).append((ID2SH[_r.team_a], True))
+    SCHED[ID2SH[_r.team_a]].setdefault(_r.event, []).append((ID2SH[_r.team_h], False))
+CHIP_FILE = STATE / "chips.json"
+CHIP_THRESH = dict(wc=12.0, bb_h1=12.0, bb_h2=14.0, fh=12.0, tc_min=7.0)
+
+
+def _fx(team, gw): return SCHED.get(team, {}).get(gw, [])
+def _half(gw): return 1 if gw <= 19 else 2
+def _half_end(gw): return 19 if gw <= 19 else 38
+
+
+def ev_multi(code, name, pos, team, gw):
+    return sum(V.compute_ev_v2(code, name, pos, team, opp, home) for opp, home in _fx(team, gw))
+
+
+def load_chip_state():
+    if CHIP_FILE.exists(): return json.load(open(CHIP_FILE))
+    return {"1": {c: None for c in ("WC", "BB", "TC", "FH")}, "2": {c: None for c in ("WC", "BB", "TC", "FH")}}
+
+
+def _xi_ev(squad, gw):
+    for p in squad: p["e"] = ev_multi(p["code"], p["name"], p["pos"], p["team"], gw)
+    xi, bench, _ = select_xi(squad, gw)
+    return sum(p["e"] for p in xi), xi, bench
+
+
+def _wc_refit(squad, itb, gw, horizon=HORIZON, max_swaps=15):
+    """Wildcard/Free-Hit as unlimited free transfers: hill-climb from the current squad, only
+    improving swaps -> can never lose EV. horizon=1 gives the one-week Free-Hit team."""
+    if POOL is None: build_pool()
+    sq = [dict(p) for p in squad]
+    scr = lambda pl: {id(p): sum(ev_multi(p["code"], p["name"], p["pos"], p["team"], gw + o) for o in range(horizon)) for p in pl}
+    pscore = {c["name"] + c["team"]: sum(c["ev"][o] for o in range(min(horizon, len(c["ev"])))) for c in POOL}
+    for _ in range(max_swaps):
+        held = {(p["name"], p["team"]) for p in sq}
+        club = {}; spent = 0.0
+        for p in sq: club[p["team"]] = club.get(p["team"], 0) + 1; spent += p["price"]
+        budget = spent + itb; ss = scr(sq); best = None
+        for p in sq:
+            base = ss[id(p)]
+            for c in POOL:
+                if (c["name"], c["team"]) in held or c["pos"] != p["pos"]: continue
+                if spent - p["price"] + c["price"] > budget + 1e-9: continue
+                if club.get(c["team"], 0) + (0 if c["team"] == p["team"] else 1) > 3: continue
+                g = pscore[c["name"] + c["team"]] - base
+                if g > 0.5 and (best is None or g > best[0]): best = (g, p, c)
+        if best is None: break
+        _, out, c = best
+        sq = [dict(name=c["name"], pos=c["pos"], team=c["team"], price=c["price"], code=c["code"]) if x is out else x for x in sq]
+    return sq
+
+
+def _cluster_ahead(gw, ahead=3):
+    out = []
+    for w in range(gw, gw + ahead + 1):
+        dgw = sum(1 for t in SCHED if len(_fx(t, w)) >= 2); blank = sum(1 for t in SCHED if not _fx(t, w))
+        if dgw >= 4: out.append((w, "DGW", dgw))
+        elif blank >= 6: out.append((w, "BGW", blank))
+    return out
+
+
+def _swing_present(gw):
+    for t in SCHED:
+        up = [FR.RATINGS.get(o, {}).get("defw", 1.0) for w in range(gw, gw + 4) for o, _ in _fx(t, w)]
+        rec = [FR.RATINGS.get(o, {}).get("defw", 1.0) for w in range(max(1, gw - 4), gw) for o, _ in _fx(t, w)]
+        if up and rec and (sum(up) / len(up)) > (sum(rec) / len(rec)) + 0.15: return True
+    return False
+
+
+def chip_evaluation(squad, itb, banked, gw):
+    """Produce the CHIP EVALUATION report block (half-aware, GW1-19 / GW20-38). Recommends, never auto-plays."""
+    st = load_chip_state(); h = str(_half(gw)); U = st[h]; L = []
+    cur_ev, xi, bench = _xi_ev(squad, gw)
+    cap_ev = max((p["e"] for p in xi), default=0.0)
+    bench_ev = sum(p["e"] for p in bench)
+    dgw_now = sum(1 for p in squad if len(_fx(p["team"], gw)) >= 2) >= 4
+    cluster = _cluster_ahead(gw + 1, 3)
+
+    def status(chip, rec):
+        if U[chip] is not None: return f"Used GW{U[chip]}"
+        return "RECOMMENDED ✓" if rec else "Monitoring"
+
+    # --- Wildcard ---
+    lineup_ok = CURRENT_GW >= 3
+    refit = _wc_refit(squad, itb, gw); wgain = sum(_seq_ev(refit, gw + o) - _seq_ev(squad, gw + o) for o in range(HORIZON))
+    swing = _swing_present(gw)
+    if _half(gw) == 1:
+        wc_rec = U["WC"] is None and lineup_ok and wgain > CHIP_THRESH["wc"] and swing
+    else:
+        wc_rec = U["WC"] is None and bool(cluster) and wgain > CHIP_THRESH["wc"]
+    L.append(f"  Wildcard {h}:   {status('WC', wc_rec)}")
+    L.append(f"               rebuild value: +{wgain:.0f} pts / {HORIZON} weeks vs current squad")
+    L.append(f"               fixture swing next 4: {'Yes' if swing else 'No'}   |   lineup data (3+ GW): {'Yes' if lineup_ok else f'No (GW{CURRENT_GW})'}")
+    if _half(gw) == 2: L.append(f"               blank/double cluster ahead: {cluster[0][1]+' GW'+str(cluster[0][0]) if cluster else 'none'}")
+    L.append(f"               free transfers banked (roll through WC): {banked}")
+
+    # --- Bench Boost ---
+    end = _half_end(gw); best_future_bench = 0.0
+    for w in range(gw + 1, end + 1):
+        bf = sum(ev_multi(p["code"], p["name"], p["pos"], p["team"], w) for p in bench)
+        best_future_bench = max(best_future_bench, bf)
+    bb_rec = U["BB"] is None and bench_ev >= (CHIP_THRESH["bb_h1"] if _half(gw) == 1 else CHIP_THRESH["bb_h2"]) and (dgw_now or bench_ev >= best_future_bench - 0.5)
+    L.append(f"  Bench Boost: {status('BB', bb_rec)}")
+    L.append(f"               bench EV this GW: {bench_ev:.1f}{'  (DOUBLE GW)' if dgw_now else ''}   |   peak remaining this half: {max(bench_ev,best_future_bench):.1f}")
+
+    # --- Triple Captain ---
+    best_future_cap = 0.0
+    for w in range(gw + 1, end + 1):
+        cw = max((ev_multi(p["code"], p["name"], p["pos"], p["team"], w) for p in squad if _fx(p["team"], w)), default=0.0)
+        best_future_cap = max(best_future_cap, cw)
+    tc_rec = U["TC"] is None and cap_ev >= CHIP_THRESH["tc_min"] and cap_ev >= best_future_cap - 1e-9
+    L.append(f"  Triple Cap:  {status('TC', tc_rec)}")
+    L.append(f"               captain EV this GW: {cap_ev:.1f}   |   best remaining captain week this half: {max(cap_ev,best_future_cap):.1f}")
+
+    # --- Free Hit ---
+    blanks = sum(1 for p in squad if not _fx(p["team"], gw))
+    fh_team = _wc_refit(squad, itb, gw, horizon=1); fh_gain = _seq_ev(fh_team, gw) - _seq_ev(squad, gw)
+    fh_rec = U["FH"] is None and (fh_gain > CHIP_THRESH["fh"] or (_half(gw) == 2 and blanks > 4))
+    L.append(f"  Free Hit:    {status('FH', fh_rec)}")
+    L.append(f"               players blanking this GW: {blanks}   |   free-hit team gain: +{fh_gain:.1f} pts vs current XI")
+    return L, dict(wc=wc_rec, bb=bb_rec, tc=tc_rec, fh=fh_rec)
+
+
+def _seq_ev(squad, gw):
+    for p in squad: p["e"] = ev_multi(p["code"], p["name"], p["pos"], p["team"], gw)
+    xi, _, _ = select_xi(squad, gw)
+    return sum(p["e"] for p in xi)
+
+
+def transfer_threshold_live(banked, gw, wc_used):
+    """Base 4.0, rising as a wildcard approaches (compressed delivery window)."""
+    t = 4.0; note = ""
+    if wc_used is None:
+        wtc = max(0, 6 - gw) if _half(gw) == 1 and gw <= 8 else (99 if _half(gw) == 1 else (min((c[0] for c in _cluster_ahead(gw + 1, 3)), default=99) - gw))
+        if wtc <= 1: t *= 2.0; note = " (×2 — wildcard imminent, banking transfers)"
+        elif wtc <= 2: t *= 1.5; note = " (×1.5 — wildcard ~2 weeks out)"
+        elif wtc <= 3: t *= 1.2; note = " (×1.2 — wildcard approaching)"
+    if banked >= 3: t *= 1.1
+    return t, note
+
+
 def report(team_name, squad_def, itb, banked, chips, planned):
     squad = [dict(name=n, pos=po, team=t, price=pr, code=code_of(n, po, t)) for (n, po, t, pr) in squad_def]
     gw = CURRENT_GW + 1
@@ -377,9 +522,15 @@ def report(team_name, squad_def, itb, banked, chips, planned):
     for a in (applied or ["    (none — add overrides to human_input.json if you have news the model can't see)"]):
         L.append(("    ✓ " + a) if applied else a)
     L.append("\nCHIP EVALUATION\n" + "━" * 15)
-    L.append(f"  Wildcard:    {'MONITOR' if False else 'Not yet'} (rebuild value low pre-set)")
-    L.append(f"  Bench Boost: bench EV this GW = {bench_ev:.1f} — {'strong' if bench_ev>18 else 'hold for DGW'}")
-    L.append(f"  Triple Cap:  captain EV {cap_ev:.1f} — hold for a DGW/elite fixture")
+    chip_lines, chip_rec = chip_evaluation(squad, itb, banked, gw)
+    L.extend(chip_lines)
+    if any(chip_rec.values()):
+        fired = [k.upper() for k, v in chip_rec.items() if v]
+        L.append(f"  → RECOMMENDATION: play {', '.join(fired)} this week (confirm via the phone form). One chip per week max.")
+    else:
+        L.append("  → No chip this week — hold all available chips.")
+    tr_thr, tr_note = transfer_threshold_live(banked, gw, load_chip_state()[str(_half(gw))]["WC"])
+    L.append(f"  Transfer threshold this week: {tr_thr:.1f} pts{tr_note}")
     L.append("\nTRANSFER DECISION\n" + "━" * 17)
     if tv and tv["gain"] > 0:
         o, i = tv["out"], tv["inn"]; FREE_THR = 2.0
