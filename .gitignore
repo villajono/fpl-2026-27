@@ -9,3 +9,6 @@ Thumbs.db
 
 # NOTE: data/state/gw_history.csv and pstarts_last.json are intentionally TRACKED —
 # the cloud runner is ephemeral, so the rolling history must persist in the repo.
+
+# Odds API key — local only, never commit
+data/state/odds_key.txt

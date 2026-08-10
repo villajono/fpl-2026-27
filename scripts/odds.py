@@ -24,7 +24,10 @@ from pathlib import Path
 
 STATE = Path(__file__).resolve().parent.parent / "data" / "state"
 MOCK_FILE = STATE / "mock_odds.json"
+_KEYFILE = STATE / "odds_key.txt"                       # gitignored local key file (never committed)
 ODDS_API_KEY = os.environ.get("ODDS_API_KEY", "").strip()
+if not ODDS_API_KEY and _KEYFILE.exists():
+    ODDS_API_KEY = _KEYFILE.read_text(encoding="utf-8").strip()
 USE_MOCK = os.environ.get("FPL_USE_MOCK_ODDS") == "1"
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 SPORT = "soccer_epl"
