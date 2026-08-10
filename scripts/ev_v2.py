@@ -13,6 +13,7 @@ from pathlib import Path
 import math, numpy as np, pandas as pd
 import squad_engine as SE, fixture_ratings as FR
 import history as H
+import odds as ODDS                         # bookmaker fixture inputs (near GWs); off by default
 
 RAW = Path(__file__).resolve().parent.parent / "data" / "raw"
 POSN = {1: "GK", 2: "DEF", 3: "MID", 4: "FWD"}
@@ -172,11 +173,18 @@ def get_minutes_probs(code, name=None):
 
 def compute_ev_v2(code, name, pos, team, opp, home, breakdown=False):
     rates = get_per_90_rates(code, pos); mp = get_minutes_probs(code, name)
-    cs_prob = get_cs_probability(team, opp, home); cs_pts = get_cs_pts(pos)
+    cs_pts = get_cs_pts(pos)
     save_pts = 1.0 / 3.0 if pos == "GK" else 0.0
     orat = FR.RATINGS.get(opp, {"att": 1.0, "defw": 1.0})
-    att_f = orat["defw"] * (1.05 if home else 0.95)         # attacking returns scale with opp defensive weakness
-    sv_f = orat["att"] * (0.95 if home else 1.05)           # saves scale with opp attack strength
+    # --- fixture inputs: bookmaker odds for near, published fixtures; else the xG model ---
+    oi = ODDS.fixture_inputs(team, opp, home)                # None unless odds enabled AND fixture published
+    if oi:
+        cs_prob = oi["cs_prob"]; att_f = oi["att_mult"]; sv_f = oi["sv_mult"]; fsrc = oi["source"]
+    else:
+        cs_prob = get_cs_probability(team, opp, home)
+        att_f = orat["defw"] * (1.05 if home else 0.95)     # attacking returns scale with opp defensive weakness
+        sv_f = orat["att"] * (0.95 if home else 1.05)       # saves scale with opp attack strength
+        fsrc = "xG model"
     p_dc_full = get_p_dc_bonus(rates, 90); p_dc_part = get_p_dc_bonus(rates, mp["partial"])
     xg, xa, sv = rates["xG90"], rates["xA90"], rates["sv90"]
     ev_full = cs_prob * cs_pts + 2 + xg * 6 * att_f + xa * 3 * att_f + p_dc_full * 2 + sv * save_pts * sv_f
@@ -186,5 +194,5 @@ def compute_ev_v2(code, name, pos, team, opp, home, breakdown=False):
         f = mp["p60"]
         return dict(ev=ev, cs=cs_prob * cs_pts * f, app=2 * f, xg=xg * 6 * att_f * f, xa=xa * 3 * att_f * f,
                     dc=p_dc_full * 2 * f, sv=sv * save_pts * sv_f * f, p60=f, cs_prob=cs_prob,
-                    p_dc=p_dc_full, att_f=att_f, thin=rates["thin"])
+                    p_dc=p_dc_full, att_f=att_f, thin=rates["thin"], fixture_source=fsrc)
     return ev

@@ -14,6 +14,7 @@ import math, json, os, numpy as np, pandas as pd
 from pathlib import Path
 from datetime import datetime, timezone
 import ev_v2 as V, fixture_ratings as FR, squad_engine as SE, history as H
+import odds as ODDS                    # bookmaker fixture inputs (near GWs); off unless key/mock enabled
 try:
     from zoneinfo import ZoneInfo
     UK = ZoneInfo("Europe/London")
@@ -488,6 +489,26 @@ def transfer_threshold_live(banked, gw, wc_used):
     return t, note
 
 
+def fixture_source_lines(next_gw):
+    """Per-GW data source for fixture inputs: Pinnacle odds where published (GW+1..+3), else xG model."""
+    L = []
+    if not ODDS.enabled():
+        L.append("  Bookmaker odds OFF — xG model for all fixtures.")
+        L.append("    Set ODDS_API_KEY (Pinnacle via The Odds API) to price GW+1..GW+3; GW+4+ is always the xG model.")
+        return L
+    L.append("  Bookmaker odds ON — Pinnacle 1X2 + O/U, overround removed ✓  (GW+4+ always xG model)")
+    for off in range(1, HORIZON + 1):
+        g = next_gw + off - 1
+        teams = [sh for sh in FIX if FIX[sh].get(g)]
+        if not teams: continue
+        priced = sum(1 for sh in teams if ODDS.fixture_inputs(sh, FIX[sh][g][0], FIX[sh][g][1]))
+        if priced:
+            L.append(f"  GW+{off} (GW{g}): Pinnacle 1X2+O/U — {priced // 2}/{len(teams) // 2} fixtures priced")
+        else:
+            L.append(f"  GW+{off} (GW{g}): xG model (no odds published)")
+    return L
+
+
 def report(team_name, squad_def, itb, banked, chips, planned):
     squad = [dict(name=n, pos=po, team=t, price=pr, code=code_of(n, po, t)) for (n, po, t, pr) in squad_def]
     gw = CURRENT_GW + 1
@@ -521,6 +542,8 @@ def report(team_name, squad_def, itb, banked, chips, planned):
     L.append("  Human nailed-ness input applied this week (WC returnees / training / manager quotes):")
     for a in (applied or ["    (none — add overrides to human_input.json if you have news the model can't see)"]):
         L.append(("    ✓ " + a) if applied else a)
+    L.append("\nFIXTURE INPUTS — DATA SOURCES\n" + "━" * 29)
+    L.extend(fixture_source_lines(gw))
     L.append("\nCHIP EVALUATION\n" + "━" * 15)
     chip_lines, chip_rec = chip_evaluation(squad, itb, banked, gw)
     L.extend(chip_lines)

@@ -1,0 +1,16 @@
+{
+  "generated": "mock — plausible Pinnacle-style GW1 2026-27 lines; replaced by live odds when ODDS_API_KEY is set",
+  "gameweek": 1,
+  "fixtures": [
+    {"team": "ARS", "opp": "COV", "home": true,  "1x2": {"home": 1.22, "draw": 7.5, "away": 15.0}, "ou25": {"over": 1.55, "under": 2.45}},
+    {"team": "HUL", "opp": "MUN", "home": true,  "1x2": {"home": 4.60, "draw": 3.85, "away": 1.75}, "ou25": {"over": 1.95, "under": 1.90}},
+    {"team": "EVE", "opp": "CRY", "home": true,  "1x2": {"home": 2.42, "draw": 3.25, "away": 3.05}, "ou25": {"over": 2.20, "under": 1.68}},
+    {"team": "IPS", "opp": "SUN", "home": true,  "1x2": {"home": 2.30, "draw": 3.35, "away": 3.20}, "ou25": {"over": 2.15, "under": 1.72}},
+    {"team": "NFO", "opp": "LEE", "home": true,  "1x2": {"home": 1.92, "draw": 3.55, "away": 4.20}, "ou25": {"over": 2.10, "under": 1.75}},
+    {"team": "BRE", "opp": "TOT", "home": true,  "1x2": {"home": 2.90, "draw": 3.65, "away": 2.42}, "ou25": {"over": 1.90, "under": 1.95}},
+    {"team": "BHA", "opp": "AVL", "home": true,  "1x2": {"home": 2.48, "draw": 3.50, "away": 2.78}, "ou25": {"over": 1.85, "under": 2.00}},
+    {"team": "MCI", "opp": "BOU", "home": true,  "1x2": {"home": 1.24, "draw": 7.20, "away": 13.0}, "ou25": {"over": 1.50, "under": 2.60}},
+    {"team": "NEW", "opp": "LIV", "home": true,  "1x2": {"home": 3.40, "draw": 3.75, "away": 2.10}, "ou25": {"over": 1.75, "under": 2.10}},
+    {"team": "FUL", "opp": "CHE", "home": true,  "1x2": {"home": 3.55, "draw": 3.60, "away": 2.05}, "ou25": {"over": 2.00, "under": 1.85}}
+  ]
+}
