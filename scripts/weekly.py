@@ -494,16 +494,16 @@ def fixture_source_lines(next_gw):
     L = []
     if not ODDS.enabled():
         L.append("  Bookmaker odds OFF — xG model for all fixtures.")
-        L.append("    Set ODDS_API_KEY (Pinnacle via The Odds API) to price GW+1..GW+3; GW+4+ is always the xG model.")
+        L.append("    (market-average odds auto-enable in the live tool; set ODDS_API_KEY for Pinnacle instead)")
         return L
-    L.append("  Bookmaker odds ON — Pinnacle 1X2 + O/U, overround removed ✓  (GW+4+ always xG model)")
+    L.append(f"  Bookmaker odds ON — {ODDS.source_label()}, 1X2 + O/U, overround removed ✓  (GW+4+ always xG model)")
     for off in range(1, HORIZON + 1):
         g = next_gw + off - 1
         teams = [sh for sh in FIX if FIX[sh].get(g)]
         if not teams: continue
         priced = sum(1 for sh in teams if ODDS.fixture_inputs(sh, FIX[sh][g][0], FIX[sh][g][1]))
         if priced:
-            L.append(f"  GW+{off} (GW{g}): Pinnacle 1X2+O/U — {priced // 2}/{len(teams) // 2} fixtures priced")
+            L.append(f"  GW+{off} (GW{g}): odds — {priced // 2}/{len(teams) // 2} fixtures priced")
         else:
             L.append(f"  GW+{off} (GW{g}): xG model (no odds published)")
     return L
@@ -591,6 +591,7 @@ def report(team_name, squad_def, itb, banked, chips, planned):
 
 
 if __name__ == "__main__":
+    ODDS.set_source("fd")          # live tool uses market-average odds (no key); a key still wins if set
     print("⟳ Refreshing models from live FPL API (detect → ingest → refresh)...", flush=True)
     for line in auto_ingest_and_refresh(): print("   " + line)
     print()

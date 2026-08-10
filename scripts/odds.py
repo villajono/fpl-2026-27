@@ -29,9 +29,21 @@ ODDS_API_KEY = os.environ.get("ODDS_API_KEY", "").strip()
 if not ODDS_API_KEY and _KEYFILE.exists():
     ODDS_API_KEY = _KEYFILE.read_text(encoding="utf-8").strip()
 USE_MOCK = os.environ.get("FPL_USE_MOCK_ODDS") == "1"
+USE_FD = os.environ.get("FPL_USE_FD_ODDS") == "1"     # market-average odds (football-data.co.uk), no key
 ODDS_API_BASE = "https://api.the-odds-api.com/v4"
 SPORT = "soccer_epl"
+FD_FIXTURES_URL = "https://www.football-data.co.uk/fixtures.csv"
 LEAGUE_AVG_GOALS_PER_TEAM = 1.40           # PL long-run ~2.8 goals/game; centres att_mult on ~1.0
+
+# football-data.co.uk team names -> our short codes (their naming differs from The Odds API's).
+FD_NAME2SHORT = {
+    "Arsenal": "ARS", "Aston Villa": "AVL", "Bournemouth": "BOU", "Brentford": "BRE", "Brighton": "BHA",
+    "Chelsea": "CHE", "Coventry": "COV", "Crystal Palace": "CRY", "Everton": "EVE", "Fulham": "FUL",
+    "Hull": "HUL", "Ipswich": "IPS", "Leeds": "LEE", "Leicester": "LEI", "Liverpool": "LIV",
+    "Man City": "MCI", "Man United": "MUN", "Newcastle": "NEW", "Nott'm Forest": "NFO",
+    "Sheffield United": "SHU", "Southampton": "SOU", "Sunderland": "SUN", "Tottenham": "TOT",
+    "West Ham": "WHU", "Wolves": "WOL", "Burnley": "BUR",
+}
 
 # The Odds API team names -> our short codes. Extend as needed; unknown names are skipped.
 NAME2SHORT = {
@@ -144,14 +156,61 @@ def _load_live():
         return {}
 
 
+def _load_footballdata():
+    """No-key, no-signup: the market AVERAGE 1X2 + O/U 2.5 from football-data.co.uk's fixtures.csv.
+    Averaging across ~10 books is at least as sharp as any single book once overround is removed.
+    Covers the upcoming round (so GW+1, sometimes GW+2). Returns {} on any failure -> xG fallback."""
+    import csv, io
+    try:
+        with urllib.request.urlopen(FD_FIXTURES_URL, timeout=20) as r:
+            rows = list(csv.DictReader(io.StringIO(r.read().decode("utf-8-sig", "replace"))))
+    except Exception:
+        return {}
+    table = {}
+    for x in rows:
+        if (x.get("Div") or "").strip() != "E0": continue          # Premier League only
+        th = FD_NAME2SHORT.get((x.get("HomeTeam") or "").strip())
+        ta = FD_NAME2SHORT.get((x.get("AwayTeam") or "").strip())
+        if not th or not ta: continue
+        def f(k):
+            try: return float(x.get(k) or 0) or None
+            except Exception: return None
+        h, d, a, ov, un = f("AvgH"), f("AvgD"), f("AvgA"), f("Avg>2.5"), f("Avg<2.5")
+        if not (h and d and a and ov and un): continue
+        lm = _parse_fixture(th, ta, True, {"1x2": {"home": h, "draw": d, "away": a}, "ou25": {"over": ov, "under": un}})
+        if lm:
+            src = "Market avg 1X2+O/U (football-data)"
+            table[(th, ta, True)] = dict(**lm, source=src)
+            table[(ta, th, False)] = dict(lam_team=lm["lam_opp"], lam_opp=lm["lam_team"], source=src)
+    return table
+
+
+def set_source(name):
+    """Switch odds source at runtime: 'fd' (market avg), 'mock', or 'off'. Clears caches.
+    A live ODDS_API_KEY always takes precedence regardless of this setting."""
+    global USE_MOCK, USE_FD, _TABLE, _CACHE
+    USE_MOCK, USE_FD = (name == "mock"), (name == "fd")
+    _TABLE, _CACHE = None, {}
+
+
 def enabled():
-    return bool(ODDS_API_KEY) or (USE_MOCK and MOCK_FILE.exists())
+    return bool(ODDS_API_KEY) or (USE_MOCK and MOCK_FILE.exists()) or USE_FD
+
+
+def source_label():
+    if ODDS_API_KEY: return "Pinnacle (live)"
+    if USE_MOCK and MOCK_FILE.exists(): return "Pinnacle (mock)"
+    if USE_FD: return "market average (football-data.co.uk)"
+    return "off"
 
 
 def _table():
     global _TABLE
     if _TABLE is None:
-        _TABLE = _load_live() if ODDS_API_KEY else (_load_mock() if (USE_MOCK and MOCK_FILE.exists()) else {})
+        if ODDS_API_KEY: _TABLE = _load_live()                     # Pinnacle via The Odds API (key)
+        elif USE_MOCK and MOCK_FILE.exists(): _TABLE = _load_mock()
+        elif USE_FD: _TABLE = _load_footballdata()                 # market average, no key
+        else: _TABLE = {}
     return _TABLE
 
 
