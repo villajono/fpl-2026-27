@@ -156,6 +156,16 @@ P60_OVR = {"Mosquera": 0.92, "van Ewijk": 0.95, "Walle Egeli": 0.45, "Phillips":
 
 def get_minutes_probs(code, name=None):
     el = _code2id.get(code); r = _raw_rates(el) if el is not None else None
+    if name in P60_OVR:
+        # An explicit human override ALWAYS wins — it encodes team news the data cannot see (a sale,
+        # a confirmed benching, a returnee). This must be checked BEFORE the in-season branch below,
+        # which returns a purely data-derived start rate and would silently ignore the override once
+        # four gameweeks are logged. p_cameo goes to zero for a ruled-out player, so "won't start"
+        # actually drives EV to ~0 rather than leaving him a cameo's worth of points.
+        p60 = float(P60_OVR[name])
+        cam = _g[(_g.element == el) & (_g.minutes >= 1) & (_g.minutes < 60)] if el is not None else []
+        partial = float(cam.minutes.mean()) if len(cam) else 30.0
+        return dict(p60=p60, p_cameo=(0.05 if p60 > 0 else 0.0), partial=partial)
     if H.has_inseason() and code in H.inseason_codes() and len(H.inseason_rows(code)) >= 4:
         p = H.recency_start_prob(_prior_games(el) + H.inseason_rows(code))   # actual recent start rate
         return dict(p60=round(min(max(p, 0.05), 0.98), 2), p_cameo=0.05, partial=30.0)
@@ -165,8 +175,7 @@ def get_minutes_probs(code, name=None):
     mm = app.minutes.mean() if len(app) else 0
     cam = _g[(_g.element == el) & (_g.minutes >= 1) & (_g.minutes < 60)]
     partial = cam.minutes.mean() if len(cam) else 30.0
-    if name in P60_OVR:                                       # known current status -> ignore stale cameo history
-        return dict(p60=P60_OVR[name], p_cameo=0.05, partial=float(partial))
+    # (the P60_OVR override is handled at the top of this function, before the in-season branch)
     p_cameo = min(len(cam) / 38.0, 0.15)
     return dict(p60=min(_nailed(mm, r["n60"]), 1 - p_cameo), p_cameo=p_cameo, partial=float(partial))
 

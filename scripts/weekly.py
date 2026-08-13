@@ -80,6 +80,13 @@ def _load_overrides(next_gw):
         d = {"gameweek": next_gw, "overrides": []}
         json.dump(d, open(f, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     OVERRIDES = {int(o["player_id"]): o for o in d.get("overrides", [])}
+    # The EV model does NOT read OVERRIDES — compute_ev_v2 -> get_minutes_probs reads V.P60_OVR,
+    # keyed by web_name. Without this mirror a form override changed p_start() and bench cover but
+    # left the player's EV untouched, so someone marked "won't start" kept full EV and could still
+    # be picked in the XI or recommended as a transfer target. players.json writes web_name, so the
+    # keys match exactly.
+    V.P60_OVR.update({o["player_name"]: float(o["p_starts_override"])
+                      for o in d.get("overrides", [])})
 
 
 def _write_players_json(next_gw):
