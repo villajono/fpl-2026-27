@@ -523,6 +523,38 @@ def fixture_source_lines(next_gw):
     return L
 
 
+WRAP_COLS = 54                        # matches the report's own ═ rule; fits an iPhone in portrait
+
+
+def _wrap_report(lines, cols=WRAP_COLS):
+    """Wrap over-wide lines so the emailed report reads on a phone without sideways scrolling.
+
+    The report is rendered as 11px monospace in a <pre> (to_html.py), so anything past ~59 chars
+    forces horizontal scroll in iPhone Mail — a third of the lines did. Each line keeps its own
+    indentation, continuations hang two spaces deeper, and the ═/━ rules are left alone so the
+    structure survives."""
+    import textwrap
+    out = []
+    # Many report lines are appended as one string containing embedded newlines ("\nHEADER\n━━━"),
+    # so split to PHYSICAL lines first — textwrap collapses newlines and would re-flow a heading
+    # into its own underline rule.
+    for raw in lines:
+        for ln in str(raw).split("\n"):
+            if len(ln) <= cols or not ln.strip():
+                out.append(ln); continue
+            stripped = ln.lstrip()
+            if set(stripped) <= set("═━─"):        # structural rule, never wrap
+                out.append(ln); continue
+            indent = ln[:len(ln) - len(stripped)]
+            # Already-deep indents (the chip block sits at 15) have little room left, so don't
+            # hang continuations any further — it just shreds the text.
+            sub = indent + ("  " if len(indent) <= 6 else "")
+            out.extend(textwrap.wrap(stripped, width=cols, initial_indent=indent,
+                                     subsequent_indent=sub,
+                                     break_long_words=False, break_on_hyphens=False) or [ln])
+    return out
+
+
 def report(team_name, squad_def, itb, banked, chips, planned):
     # defw must be present here: best_transfer() compares a candidate's defw against the outgoing
     # player's, and POOL rows carry it — squad rows must have the same shape or that lookup KeyErrors.
@@ -607,13 +639,14 @@ def report(team_name, squad_def, itb, banked, chips, planned):
     L.append("\nPLANNED TRANSFERS\n" + "━" * 17)
     for pt in planned: L.append("  " + pt)
     L.append("═" * 54)
-    return "\n".join(L)
+    return "\n".join(_wrap_report(L))
 
 
 if __name__ == "__main__":
     ODDS.set_source("fd")          # live tool uses market-average odds (no key); a key still wins if set
     print("⟳ Refreshing models from live FPL API (detect → ingest → refresh)...", flush=True)
-    for line in auto_ingest_and_refresh(): print("   " + line)
+    # these go straight to stdout rather than through report(), so wrap them here too
+    for line in _wrap_report(["   " + l for l in auto_ingest_and_refresh()]): print(line)
     print()
     SANTA = [("Sánchez","GK","CHE",5.0),("Leno","GK","FUL",4.5),("Senesi","DEF","TOT",6.0),("Van Hecke","DEF","TOT",5.0),
              ("Romero","DEF","TOT",5.0),("Calafiori","DEF","ARS",5.5),("Van den Berg","DEF","BRE",5.0),

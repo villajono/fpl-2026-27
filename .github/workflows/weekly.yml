@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: write
+  issues: write        # the no-secrets notification path (see "Notify via GitHub issue")
 
 concurrency:
   group: weekly-fpl
@@ -60,6 +61,28 @@ jobs:
           git commit -m "weekly run $(date -u +'%Y-%m-%d %H:%M UTC')" || echo "nothing to commit"
           git pull --rebase --autostash || true
           git push || true
+
+      # Primary notification: needs NO secrets. Gmail SMTP requires an authenticated sender, so the
+      # email step below stays dark until MAIL_* are configured. Filing an issue uses the built-in
+      # GITHUB_TOKEN, and the @mention notifies the owner by email AND as a push notification in the
+      # GitHub mobile app — which works from anywhere, without an App Password.
+      - name: Notify via GitHub issue (fallback when email is not configured)
+        if: steps.decide.outputs.email == 'true' && env.MAIL_USERNAME == ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          GW=$(python -c "import json;print(json.load(open('data/state/deadline.json'))['next_gw'])")
+          DL=$(python -c "import json;print(json.load(open('data/state/deadline.json'))['deadline'])")
+          {
+            echo "@${{ github.repository_owner }} — **GW$GW deadline: $DL**"
+            echo
+            echo "Full report below. Overrides: https://villajono.github.io/fpl-2026-27/form.html"
+            echo
+            echo '```'
+            cat report_latest.txt
+            echo '```'
+          } > issue_body.md
+          gh issue create --title "⚽ FPL GW$GW — deadline $DL" --body-file issue_body.md
 
       - name: Email the report to your phone
         if: steps.decide.outputs.email == 'true' && env.MAIL_USERNAME != ''
