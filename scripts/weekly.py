@@ -194,6 +194,29 @@ def human_confirmation(squad):
     return moves, applied
 
 
+def pstart_review(squad, tv, n=6):
+    """The P(start) values the model is actually running on, lowest first.
+
+    You cannot sensibly set P(start) for every player every week, and you don't need to: the numbers
+    that change a decision are the shakiest players in the squad and whoever the engine wants to buy.
+    Those are what this lists. Disagree with one, set it in the form, re-run the workflow, and the
+    revised figure flows through EV, the XI, the captain and the transfer call together."""
+    rows = []
+    for p in squad:
+        src = "YOURS" if OVERRIDES.get(p["code"]) else "model"
+        rows.append((p_start(p["code"], p["name"]), p["name"], p["team"], src))
+    rows.sort()
+    L = [f"  {'player':<16}{'team':<5}{'P(start)':>8}  source"]
+    for v, nm, tm, src in rows[:n]:
+        L.append(f"  {nm[:15]:<16}{tm:<5}{v:>8.2f}  {src}")
+    if tv:
+        i = tv["inn"]
+        src = "YOURS" if OVERRIDES.get(i["code"]) else "model"
+        L.append(f"  {('→ ' + i['name'][:13]):<16}{i['team']:<5}"
+                 f"{p_start(i['code'], i['name']):>8.2f}  {src}  (transfer target)")
+    return L
+
+
 def select_captain(xi):
     """Captain = the single starting-XI player with the highest single-GW EV. Nothing else —
     no reliability discount, no rank, no template. EV already prices minutes and fixture."""
@@ -589,15 +612,27 @@ def report(team_name, squad_def, itb, banked, chips, planned):
     L.append("  (team ratings move once GW1 xG lands; divergence>30% after 3 GWs → flag)")
     for f in rf["flags"]: L.append("  " + f)
     moves, applied = human_confirmation(squad)
-    L.append("\n⚠ HUMAN CONFIRMATION (2-min review — edit data/state/human_input.json)\n" + "━" * 31)
+    L.append("\n⚠ HUMAN CONFIRMATION (2-min review — override from the phone form)\n" + "━" * 31)
     if moves:
         L.append("  P(starts) moved >20% since last week — verify against team news:")
         for m in moves: L.append("    • " + m)
     else:
         L.append("  No >20% P(starts) moves since last week.")
-    L.append("  Human nailed-ness input applied this week (WC returnees / training / manager quotes):")
-    for a in (applied or ["    (none — add overrides to human_input.json if you have news the model can't see)"]):
-        L.append(("    ✓ " + a) if applied else a)
+    if applied:
+        L.append("  Your overrides applied to THIS squad:")
+        for a in applied: L.append("    ✓ " + a)
+    elif OVERRIDES:
+        # Don't report "none": overrides not in this squad still price the transfer pool, and
+        # saying none reads as though the form never saved.
+        L.append(f"  {len(OVERRIDES)} override(s) live for GW{gw}, none of them in this squad: "
+                 + ", ".join(f"{o['player_name']} {o['p_starts_override']}" for o in OVERRIDES.values()) + ".")
+        L.append("  They still price transfer targets and the wider pool.")
+    else:
+        L.append("  No overrides set — add one from the form when you know something the model can't.")
+    L.append("")
+    L.append("  P(START) THE MODEL IS RUNNING ON — shakiest first. Override any you know better")
+    L.append("  from the form, then re-run the workflow for a revised call.")
+    L.extend(pstart_review(squad, tv))
     L.append("\nFIXTURE INPUTS — DATA SOURCES\n" + "━" * 29)
     L.extend(fixture_source_lines(gw))
     L.append("\nCHIP EVALUATION\n" + "━" * 15)
@@ -632,6 +667,9 @@ def report(team_name, squad_def, itb, banked, chips, planned):
             take, why = should_take_hit(tv, squad, gw)
             dec = f"TAKE −4 HIT ✓ — {why}" if take else f"BANK — {why}"
         L.append(f"  Best target: OUT {o['name']} ({o['pos']} {o['team']}) → IN {i['name']} ({i['team']} £{i['price']})")
+        L.append(f"    P(start) assumed: {o['name']} {p_start(o['code'], o['name']):.2f} → "
+                 f"{i['name']} {p_start(i['code'], i['name']):.2f} — if you know better, override "
+                 f"in the form and re-run for a revised call")
         L.append(f"    {tv['signal']} · effective-out adjusted for bench cover · {tv['hold']}-GW hold")
         L.append(f"    gain: GW+1 {tv['gw1']:+.1f} · GW+1&2 {tv['gw1']+tv['gw2']:+.1f} · full {tv['hold']}-GW {tv['gain']:+.1f}")
         L.append(f"    → {dec}    (budget after £{itb - (i['price']-o['price']):.1f}m ITB, {banked} banked)")
