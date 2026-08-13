@@ -611,7 +611,17 @@ def report(team_name, squad_def, itb, banked, chips, planned):
     tr_thr, tr_note = transfer_threshold_live(banked, gw, load_chip_state()[str(_half(gw))]["WC"])
     L.append(f"  Transfer threshold this week: {tr_thr:.1f} pts{tr_note}")
     L.append("\nTRANSFER DECISION\n" + "━" * 17)
-    if tv and tv["gain"] > 0:
+    if gw == 1:
+        # Before the first deadline FPL gives unlimited free transfers, so the one-in-one-out engine
+        # is meaningless here — the whole 15 is editable. Show its best swap as a signal of what the
+        # model rates, but never as an instruction.
+        L.append("  Unlimited free transfers until the GW1 deadline — the whole squad is editable,")
+        L.append("  so the single-swap engine does not apply. Pick the 15 you want.")
+        if tv and tv["gain"] > 0:
+            L.append(f"  FYI, the biggest single upgrade it can see: {tv['out']['name']} → "
+                     f"{tv['inn']['name']} ({tv['inn']['team']} £{tv['inn']['price']}), "
+                     f"{tv['gain']:+.1f} over {tv['hold']} GWs — a signal, not a recommendation.")
+    elif tv and tv["gain"] > 0:
         o, i = tv["out"], tv["inn"]
         if banked >= 1:
             # Decide on the SAME threshold the report prints above (tr_thr). This used to be a
