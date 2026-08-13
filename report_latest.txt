@@ -2,3 +2,171 @@
    no completed gameweeks yet (pre-season) — models at prior
    overrides: 4 active for GW1; players.json refreshed for the form
 
+══════════════════════════════════════════════════════
+SANTA CLAUDE (AI team) — GW1 DECISIONS
+Models updated: GW0 data ingested ✓ (0 GWs played → Bayesian 100% prior)
+⏰ GW1 DEADLINE: Fri 21 Aug, 18:30 UK  (in 199.0h)   ⚠ ACT BEFORE DEADLINE
+══════════════════════════════════════════════════════
+
+MODEL UPDATES THIS WEEK
+━━━━━━━━━━━━━━━━━━━━━━━━
+  ⟳ no completed gameweeks yet (pre-season) — models at prior
+  ⟳ overrides: 4 active for GW1; players.json refreshed for the form
+  CHE att 1.50→1.50 def 0.82→0.82  [K=5, prior 100%/data 0%]
+  MCI att 1.30→1.30 def 0.86→0.86  [K=9, prior 100%/data 0%]
+  LIV att 1.29→1.29 def 0.79→0.79  [K=5, prior 100%/data 0%]
+  (team ratings move once GW1 xG lands; divergence>30% after 3 GWs → flag)
+
+⚠ HUMAN CONFIRMATION (2-min review — edit data/state/human_input.json)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  No >20% P(starts) moves since last week.
+  Human nailed-ness input applied this week (WC returnees / training / manager quotes):
+    (none — add overrides to human_input.json if you have news the model can't see)
+
+FIXTURE INPUTS — DATA SOURCES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Bookmaker odds ON — market average (football-data.co.uk), 1X2 + O/U, overround removed ✓  (GW+4+ always xG model)
+  GW+1 (GW1): xG model (no odds published)
+  GW+2 (GW2): xG model (no odds published)
+  GW+3 (GW3): xG model (no odds published)
+  GW+4 (GW4): xG model (no odds published)
+  GW+5 (GW5): xG model (no odds published)
+  GW+6 (GW6): xG model (no odds published)
+
+CHIP EVALUATION
+━━━━━━━━━━━━━━━
+  Wildcard 1:   Monitoring
+               rebuild value: +6 pts / 6 weeks vs current squad
+               fixture swing next 4: No   |   lineup data (3+ GW): No (GW0)
+               free transfers banked (roll through WC): 1
+  Bench Boost: Monitoring
+               bench EV this GW: 17.6   |   peak remaining this half: 19.3
+  Triple Cap:  Monitoring
+               captain EV this GW: 7.4   |   best remaining captain week this half: 9.2
+  Free Hit:    Monitoring
+               players blanking this GW: 0   |   free-hit team gain: +3.2 pts vs current XI
+  → No chip this week — hold all available chips.
+  Transfer threshold this week: 4.0 pts
+
+TRANSFER DECISION
+━━━━━━━━━━━━━━━━━
+  Best target: OUT Van den Berg (DEF BRE) → IN Thiaw (NEW £5.0)
+    better clean-sheet team · effective-out adjusted for bench cover · 6-GW hold
+    gain: GW+1 -0.2 · GW+1&2 -0.1 · full 6-GW +2.7
+    → BANK (gain +2.7 below the 4.0 threshold)    (budget after £1.0m ITB, 1 banked)
+
+WATCHLIST (monitor, not acting)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  • Senesi: DC90 11.5, P(DC bonus) 66% — DC-point engine, hold
+  • Romero: DC90 9.5, P(DC bonus) 45% — DC-point engine, hold
+  • Anderson: DC90 13.9, P(DC bonus) 73% — DC-point engine, hold
+  • Gomez: DC90 10.1, P(DC bonus) 33% — DC-point engine, hold
+
+CAPTAIN — highest-EV starter (doubles)
+━━━━━━━
+  Captain: Haaland — EV 7.4 (×2 = 14.9), MCI vs BOU
+  Vice:    Mbeumo — EV 6.4
+
+STARTING XI — 5-3-2
+━━━━━━━━━━━━━━━━━━━━━━━━
+  GK: Sánchez
+  DEF: Calafiori, Senesi, Romero, Van den Berg, Van Hecke
+  MID: Mbeumo, Enzo, Sarr
+  FWD: Haaland, Mateta
+  Bench: Leno, Gomez, Anderson, Thiago
+
+PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  GW1  GW2  GW3  GW4  GW5  GW6
+    67    65    70    71    67    61   (min 61)
+  GW1 = XI 58 + captain bonus 7 + auto-sub 1.6  (auto-sub small by design)
+
+PLANNED TRANSFERS
+━━━━━━━━━━━━━━━━━
+  Spurs D de-stack (Romero→Gvardiol): open — spends £1 ITB, de-correlates CS
+══════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════
+HUMAN TEAM (FPL Mate) — GW1 DECISIONS
+Models updated: GW0 data ingested ✓ (0 GWs played → Bayesian 100% prior)
+⏰ GW1 DEADLINE: Fri 21 Aug, 18:30 UK  (in 199.0h)   ⚠ ACT BEFORE DEADLINE
+══════════════════════════════════════════════════════
+
+MODEL UPDATES THIS WEEK
+━━━━━━━━━━━━━━━━━━━━━━━━
+  ⟳ no completed gameweeks yet (pre-season) — models at prior
+  ⟳ overrides: 4 active for GW1; players.json refreshed for the form
+  CHE att 1.50→1.50 def 0.82→0.82  [K=5, prior 100%/data 0%]
+  MCI att 1.30→1.30 def 0.86→0.86  [K=9, prior 100%/data 0%]
+  LIV att 1.29→1.29 def 0.79→0.79  [K=5, prior 100%/data 0%]
+  (team ratings move once GW1 xG lands; divergence>30% after 3 GWs → flag)
+
+⚠ HUMAN CONFIRMATION (2-min review — edit data/state/human_input.json)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  No >20% P(starts) moves since last week.
+  Human nailed-ness input applied this week (WC returnees / training / manager quotes):
+    (none — add overrides to human_input.json if you have news the model can't see)
+
+FIXTURE INPUTS — DATA SOURCES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Bookmaker odds ON — market average (football-data.co.uk), 1X2 + O/U, overround removed ✓  (GW+4+ always xG model)
+  GW+1 (GW1): xG model (no odds published)
+  GW+2 (GW2): xG model (no odds published)
+  GW+3 (GW3): xG model (no odds published)
+  GW+4 (GW4): xG model (no odds published)
+  GW+5 (GW5): xG model (no odds published)
+  GW+6 (GW6): xG model (no odds published)
+
+CHIP EVALUATION
+━━━━━━━━━━━━━━━
+  Wildcard 1:   Monitoring
+               rebuild value: +24 pts / 6 weeks vs current squad
+               fixture swing next 4: No   |   lineup data (3+ GW): No (GW0)
+               free transfers banked (roll through WC): 1
+  Bench Boost: Monitoring
+               bench EV this GW: 12.1   |   peak remaining this half: 14.1
+  Triple Cap:  Monitoring
+               captain EV this GW: 7.4   |   best remaining captain week this half: 9.2
+  Free Hit:    Monitoring
+               players blanking this GW: 0   |   free-hit team gain: +4.9 pts vs current XI
+  → No chip this week — hold all available chips.
+  Transfer threshold this week: 4.0 pts
+
+TRANSFER DECISION
+━━━━━━━━━━━━━━━━━
+  Best target: OUT Phillips (GK HUL) → IN Dubravka (TOT £4.0)
+    quality upgrade · effective-out adjusted for bench cover · 6-GW hold
+    gain: GW+1 +0.9 · GW+1&2 +1.8 · full 6-GW +6.0
+    → TRANSFER ✓ (free)    (budget after £0.0m ITB, 1 banked)
+
+WATCHLIST (monitor, not acting)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  • Phillips (HUL): PRIOR-ONLY (promoted/new) — rating updating, check GW3
+  • Virgil: DC90 9.3, P(DC bonus) 44% — DC-point engine, hold
+  • van Ewijk (COV): PRIOR-ONLY (promoted/new) — rating updating, check GW3
+  • Szoboszlai: DC90 9.4, P(DC bonus) 29% — DC-point engine, hold
+  • Stach: DC90 10.1, P(DC bonus) 33% — DC-point engine, hold
+
+CAPTAIN — highest-EV starter (doubles)
+━━━━━━━
+  Captain: Haaland — EV 7.4 (×2 = 14.9), MCI vs BOU
+  Vice:    B.Fernandes — EV 6.9
+
+STARTING XI — 4-4-2
+━━━━━━━━━━━━━━━━━━━━━━━━
+  GK: Lammens
+  DEF: Mosquera, Virgil, N.Williams, Kayode
+  MID: B.Fernandes, Mbeumo, Gomez, Szoboszlai
+  FWD: Haaland, João Pedro
+  Bench: Phillips, Stach, van Ewijk, Walle Egeli
+
+PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  GW1  GW2  GW3  GW4  GW5  GW6
+    66    64    65    63    62    57   (min 57)
+  GW1 = XI 57 + captain bonus 7 + auto-sub 1.4  (auto-sub small by design)
+
+PLANNED TRANSFERS
+━━━━━━━━━━━━━━━━━
+  Wildcard planned GW4 — hold transfers, ride current 15
+══════════════════════════════════════════════════════
