@@ -714,10 +714,17 @@ if __name__ == "__main__":
              ("Palmer","MID","CHE",9.5),("Mbeumo","MID","MUN",8.0),("Sarr","MID","CRY",6.5),
              ("Schade","MID","BRE",6.0),("Gomez","MID","BHA",5.0),
              ("Haaland","FWD","MCI",15.5),("Mateta","FWD","CRY",6.5),("Calvert-Lewin","FWD","LEE",6.0)]
-    HUMAN = [("Lammens","GK","MUN",5.0),("Phillips","GK","HUL",4.0),("Mosquera","DEF","ARS",5.5),("N.Williams","DEF","NFO",5.0),
-             ("Kayode","DEF","BRE",4.5),("Virgil","DEF","LIV",6.5),("van Ewijk","DEF","COV",4.0),("Mbeumo","MID","MUN",8.0),
-             ("Szoboszlai","MID","LIV",7.0),("Stach","MID","LEE",6.0),("Gomez","MID","BHA",5.0),("B.Fernandes","MID","MUN",12.0),
-             ("Walle Egeli","FWD","IPS",4.5),("Haaland","FWD","MCI",15.5),("João Pedro","FWD","CHE",7.5)]
+    # Jon's squad as at 2026-08-13, shaped for a possible GW2 Bench Boost into a GW3/4 Wildcard.
+    # Provisional — he may abandon that plan — but frozen here because he travels on the 14th and
+    # only GW1-2 are played while he is away. £100.0m exactly, £0.0m ITB.
+    # At the 3-per-club cap in three places: MUN (Shaw/Mbeumo/Fernandes), MCI (Foden/Semenyo/
+    # Haaland), COV (Rushworth/van Ewijk/Thomas-Asante).
+    HUMAN = [("Kinsky","GK","TOT",4.5),("Rushworth","GK","COV",4.5),
+             ("O'Shea","DEF","IPS",4.0),("Shaw","DEF","MUN",4.5),("Mosquera","DEF","ARS",5.5),
+             ("Ajer","DEF","BRE",4.5),("van Ewijk","DEF","COV",4.0),
+             ("Foden","MID","MCI",7.0),("Mbeumo","MID","MUN",8.0),("B.Fernandes","MID","MUN",12.0),
+             ("Semenyo","MID","MCI",8.5),("Slater","MID","HUL",4.5),
+             ("Haaland","FWD","MCI",15.5),("Thiago","FWD","BRE",8.0),("Thomas-Asante","FWD","COV",5.0)]
     print(report("SANTA CLAUDE (AI team)", SANTA, itb=0.0, banked=1,
                  chips=[], planned=[
                      "Neutral baseline — follow this engine's weekly call exactly, no chip shaping.",
@@ -726,5 +733,13 @@ if __name__ == "__main__":
                      "once lineups settle.",
                      "£0.0m ITB — a like-for-like or cheaper move only until funds are freed."]))
     print()
-    print(report("HUMAN TEAM (FPL Mate)", HUMAN, itb=0.0, banked=1,
-                 chips=[], planned=["Wildcard planned GW4 — hold transfers, ride current 15"]))
+    print(report("JON'S TEAM", HUMAN, itb=0.0, banked=1,
+                 chips=[], planned=[
+                     "Provisional plan: BENCH BOOST GW2, then WILDCARD GW3 or GW4. Aggressive, and "
+                     "may be abandoned — if so the squad wants rebalancing away from the cheap bench.",
+                     "Bench Boost check: Rushworth (COV) is p60 0.00 — no minutes last season and "
+                     "Coventry's keeper job is unresolved, so under a boost he scores nothing. "
+                     "Override him if you rate him to start.",
+                     "GW2 bench yields only ~12 pts as drafted (O'Shea 2.4, van Ewijk 5.1, "
+                     "Slater 2.9, Thomas-Asante 4.3, Rushworth 0.0) — thin for a chip.",
+                     "£0.0m ITB and at the 3-per-club cap for MUN, MCI and COV."]))
