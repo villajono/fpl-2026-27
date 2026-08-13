@@ -151,7 +151,67 @@ def _nailed(mm, n60):
     return round(p * (0.85 if n60 < 12 else 1.0), 2)
 
 
-P60_OVR = {"Mosquera": 0.92, "van Ewijk": 0.95, "Walle Egeli": 0.45, "Phillips": 0.60}
+P60_OVR = {"Mosquera": 0.92, "van Ewijk": 0.95, "Walle Egeli": 0.45, "Phillips": 0.60,
+           # Spurs keeper, 2026-08-13: Kinsky is regarded as the likely starter but it is not
+           # settled. Last season's minutes point the other way (Dubravka 3,150 v Kinsky 630), so
+           # the first-choice rule below would hand Spurs to Dubravka on stale evidence — he is
+           # behind Kinsky now. Durable here rather than a form override, which is GW-scoped and
+           # would have to be re-entered every week from the road.
+           "Kinsky": 0.80, "Dubravka": 0.0}
+
+
+def _backup_keeper_codes():
+    """Codes of every goalkeeper who is NOT his club's first choice.
+
+    Goalkeeper minutes are binary: one keeper per club plays, and he plays all 90. But a backup has
+    no rate history, so he falls through to the 0.65 no-data default and gets rated like a starter.
+    Liverpool carry six rated keepers; five of them will play no minutes at all. That is harmless in
+    a normal week (you would never field them) but not under a Bench Boost, where all fifteen score
+    and an optimiser will cheerfully buy two £4.0 keepers at the same club.
+
+    A keeper is rated ONLY if he is unambiguously his club's number one: strictly the dearest AND
+    strictly the most-owned of that club's keepers. Everyone else scores zero. The burden of proof
+    sits on being startable, not on being a backup, because an uncertain keeper is worth nothing —
+    he either plays 90 minutes or none, and buying the wrong one of a pair costs a whole squad slot
+    (and, under a Bench Boost, a whole scoring slot).
+
+    Evidence, in order:
+      1. LAST SEASON'S MINUTES, where any keeper at the club has some. This is the direct record of
+         who actually plays and it settles cases price cannot: Sánchez (3,040 min) and Jörgensen
+         (378) are both £5.0, and Verbruggen (3,420) and Rushworth (0) are both £4.5, so a
+         price test would have zeroed two of the most nailed keepers in the game.
+      2. PRICE AND OWNERSHIP TOGETHER, for a club where nobody has minutes (promoted sides). Both
+         are required because either alone misleads — Ipswich price-favours Walton at 0.8% owned
+         over Palmer at 6.8%, while ownership goes stale when a keeper has just lost the job.
+      3. Otherwise NOBODY at that club is rated. Coventry and Ipswich are genuinely undecided, and
+         a coin-flip keeper is worth nothing.
+
+    A club with a single listed keeper qualifies trivially. A human override still wins, because
+    P60_OVR is checked first in get_minutes_probs — so a contested job can be resolved from the
+    phone form the moment team news lands.
+    """
+    gks = _nxt[_nxt.element_type == 1]
+    non_starters = set()
+    for _, grp in gks.groupby("team_name"):
+        g = grp.copy()
+        # NB no leading underscore: itertuples() renames such columns positionally (_1, _2, ...)
+        g["selpct"] = pd.to_numeric(g.selected_by_percent, errors="coerce").fillna(0.0)
+        g["mins"] = pd.to_numeric(g.minutes, errors="coerce").fillna(0.0)
+        rows = [(int(r.code), float(r.now_cost), float(r.selpct), float(r.mins))
+                for r in g.itertuples()]
+        by_minutes = any(m > 0 for _, _, _, m in rows)
+        for code, cost, sel, mins in rows:
+            others = [o for o in rows if o[0] != code]
+            if by_minutes:
+                first_choice = mins > 0 and all(mins > m2 for _, _, _, m2 in others)
+            else:
+                first_choice = all(cost > c2 and sel > s2 for _, c2, s2, _ in others)
+            if not first_choice:
+                non_starters.add(code)
+    return non_starters
+
+
+BACKUP_GK = _backup_keeper_codes()
 
 
 def get_minutes_probs(code, name=None):
@@ -166,6 +226,8 @@ def get_minutes_probs(code, name=None):
         cam = _g[(_g.element == el) & (_g.minutes >= 1) & (_g.minutes < 60)] if el is not None else []
         partial = float(cam.minutes.mean()) if len(cam) else 30.0
         return dict(p60=p60, p_cameo=(0.05 if p60 > 0 else 0.0), partial=partial)
+    if code in BACKUP_GK:
+        return dict(p60=0.0, p_cameo=0.0, partial=0.0)      # understudy keeper: no minutes at all
     if H.has_inseason() and code in H.inseason_codes() and len(H.inseason_rows(code)) >= 4:
         p = H.recency_start_prob(_prior_games(el) + H.inseason_rows(code))   # actual recent start rate
         return dict(p60=round(min(max(p, 0.05), 0.98), 2), p_cameo=0.05, partial=30.0)
