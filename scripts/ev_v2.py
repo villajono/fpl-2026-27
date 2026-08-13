@@ -160,6 +160,25 @@ P60_OVR = {"Mosquera": 0.92, "van Ewijk": 0.95, "Walle Egeli": 0.45, "Phillips":
            "Kinsky": 0.80, "Dubravka": 0.0}
 
 
+# How many games last season is worth as a prior, once this season is under way. Low on purpose:
+# role changes over a summer, so a handful of current starts should dominate.
+INSEASON_K = 2.0
+
+
+def _preseason_p60(el, name, r):
+    """The pre-season P(start) estimate — also the prior the in-season update starts from.
+
+    Must match what the pre-season branch of get_minutes_probs returns EXACTLY, cameo cap included,
+    or GW1 shifts a player for reasons unrelated to whether he started: a heavy-cameo player is
+    capped pre-season, and reading the uncapped value made Sarr jump 0.85 -> 0.95 on one start."""
+    if r is None:
+        return P60_OVR.get(name, 0.65)
+    app = _g[(_g.element == el) & (_g.minutes >= 60)]
+    mm = app.minutes.mean() if len(app) else 0
+    cam = _g[(_g.element == el) & (_g.minutes >= 1) & (_g.minutes < 60)]
+    return min(_nailed(mm, r["n60"]), 1 - min(len(cam) / 38.0, 0.15))
+
+
 def _backup_keeper_codes():
     """Codes of every goalkeeper who is NOT his club's first choice.
 
@@ -228,9 +247,30 @@ def get_minutes_probs(code, name=None):
         return dict(p60=p60, p_cameo=(0.05 if p60 > 0 else 0.0), partial=partial)
     if code in BACKUP_GK:
         return dict(p60=0.0, p_cameo=0.0, partial=0.0)      # understudy keeper: no minutes at all
-    if H.has_inseason() and code in H.inseason_codes() and len(H.inseason_rows(code)) >= 4:
-        p = H.recency_start_prob(_prior_games(el) + H.inseason_rows(code))   # actual recent start rate
-        return dict(p60=round(min(max(p, 0.05), 0.98), 2), p_cameo=0.05, partial=30.0)
+    if H.has_inseason() and code in H.inseason_codes() and H.inseason_rows(code):
+        # THIS season's starts settle the question; last season is only a prior. A player who starts
+        # the opening two games is very likely to start the third, whatever he did last year — the
+        # manager, the squad and his role may all have changed. So: treat last season's start rate as
+        # a Beta prior worth only INSEASON_K games and update it with the actual in-season starts.
+        #
+        #   p = (prior_rate * K + starts) / (K + games)
+        #
+        # With K=2, a 0.50 player who starts both openers goes to 0.75 and one who starts neither
+        # falls to 0.25 — evidence compounds immediately and symmetrically. The old rule ignored
+        # in-season data entirely until FOUR gameweeks were logged and then let ~38 prior games
+        # outweigh them, so a player dropped in GW1 still looked nailed in GW3.
+        rows = H.inseason_rows(code)
+        # The prior is the model's OWN pre-season estimate, so GW1 updates it rather than jolting it
+        # onto a different scale. The alternatives were both worse. recency_start_prob over
+        # appearances answers P(60+ | he played) — a different quantity from the per-gameweek rate
+        # the in-season rows measure. Over all gameweeks it has the right units but records how last
+        # season ENDED, which is often a situation that has since changed: it puts Gvardiol at 0.13
+        # because he was dropped late last season, though he is expected to start this one. Last
+        # season's closing state is precisely the thing a summer can invalidate.
+        prior = _preseason_p60(el, name, r)
+        starts = sum(1 for g in rows if g["minutes"] >= 60)
+        p = (prior * INSEASON_K + starts) / (INSEASON_K + len(rows))
+        return dict(p60=round(min(max(p, 0.02), 0.98), 2), p_cameo=0.05, partial=30.0)
     if r is None:
         p60 = P60_OVR.get(name, 0.65); return dict(p60=p60, p_cameo=0.10, partial=30.0)
     app = _g[(_g.element == el) & (_g.minutes >= 60)]
