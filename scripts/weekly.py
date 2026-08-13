@@ -655,16 +655,28 @@ if __name__ == "__main__":
     # these go straight to stdout rather than through report(), so wrap them here too
     for line in _wrap_report(["   " + l for l in auto_ingest_and_refresh()]): print(line)
     print()
-    SANTA = [("Sánchez","GK","CHE",5.0),("Leno","GK","FUL",4.5),("Senesi","DEF","TOT",6.0),("Van Hecke","DEF","TOT",5.0),
-             ("Romero","DEF","TOT",5.0),("Calafiori","DEF","ARS",5.5),("Van den Berg","DEF","BRE",5.0),
-             ("Mbeumo","MID","MUN",8.0),("Anderson","MID","MCI",6.5),("Enzo","MID","CHE",7.0),("Sarr","MID","CRY",6.5),
-             ("Gomez","MID","BHA",5.0),("Haaland","FWD","MCI",15.5),("Thiago","FWD","BRE",8.0),("Mateta","FWD","CRY",6.5)]
+    # LOCKED 2026-08-13, ahead of the GW1 deadline. Chosen by optimize_v2.py on the neutral
+    # season-long objective (GW1-8 XI + captain + auto-sub), with the human overrides applied and
+    # backup keepers correctly zeroed: £100.0m exactly, GW1-8 EV 534.9 vs the previous squad's 497.3.
+    # Deliberately unshaped — no chip tilt — because this team exists to follow the engine's weekly
+    # recommendations precisely, so its baseline should reflect the model and nothing else.
+    SANTA = [("Sánchez","GK","CHE",5.0),("Leno","GK","FUL",4.5),
+             ("Senesi","DEF","TOT",6.0),("Van Hecke","DEF","TOT",5.0),("Calafiori","DEF","ARS",5.5),
+             ("Mosquera","DEF","ARS",5.5),("Gvardiol","DEF","MCI",5.5),
+             ("Palmer","MID","CHE",9.5),("Mbeumo","MID","MUN",8.0),("Sarr","MID","CRY",6.5),
+             ("Schade","MID","BRE",6.0),("Gomez","MID","BHA",5.0),
+             ("Haaland","FWD","MCI",15.5),("Mateta","FWD","CRY",6.5),("Calvert-Lewin","FWD","LEE",6.0)]
     HUMAN = [("Lammens","GK","MUN",5.0),("Phillips","GK","HUL",4.0),("Mosquera","DEF","ARS",5.5),("N.Williams","DEF","NFO",5.0),
              ("Kayode","DEF","BRE",4.5),("Virgil","DEF","LIV",6.5),("van Ewijk","DEF","COV",4.0),("Mbeumo","MID","MUN",8.0),
              ("Szoboszlai","MID","LIV",7.0),("Stach","MID","LEE",6.0),("Gomez","MID","BHA",5.0),("B.Fernandes","MID","MUN",12.0),
              ("Walle Egeli","FWD","IPS",4.5),("Haaland","FWD","MCI",15.5),("João Pedro","FWD","CHE",7.5)]
-    print(report("SANTA CLAUDE (AI team)", SANTA, itb=1.0, banked=1,
-                 chips=[], planned=["Spurs D de-stack (Romero→Gvardiol): open — spends £1 ITB, de-correlates CS"]))
+    print(report("SANTA CLAUDE (AI team)", SANTA, itb=0.0, banked=1,
+                 chips=[], planned=[
+                     "Neutral baseline — follow this engine's weekly call exactly, no chip shaping.",
+                     "Spurs pair (Senesi, Van Hecke) held on model EV only: new manager, WC "
+                     "returnees and the Spence rumour are invisible to the model. Revisit ~GW5 "
+                     "once lineups settle.",
+                     "£0.0m ITB — a like-for-like or cheaper move only until funds are freed."]))
     print()
     print(report("HUMAN TEAM (FPL Mate)", HUMAN, itb=0.0, banked=1,
                  chips=[], planned=["Wildcard planned GW4 — hold transfers, ride current 15"]))
