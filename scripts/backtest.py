@@ -29,7 +29,9 @@ POSN = {"GK": "GK", "DEF": "DEF", "MID": "MID", "FWD": "FWD"}
 CS_PTS = {"GK": 4, "DEF": 4, "MID": 1, "FWD": 0}
 CS_C = 1.0                                 # clean-sheet decay constant (~ev_v2's calibrated 1.016; fixed as a method scalar)
 MIN_MINUTES = 450
-FREE_THR = 2.0                             # weekly.py: make a free transfer only if gain exceeds this
+FREE_THR = 2.0                             # simulate(): flat control threshold (simulate_chips uses the live graduated rule)
+FT_CAP = 5                                 # FPL banks up to FIVE free transfers (since 2024-25). Was 2 —
+                                           # which capped `banked` at 2 and made the 3/4/5 threshold tiers unreachable.
 HORIZON = 6                                # weekly.py transfer evaluation window
 DECAY = {1: 1.0, 2: 0.85, 3: 0.70, 4: 0.55, 5: 0.40, 6: 0.25}
 
@@ -252,13 +254,32 @@ def _pool(season, cut, gw):
     season._pool_cache[key] = els; return els
 
 
-def best_transfer(squad, itb, season, cut, gw, hold=HORIZON):
+# Anti-churn: it costs real EV to sell a player you recently bought (you're wasting the earlier
+# transfer, usually chasing noise). Backtest showed 50% of transfers reversed a prior buy — incl. a
+# 1-GW Xhaka flip. This penalty (subtracted from a transfer's gain) makes the engine commit for a
+# holding period. Tunable; 0 reproduces Transfer Engine 1.0.
+#
+# NOT VALIDATED — default OFF (2026-08-13). Measured over the full 2025-26 season across five
+# different starting squads: +46, +48, +1, -3, -6 (positive in 3/5, mean +17). Half the penalty
+# scored WORSE than none (-20) while double scored identically to 1x, i.e. the response is
+# non-monotonic — the signature of path-dependence, not a mechanism. It does suppress the
+# pathological <2-GW flips (1 -> 0), so it survives as a variance guard, but there is no evidence
+# it gains points. Enable explicitly with simulate(..., anti_churn=True) if experimenting.
+def churn_penalty(held_gws):
+    if held_gws >= 6: return 0.0
+    if held_gws >= 4: return 2.0
+    if held_gws >= 2: return 5.0
+    return 10.0                    # <2 GW: effectively blocks flipping a just-bought player
+
+
+def best_transfer(squad, itb, season, cut, gw, hold=HORIZON, acquired=None):
     held = set(squad); pool = _pool(season, cut, gw)
     club = {}
     for e in squad: club[season.meta[e]["short"]] = club.get(season.meta[e]["short"], 0) + 1
     best = None
     for out in squad:
         po = season.meta[out]; pz = p_zero(season, out, cut)
+        pen = churn_penalty(gw - acquired.get(out, gw - 99)) if acquired else 0.0   # cost of selling `out` now
         out_ev = [ev_multi(season, out, cut, gw + o) for o in range(1, hold + 1)]
         same = [q for q in squad if season.meta[q]["pos"] == po["pos"] and q != out]
         bc = min(same, key=lambda q: price(season, q, cut)) if same else None
@@ -273,7 +294,7 @@ def best_transfer(squad, itb, season, cut, gw, hold=HORIZON):
             if club.get(csh, 0) + (0 if csh == po["short"] else 1) > 3: continue
             cev = [ev_multi(season, c, cut, gw + o) for o in range(1, hold + 1)]
             diff = [cev[o] - eff_out[o] for o in range(hold)]
-            gain = sum(diff)
+            gain = sum(diff) - pen                                                  # churn-adjusted gain
             if best is None or gain > best["gain"]:
                 best = dict(out=out, inn=c, gain=gain, gw1=diff[0], gw2=(diff[1] if hold > 1 else 0.0),
                             price_out=opr, price_in=cpr)
@@ -330,29 +351,32 @@ def score(season, gw, xi, bench, captain, vice):
 
 
 # ============================================================= WALK-FORWARD SIMULATION
-def simulate(season, start_squad, gw_from, gw_to, verbose=False):
+def simulate(season, start_squad, gw_from, gw_to, verbose=False, anti_churn=False):
     squad = list(start_squad); itb = round(100.0 - sum(price(season, e, 0) for e in start_squad), 1)
     ft = 1; log = []
+    acquired = {e: 0 for e in start_squad}                            # el -> gw acquired (for anti-churn)
     for gw in range(gw_from, gw_to + 1):
         cut = gw - 1                                                  # sees only GW < gw
         pre = select_xi(squad, season, cut, gw)
         no_tr_pts, _ = score(season, gw, pre["xi"], pre["bench"], pre["captain"], pre["vice"])
-        tv = best_transfer(squad, itb, season, cut, gw)
+        tv = best_transfer(squad, itb, season, cut, gw, acquired=acquired if anti_churn else None)
         made, hit = False, 0
         if tv is not None:
             if ft >= 1 and tv["gain"] > FREE_THR: made = True
             elif should_take_hit(tv, squad, season, cut, gw): made, hit = True, 4
         if made:
             squad = [tv["inn"] if e == tv["out"] else e for e in squad]
+            acquired[tv["inn"]] = gw
             itb = round(itb + tv["price_out"] - tv["price_in"], 1)
             if hit == 0: ft -= 1
-        ft = min(2, ft + 1)
+        ft = min(FT_CAP, ft + 1)
         post = select_xi(squad, season, cut, gw)
         pts, final = score(season, gw, post["xi"], post["bench"], post["captain"], post["vice"])
         opt_pts = _optimal_gw(season, squad, itb, gw)
         log.append(dict(gw=gw, squad_pts=pts - hit, raw_pts=pts, hit=hit, no_transfer_pts=no_tr_pts,
                         optimal_pts=opt_pts, made=made, xi=list(post["xi"]), captain_el=post["captain"],
                         transfer=((season.meta[tv["out"]]["name"], season.meta[tv["inn"]]["name"]) if made else None),
+                        out_el=(tv["out"] if made else None), in_el=(tv["inn"] if made else None),
                         tv_gain_pred=(tv["gain"] if tv else 0.0), tv_gain_actual=(pts - no_tr_pts) if made else 0.0,
                         captain=season.meta[post["captain"]]["name"], captain_pts=_pts(season, post["captain"], gw),
                         ft=ft, itb=itb))
@@ -570,12 +594,19 @@ def fh_fires(season, squad, itb, cut, gw, used):
     return fire, gap, f"FH team +{gap:.1f} vs squad, {blanks} blank", fh
 
 
+BANKED_THRESHOLD = {1: 4.0, 2: 4.0, 3: 3.0, 4: 2.0, 5: 0.0}   # mirrors weekly.transfer_threshold_live
+
+
 def transfer_threshold(weeks_to_wc, banked):
-    t = TR_BASE
+    """Mirror of weekly.transfer_threshold_live so the harness validates the LIVE rule.
+    The bar falls as free transfers accumulate (a banked transfer is only worth holding while it
+    can still be banked); at the 5 cap the incoming transfer is forfeit, so take any positive gain.
+    NB the old `if banked >= 3: t *= 1.1` raised the bar as transfers piled up — backwards."""
+    if int(banked) >= 5: return 0.0                            # use it or lose it
+    t = BANKED_THRESHOLD.get(int(banked), TR_BASE)
     if weeks_to_wc <= 1: t *= 2.0
     elif weeks_to_wc <= 2: t *= 1.5
     elif weeks_to_wc <= 3: t *= 1.2
-    if banked >= 3: t *= 1.1
     return t
 
 
@@ -650,7 +681,7 @@ def simulate_chips(season, start_squad, gw_from, gw_to, verbose=False):
                 itb = round(itb + tvd["price_out"] - tvd["price_in"], 1)
                 if hit == 0: ft -= 1
                 transfer = (season.meta[tvd["out"]]["name"], season.meta[tvd["inn"]]["name"]); tv_gain = tvd["gain"]
-            ft = min(2, ft + 1)
+            ft = min(FT_CAP, ft + 1)
         # --- score the week (chip-dependent) ---
         post = select_xi(squad, season, cut, gw)
         if chip == "FH":

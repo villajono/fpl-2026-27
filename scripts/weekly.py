@@ -477,15 +477,29 @@ def _seq_ev(squad, gw):
     return sum(p["e"] for p in xi)
 
 
+BANKED_THRESHOLD = {1: 4.0, 2: 4.0, 3: 3.0, 4: 2.0, 5: 0.0}     # free transfers held -> gain required
+
+
 def transfer_threshold_live(banked, gw, wc_used):
-    """Base 4.0, rising as a wildcard approaches (compressed delivery window)."""
-    t = 4.0; note = ""
+    """Threshold falls as free transfers pile up. Holding a transfer is only worth something while
+    you can still bank it: at 1-2 you have plenty of runway, so demand a clear 4.0 gain; by 4 the
+    next one is nearly forfeit; at the 5 cap the incoming transfer is lost outright, so ANY positive
+    gain beats letting it expire (use it or lose it).
+
+        1-2 banked -> 4.0     3 -> 3.0     4 -> 2.0     5 -> 0.0
+
+    Wildcard proximity still scales that base (hold your moves for the rebuild), except at the cap —
+    a 0.0 base multiplies to 0.0 anyway, so use-it-or-lose-it correctly wins."""
+    t = BANKED_THRESHOLD.get(int(banked), 4.0); note = ""
+    if int(banked) >= 5:
+        return 0.0, " (use it or lose it — at the 5-transfer cap, the next one is forfeit)"
     if wc_used is None:
         wtc = max(0, 6 - gw) if _half(gw) == 1 and gw <= 8 else (99 if _half(gw) == 1 else (min((c[0] for c in _cluster_ahead(gw + 1, 3)), default=99) - gw))
         if wtc <= 1: t *= 2.0; note = " (×2 — wildcard imminent, banking transfers)"
         elif wtc <= 2: t *= 1.5; note = " (×1.5 — wildcard ~2 weeks out)"
         elif wtc <= 3: t *= 1.2; note = " (×1.2 — wildcard approaching)"
-    if banked >= 3: t *= 1.1
+    if not note and int(banked) >= 3:
+        note = f" ({banked} banked — bar lowered, transfers are piling up)"
     return t, note
 
 
@@ -510,7 +524,10 @@ def fixture_source_lines(next_gw):
 
 
 def report(team_name, squad_def, itb, banked, chips, planned):
-    squad = [dict(name=n, pos=po, team=t, price=pr, code=code_of(n, po, t)) for (n, po, t, pr) in squad_def]
+    # defw must be present here: best_transfer() compares a candidate's defw against the outgoing
+    # player's, and POOL rows carry it — squad rows must have the same shape or that lookup KeyErrors.
+    squad = [dict(name=n, pos=po, team=t, price=pr, code=code_of(n, po, t),
+                  defw=FR.RATINGS.get(t, {}).get("defw", 1)) for (n, po, t, pr) in squad_def]
     gw = CURRENT_GW + 1
     rf = refresh_models()
     xi, bench, form = select_xi(squad, gw); caps = select_captain(xi)
@@ -556,9 +573,12 @@ def report(team_name, squad_def, itb, banked, chips, planned):
     L.append(f"  Transfer threshold this week: {tr_thr:.1f} pts{tr_note}")
     L.append("\nTRANSFER DECISION\n" + "━" * 17)
     if tv and tv["gain"] > 0:
-        o, i = tv["out"], tv["inn"]; FREE_THR = 2.0
+        o, i = tv["out"], tv["inn"]
         if banked >= 1:
-            dec = "TRANSFER ✓ (free)" if tv["gain"] > FREE_THR else "BANK (no clearly better free move)"
+            # Decide on the SAME threshold the report prints above (tr_thr). This used to be a
+            # hardcoded 2.0, so the report stated a 4.0 bar and then greenlit transfers clearing 2.0.
+            dec = ("TRANSFER ✓ (free)" if tv["gain"] > tr_thr
+                   else f"BANK (gain {tv['gain']:+.1f} below the {tr_thr:.1f} threshold)")
         else:
             take, why = should_take_hit(tv, squad, gw)
             dec = f"TAKE −4 HIT ✓ — {why}" if take else f"BANK — {why}"

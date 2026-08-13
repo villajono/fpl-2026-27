@@ -33,7 +33,15 @@ jobs:
 
       - name: Run weekly loop (detect -> ingest -> refresh -> report + deadline)
         working-directory: scripts
-        run: PYTHONIOENCODING=utf-8 python -W ignore weekly.py | tee ../report_latest.txt
+        run: |
+          # `set -o pipefail` is essential: without it the pipeline returns *tee's* exit status,
+          # so a crash inside weekly.py looks like success and a truncated report gets committed
+          # and emailed. That is exactly what happened with the best_transfer KeyError.
+          set -o pipefail
+          PYTHONIOENCODING=utf-8 python -W ignore weekly.py | tee ../report_latest.txt
+
+      - name: Verify the report is complete before emailing it
+        run: python scripts/check_report.py report_latest.txt
 
       - name: Build phone-friendly HTML
         run: python scripts/to_html.py report_latest.txt report.html
