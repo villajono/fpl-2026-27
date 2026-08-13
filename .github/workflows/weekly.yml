@@ -32,6 +32,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # Must run BEFORE weekly.py: ev_v2 reads the player CSV at import, so a refresh during the
+      # run would not take effect until the next day. Without this the universe stays frozen at the
+      # day the file was built — by 2026-08-13 ten players were rated against the wrong club's
+      # fixtures and 23 signings were invisible.
+      - name: Refresh the player universe from the live FPL API
+        working-directory: scripts
+        run: python -W ignore refresh_players.py
+
       - name: Run weekly loop (detect -> ingest -> refresh -> report + deadline)
         working-directory: scripts
         run: |
@@ -57,7 +65,7 @@ jobs:
         run: |
           git config user.name "fpl-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/state report_latest.txt || true
+          git add data/state report_latest.txt data/raw/players_2026-27.csv || true
           git commit -m "weekly run $(date -u +'%Y-%m-%d %H:%M UTC')" || echo "nothing to commit"
           git pull --rebase --autostash || true
           git push || true
