@@ -98,10 +98,13 @@ jobs:
           subject: "⚽ FPL — deadline approaching, decisions inside"
           html_body: file://report.html
 
-      # Record the send ONLY for scheduled emails (not manual/forced), so each GW emails once
+      # Record the notification ONLY for scheduled runs (not manual/forced), so each GW notifies once
       # but a failed send retries next run, and manual test-runs never suppress the real alert.
-      - name: Record successful scheduled email
-        if: steps.decide.outputs.email == 'true' && env.MAIL_USERNAME != '' && env.FORCE_EMAIL != '1' && success()
+      # NB this must NOT require MAIL_USERNAME: the GitHub-issue path is a real notification, and
+      # gating on the email step meant nothing was ever recorded, so should_email stayed true for
+      # every daily run inside the 30h window -> a duplicate alert per gameweek.
+      - name: Record successful scheduled notification
+        if: steps.decide.outputs.email == 'true' && env.FORCE_EMAIL != '1' && success()
         run: |
           python -c "import json;d=json.load(open('data/state/deadline.json'));json.dump({'gw':d['next_gw']},open('data/state/last_emailed.json','w'))"
           git add data/state/last_emailed.json
