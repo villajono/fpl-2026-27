@@ -8,7 +8,7 @@
 SANTA CLAUDE (AI team) — GW1 DECISIONS
 Models updated: GW0 data ingested ✓ (0 GWs played →
   Bayesian 100% prior)
-⏰ GW1 DEADLINE: Fri 21 Aug, 18:30 UK  (in 81.9h)
+⏰ GW1 DEADLINE: Fri 21 Aug, 18:30 UK  (in 57.9h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -47,7 +47,7 @@ MODEL UPDATES THIS WEEK
   Sarr            CRY      0.85  model
   Calvert-Lewin   LEE      0.87  model
   Palmer          CHE      0.87  model
-  → Awoniyi       NFO      0.71  model  (transfer
+  → Thiaw         NEW      0.92  model  (transfer
     target)
 
 FIXTURE INPUTS — DATA SOURCES
@@ -79,7 +79,7 @@ CHIP EVALUATION
                remaining captain week this half: 9.2
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +1.4 pts vs current
+               free-hit team gain: +1.1 pts vs current
                XI
   → No chip this week — hold all available chips.
   Transfer threshold this week: 4.0 pts
@@ -90,9 +90,9 @@ TRANSFER DECISION
     the whole squad is editable,
   so the single-swap engine does not apply. Pick the
     15 you want.
-  FYI, the biggest single upgrade it can see:
-    Calvert-Lewin → Awoniyi (NFO £5.5), +3.1 over 6
-    GWs — a signal, not a recommendation.
+  FYI, the biggest single upgrade it can see: Gvardiol
+    → Thiaw (NEW £5.0), +2.3 over 6 GWs — a signal,
+    not a recommendation.
 
 WATCHLIST (monitor, not acting)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -138,7 +138,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW1 DECISIONS
 Models updated: GW0 data ingested ✓ (0 GWs played →
   Bayesian 100% prior)
-⏰ GW1 DEADLINE: Fri 21 Aug, 18:30 UK  (in 81.9h)
+⏰ GW1 DEADLINE: Fri 21 Aug, 18:30 UK  (in 57.9h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
