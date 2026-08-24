@@ -8,7 +8,7 @@
 SANTA CLAUDE (AI team) — GW1 DECISIONS
 Models updated: GW0 data ingested ✓ (0 GWs played →
   Bayesian 100% prior)
-⏰ GW2 DEADLINE: Fri 28 Aug, 18:30 UK  (in 130.0h)
+⏰ GW2 DEADLINE: Fri 28 Aug, 18:30 UK  (in 105.6h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -135,7 +135,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW1 DECISIONS
 Models updated: GW0 data ingested ✓ (0 GWs played →
   Bayesian 100% prior)
-⏰ GW2 DEADLINE: Fri 28 Aug, 18:30 UK  (in 130.0h)
+⏰ GW2 DEADLINE: Fri 28 Aug, 18:30 UK  (in 105.6h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
