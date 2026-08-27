@@ -1,5 +1,6 @@
 ⟳ Refreshing models from live FPL API (detect → ingest → refresh)...
-   ingested GW1: 310 players played
+   all 1 completed GW(s) already ingested — no new
+     data
    Bayesian team ratings updated from 1 live GW(s) of
      xG (20 clubs)
    overrides: 0 active for GW2; players.json refreshed
@@ -9,12 +10,14 @@
 SANTA CLAUDE (AI team) — GW2 DECISIONS
 Models updated: GW1 data ingested ✓ (1 GWs played →
   Bayesian blended)
-⏰ GW2 DEADLINE: Fri 28 Aug, 18:30 UK  (in 57.8h)
+⏰ GW2 DEADLINE: Fri 28 Aug, 18:30 UK  (in 23.5h)   ⚠
+  ACT BEFORE DEADLINE
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━
-  ⟳ ingested GW1: 310 players played
+  ⟳ all 1 completed GW(s) already ingested — no new
+    data
   ⟳ Bayesian team ratings updated from 1 live GW(s) of
     xG (20 clubs)
   ⟳ overrides: 0 active for GW2; players.json
@@ -142,12 +145,14 @@ PLANNED TRANSFERS
 JON'S TEAM — GW2 DECISIONS
 Models updated: GW1 data ingested ✓ (1 GWs played →
   Bayesian blended)
-⏰ GW2 DEADLINE: Fri 28 Aug, 18:30 UK  (in 57.8h)
+⏰ GW2 DEADLINE: Fri 28 Aug, 18:30 UK  (in 23.5h)   ⚠
+  ACT BEFORE DEADLINE
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━
-  ⟳ ingested GW1: 310 players played
+  ⟳ all 1 completed GW(s) already ingested — no new
+    data
   ⟳ Bayesian team ratings updated from 1 live GW(s) of
     xG (20 clubs)
   ⟳ overrides: 0 active for GW2; players.json
