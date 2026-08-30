@@ -10,7 +10,7 @@
 SANTA CLAUDE (AI team) — GW2 DECISIONS
 Models updated: GW1 data ingested ✓ (1 GWs played →
   Bayesian blended)
-⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 148.6h)
+⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 125.0h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -144,7 +144,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW2 DECISIONS
 Models updated: GW1 data ingested ✓ (1 GWs played →
   Bayesian blended)
-⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 148.6h)
+⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 125.0h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -214,7 +214,7 @@ CHIP EVALUATION
                remaining captain week this half: 8.2
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +3.9 pts vs current
+               free-hit team gain: +2.9 pts vs current
                XI
   → No chip this week — hold all available chips.
   Transfer threshold this week: 4.0 pts
