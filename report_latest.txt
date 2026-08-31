@@ -10,7 +10,7 @@
 SANTA CLAUDE (AI team) — GW2 DECISIONS
 Models updated: GW1 data ingested ✓ (1 GWs played →
   Bayesian blended)
-⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 125.0h)
+⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 98.7h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -66,7 +66,7 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   Monitoring
-               rebuild value: +17 pts / 6 weeks vs
+               rebuild value: +16 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): No (GW1)
@@ -144,7 +144,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW2 DECISIONS
 Models updated: GW1 data ingested ✓ (1 GWs played →
   Bayesian blended)
-⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 125.0h)
+⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 98.7h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
