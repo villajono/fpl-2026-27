@@ -18,6 +18,15 @@
       "mins_if_start": 67,
       "notes": "Doku back 5 Sep, Cherki producing, Enzo Fernandez and Ndiaye arriving. Model's 0.93 is backward-looking from two starts. (Jon, 2026-09-01)",
       "added": "2026-09-01"
+    },
+    {
+      "player_id": 216646,
+      "player_name": "Wissa",
+      "club": "NEW",
+      "p_start": 0.9,
+      "mins_if_start": 85,
+      "notes": "Newcastle's starting centre-forward - started both openers, 171 mins. Model's 0.73 is a thin-prior artifact (only 517 mins of last-season history), not a doubt about his role. (2026-09-01)",
+      "added": "2026-09-01"
     }
   ]
 }
