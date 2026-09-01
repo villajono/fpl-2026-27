@@ -18,6 +18,10 @@ import odds as ODDS                         # bookmaker fixture inputs (near GWs
 RAW = Path(__file__).resolve().parent.parent / "data" / "raw"
 POSN = {1: "GK", 2: "DEF", 3: "MID", 4: "FWD"}
 MIN_MINUTES = 450          # below this -> position-average rates, THIN DATA
+# FPL pays a goal by position. This was hardcoded to 6 for everyone, which is the DEFENDER rate:
+# every forward was paid 1.5x the real value of his goals and every midfielder 1.2x. Clean sheets
+# were already position-aware via get_cs_pts, so goals were the one scoring term still flat.
+GOAL_PTS = {"GK": 6, "DEF": 6, "MID": 5, "FWD": 4}
 DC_THRESHOLD = {"DEF": 10, "MID": 12, "GK": 99, "FWD": 99}   # CBIT count for +2 DC points
 
 _g = pd.read_csv(RAW / "merged_gw_2025-26.csv", low_memory=False)
@@ -378,12 +382,13 @@ def compute_ev_v2(code, name, pos, team, opp, home, breakdown=False):
         fsrc = "xG model"
     p_dc_full = get_p_dc_bonus(rates, 90); p_dc_part = get_p_dc_bonus(rates, mp["partial"])
     xg, xa, sv = rates["xG90"], rates["xA90"], rates["sv90"]
-    ev_full = cs_prob * cs_pts + 2 + xg * 6 * att_f + xa * 3 * att_f + p_dc_full * 2 + sv * save_pts * sv_f
-    ev_part = 1 + (mp["partial"] / 90.0) * (xg * 6 * att_f + xa * 3 * att_f + sv * save_pts * sv_f) + p_dc_part * 2
+    gp = GOAL_PTS.get(pos, 5)          # a goal is NOT worth the same to everyone — see GOAL_PTS
+    ev_full = cs_prob * cs_pts + 2 + xg * gp * att_f + xa * 3 * att_f + p_dc_full * 2 + sv * save_pts * sv_f
+    ev_part = 1 + (mp["partial"] / 90.0) * (xg * gp * att_f + xa * 3 * att_f + sv * save_pts * sv_f) + p_dc_part * 2
     ev = mp["p60"] * ev_full + mp["p_cameo"] * ev_part
     if breakdown:
         f = mp["p60"]
-        return dict(ev=ev, cs=cs_prob * cs_pts * f, app=2 * f, xg=xg * 6 * att_f * f, xa=xa * 3 * att_f * f,
+        return dict(ev=ev, cs=cs_prob * cs_pts * f, app=2 * f, xg=xg * gp * att_f * f, xa=xa * 3 * att_f * f,
                     dc=p_dc_full * 2 * f, sv=sv * save_pts * sv_f * f, p60=f, cs_prob=cs_prob,
                     p_dc=p_dc_full, att_f=att_f, thin=rates["thin"], fixture_source=fsrc)
     return ev
