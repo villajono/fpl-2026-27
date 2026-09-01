@@ -24,7 +24,19 @@ HIST = STATE / "gw_history.csv"
 SEASON = "2026-27"
 COLS = ["season", "gw", "code", "pos", "minutes", "xG", "xA", "dc", "saves", "goals",
         "assists", "total_points", "clean_sheet", "bonus", "yellow", "opp", "home"]
-HALF_LIFE = {"xG": 8, "xA": 8, "saves": 8, "dc": 20}   # form fast, role slow
+# Half-life in APPEARANCES. The old setting was xG/xA/saves 8, dc 20 — "form fast, role slow" —
+# which has it backwards for the noisy quantities. Defensive contributions run 4-6 a game with
+# little spread; xG runs 0 to 2.6 and one shot from six yards is 0.7 of it. The noisier the
+# per-game figure, the MORE smoothing it needs, not less.
+#
+# A half-life of 8 leaves ~12 effective games, and over 12 games a single freak match owns the
+# estimate. Mbeumo posted 2.57 xG in one game late last season; that alone lifted his rate 41%
+# above his actual season figure and brought him to within 6% of Haaland, whose flat rate is 1.88x
+# his (0.777 v 0.413 — the 27-goals-to-10 gap you would expect). At 20 the ratio comes back to 1.42.
+#
+# PROVISIONAL: 20 is reasoned, not calibrated. backtest.py is the tool to settle it properly and
+# this should be re-tuned against it rather than left on judgement.
+HALF_LIFE = {"xG": 20, "xA": 20, "saves": 12, "dc": 20}
 
 
 def _write(df):
