@@ -23,7 +23,7 @@ STATE.mkdir(parents=True, exist_ok=True)
 HIST = STATE / "gw_history.csv"
 SEASON = "2026-27"
 COLS = ["season", "gw", "code", "pos", "minutes", "xG", "xA", "dc", "saves", "goals",
-        "assists", "total_points", "clean_sheet", "bonus", "yellow"]
+        "assists", "total_points", "clean_sheet", "bonus", "yellow", "opp", "home"]
 HALF_LIFE = {"xG": 8, "xA": 8, "saves": 8, "dc": 20}   # form fast, role slow
 
 
@@ -69,22 +69,49 @@ def inseason_rows(code):
     if not len(d): return []
     sub = d[d.code == code].sort_values(["season", "gw"])
     return [dict(minutes=float(r.minutes), xG=float(r.xG), xA=float(r.xA),
-                 dc=float(r.dc), saves=float(r.saves)) for r in sub.itertuples()]
+                 dc=float(r.dc), saves=float(r.saves),
+                 opp=(getattr(r, "opp", None) if pd.notna(getattr(r, "opp", None)) else None),
+                 home=(bool(getattr(r, "home", True)) if pd.notna(getattr(r, "home", None)) else None))
+            for r in sub.itertuples()]
 
 
-def recency_weighted_rates(games, pos):
+def recency_weighted_rates(games, pos, fixture_mult=None):
     """games: appearances oldest→newest, each a dict with minutes/xG/xA/dc/saves. Returns the
-    per-90 rate dict ev_v2 expects, recency-weighted per field."""
+    per-90 rate dict ev_v2 expects, recency-weighted per field.
+
+    fixture_mult(game) -> the attacking multiplier that applied in THAT game (opponent defensive
+    weakness x home/away), or None where it is unknown. Attacking output is divided by it, so the
+    stored rate means "per 90 against a league-average opponent" — which is the only thing
+    compute_ev_v2 may legitimately multiply by the NEXT fixture's difficulty.
+
+    Without this the same fixture ease is counted twice. Mbeumo generated 1.76 xG at home to
+    Ipswich (defw 1.40 x home 1.05 = 1.47); the raw figure lifted his season xG90 from 0.413 to
+    0.698, and the engine then applied 1.47 again for a future home game against Coventry. Over 35
+    appearances opponents average out and it hardly matters; over the two games carrying 17% of the
+    weight it decides who your captain is.
+
+    Only games that carry an opponent are adjusted. Last season's rows are left alone deliberately:
+    the ratings here are THIS season's, so dividing an old game by a current rating would swap one
+    error for another — and with 35-odd games the fixtures already average out."""
     games = [g for g in games if g["minutes"] > 0]
     n = len(games)
     if n == 0:
         return dict(xG90=0.0, xA90=0.0, DC90=0.0, sv90=0.0, minutes=0, n60=0, pos=pos,
                     thin=True, dc_history=[], games=0)
 
+    ADJUSTED = {"xG", "xA"}          # attacking output scales with the opponent; dc and saves do not
+
+    def value(g, field):
+        v = g[field]
+        if field not in ADJUSTED or fixture_mult is None:
+            return v
+        m = fixture_mult(g)
+        return v / m if m and m > 0.01 else v
+
     def rate(field):
         hl = HALF_LIFE[field]
         w = [0.5 ** ((n - 1 - i) / hl) for i in range(n)]
-        num = sum(w[i] * games[i][field] for i in range(n))
+        num = sum(w[i] * value(games[i], field) for i in range(n))
         den = sum(w[i] * games[i]["minutes"] / 90.0 for i in range(n))
         return num / den if den > 0 else 0.0
 

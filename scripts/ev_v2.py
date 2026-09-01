@@ -22,7 +22,11 @@ MIN_MINUTES = 450          # below this -> position-average rates, THIN DATA
 # every forward was paid 1.5x the real value of his goals and every midfielder 1.2x. Clean sheets
 # were already position-aware via get_cs_pts, so goals were the one scoring term still flat.
 GOAL_PTS = {"GK": 6, "DEF": 6, "MID": 5, "FWD": 4}
-DC_THRESHOLD = {"DEF": 10, "MID": 12, "GK": 99, "FWD": 99}   # CBIT count for +2 DC points
+# CBIT count for +2 DC points. Defenders need 10 (clearances, blocks, interceptions, tackles);
+# midfielders AND forwards need 12, recoveries included. FWD was set to 99, i.e. never — so a
+# forward who pressed enough to earn the two points could not be credited with them. Keepers
+# genuinely have no DC route, so 99 is right for GK.
+DC_THRESHOLD = {"DEF": 10, "MID": 12, "GK": 99, "FWD": 12}
 
 _g = pd.read_csv(RAW / "merged_gw_2025-26.csv", low_memory=False)
 for c in ["minutes", "expected_goals", "expected_assists", "defensive_contribution", "saves", "total_points"]:
@@ -92,6 +96,17 @@ def _prior_games(el):
                  dc=float(r.defensive_contribution), saves=float(r.saves)) for r in sub.itertuples()]
 
 
+def _game_fixture_mult(g):
+    """The attacking multiplier that applied in a past game — the same expression compute_ev_v2
+    uses for a future one, so dividing by it here and multiplying by it there cancels exactly.
+    None when the opponent was not recorded (every row before this was added, and all of last
+    season), which leaves that game unadjusted."""
+    opp = g.get("opp")
+    if not opp or opp not in FR.RATINGS:
+        return None
+    return FR.RATINGS[opp]["defw"] * (1.05 if g.get("home") else 0.95)
+
+
 def get_per_90_rates(code, pos_hint=None):
     """Personal per-90 rates. In-season: recency-weighted over combined (prior + in-season) history,
     so recent form dominates and stale/old-club data fades. Pre-season: validated career-average.
@@ -100,7 +115,7 @@ def get_per_90_rates(code, pos_hint=None):
     inflating a defender's attacking rates and voiding their DC threshold)."""
     el = _code2id.get(code); pos = _id2pos.get(el) or pos_hint
     if H.has_inseason() and code in H.inseason_codes():
-        rr = H.recency_weighted_rates(_prior_games(el) + H.inseason_rows(code), pos)
+        rr = H.recency_weighted_rates(_prior_games(el) + H.inseason_rows(code), pos, _game_fixture_mult)
         rr["thin"] = rr["minutes"] < MIN_MINUTES
         return _shrink_thin(rr, pos)
     r = _raw_rates(el) if el is not None else None

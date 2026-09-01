@@ -53,11 +53,22 @@ def fetch_gw_data(completed_gw, bootstrap=None):
         raise RuntimeError(f"GW{completed_gw} not finished — refusing to ingest incomplete data")
     id2code = {e["id"]: e["code"] for e in b["elements"]}
     id2pos = {e["id"]: POS[e["element_type"]] for e in b["elements"]}
+    # Who each player faced, and where. Without this the rolling store records that a man
+    # generated 1.76 xG but not that it was at home to Ipswich, so fixture ease gets baked into
+    # his per-90 rate and then multiplied AGAIN by the next fixture's difficulty.
+    id2team = {e["id"]: e["team"] for e in b["elements"]}
+    short = {t["id"]: t["short_name"] for t in b["teams"]}
+    opp_of, home_of = {}, {}
+    for f in _get(f"fixtures/?event={completed_gw}"):
+        opp_of[f["team_h"]] = short.get(f["team_a"]); home_of[f["team_h"]] = True
+        opp_of[f["team_a"]] = short.get(f["team_h"]); home_of[f["team_a"]] = False
     live = _get(f"event/{completed_gw}/live/")
     rows = []
     for el in live["elements"]:
         s = el["stats"]
-        rows.append(dict(code=id2code.get(el["id"]), gw=completed_gw, pos=id2pos.get(el["id"]),
+        _t = id2team.get(el["id"])
+        rows.append(dict(opp=opp_of.get(_t), home=home_of.get(_t),
+                         code=id2code.get(el["id"]), gw=completed_gw, pos=id2pos.get(el["id"]),
                          minutes=s.get("minutes", 0), total_points=s.get("total_points", 0),
                          goals=s.get("goals_scored", 0), assists=s.get("assists", 0),
                          clean_sheet=s.get("clean_sheets", 0), bonus=s.get("bonus", 0),
