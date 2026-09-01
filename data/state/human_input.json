@@ -1,4 +1,23 @@
 {
   "gameweek": 3,
-  "overrides": []
+  "overrides": [
+    {
+      "player_id": 439509,
+      "player_name": "Tzolis",
+      "club": "ARS",
+      "p_start": 0.5,
+      "mins_if_start": 57,
+      "notes": "Hooked at half time v Arsenal's last game. Starts about half the time and does not see the hour; Eze available to replace him. (Jon, 2026-09-01)",
+      "added": "2026-09-01"
+    },
+    {
+      "player_id": 209244,
+      "player_name": "Foden",
+      "club": "MCI",
+      "p_start": 0.65,
+      "mins_if_start": 67,
+      "notes": "Doku back 5 Sep, Cherki producing, Enzo Fernandez and Ndiaye arriving. Model's 0.93 is backward-looking from two starts. (Jon, 2026-09-01)",
+      "added": "2026-09-01"
+    }
+  ]
 }
