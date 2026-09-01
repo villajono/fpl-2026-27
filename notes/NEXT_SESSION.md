@@ -18,7 +18,32 @@ still says Gvardiol — see item 2 for why that is wrong.
 
 Ranked by how much it distorts decisions.
 
-### 1. Calibration is guessed, not measured — do this first
+### 0. Prefer bookmaker odds wherever they exist — Jon's steer, and it demotes items 1 and 3
+
+Markets aggregate more information than any xG model, so odds are the closest thing to truth we
+have for fixture difficulty and scoring probability. `odds.py` already does this properly —
+Pinnacle 1X2 + O/U via The Odds API, overround stripped multiplicatively, clean sheets derived by
+inverting to implied lambdas. It is not a thing to build; it is a thing to feed.
+
+State as at 2026-09-01:
+
+- **No API key.** `ODDS_API_KEY` unset and `data/state/odds_key.txt` absent, so the Pinnacle path
+  is dead. **Jon: a free-tier key at the-odds-api.com unlocks it** — that is the single highest
+  value action on this whole list.
+- **The keyless fallback has a three-day horizon.** `football-data.co.uk/fixtures.csv` held 48
+  rows spanning 01/09–03/09 and **zero** Premier League rows, because no PL game falls in that
+  window. GW3 (4–6 Sep) will appear in it around 2–3 September. So "GW+1: xG model (no odds
+  published)" was correct reporting, not a bug — and Wednesday's or Thursday's run should pick
+  the odds up on its own.
+- `FPL_USE_FD_ODDS=1` is set in the workflow but not locally, so local runs silently differ from
+  the cloud ones. Worth setting when reproducing a report by hand.
+
+The consequence for everything below: **the xG model and its team ratings only decide fixtures
+that odds cannot reach** — GW+2 and beyond on the free tier. That is still most of a six-week
+transfer horizon, so items 1 and 3 remain worth doing, but they stop deciding this week's captain
+the moment a key is in place.
+
+### 1. Calibration is guessed, not measured
 
 `HALF_LIFE` for xG/xA was 8 appearances, which leaves ~12 effective games; one 2.57-xG match
 brought Mbeumo (~10 league goals) to within 6% of Haaland (~27). Flat ratio 1.88, model had
@@ -50,7 +75,11 @@ clean-sheet upside with none of the downside.
 
 Coventry's `defw` moved **1.40 → 1.20** on two games; the report prints its own weighting as
 `[K=5, prior 71%/data 29%]`. Twenty-nine percent on two matches is too much, and it feeds
-every fixture multiplier in the model. Same disease as item 1, one layer up.
+every fixture multiplier the model still owns. Same disease as item 1, one layer up.
+
+Note this is exactly what odds replace. With a key, `att_f` and `cs_prob` for the near fixtures
+come from the market and these ratings stop mattering for them — which is the argument for doing
+item 0 before spending long on this.
 
 ### 4. Overrides reach minutes but not rates
 
