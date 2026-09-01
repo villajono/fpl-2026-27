@@ -10,7 +10,7 @@
 SANTA CLAUDE (AI team) — GW2 DECISIONS
 Models updated: GW1 data ingested ✓ (1 GWs played →
   Bayesian blended)
-⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 98.7h)
+⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 77.2h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -56,7 +56,7 @@ FIXTURE INPUTS — DATA SOURCES
   Bookmaker odds ON — market average
     (football-data.co.uk), 1X2 + O/U, overround
     removed ✓  (GW+4+ always xG model)
-  GW+1 (GW2): odds — 10/10 fixtures priced
+  GW+1 (GW2): xG model (no odds published)
   GW+2 (GW3): xG model (no odds published)
   GW+3 (GW4): xG model (no odds published)
   GW+4 (GW5): xG model (no odds published)
@@ -66,21 +66,21 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   Monitoring
-               rebuild value: +16 pts / 6 weeks vs
+               rebuild value: +17 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): No (GW1)
                free transfers banked (roll through
                WC): 1
   Bench Boost: Monitoring
-               bench EV this GW: 14.8   |   peak
-               remaining this half: 20.3
+               bench EV this GW: 15.9   |   peak
+               remaining this half: 18.3
   Triple Cap:  Monitoring
-               captain EV this GW: 8.1   |   best
+               captain EV this GW: 7.1   |   best
                remaining captain week this half: 8.2
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +1.6 pts vs current
+               free-hit team gain: +1.5 pts vs current
                XI
   → No chip this week — hold all available chips.
   Transfer threshold this week: 4.0 pts
@@ -88,14 +88,14 @@ CHIP EVALUATION
 TRANSFER DECISION
 ━━━━━━━━━━━━━━━━━
   Best target: OUT Mosquera (DEF ARS) → IN De Cuyper
-    (BHA £4.6)
+    (BHA £4.7)
     P(start) assumed: Mosquera 0.92 → De Cuyper 0.89 —
       if you know better, override in the form and
       re-run for a revised call
     quality upgrade · effective-out adjusted for bench
       cover · 6-GW hold
-    gain: GW+1 +0.3 · GW+1&2 +2.1 · full 6-GW +7.0
-    → TRANSFER ✓ (free)    (budget after £0.9m ITB, 1
+    gain: GW+1 -0.3 · GW+1&2 +1.5 · full 6-GW +6.5
+    → TRANSFER ✓ (free)    (budget after £0.8m ITB, 1
       banked)
 
 WATCHLIST (monitor, not acting)
@@ -109,23 +109,23 @@ WATCHLIST (monitor, not acting)
 
 CAPTAIN — highest-EV starter (doubles)
 ━━━━━━━
-  Captain: Mbeumo — EV 8.1 (×2 = 16.2), MUN vs IPS
-  Vice:    Haaland — EV 7.5
+  Captain: Mbeumo — EV 7.1 (×2 = 14.2), MUN vs IPS
+  Vice:    Haaland — EV 5.7
 
-STARTING XI — 5-3-2
+STARTING XI — 5-2-3
 ━━━━━━━━━━━━━━━━━━━━━━━━
   GK: Sánchez
-  DEF: Gvardiol, Calafiori, Senesi, Van Hecke,
-    Mosquera
-  MID: Mbeumo, Palmer, Schade
-  FWD: Haaland, Calvert-Lewin
-  Bench: Leno, Mateta, Gomez, Sarr
+  DEF: Calafiori, Mosquera, Senesi, Van Hecke,
+    Gvardiol
+  MID: Mbeumo, Palmer
+  FWD: Haaland, Calvert-Lewin, Mateta
+  Bench: Leno, Schade, Gomez, Sarr
 
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
   GW2  GW3  GW4  GW5  GW6  GW7
-    67    68    69    67    64    68   (min 64)
-  GW2 = XI 58 + captain bonus 8 + auto-sub 1.1
+    65    68    69    67    64    68   (min 64)
+  GW2 = XI 57 + captain bonus 7 + auto-sub 1.2
     (auto-sub small by design)
 
 PLANNED TRANSFERS
@@ -144,7 +144,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW2 DECISIONS
 Models updated: GW1 data ingested ✓ (1 GWs played →
   Bayesian blended)
-⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 98.7h)
+⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 77.2h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -190,7 +190,7 @@ FIXTURE INPUTS — DATA SOURCES
   Bookmaker odds ON — market average
     (football-data.co.uk), 1X2 + O/U, overround
     removed ✓  (GW+4+ always xG model)
-  GW+1 (GW2): odds — 10/10 fixtures priced
+  GW+1 (GW2): xG model (no odds published)
   GW+2 (GW3): xG model (no odds published)
   GW+3 (GW4): xG model (no odds published)
   GW+4 (GW5): xG model (no odds published)
@@ -207,14 +207,14 @@ CHIP EVALUATION
                free transfers banked (roll through
                WC): 1
   Bench Boost: Monitoring
-               bench EV this GW: 7.8   |   peak
-               remaining this half: 9.0
+               bench EV this GW: 8.8   |   peak
+               remaining this half: 9.8
   Triple Cap:  Monitoring
-               captain EV this GW: 8.1   |   best
+               captain EV this GW: 7.1   |   best
                remaining captain week this half: 8.2
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +2.9 pts vs current
+               free-hit team gain: +3.7 pts vs current
                XI
   → No chip this week — hold all available chips.
   Transfer threshold this week: 4.0 pts
@@ -222,14 +222,14 @@ CHIP EVALUATION
 TRANSFER DECISION
 ━━━━━━━━━━━━━━━━━
   Best target: OUT Mosquera (DEF ARS) → IN De Cuyper
-    (BHA £4.6)
+    (BHA £4.7)
     P(start) assumed: Mosquera 0.92 → De Cuyper 0.89 —
       if you know better, override in the form and
       re-run for a revised call
     quality upgrade · effective-out adjusted for bench
       cover · 6-GW hold
-    gain: GW+1 +0.3 · GW+1&2 +2.1 · full 6-GW +7.2
-    → TRANSFER ✓ (free)    (budget after £0.9m ITB, 1
+    gain: GW+1 -0.3 · GW+1&2 +1.5 · full 6-GW +6.6
+    → TRANSFER ✓ (free)    (budget after £0.8m ITB, 1
       banked)
 
 WATCHLIST (monitor, not acting)
@@ -247,22 +247,22 @@ WATCHLIST (monitor, not acting)
 
 CAPTAIN — highest-EV starter (doubles)
 ━━━━━━━
-  Captain: Mbeumo — EV 8.1 (×2 = 16.2), MUN vs IPS
-  Vice:    Haaland — EV 7.5
+  Captain: Mbeumo — EV 7.1 (×2 = 14.2), MUN vs IPS
+  Vice:    B.Fernandes — EV 5.8
 
-STARTING XI — 4-4-2
+STARTING XI — 5-3-2
 ━━━━━━━━━━━━━━━━━━━━━━━━
   GK: Kinsky
-  DEF: Mosquera, Shaw, Ajer, O'Shea
-  MID: Mbeumo, B.Fernandes, Foden, Semenyo
+  DEF: Mosquera, Shaw, van Ewijk, Ajer, O'Shea
+  MID: Mbeumo, B.Fernandes, Foden
   FWD: Haaland, Thiago
-  Bench: Rushworth, van Ewijk, Slater, Thomas-Asante
+  Bench: Rushworth, Semenyo, Slater, Thomas-Asante
 
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
   GW2  GW3  GW4  GW5  GW6  GW7
-    65    65    57    62    60    61   (min 57)
-  GW2 = XI 56 + captain bonus 8 + auto-sub 1.3
+    62    65    57    62    60    61   (min 57)
+  GW2 = XI 53 + captain bonus 7 + auto-sub 1.5
     (auto-sub small by design)
 
 PLANNED TRANSFERS
