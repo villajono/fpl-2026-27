@@ -1,6 +1,6 @@
 # Brief — model corrections outstanding
 
-Written 2026-09-01 after a session that fixed nine things and left four known-wrong.
+Written 2026-09-01 after a session that fixed nine things and left six known-wrong.
 For Jon and whoever picks this up next.
 
 ## Where we got to
@@ -18,7 +18,7 @@ still says Gvardiol — see item 2 for why that is wrong.
 
 Ranked by how much it distorts decisions.
 
-### 0. Prefer bookmaker odds wherever they exist — Jon's steer, and it demotes items 1 and 3
+### 0. Feed the odds path — cheapest win, but it only covers the coming gameweek
 
 Markets aggregate more information than any xG model, so odds are the closest thing to truth we
 have for fixture difficulty and scoring probability. `odds.py` already does this properly —
