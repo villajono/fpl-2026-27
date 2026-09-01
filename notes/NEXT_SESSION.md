@@ -38,10 +38,12 @@ State as at 2026-09-01:
 - `FPL_USE_FD_ODDS=1` is set in the workflow but not locally, so local runs silently differ from
   the cloud ones. Worth setting when reproducing a report by hand.
 
-The consequence for everything below: **the xG model and its team ratings only decide fixtures
-that odds cannot reach** — GW+2 and beyond on the free tier. That is still most of a six-week
-transfer horizon, so items 1 and 3 remain worth doing, but they stop deciding this week's captain
-the moment a key is in place.
+**But odds only ever reach the near fixtures, and that split is already built** —
+`weekly.py:599` prints "GW+4+ always xG model" and `fixture_inputs()` returns None past the
+published window so the caller falls back. So odds fix captaincy and selection for the coming
+gameweek. They do nothing for a six-week transfer hold, which is owned by the xG model and its
+team ratings throughout. Items 1 and 3 are the BASIS of transfer planning, not a fallback for it —
+do not treat a key as making them optional.
 
 ### 1. Calibration is guessed, not measured
 
@@ -94,6 +96,19 @@ told. Add `xg90` / `xa90` to the override shape, alongside the existing minutes 
 `tc_rec` fires only at the exact half-season peak (`- 1e-9`) while Bench Boost allows `- 0.5`.
 The asymmetry looks unintentional. It did not change this week's answer (7.2 against an 8.6
 peak) but it means TC is held on an eleven-week-out projection.
+
+### 6. DECAY is dead code in weekly.py
+
+`DECAY = {1: 1.0, 2: 0.85 ... 6: 0.25}` is defined at `weekly.py:29` and never referenced.
+`squad_engine.py:147` uses its own copy; `backtest.py:36` defines a third. So the weekly transfer
+call weights a GW8 point exactly as much as a GW3 one — `best_transfer` documents this as
+deliberate ("equal-weighted, points matter equally, no discount").
+
+Worth deciding rather than inheriting. By GW8 the squad has usually turned over again and the
+fixture projection is far weaker, so a flat six-week sum probably overstates far-horizon gains —
+which is what makes marginal fixture-swing transfers look better than they are. Either wire DECAY
+in or delete it from `weekly.py`, but do not leave a constant sitting there implying a discount
+that is not applied.
 
 ## How to work it
 
