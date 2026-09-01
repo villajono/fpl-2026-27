@@ -42,6 +42,32 @@ def _raw_rates(el):
                 DC_pg=sub.defensive_contribution.sum() / games)
 
 
+def _shrink_thin(rr, pos):
+    """Pull a thin sample's per-90 rates towards the position average, in proportion to how thin
+    it is.
+
+    The pre-season path already falls back to position averages below MIN_MINUTES. The in-season
+    path did not: it set rr["thin"] and returned the raw rates regardless, so a per-90 computed
+    over a handful of minutes went straight into EV. Josh Dasilva had TWO minutes of history, from
+    which the model derived xG90 3.600 and DC90 45.0 and then ranked him above Mbeumo and Haaland
+    as a £5.0m transfer target.
+
+    Weight is minutes/MIN_MINUTES, capped at 1 — so anyone at or above 450 minutes is untouched
+    and nothing established moves, while two minutes of data is ~99.6% prior. Same shape as the
+    Bayesian team ratings: evidence earns its weight rather than being trusted or binned outright.
+    """
+    m = rr.get("minutes") or 0
+    if m >= MIN_MINUTES:
+        return rr
+    avg = POS_AVG.get(pos) or POS_AVG.get(rr.get("pos")) or POS_AVG["MID"]
+    w = max(0.0, min(1.0, m / float(MIN_MINUTES)))
+    for k in ("xG90", "xA90", "DC90", "sv90"):
+        if k in rr and k in avg:
+            rr[k] = w * float(rr[k]) + (1 - w) * float(avg[k])
+    rr["shrunk_to_prior"] = round(1 - w, 3)
+    return rr
+
+
 def _pos_avg_rates():
     acc = {p: {"xG90": [], "xA90": [], "DC90": [], "sv90": []} for p in POSN.values()}
     for el, pos in _id2pos.items():
@@ -72,7 +98,7 @@ def get_per_90_rates(code, pos_hint=None):
     if H.has_inseason() and code in H.inseason_codes():
         rr = H.recency_weighted_rates(_prior_games(el) + H.inseason_rows(code), pos)
         rr["thin"] = rr["minutes"] < MIN_MINUTES
-        return rr
+        return _shrink_thin(rr, pos)
     r = _raw_rates(el) if el is not None else None
     if r is None or r["minutes"] < MIN_MINUTES:
         a = dict(POS_AVG.get(pos, POS_AVG["MID"]))
@@ -151,6 +177,21 @@ def _nailed(mm, n60):
     return round(p * (0.85 if n60 < 12 else 1.0), 2)
 
 
+def _ovr_p60(name, default=None):
+    """P60_OVR values are EITHER a bare float (p60, the original form) OR a dict carrying the
+    whole minutes shape {p60, p_cameo, partial}. Everything that only wants the p60 number goes
+    through here so both forms work."""
+    v = P60_OVR.get(name, default)
+    return float(v["p60"]) if isinstance(v, dict) else v
+
+
+# Human overrides. A value is P(plays 60+ minutes) — NOT P(starts). The two come apart for exactly
+# the players worth overriding: a man who starts every week but is hooked on 57 minutes has a high
+# P(start) and a LOW p60, and he collects one appearance point rather than two. Give a dict instead
+# of a float when that gap matters:
+#     "Tzolis": {"p60": 0.18, "p_cameo": 0.33, "partial": 55}
+# p_cameo is P(appears but under 60) and partial is his minutes when that happens; weekly.py builds
+# both from a p_start / mins_if_start pair, which is how the football is actually known.
 P60_OVR = {"Mosquera": 0.92, "van Ewijk": 0.95, "Walle Egeli": 0.45, "Phillips": 0.60,
            # Spurs keeper, 2026-08-13: Kinsky is regarded as the likely starter but it is not
            # settled. Last season's minutes point the other way (Dubravka 3,150 v Kinsky 630), so
@@ -172,7 +213,7 @@ def _preseason_p60(el, name, r):
     or GW1 shifts a player for reasons unrelated to whether he started: a heavy-cameo player is
     capped pre-season, and reading the uncapped value made Sarr jump 0.85 -> 0.95 on one start."""
     if r is None:
-        return P60_OVR.get(name, 0.65)
+        return _ovr_p60(name, 0.65)
     app = _g[(_g.element == el) & (_g.minutes >= 60)]
     mm = app.minutes.mean() if len(app) else 0
     cam = _g[(_g.element == el) & (_g.minutes >= 1) & (_g.minutes < 60)]
@@ -241,12 +282,51 @@ def get_minutes_probs(code, name=None):
         # which returns a purely data-derived start rate and would silently ignore the override once
         # four gameweeks are logged. p_cameo goes to zero for a ruled-out player, so "won't start"
         # actually drives EV to ~0 rather than leaving him a cameo's worth of points.
-        p60 = float(P60_OVR[name])
+        ov = P60_OVR[name]
         cam = _g[(_g.element == el) & (_g.minutes >= 1) & (_g.minutes < 60)] if el is not None else []
         partial = float(cam.minutes.mean()) if len(cam) else 30.0
+        if isinstance(ov, dict):
+            # The full shape. Needed because the flat 0.05 below cannot describe a starter who is
+            # routinely substituted before the hour — for him p_cameo is the LARGER term, and
+            # forcing it to 0.05 throws away most of the points he actually scores.
+            p60 = float(ov["p60"])
+            return dict(p60=p60,
+                        p_cameo=float(ov.get("p_cameo", 0.05 if p60 > 0 else 0.0)),
+                        partial=float(ov.get("partial", partial)))
+        p60 = float(ov)
         return dict(p60=p60, p_cameo=(0.05 if p60 > 0 else 0.0), partial=partial)
     if code in BACKUP_GK:
         return dict(p60=0.0, p_cameo=0.0, partial=0.0)      # understudy keeper: no minutes at all
+    return _apply_availability(code, _minutes_from_data(code, name, el, r))
+
+
+def _availability(code):
+    """FPL's own injury flag as a multiplier on playing at all.
+
+    chance_of_playing_next_round is 0/25/50/75/100 when a player is doubtful and null when he is
+    fine. Nothing read it before: `status == "a"` filtered the TRANSFER POOL, so the engine would
+    not buy a doubtful player, but one already in the squad kept his full minutes and could be
+    picked in the XI ahead of a fit team-mate. That is how a 50%-doubt scored higher than a fit
+    forward on 20 points. A human override still wins — it is checked earlier and never reaches
+    here — because a manager who has read the team news knows more than the flag does."""
+    try:
+        row = _nxt[_nxt.code == code]
+        if not len(row):
+            return 1.0
+        c = row.iloc[0].get("chance_of_playing_next_round")
+    except Exception:
+        return 1.0
+    return 1.0 if c is None or c != c else max(0.0, min(1.0, float(c) / 100.0))
+
+
+def _apply_availability(code, d):
+    f = _availability(code)
+    if f >= 1.0:
+        return d
+    return dict(p60=round(d["p60"] * f, 3), p_cameo=round(d["p_cameo"] * f, 3), partial=d["partial"])
+
+
+def _minutes_from_data(code, name, el, r):
     if H.has_inseason() and code in H.inseason_codes() and H.inseason_rows(code):
         # THIS season's starts settle the question; last season is only a prior. A player who starts
         # the opening two games is very likely to start the third, whatever he did last year — the
@@ -272,7 +352,7 @@ def get_minutes_probs(code, name=None):
         p = (prior * INSEASON_K + starts) / (INSEASON_K + len(rows))
         return dict(p60=round(min(max(p, 0.02), 0.98), 2), p_cameo=0.05, partial=30.0)
     if r is None:
-        p60 = P60_OVR.get(name, 0.65); return dict(p60=p60, p_cameo=0.10, partial=30.0)
+        p60 = _ovr_p60(name, 0.65); return dict(p60=p60, p_cameo=0.10, partial=30.0)
     app = _g[(_g.element == el) & (_g.minutes >= 60)]
     mm = app.minutes.mean() if len(app) else 0
     cam = _g[(_g.element == el) & (_g.minutes >= 1) & (_g.minutes < 60)]

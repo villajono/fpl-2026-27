@@ -85,8 +85,40 @@ def _load_overrides(next_gw):
     # left the player's EV untouched, so someone marked "won't start" kept full EV and could still
     # be picked in the XI or recommended as a transfer target. players.json writes web_name, so the
     # keys match exactly.
-    V.P60_OVR.update({o["player_name"]: float(o["p_starts_override"])
-                      for o in d.get("overrides", [])})
+    V.P60_OVR.update({o["player_name"]: _minutes_shape(o) for o in d.get("overrides", [])})
+
+
+def _minutes_shape(o):
+    """Turn one override row into what the EV model needs.
+
+    Two ways to write a row. The original `p_starts_override` is a bare number and — despite the
+    name — has always meant P(plays 60+), because that is what get_minutes_probs consumes. Left
+    working untouched.
+
+    The better one is the pair a human actually knows: `p_start` (does he get picked) and
+    `mins_if_start` (how long does he last). Those are different questions and for rotation players
+    they give opposite answers — Tzolis starts about half the time and comes off on 57, so his
+    P(start) is 0.50 while his P(60+) is under 0.20 and most of his value sits in appearances that
+    the flat 0.05 cameo term used to discard.
+
+    Minutes-when-starting are treated as normal around the stated figure with an 8-minute spread,
+    which is roughly how substitution timing scatters. `p_sub` is the chance he appears off the
+    bench in the games he does not start (default 0.30 for a squad player, 0 if he is ruled out).
+    """
+    if "p_start" not in o:
+        return float(o["p_starts_override"])
+    ps = float(o["p_start"])
+    mins = float(o.get("mins_if_start", 90))
+    p_sub = float(o.get("p_sub", 0.30 if ps > 0 else 0.0))
+    p60_given_start = 0.5 * (1 + math.erf(((mins - 60.0) / 8.0) / math.sqrt(2)))
+    p60 = ps * p60_given_start
+    started_short = ps * (1 - p60_given_start)
+    came_on = (1 - ps) * p_sub
+    p_cameo = started_short + came_on
+    # Minutes in the appearances that fall short of 60: hooked-before-the-hour if he started,
+    # a typical 20-minute run-out if he came off the bench.
+    partial = ((started_short * min(mins, 55.0) + came_on * 20.0) / p_cameo) if p_cameo > 0 else 30.0
+    return dict(p60=round(p60, 3), p_cameo=round(p_cameo, 3), partial=round(partial, 1))
 
 
 def _write_players_json(next_gw):
@@ -170,9 +202,13 @@ def refresh_models(completed_gw=None):
 
 # ======================================================= PART 2 — DECISION REPORT
 def p_start(code, name):
+    """P(plays 60+ minutes) — the number the EV model actually runs on, and the one that decides
+    whether a player collects one appearance point or two. Named p_start for history; the report
+    labels it P(60+) so it stops reading as 'does he get picked'."""
     ov = OVERRIDES.get(code)                          # phone-form override wins (nailed-ness model can't derive)
     if ov is not None:
-        return float(ov["p_starts_override"])
+        shape = _minutes_shape(ov)
+        return float(shape["p60"] if isinstance(shape, dict) else shape)
     return V.get_minutes_probs(code, name)["p60"]
 
 
@@ -184,11 +220,11 @@ def human_confirmation(squad):
         model_p = V.get_minutes_probs(p["code"], p["name"])["p60"]; cur[p["name"]] = model_p
         prev = last.get(p["name"])
         if prev is not None and abs(model_p - prev) > 0.20:
-            moves.append(f"{p['name']}: P(start) {prev:.2f} → {model_p:.2f} "
+            moves.append(f"{p['name']}: P(60+) {prev:.2f} → {model_p:.2f} "
                          f"({'nailed upgrade' if model_p > prev else 'rotation risk emerging'}) — confirm?")
         ov = OVERRIDES.get(p["code"])
         if ov:
-            applied.append(f"{ov['player_name']} ({ov['club']}): p_start→{ov['p_starts_override']}"
+            applied.append(f"{ov['player_name']} ({ov['club']}): p60→{p_start(ov['player_id'], ov['player_name']):.2f}"
                            + (f" — {ov['notes']}" if ov.get("notes") else ""))
     json.dump(cur, open(STATE / "pstarts_last.json", "w", encoding="utf-8"))
     return moves, applied
@@ -206,7 +242,7 @@ def pstart_review(squad, tv, n=6):
         src = "YOURS" if OVERRIDES.get(p["code"]) else "model"
         rows.append((p_start(p["code"], p["name"]), p["name"], p["team"], src))
     rows.sort()
-    L = [f"  {'player':<16}{'team':<5}{'P(start)':>8}  source"]
+    L = [f"  {'player':<16}{'team':<5}{'P(60+)':>8}  source"]
     for v, nm, tm, src in rows[:n]:
         L.append(f"  {nm[:15]:<16}{tm:<5}{v:>8.2f}  {src}")
     if tv:
@@ -247,7 +283,12 @@ def _p_zero(code, name):
     So this is (1 - p60 - p_cameo), NOT (1 - p60): the latter wrongly counts cameos as blanks."""
     ov = OVERRIDES.get(code)
     if ov is not None:
-        p60 = float(ov["p_starts_override"])
+        # Use the same shape the EV model gets, so a rotation player's cameos are counted as
+        # appearances here too — otherwise he looks far likelier to blank than the EV implies.
+        sh = _minutes_shape(ov)
+        if isinstance(sh, dict):
+            return max(0.0, 1 - sh["p60"] - sh["p_cameo"])
+        p60 = float(sh)
         return max(0.0, 1 - p60 - (0.05 if p60 > 0 else 0.0))   # overridden-out player: ~certain 0 minutes
     mp = V.get_minutes_probs(code, name)
     return max(0.0, 1 - mp["p60"] - mp["p_cameo"])
@@ -447,9 +488,16 @@ def _swing_present(gw):
     return False
 
 
-def chip_evaluation(squad, itb, banked, gw):
-    """Produce the CHIP EVALUATION report block (half-aware, GW1-19 / GW20-38). Recommends, never auto-plays."""
-    st = load_chip_state(); h = str(_half(gw)); U = st[h]; L = []
+def chip_evaluation(squad, itb, banked, gw, chips=None):
+    """Produce the CHIP EVALUATION report block (half-aware, GW1-19 / GW20-38). Recommends, never auto-plays.
+
+    `chips` is THIS team's played chips as {half: {CHIP: gameweek}} — the shape fetch_squads.py
+    prints. It has to be per-team: chips.json is one shared file, so reading it alone would mark
+    Santa Claude's Bench Boost used the moment Jon played his, and Santa's entire purpose is to be
+    the untouched neutral baseline. The file is still honoured underneath as a fallback, so if a
+    future run ever writes it nothing here has to change."""
+    st = load_chip_state(); h = str(_half(gw)); L = []
+    U = dict(st[h]); U.update((chips or {}).get(h, {}))
     cur_ev, xi, bench = _xi_ev(squad, gw)
     cap_ev = max((p["e"] for p in xi), default=0.0)
     bench_ev = sum(p["e"] for p in bench)
@@ -625,7 +673,8 @@ def report(team_name, squad_def, itb, banked, chips, planned):
         # Don't report "none": overrides not in this squad still price the transfer pool, and
         # saying none reads as though the form never saved.
         L.append(f"  {len(OVERRIDES)} override(s) live for GW{gw}, none of them in this squad: "
-                 + ", ".join(f"{o['player_name']} {o['p_starts_override']}" for o in OVERRIDES.values()) + ".")
+                 + ", ".join(f"{o['player_name']} p60 {p_start(int(o['player_id']), o['player_name']):.2f}"
+                             for o in OVERRIDES.values()) + ".")
         L.append("  They still price transfer targets and the wider pool.")
     else:
         L.append("  No overrides set — add one from the form when you know something the model can't.")
@@ -636,7 +685,7 @@ def report(team_name, squad_def, itb, banked, chips, planned):
     L.append("\nFIXTURE INPUTS — DATA SOURCES\n" + "━" * 29)
     L.extend(fixture_source_lines(gw))
     L.append("\nCHIP EVALUATION\n" + "━" * 15)
-    chip_lines, chip_rec = chip_evaluation(squad, itb, banked, gw)
+    chip_lines, chip_rec = chip_evaluation(squad, itb, banked, gw, chips)
     L.extend(chip_lines)
     if any(chip_rec.values()):
         fired = [k.upper() for k, v in chip_rec.items() if v]
@@ -667,7 +716,7 @@ def report(team_name, squad_def, itb, banked, chips, planned):
             take, why = should_take_hit(tv, squad, gw)
             dec = f"TAKE −4 HIT ✓ — {why}" if take else f"BANK — {why}"
         L.append(f"  Best target: OUT {o['name']} ({o['pos']} {o['team']}) → IN {i['name']} ({i['team']} £{i['price']})")
-        L.append(f"    P(start) assumed: {o['name']} {p_start(o['code'], o['name']):.2f} → "
+        L.append(f"    P(60+) assumed: {o['name']} {p_start(o['code'], o['name']):.2f} → "
                  f"{i['name']} {p_start(i['code'], i['name']):.2f} — if you know better, override "
                  f"in the form and re-run for a revised call")
         L.append(f"    {tv['signal']} · effective-out adjusted for bench cover · {tv['hold']}-GW hold")
@@ -708,38 +757,39 @@ if __name__ == "__main__":
     # backup keepers correctly zeroed: £100.0m exactly, GW1-8 EV 534.9 vs the previous squad's 497.3.
     # Deliberately unshaped — no chip tilt — because this team exists to follow the engine's weekly
     # recommendations precisely, so its baseline should reflect the model and nothing else.
-    SANTA = [("Sánchez","GK","CHE",5.0),("Leno","GK","FUL",4.5),
-             ("Senesi","DEF","TOT",6.0),("Van Hecke","DEF","TOT",5.0),("Calafiori","DEF","ARS",5.5),
-             ("Mosquera","DEF","ARS",5.5),("Gvardiol","DEF","MCI",5.5),
-             ("Palmer","MID","CHE",9.5),("Mbeumo","MID","MUN",8.0),("Sarr","MID","CRY",6.5),
-             ("Schade","MID","BRE",6.0),("Gomez","MID","BHA",5.0),
-             ("Haaland","FWD","MCI",15.5),("Mateta","FWD","CRY",6.5),("Calvert-Lewin","FWD","LEE",6.0)]
-    # Jon's squad as at 2026-08-13, shaped for a possible GW2 Bench Boost into a GW3/4 Wildcard.
-    # Provisional — he may abandon that plan — but frozen here because he travels on the 14th and
-    # only GW1-2 are played while he is away. £100.0m exactly, £0.0m ITB.
-    # At the 3-per-club cap in three places: MUN (Shaw/Mbeumo/Fernandes), MCI (Foden/Semenyo/
-    # Haaland), COV (Rushworth/van Ewijk/Thomas-Asante).
-    HUMAN = [("Kinsky","GK","TOT",4.5),("Rushworth","GK","COV",4.5),
-             ("O'Shea","DEF","IPS",4.0),("Shaw","DEF","MUN",4.5),("Mosquera","DEF","ARS",5.5),
-             ("Ajer","DEF","BRE",4.5),("van Ewijk","DEF","COV",4.0),
-             ("Foden","MID","MCI",7.0),("Mbeumo","MID","MUN",8.0),("B.Fernandes","MID","MUN",12.0),
-             ("Semenyo","MID","MCI",8.5),("Slater","MID","HUL",4.5),
-             ("Haaland","FWD","MCI",15.5),("Thiago","FWD","BRE",8.0),("Thomas-Asante","FWD","COV",5.0)]
-    print(report("SANTA CLAUDE (AI team)", SANTA, itb=0.0, banked=1,
-                 chips=[], planned=[
+    # Both squads pulled from the live API by fetch_squads.py on 2026-09-01, after GW2.
+    # Do not hand-edit these again — re-run `python scripts/fetch_squads.py` and paste, or the
+    # engine goes back to recommending transfers that have already been made.
+    # Santa Claude (entry 4180925): took the GW2 recommendation, Mosquera -> De Cuyper. £0.9m ITB.
+    SANTA = [("Leno","GK","FUL",4.5),("Sánchez","GK","CHE",4.9),
+             ("Van Hecke","DEF","TOT",5.0),("De Cuyper","DEF","BHA",4.7),("Calafiori","DEF","ARS",5.6),
+             ("Gvardiol","DEF","MCI",5.6),("Senesi","DEF","TOT",6.0),
+             ("Schade","MID","BRE",6.0),("Palmer","MID","CHE",9.6),("Mbeumo","MID","MUN",8.0),
+             ("Gomez","MID","BHA",5.0),("Sarr","MID","CRY",6.4),
+             ("Haaland","FWD","MCI",15.5),("Calvert-Lewin","FWD","LEE",6.0),("Mateta","FWD","CRY",6.4)]
+    # Village Idiots (entry 1169767). Rebuilt before the GW1 deadline under unlimited transfers, so
+    # it bears little resemblance to the 13 August draft; no transfers since, and GW2 was rolled,
+    # hence 2 free. Bench Boost was played in GW1 — not GW2 as the old plan here assumed.
+    HUMAN = [("Kinsky","GK","TOT",4.5),("Verbruggen","GK","BHA",4.5),
+             ("Shaw","DEF","MUN",4.5),("Gabriel","DEF","ARS",8.0),("Calafiori","DEF","ARS",5.6),
+             ("Ajer","DEF","BRE",4.5),("F.Kadıoğlu","DEF","BHA",4.4),
+             ("Schade","MID","BRE",6.0),("Mbeumo","MID","MUN",8.0),("Tzolis","MID","ARS",6.5),
+             ("Semenyo","MID","MCI",8.5),("Hinshelwood","MID","BHA",6.0),
+             ("João Pedro","FWD","CHE",7.6),("Haaland","FWD","MCI",15.5),("Calvert-Lewin","FWD","LEE",6.0)]
+    print(report("SANTA CLAUDE (AI team)", SANTA, itb=0.9, banked=1,
+                 chips={}, planned=[
                      "Neutral baseline — follow this engine's weekly call exactly, no chip shaping.",
+                     "All four chips still held. 141 pts, overall 3.15m after GW2.",
                      "Spurs pair (Senesi, Van Hecke) held on model EV only: new manager, WC "
                      "returnees and the Spence rumour are invisible to the model. Revisit ~GW5 "
                      "once lineups settle.",
-                     "£0.0m ITB — a like-for-like or cheaper move only until funds are freed."]))
+                     "£0.9m ITB from the Mosquera → De Cuyper move."]))
     print()
-    print(report("JON'S TEAM", HUMAN, itb=0.0, banked=1,
-                 chips=[], planned=[
-                     "Provisional plan: BENCH BOOST GW2, then WILDCARD GW3 or GW4. Aggressive, and "
-                     "may be abandoned — if so the squad wants rebalancing away from the cheap bench.",
-                     "Bench Boost check: Rushworth (COV) is p60 0.00 — no minutes last season and "
-                     "Coventry's keeper job is unresolved, so under a boost he scores nothing. "
-                     "Override him if you rate him to start.",
-                     "GW2 bench yields only ~12 pts as drafted (O'Shea 2.4, van Ewijk 5.1, "
-                     "Slater 2.9, Thomas-Asante 4.3, Rushworth 0.0) — thin for a chip.",
-                     "£0.0m ITB and at the 3-per-club cap for MUN, MCI and COV."]))
+    print(report("JON'S TEAM", HUMAN, itb=0.0, banked=2,
+                 chips={"1": {"BB": 1}}, planned=[
+                     "BENCH BOOST PLAYED GW1. 163 pts, overall 846k after GW2 — the whole 22-pt "
+                     "lead over Santa Claude came in GW1; GW2 was 87 apiece.",
+                     "Remaining first-half chips: Wildcard, Triple Captain, Free Hit. The old plan "
+                     "here was a GW3/GW4 Wildcard — still open, and GW3's deadline is Fri 4 Sep.",
+                     "Two free transfers: GW2 was rolled.",
+                     "£0.0m ITB."]))
