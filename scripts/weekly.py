@@ -365,6 +365,13 @@ def best_transfer(squad, itb, hold=HORIZON):
     held = {(p["name"], p["team"]) for p in squad}
     club = {}
     for p in squad: club[p["team"]] = club.get(p["team"], 0) + 1
+    # Who would actually start next week. The bench-cover credit below is only real for a player
+    # you were going to field: if he is on the bench already, losing him costs you his own EV and
+    # nothing more, because the cover stays in the squad either way. Without this test a ruled-out
+    # bench player was the most expensive man to sell — Mateta, out until 11 October and worth 0,
+    # scored eff_out = 1.0 x bench cover, so the engine preferred selling a fit starter instead.
+    _xi_now, _, _ = select_xi(squad, CURRENT_GW + 1)
+    starters = {(p["name"], p["team"]) for p in _xi_now}
     best = None
     for out in squad:
         out_ev = [ev_gw(out["code"], out["name"], out["pos"], out["team"], CURRENT_GW + o) for o in range(1, hold + 1)]
@@ -372,7 +379,8 @@ def best_transfer(squad, itb, hold=HORIZON):
         bc_ev = ([ev_gw(bc["code"], bc["name"], bc["pos"], bc["team"], CURRENT_GW + o) for o in range(1, hold + 1)]
                  if bc else [0.0] * hold)
         pz = _p_zero(out["code"], out["name"])                                  # 0-min prob (autosub trigger), NOT 1-p60
-        eff_out = [out_ev[o] + pz * bc_ev[o] for o in range(hold)]              # bench cover — small when 'out' is nailed
+        cover = pz if (out["name"], out["team"]) in starters else 0.0           # only a starter can be auto-subbed for
+        eff_out = [out_ev[o] + cover * bc_ev[o] for o in range(hold)]           # bench cover — small when 'out' is nailed
         for c in POOL:
             if c["pos"] != out["pos"] or (c["name"], c["team"]) in held: continue
             if c["price"] > out["price"] + itb + 1e-9: continue
