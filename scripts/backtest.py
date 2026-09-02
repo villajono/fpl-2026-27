@@ -181,13 +181,15 @@ class Season:
         a = self.by_el[element]; sel = a["gw"] <= cut; mins = a["minutes"][sel]
         played = mins[mins > 0]
         if not len(played):
-            r = dict(p60=0.55, p_cameo=0.10, partial=30.0); self._min_cache[key] = r; return r
+            # No appearance yet — see ev_v2.NO_HISTORY_P60. Was 0.55 on no evidence.
+            r = dict(p60=V.NO_HISTORY_P60, p_cameo=V.NO_HISTORY_CAMEO, partial=30.0)
+            self._min_cache[key] = r; return r
         starts = [dict(minutes=float(m)) for m in mins]                   # recency_start_prob keys on 'minutes'>=60
         p = H.recency_start_prob(starts, half_life=8)
         cam = played[(played >= 1) & (played < 60)]
         p_cameo = min(len(cam) / max(len(mins), 1), 0.15)
         partial = float(cam.mean()) if len(cam) else 30.0
-        r = dict(p60=round(min(max(p if p is not None else 0.55, 0.05), 0.98), 2), p_cameo=p_cameo, partial=partial)
+        r = dict(p60=round(min(max(p if p is not None else V.NO_HISTORY_P60, 0.02), 0.98), 2), p_cameo=p_cameo, partial=partial)
         self._min_cache[key] = r; return r
 
 

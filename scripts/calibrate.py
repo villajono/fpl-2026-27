@@ -91,6 +91,42 @@ def sweep(S, gw_from, gw_to, values):
     return best
 
 
+def minutes_calibration(S, gw_from, gw_to):
+    """Is p60 telling the truth? Bucket every player-gameweek by the p60 the model gave it, then
+    count how many actually reached 60 minutes. A well-calibrated model puts ~0.7 of the 0.7 bucket
+    on the pitch for an hour. This separates a minutes problem from a rates problem: if p60 is
+    honest, the over-prediction lives in the per-90 rates instead."""
+    buckets = {}
+    zero_pred, zero_act = [], []
+    for gw in range(gw_from, gw_to + 1):
+        cut = gw - 1
+        for el, m in S.meta.items():
+            if not S.fixtures(m["short"], gw):
+                continue
+            mins = S.actual(el, gw, "minutes")
+            if mins is None:
+                continue
+            mp = S.minutes(el, cut)
+            b = min(9, int(mp["p60"] * 10))
+            d = buckets.setdefault(b, dict(n=0, pred=0.0, act60=0, act_any=0, pred_any=0.0))
+            d["n"] += 1; d["pred"] += mp["p60"]; d["pred_any"] += mp["p60"] + mp["p_cameo"]
+            d["act60"] += 1 if mins >= 60 else 0
+            d["act_any"] += 1 if mins > 0 else 0
+            zero_pred.append(1 - mp["p60"] - mp["p_cameo"]); zero_act.append(1 if mins == 0 else 0)
+    print(f"  {'p60 bucket':>12}{'n':>8}{'mean p60':>10}{'actual 60+':>12}{'gap':>8}"
+          f"{'P(plays)':>10}{'actual':>9}")
+    print("  " + "-" * 70)
+    for b in sorted(buckets):
+        d = buckets[b]
+        mp, a60 = d["pred"] / d["n"], d["act60"] / d["n"]
+        pany, aany = d["pred_any"] / d["n"], d["act_any"] / d["n"]
+        print(f"  {b/10:>6.1f}-{(b+1)/10:<5.1f}{d['n']:>8}{mp:>10.3f}{a60:>12.3f}"
+              f"{mp - a60:>+8.3f}{pany:>10.3f}{aany:>9.3f}")
+    import numpy as np
+    print(f"\n  overall: model says {np.mean(zero_pred):.3f} chance of zero minutes, "
+          f"actual {np.mean(zero_act):.3f}")
+
+
 def main():
     gw_from = int(sys.argv[sys.argv.index("--from") + 1]) if "--from" in sys.argv else 6
     gw_to = int(sys.argv[sys.argv.index("--to") + 1]) if "--to" in sys.argv else 38

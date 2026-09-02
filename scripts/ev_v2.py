@@ -28,6 +28,17 @@ GOAL_PTS = {"GK": 6, "DEF": 6, "MID": 5, "FWD": 4}
 # right and internally consistent, not because one season could detect it.
 HOME_ADV = 1.10
 CONCEDE_POS = {"GK", "DEF"}    # only these lose a point per two goals conceded
+# What to assume about a player with NO appearance history at all. This was 0.65 — a two-thirds
+# chance of playing an hour, awarded on no evidence whatsoever. Measured walk-forward over 2025-26,
+# players with zero prior appearances went on to play 60+ minutes 0.25% of the time and to appear
+# at all 1.2% of the time. The old default was overstating it by a factor of ~220, and because
+# unknown players are the largest single group in the pool it was the main driver of the model
+# over-predicting every player-gameweek by 59%.
+#
+# 0.05 rather than the measured 0.0025: production's unknowns are new Premier League arrivals, a
+# mixed population, not mid-season nobodies. A genuine starter among them is what P60_OVR is for —
+# no data means the base rate, and a human who knows better says so.
+NO_HISTORY_P60, NO_HISTORY_CAMEO = 0.05, 0.05
 # CBIT count for +2 DC points. Defenders need 10 (clearances, blocks, interceptions, tackles);
 # midfielders AND forwards need 12, recoveries included. FWD was set to 99, i.e. never — so a
 # forward who pressed enough to earn the two points could not be credited with them. Keepers
@@ -241,7 +252,7 @@ def _preseason_p60(el, name, r):
     or GW1 shifts a player for reasons unrelated to whether he started: a heavy-cameo player is
     capped pre-season, and reading the uncapped value made Sarr jump 0.85 -> 0.95 on one start."""
     if r is None:
-        return _ovr_p60(name, 0.65)
+        return _ovr_p60(name, NO_HISTORY_P60)
     app = _g[(_g.element == el) & (_g.minutes >= 60)]
     mm = app.minutes.mean() if len(app) else 0
     cam = _g[(_g.element == el) & (_g.minutes >= 1) & (_g.minutes < 60)]
@@ -380,7 +391,8 @@ def _minutes_from_data(code, name, el, r):
         p = (prior * INSEASON_K + starts) / (INSEASON_K + len(rows))
         return dict(p60=round(min(max(p, 0.02), 0.98), 2), p_cameo=0.05, partial=30.0)
     if r is None:
-        p60 = _ovr_p60(name, 0.65); return dict(p60=p60, p_cameo=0.10, partial=30.0)
+        p60 = _ovr_p60(name, NO_HISTORY_P60)
+        return dict(p60=p60, p_cameo=NO_HISTORY_CAMEO, partial=30.0)
     app = _g[(_g.element == el) & (_g.minutes >= 60)]
     mm = app.minutes.mean() if len(app) else 0
     cam = _g[(_g.element == el) & (_g.minutes >= 1) & (_g.minutes < 60)]
