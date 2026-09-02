@@ -83,6 +83,7 @@ def inseason_rows(code):
     return [dict(minutes=float(r.minutes), xG=float(r.xG), xA=float(r.xA),
                  dc=float(r.dc), saves=float(r.saves),
                  bonus=float(getattr(r, "bonus", 0) or 0),
+                 yellow=float(getattr(r, "yellow", 0) or 0),
                  opp=(getattr(r, "opp", None) if pd.notna(getattr(r, "opp", None)) else None),
                  home=(bool(getattr(r, "home", True)) if pd.notna(getattr(r, "home", None)) else None))
             for r in sub.itertuples()]
@@ -109,7 +110,8 @@ def recency_weighted_rates(games, pos, fixture_mult=None):
     games = [g for g in games if g["minutes"] > 0]
     n = len(games)
     if n == 0:
-        return dict(xG90=0.0, xA90=0.0, DC90=0.0, sv90=0.0, bonus_app=0.0, minutes=0, n60=0,
+        return dict(xG90=0.0, xA90=0.0, DC90=0.0, sv90=0.0, bonus_app=0.0, yellow_app=0.0,
+                    minutes=0, n60=0,
                     pos=pos, thin=True, dc_history=[], games=0)
 
     ADJUSTED = {"xG", "xA"}          # attacking output scales with the opponent; dc and saves do not
@@ -134,8 +136,11 @@ def recency_weighted_rates(games, pos, fixture_mult=None):
     # single improvement measured. Same half-life as xG so form carries through.
     _bw = [0.5 ** ((n - 1 - i) / HALF_LIFE["xG"]) for i in range(n)]
     _bon = sum(_bw[i] * games[i].get("bonus", 0.0) for i in range(n)) / sum(_bw)
+    # Yellows per appearance, same treatment. Small (-0.1 to -0.2 a game) but real, and it falls
+    # hardest on exactly the defensive midfielders the DC term rewards.
+    _yel = sum(_bw[i] * games[i].get("yellow", 0.0) for i in range(n)) / sum(_bw)
 
-    return dict(bonus_app=_bon,
+    return dict(bonus_app=_bon, yellow_app=_yel,
                 xG90=rate("xG"), xA90=rate("xA"), DC90=rate("dc"), sv90=rate("saves"),
                 minutes=sum(g["minutes"] for g in games), n60=sum(1 for g in games if g["minutes"] >= 60),
                 pos=pos, thin=False, dc_history=[g["dc"] for g in games], games=n)

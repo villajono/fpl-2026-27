@@ -22,6 +22,12 @@ MIN_MINUTES = 450          # below this -> position-average rates, THIN DATA
 # every forward was paid 1.5x the real value of his goals and every midfielder 1.2x. Clean sheets
 # were already position-aware via get_cs_pts, so goals were the one scoring term still flat.
 GOAL_PTS = {"GK": 6, "DEF": 6, "MID": 5, "FWD": 4}
+# Attacking multiplier at home; away is 2 - this. 1.10/0.90 gives a ratio of 1.222, matching both
+# the measured 1.227 (2025-26 ran 1.555 xG at home against 1.268 away) and get_cs_probability's
+# own 0.90/1.10. Sweeping it 1.00-1.15 in calibrate.py moved MAE not at all — kept because it is
+# right and internally consistent, not because one season could detect it.
+HOME_ADV = 1.10
+CONCEDE_POS = {"GK", "DEF"}    # only these lose a point per two goals conceded
 # CBIT count for +2 DC points. Defenders need 10 (clearances, blocks, interceptions, tackles);
 # midfielders AND forwards need 12, recoveries included. FWD was set to 99, i.e. never — so a
 # forward who pressed enough to earn the two points could not be credited with them. Keepers
@@ -29,7 +35,8 @@ GOAL_PTS = {"GK": 6, "DEF": 6, "MID": 5, "FWD": 4}
 DC_THRESHOLD = {"DEF": 10, "MID": 12, "GK": 99, "FWD": 12}
 
 _g = pd.read_csv(RAW / "merged_gw_2025-26.csv", low_memory=False)
-for c in ["minutes", "expected_goals", "expected_assists", "defensive_contribution", "saves", "total_points"]:
+for c in ["minutes", "expected_goals", "expected_assists", "defensive_contribution", "saves",
+          "total_points", "bonus", "yellow_cards"]:
     _g[c] = pd.to_numeric(_g[c], errors="coerce").fillna(0)
 _pr = pd.read_csv(RAW / "players_raw_2025-26.csv", low_memory=False)
 _nxt = pd.read_csv(RAW / "players_2026-27.csv", low_memory=False)
@@ -94,7 +101,8 @@ def _prior_games(el):
     sub = _g[(_g.element == el) & (_g.minutes > 0)].sort_values("GW")
     return [dict(minutes=float(r.minutes), xG=float(r.expected_goals), xA=float(r.expected_assists),
                  dc=float(r.defensive_contribution), saves=float(r.saves),
-                 bonus=float(getattr(r, "bonus", 0) or 0)) for r in sub.itertuples()]
+                 bonus=float(getattr(r, "bonus", 0) or 0),
+                 yellow=float(getattr(r, "yellow_cards", 0) or 0)) for r in sub.itertuples()]
 
 
 def _game_fixture_mult(g):
@@ -393,15 +401,28 @@ def compute_ev_v2(code, name, pos, team, opp, home, breakdown=False):
         cs_prob = oi["cs_prob"]; att_f = oi["att_mult"]; sv_f = oi["sv_mult"]; fsrc = oi["source"]
     else:
         cs_prob = get_cs_probability(team, opp, home)
-        att_f = orat["defw"] * (1.05 if home else 0.95)     # attacking returns scale with opp defensive weakness
-        sv_f = orat["att"] * (0.95 if home else 1.05)       # saves scale with opp attack strength
+        # HOME_ADV rather than a flat 1.05: get_cs_probability already used 0.90/1.10 for the same
+        # physical effect, so the attacking side of the model disagreed with its own clean-sheet side.
+        att_f = orat["defw"] * (HOME_ADV if home else 2 - HOME_ADV)   # scales with opp defensive weakness
+        sv_f = orat["att"] * ((2 - HOME_ADV) if home else HOME_ADV)   # saves scale with opp attack strength
         fsrc = "xG model"
     p_dc_full = get_p_dc_bonus(rates, 90); p_dc_part = get_p_dc_bonus(rates, mp["partial"])
     xg, xa, sv = rates["xG90"], rates["xA90"], rates["sv90"]
     gp = GOAL_PTS.get(pos, 5)          # a goal is NOT worth the same to everyone — see GOAL_PTS
     bon = float(rates.get("bonus_app", 0.0) or 0.0)     # 7% of all points; see history.recency_weighted_rates
-    ev_full = cs_prob * cs_pts + 2 + xg * gp * att_f + xa * 3 * att_f + p_dc_full * 2 + sv * save_pts * sv_f + bon
-    ev_part = 1 + (mp["partial"] / 90.0) * (xg * gp * att_f + xa * 3 * att_f + sv * save_pts * sv_f) + p_dc_part * 2 + 0.4 * bon
+    # FPL takes a point off a keeper or defender for every TWO goals conceded. The model priced
+    # the clean-sheet upside and none of the downside, which flattered defenders at leaky clubs and
+    # is part of why the engine kept wanting to captain one. No new parameter: cs_prob is exp(-λ)
+    # under the Poisson the CS model is calibrated on, so λ — expected goals conceded — is just
+    # -ln(cs_prob), and works identically whether cs_prob came from odds or the xG model.
+    conceded = -math.log(max(cs_prob, 1e-6)) if pos in CONCEDE_POS else 0.0
+    concede_pts = -0.5 * conceded
+    # A yellow is -1, and falls hardest on the defensive midfielders the DC term rewards.
+    yel = -float(rates.get("yellow_app", 0.0) or 0.0)
+    ev_full = (cs_prob * cs_pts + 2 + xg * gp * att_f + xa * 3 * att_f + p_dc_full * 2
+               + sv * save_pts * sv_f + bon + concede_pts + yel)
+    ev_part = (1 + (mp["partial"] / 90.0) * (xg * gp * att_f + xa * 3 * att_f + sv * save_pts * sv_f
+                                             + concede_pts) + p_dc_part * 2 + 0.4 * bon + 0.5 * yel)
     ev = mp["p60"] * ev_full + mp["p_cameo"] * ev_part
     if breakdown:
         f = mp["p60"]

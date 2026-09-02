@@ -30,7 +30,8 @@ CS_PTS = {"GK": 4, "DEF": 4, "MID": 1, "FWD": 0}
 CS_C = 1.0                                 # clean-sheet decay constant (~ev_v2's calibrated 1.016; fixed as a method scalar)
 MIN_MINUTES = 450
 USE_BONUS = True            # A/B switch for the bonus term — see calibrate.py
-HOME_ADV = 1.05             # attacking multiplier at home; away is 2 - this. Swept in calibrate.py.
+USE_EXTRA = True            # goals conceded + yellows, A/B'd in calibrate.py
+HOME_ADV = 1.10             # attacking multiplier at home; away is 2 - this. Swept in calibrate.py.
 FREE_THR = 2.0                             # simulate(): flat control threshold (simulate_chips uses the live graduated rule)
 FT_CAP = 5                                 # FPL banks up to FIVE free transfers (since 2024-25). Was 2 —
                                            # which capped `banked` at 2 and made the 3/4/5 threshold tiers unreachable.
@@ -61,7 +62,8 @@ class Season:
     def __init__(self):
         g = pd.read_csv(RAW / "merged_gw_2025-26.csv", low_memory=False)
         for c in ["minutes","total_points","expected_goals","expected_assists","goals_scored",
-                  "assists","bps","bonus","defensive_contribution","saves","clean_sheets","value","starts"]:
+                  "assists","bps","bonus","defensive_contribution","saves","clean_sheets","value","starts",
+                  "yellow_cards"]:
             g[c] = pd.to_numeric(g[c], errors="coerce").fillna(0)
         t = pd.read_csv(RAW / "teams_2025-26.csv")
         self.id2sh = dict(zip(t.id, t.short_name)); self.name2sh = dict(zip(t.name, t.short_name))
@@ -83,6 +85,7 @@ class Season:
                 saves=sub.saves.to_numpy(), value=sub.value.to_numpy(), tp=sub.total_points.to_numpy(),
                 goals=sub.goals_scored.to_numpy(), assists=sub.assists.to_numpy(),
                 bps=sub.bps.to_numpy(), bonus=sub.bonus.to_numpy(),
+                yellow=sub.yellow_cards.to_numpy(),
                 # who he faced, so past xG can be normalised for fixture ease the same way
                 # production now does — otherwise the harness calibrates a different model
                 opp=sub.opp.to_numpy(), home=sub.was_home.to_numpy())
@@ -142,7 +145,7 @@ class Season:
         sel = (a["gw"] <= cut) & (a["minutes"] > 0)
         games = [dict(minutes=float(a["minutes"][i]), xG=float(a["xG"][i]), xA=float(a["xA"][i]),
                       dc=float(a["dc"][i]), saves=float(a["saves"][i]),
-                      bonus=float(a["bonus"][i]),
+                      bonus=float(a["bonus"][i]), yellow=float(a["yellow"][i]),
                       opp=a["opp"][i], home=bool(a["home"][i])) for i in np.nonzero(sel)[0]]
         mins = sum(x["minutes"] for x in games)
         prior = price_prior(pos, self.price(element, cut))                # pre-season belief from price (2024-25 informed)
@@ -157,7 +160,8 @@ class Season:
         # minute. Recency-weighted on the same half-life as xG so form carries through.
         _bw = [0.5 ** ((len(games) - 1 - i) / H.HALF_LIFE["xG"]) for i in range(len(games))]
         bon = (sum(_bw[i] * games[i]["bonus"] for i in range(len(games))) / sum(_bw)) if games else 0.0
-        r = dict(bonus_app=bon,
+        yel = (sum(_bw[i] * games[i]["yellow"] for i in range(len(games))) / sum(_bw)) if games else 0.0
+        r = dict(bonus_app=bon, yellow_app=yel,
                  xG90=bl("xG90"), xA90=bl("xA90"), DC90=bl("DC90"), sv90=bl("sv90"), pos=pos, minutes=mins,
                  thin=mins < MIN_MINUTES, dc_history=[x["dc"] for x in games],
                  n60=sum(1 for x in games if x["minutes"] >= 60), games=len(games))
@@ -216,8 +220,11 @@ def ev(season, element, cut, opp, home):
     pdf = _p_dc(r, 90); pdp = _p_dc(r, mp["partial"])
     gp = V.GOAL_PTS.get(pos, 5)            # 4 FWD / 5 MID / 6 DEF-GK — was hardcoded 6 here too
     bon = r.get("bonus_app", 0.0) if USE_BONUS else 0.0
-    ev_full = csp*cpts + 2 + xg*gp*att_f + xa*3*att_f + pdf*2 + sv*save_pts*sv_f + bon
-    ev_part = 1 + (mp["partial"]/90.0)*(xg*gp*att_f + xa*3*att_f + sv*save_pts*sv_f) + pdp*2 + 0.4*bon
+    conc = -0.5 * (-math.log(max(csp, 1e-6))) if (USE_EXTRA and pos in ("GK", "DEF")) else 0.0
+    yel = -r.get("yellow_app", 0.0) if USE_EXTRA else 0.0
+    ev_full = csp*cpts + 2 + xg*gp*att_f + xa*3*att_f + pdf*2 + sv*save_pts*sv_f + bon + conc + yel
+    ev_part = (1 + (mp["partial"]/90.0)*(xg*gp*att_f + xa*3*att_f + sv*save_pts*sv_f + conc)
+               + pdp*2 + 0.4*bon + 0.5*yel)
     return mp["p60"]*ev_full + mp["p_cameo"]*ev_part
 
 
