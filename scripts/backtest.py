@@ -29,6 +29,7 @@ POSN = {"GK": "GK", "DEF": "DEF", "MID": "MID", "FWD": "FWD"}
 CS_PTS = {"GK": 4, "DEF": 4, "MID": 1, "FWD": 0}
 CS_C = 1.0                                 # clean-sheet decay constant (~ev_v2's calibrated 1.016; fixed as a method scalar)
 MIN_MINUTES = 450
+USE_BONUS = True            # A/B switch for the bonus term — see calibrate.py
 FREE_THR = 2.0                             # simulate(): flat control threshold (simulate_chips uses the live graduated rule)
 FT_CAP = 5                                 # FPL banks up to FIVE free transfers (since 2024-25). Was 2 —
                                            # which capped `banked` at 2 and made the 3/4/5 threshold tiers unreachable.
@@ -80,7 +81,10 @@ class Season:
                 xA=sub.expected_assists.to_numpy(), dc=sub.defensive_contribution.to_numpy(),
                 saves=sub.saves.to_numpy(), value=sub.value.to_numpy(), tp=sub.total_points.to_numpy(),
                 goals=sub.goals_scored.to_numpy(), assists=sub.assists.to_numpy(),
-                bps=sub.bps.to_numpy(), bonus=sub.bonus.to_numpy())
+                bps=sub.bps.to_numpy(), bonus=sub.bonus.to_numpy(),
+                # who he faced, so past xG can be normalised for fixture ease the same way
+                # production now does — otherwise the harness calibrates a different model
+                opp=sub.opp.to_numpy(), home=sub.was_home.to_numpy())
         self._min_cache = {}; self._price_cache = {}
         # schedule: sched[short][gw] -> list of (opp_short, home)
         self.sched = {}
@@ -136,13 +140,24 @@ class Season:
         pos = self.meta[element]["pos"]; a = self.by_el[element]
         sel = (a["gw"] <= cut) & (a["minutes"] > 0)
         games = [dict(minutes=float(a["minutes"][i]), xG=float(a["xG"][i]), xA=float(a["xA"][i]),
-                      dc=float(a["dc"][i]), saves=float(a["saves"][i])) for i in np.nonzero(sel)[0]]
+                      dc=float(a["dc"][i]), saves=float(a["saves"][i]),
+                      bonus=float(a["bonus"][i]),
+                      opp=a["opp"][i], home=bool(a["home"][i])) for i in np.nonzero(sel)[0]]
         mins = sum(x["minutes"] for x in games)
         prior = price_prior(pos, self.price(element, cut))                # pre-season belief from price (2024-25 informed)
-        obs = H.recency_weighted_rates(games, pos) if games else None
+        # Fixture-normalise past attacking output, exactly as ev_v2._game_fixture_mult does.
+        # Ratings are as of `cut`, so this stays walk-forward clean.
+        _ts = self.team_strength(cut)
+        _fm = lambda gm: (_ts.get(gm["opp"], (1.0, 1.0))[1] * (1.05 if gm["home"] else 0.95))
+        obs = H.recency_weighted_rates(games, pos, _fm) if games else None
         w = mins / (mins + 450.0)                                         # ~5 full games to reach 50/50 with the prior
         bl = lambda k: (1 - w) * prior[k] + w * (obs[k] if obs else prior[k])
-        r = dict(xG90=bl("xG90"), xA90=bl("xA90"), DC90=bl("DC90"), sv90=bl("sv90"), pos=pos, minutes=mins,
+        # Bonus per APPEARANCE, not per 90: it is awarded for a performance, not accrued by the
+        # minute. Recency-weighted on the same half-life as xG so form carries through.
+        _bw = [0.5 ** ((len(games) - 1 - i) / H.HALF_LIFE["xG"]) for i in range(len(games))]
+        bon = (sum(_bw[i] * games[i]["bonus"] for i in range(len(games))) / sum(_bw)) if games else 0.0
+        r = dict(bonus_app=bon,
+                 xG90=bl("xG90"), xA90=bl("xA90"), DC90=bl("DC90"), sv90=bl("sv90"), pos=pos, minutes=mins,
                  thin=mins < MIN_MINUTES, dc_history=[x["dc"] for x in games],
                  n60=sum(1 for x in games if x["minutes"] >= 60), games=len(games))
         self._rate_cache[key] = r; return r
@@ -197,8 +212,10 @@ def ev(season, element, cut, opp, home):
     att_f = opp_defw * (1.05 if home else 0.95); sv_f = opp_att * (0.95 if home else 1.05)
     xg, xa, sv = r["xG90"], r["xA90"], r["sv90"]
     pdf = _p_dc(r, 90); pdp = _p_dc(r, mp["partial"])
-    ev_full = csp*cpts + 2 + xg*6*att_f + xa*3*att_f + pdf*2 + sv*save_pts*sv_f
-    ev_part = 1 + (mp["partial"]/90.0)*(xg*6*att_f + xa*3*att_f + sv*save_pts*sv_f) + pdp*2
+    gp = V.GOAL_PTS.get(pos, 5)            # 4 FWD / 5 MID / 6 DEF-GK — was hardcoded 6 here too
+    bon = r.get("bonus_app", 0.0) if USE_BONUS else 0.0
+    ev_full = csp*cpts + 2 + xg*gp*att_f + xa*3*att_f + pdf*2 + sv*save_pts*sv_f + bon
+    ev_part = 1 + (mp["partial"]/90.0)*(xg*gp*att_f + xa*3*att_f + sv*save_pts*sv_f) + pdp*2 + 0.4*bon
     return mp["p60"]*ev_full + mp["p_cameo"]*ev_part
 
 

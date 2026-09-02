@@ -93,7 +93,8 @@ def _prior_games(el):
     if el is None: return []
     sub = _g[(_g.element == el) & (_g.minutes > 0)].sort_values("GW")
     return [dict(minutes=float(r.minutes), xG=float(r.expected_goals), xA=float(r.expected_assists),
-                 dc=float(r.defensive_contribution), saves=float(r.saves)) for r in sub.itertuples()]
+                 dc=float(r.defensive_contribution), saves=float(r.saves),
+                 bonus=float(getattr(r, "bonus", 0) or 0)) for r in sub.itertuples()]
 
 
 def _game_fixture_mult(g):
@@ -398,8 +399,9 @@ def compute_ev_v2(code, name, pos, team, opp, home, breakdown=False):
     p_dc_full = get_p_dc_bonus(rates, 90); p_dc_part = get_p_dc_bonus(rates, mp["partial"])
     xg, xa, sv = rates["xG90"], rates["xA90"], rates["sv90"]
     gp = GOAL_PTS.get(pos, 5)          # a goal is NOT worth the same to everyone — see GOAL_PTS
-    ev_full = cs_prob * cs_pts + 2 + xg * gp * att_f + xa * 3 * att_f + p_dc_full * 2 + sv * save_pts * sv_f
-    ev_part = 1 + (mp["partial"] / 90.0) * (xg * gp * att_f + xa * 3 * att_f + sv * save_pts * sv_f) + p_dc_part * 2
+    bon = float(rates.get("bonus_app", 0.0) or 0.0)     # 7% of all points; see history.recency_weighted_rates
+    ev_full = cs_prob * cs_pts + 2 + xg * gp * att_f + xa * 3 * att_f + p_dc_full * 2 + sv * save_pts * sv_f + bon
+    ev_part = 1 + (mp["partial"] / 90.0) * (xg * gp * att_f + xa * 3 * att_f + sv * save_pts * sv_f) + p_dc_part * 2 + 0.4 * bon
     ev = mp["p60"] * ev_full + mp["p_cameo"] * ev_part
     if breakdown:
         f = mp["p60"]
