@@ -566,22 +566,37 @@ def _seq_ev(squad, gw):
 BANKED_THRESHOLD = {1: 4.0, 2: 4.0, 3: 3.0, 4: 2.0, 5: 0.0}     # free transfers held -> gain required
 
 
-def planned_wildcard_gw():
-    """The gameweek Jon intends to wildcard, from human_input.json: {"planned_wildcard_gw": 4}.
+def planned_wildcard():
+    """When a wildcard might be played, and how likely it is. From human_input.json:
 
-    It matters because a transfer made the week before a rebuild owns exactly one gameweek — the
-    wildcard replaces the squad regardless — so its six-week gain is fiction. The engine used to
-    guess proximity from `max(0, 6 - gw)`, i.e. assume everyone wildcards around GW6, and then
-    merely nudged the threshold. Declaring it collapses the evaluation horizon instead, which is
-    the honest treatment."""
+        "planned_wildcard": {"gw": 4, "p": 0.5}     # or just {"planned_wildcard_gw": 4} for p=1
+
+    It matters because on the wildcard week you can field any squad you like, so a transfer made
+    beforehand does not shape the post-wildcard team — you would build the same one either way.
+    Its value is the points it earns in the weeks you actually hold it, which is however many
+    remain until the rebuild.
+
+    But a wildcard is rarely a certainty, and treating a maybe as a fact is its own error: at p=1
+    the horizon collapses to a single week and almost nothing clears the bar, which freezes you out
+    of moves that are good precisely BECAUSE they might remove the need for the chip. So the
+    horizon is the expectation over both branches:
+
+        E[weeks held] = p * (wc_gw - gw) + (1 - p) * HORIZON
+
+    At p=1 that is the full collapse; at p=0 it is the ordinary six weeks; in between it is
+    proportionate, which is what "I might wildcard in week 4" actually means."""
     f = STATE / "human_input.json"
     if not f.exists():
-        return None
+        return None, 0.0
     try:
-        v = json.load(open(f, encoding="utf-8")).get("planned_wildcard_gw")
-        return int(v) if v else None
+        d = json.load(open(f, encoding="utf-8"))
+        w = d.get("planned_wildcard")
+        if isinstance(w, dict) and w.get("gw"):
+            return int(w["gw"]), max(0.0, min(1.0, float(w.get("p", 1.0))))
+        v = d.get("planned_wildcard_gw")
+        return (int(v), 1.0) if v else (None, 0.0)
     except Exception:
-        return None
+        return None, 0.0
 
 
 def transfer_threshold_live(banked, gw, wc_used):
@@ -668,11 +683,15 @@ def report(team_name, squad_def, itb, banked, chips, planned, planned_wc=None):
     rf = refresh_models()
     xi, bench, form = select_xi(squad, gw); caps = select_captain(xi)
     table, warn = trajectory(squad)
-    # A planned wildcard truncates how long any transfer is yours to keep. Per TEAM: it is Jon's
-    # intention, and Santa Claude is a neutral benchmark that never chip-shapes, so applying his
-    # plan to it would corrupt the comparison.
-    _wc = planned_wc
-    _hold = max(1, min(HORIZON, _wc - gw)) if (_wc and _wc > gw) else HORIZON
+    # A possible wildcard shortens how long a transfer is yours to keep, in proportion to how
+    # likely it is. Per TEAM: it is Jon's intention, and Santa Claude is a neutral benchmark that
+    # never chip-shapes, so applying his plan to it would corrupt the comparison.
+    _wc, _wc_p = (planned_wc if isinstance(planned_wc, tuple) else (planned_wc, 1.0))
+    if _wc and _wc > gw:
+        _hold_f = _wc_p * (_wc - gw) + (1 - _wc_p) * HORIZON
+        _hold = max(1, min(HORIZON, int(round(_hold_f))))
+    else:
+        _hold, _hold_f = HORIZON, float(HORIZON)
     tv = best_transfer(squad, itb, hold=_hold)
     bench_ev = sum(p["e"] for p in bench if p["pos"] != "GK")
     cap_ev = caps[0][1] if caps else 0
@@ -725,10 +744,11 @@ def report(team_name, squad_def, itb, banked, chips, planned, planned_wc=None):
         L.append("  → No chip this week — hold all available chips.")
     tr_thr, tr_note = transfer_threshold_live(banked, gw, load_chip_state()[str(_half(gw))]["WC"])
     L.append(f"  Transfer threshold this week: {tr_thr:.1f} pts{tr_note}")
-    if _hold < HORIZON:
-        L.append(f"  Wildcard declared for GW{_wc}, so a transfer made now is yours for "
-                 f"{_hold} gameweek{'s' if _hold > 1 else ''}, not {HORIZON}.")
-        L.append(f"  Judged on that horizon — the {HORIZON}-week gain is not available to you.")
+    if _wc and _wc > gw and _hold < HORIZON:
+        L.append(f"  Wildcard possible GW{_wc} at p={_wc_p:.0%}, so a transfer made now is yours "
+                 f"for an expected {_hold_f:.1f} gameweeks, not {HORIZON}.")
+        L.append(f"  Judged on that horizon. At p=100% it would be {_wc - gw}; the rest is the "
+                 f"branch where you do not play it.")
     L.append("\nTRANSFER DECISION\n" + "━" * 17)
     if gw == 1:
         # Before the first deadline FPL gives unlimited free transfers, so the one-in-one-out engine
@@ -821,7 +841,7 @@ if __name__ == "__main__":
                      "£0.9m ITB from the Mosquera → De Cuyper move."]))
     print()
     print(report("JON'S TEAM", HUMAN, itb=0.0, banked=2,
-                 chips={"1": {"BB": 1}}, planned_wc=planned_wildcard_gw(), planned=[
+                 chips={"1": {"BB": 1}}, planned_wc=planned_wildcard(), planned=[
                      "BENCH BOOST PLAYED GW1. 163 pts, overall 846k after GW2 — the whole 22-pt "
                      "lead over Santa Claude came in GW1; GW2 was 87 apiece.",
                      "Remaining first-half chips: Wildcard, Triple Captain, Free Hit. The old plan "

@@ -38,5 +38,8 @@
       "added": "2026-09-02"
     }
   ],
-  "planned_wildcard_gw": 4
+  "planned_wildcard": {
+    "gw": 4,
+    "p": 0.5
+  }
 }
