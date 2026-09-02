@@ -30,6 +30,7 @@ CS_PTS = {"GK": 4, "DEF": 4, "MID": 1, "FWD": 0}
 CS_C = 1.0                                 # clean-sheet decay constant (~ev_v2's calibrated 1.016; fixed as a method scalar)
 MIN_MINUTES = 450
 USE_BONUS = True            # A/B switch for the bonus term — see calibrate.py
+HOME_ADV = 1.05             # attacking multiplier at home; away is 2 - this. Swept in calibrate.py.
 FREE_THR = 2.0                             # simulate(): flat control threshold (simulate_chips uses the live graduated rule)
 FT_CAP = 5                                 # FPL banks up to FIVE free transfers (since 2024-25). Was 2 —
                                            # which capped `banked` at 2 and made the 3/4/5 threshold tiers unreachable.
@@ -209,7 +210,8 @@ def ev(season, element, cut, opp, home):
     team_defw = ts.get(m["short"], (1.0,1.0))[1]; opp_att, opp_defw = ts.get(opp, (1.0,1.0))
     csp = cs_prob(team_defw, opp_att, home); cpts = CS_PTS[pos]
     save_pts = 1.0/3.0 if pos == "GK" else 0.0
-    att_f = opp_defw * (1.05 if home else 0.95); sv_f = opp_att * (0.95 if home else 1.05)
+    att_f = opp_defw * (HOME_ADV if home else 2 - HOME_ADV)
+    sv_f = opp_att * ((2 - HOME_ADV) if home else HOME_ADV)
     xg, xa, sv = r["xG90"], r["xA90"], r["sv90"]
     pdf = _p_dc(r, 90); pdp = _p_dc(r, mp["partial"])
     gp = V.GOAL_PTS.get(pos, 5)            # 4 FWD / 5 MID / 6 DEF-GK — was hardcoded 6 here too
