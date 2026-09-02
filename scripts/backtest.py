@@ -379,7 +379,15 @@ def score(season, gw, xi, bench, captain, vice):
 
 
 # ============================================================= WALK-FORWARD SIMULATION
-def simulate(season, start_squad, gw_from, gw_to, verbose=False, anti_churn=False):
+def simulate(season, start_squad, gw_from, gw_to, verbose=False, anti_churn=False,
+             planned_wc=None, wc_horizon=True):
+    """planned_wc: the gameweek the manager intends to wildcard, known in advance.
+
+    wc_horizon controls the behaviour under test. A transfer made the week before a rebuild owns
+    only the weeks until that rebuild, because the wildcard replaces the squad regardless. With
+    wc_horizon=True the transfer evaluation horizon collapses accordingly; with False it keeps
+    judging every move over the full six weeks, which is what weekly.py did before. Running the
+    same season both ways is the only honest test of that change."""
     squad = list(start_squad); itb = round(100.0 - sum(price(season, e, 0) for e in start_squad), 1)
     ft = 1; log = []
     acquired = {e: 0 for e in start_squad}                            # el -> gw acquired (for anti-churn)
@@ -387,10 +395,36 @@ def simulate(season, start_squad, gw_from, gw_to, verbose=False, anti_churn=Fals
         cut = gw - 1                                                  # sees only GW < gw
         pre = select_xi(squad, season, cut, gw)
         no_tr_pts, _ = score(season, gw, pre["xi"], pre["bench"], pre["captain"], pre["vice"])
-        tv = best_transfer(squad, itb, season, cut, gw, acquired=acquired if anti_churn else None)
+        if planned_wc and gw == planned_wc:
+            # Wildcard week: unlimited transfers, no hit, and the free transfer is not consumed.
+            squad = wildcard_refit(season, squad, itb, cut, gw)
+            itb = round(100.0 - sum(price(season, e, cut) for e in squad), 1)
+            for e in squad: acquired.setdefault(e, gw)
+            post = select_xi(squad, season, cut, gw)
+            pts, _final = score(season, gw, post["xi"], post["bench"], post["captain"], post["vice"])
+            ft = min(FT_CAP, ft + 1)
+            log.append(dict(gw=gw, squad_pts=pts, raw_pts=pts, hit=0, no_transfer_pts=no_tr_pts,
+                            optimal_pts=_optimal_gw(season, squad, itb, gw), made=True, wildcard=True,
+                            xi=list(post["xi"]), captain_el=post["captain"], transfer=None,
+                            out_el=None, in_el=None, tv_gain_pred=0.0, tv_gain_actual=pts - no_tr_pts,
+                            captain=season.meta[post["captain"]]["name"],
+                            captain_pts=_pts(season, post["captain"], gw), ft=ft, itb=itb))
+            if verbose:
+                print(f'GW{gw:>2}: {pts:>5.1f} (WILDCARD) | no-tr {no_tr_pts:>5.1f}')
+            continue
+        hold = HORIZON
+        if wc_horizon and planned_wc and gw < planned_wc:
+            hold = max(1, min(HORIZON, planned_wc - gw))
+        tv = best_transfer(squad, itb, season, cut, gw, hold=hold,
+                           acquired=acquired if anti_churn else None)
         made, hit = False, 0
         if tv is not None:
-            if ft >= 1 and tv["gain"] > FREE_THR: made = True
+            # The LIVE graduated threshold, not the flat FREE_THR — weekly.py rejects a marginal
+            # move at 4.8 where a flat 2.0 would take it, and the whole question here is whether a
+            # short-horizon gain clears the bar. Testing it against a different bar tests nothing.
+            wtc = (planned_wc - gw) if (planned_wc and gw < planned_wc) else 99
+            thr = transfer_threshold(wtc, ft)
+            if ft >= 1 and tv["gain"] > thr: made = True
             elif should_take_hit(tv, squad, season, cut, gw): made, hit = True, 4
         if made:
             squad = [tv["inn"] if e == tv["out"] else e for e in squad]
