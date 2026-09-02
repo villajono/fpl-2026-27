@@ -566,6 +566,24 @@ def _seq_ev(squad, gw):
 BANKED_THRESHOLD = {1: 4.0, 2: 4.0, 3: 3.0, 4: 2.0, 5: 0.0}     # free transfers held -> gain required
 
 
+def planned_wildcard_gw():
+    """The gameweek Jon intends to wildcard, from human_input.json: {"planned_wildcard_gw": 4}.
+
+    It matters because a transfer made the week before a rebuild owns exactly one gameweek — the
+    wildcard replaces the squad regardless — so its six-week gain is fiction. The engine used to
+    guess proximity from `max(0, 6 - gw)`, i.e. assume everyone wildcards around GW6, and then
+    merely nudged the threshold. Declaring it collapses the evaluation horizon instead, which is
+    the honest treatment."""
+    f = STATE / "human_input.json"
+    if not f.exists():
+        return None
+    try:
+        v = json.load(open(f, encoding="utf-8")).get("planned_wildcard_gw")
+        return int(v) if v else None
+    except Exception:
+        return None
+
+
 def transfer_threshold_live(banked, gw, wc_used):
     """Threshold falls as free transfers pile up. Holding a transfer is only worth something while
     you can still bank it: at 1-2 you have plenty of runway, so demand a clear 4.0 gain; by 4 the
@@ -641,7 +659,7 @@ def _wrap_report(lines, cols=WRAP_COLS):
     return out
 
 
-def report(team_name, squad_def, itb, banked, chips, planned):
+def report(team_name, squad_def, itb, banked, chips, planned, planned_wc=None):
     # defw must be present here: best_transfer() compares a candidate's defw against the outgoing
     # player's, and POOL rows carry it — squad rows must have the same shape or that lookup KeyErrors.
     squad = [dict(name=n, pos=po, team=t, price=pr, code=code_of(n, po, t),
@@ -650,7 +668,12 @@ def report(team_name, squad_def, itb, banked, chips, planned):
     rf = refresh_models()
     xi, bench, form = select_xi(squad, gw); caps = select_captain(xi)
     table, warn = trajectory(squad)
-    tv = best_transfer(squad, itb)
+    # A planned wildcard truncates how long any transfer is yours to keep. Per TEAM: it is Jon's
+    # intention, and Santa Claude is a neutral benchmark that never chip-shapes, so applying his
+    # plan to it would corrupt the comparison.
+    _wc = planned_wc
+    _hold = max(1, min(HORIZON, _wc - gw)) if (_wc and _wc > gw) else HORIZON
+    tv = best_transfer(squad, itb, hold=_hold)
     bench_ev = sum(p["e"] for p in bench if p["pos"] != "GK")
     cap_ev = caps[0][1] if caps else 0
     L = []
@@ -702,6 +725,10 @@ def report(team_name, squad_def, itb, banked, chips, planned):
         L.append("  → No chip this week — hold all available chips.")
     tr_thr, tr_note = transfer_threshold_live(banked, gw, load_chip_state()[str(_half(gw))]["WC"])
     L.append(f"  Transfer threshold this week: {tr_thr:.1f} pts{tr_note}")
+    if _hold < HORIZON:
+        L.append(f"  Wildcard declared for GW{_wc}, so a transfer made now is yours for "
+                 f"{_hold} gameweek{'s' if _hold > 1 else ''}, not {HORIZON}.")
+        L.append(f"  Judged on that horizon — the {HORIZON}-week gain is not available to you.")
     L.append("\nTRANSFER DECISION\n" + "━" * 17)
     if gw == 1:
         # Before the first deadline FPL gives unlimited free transfers, so the one-in-one-out engine
@@ -785,7 +812,7 @@ if __name__ == "__main__":
              ("Semenyo","MID","MCI",8.5),("Hinshelwood","MID","BHA",6.0),
              ("João Pedro","FWD","CHE",7.6),("Haaland","FWD","MCI",15.5),("Calvert-Lewin","FWD","LEE",6.0)]
     print(report("SANTA CLAUDE (AI team)", SANTA, itb=0.9, banked=1,
-                 chips={}, planned=[
+                 chips={}, planned_wc=None, planned=[
                      "Neutral baseline — follow this engine's weekly call exactly, no chip shaping.",
                      "All four chips still held. 141 pts, overall 3.15m after GW2.",
                      "Spurs pair (Senesi, Van Hecke) held on model EV only: new manager, WC "
@@ -794,7 +821,7 @@ if __name__ == "__main__":
                      "£0.9m ITB from the Mosquera → De Cuyper move."]))
     print()
     print(report("JON'S TEAM", HUMAN, itb=0.0, banked=2,
-                 chips={"1": {"BB": 1}}, planned=[
+                 chips={"1": {"BB": 1}}, planned_wc=planned_wildcard_gw(), planned=[
                      "BENCH BOOST PLAYED GW1. 163 pts, overall 846k after GW2 — the whole 22-pt "
                      "lead over Santa Claude came in GW1; GW2 was 87 apiece.",
                      "Remaining first-half chips: Wildcard, Triple Captain, Free Hit. The old plan "
