@@ -87,13 +87,25 @@ def _build():
     R = {}
     for name in IMPLIED:
         if name not in att_raw.index: continue
-        adj = IMPLIED[name]; scale = 1 + adj/80.0; K = 5 if abs(adj) >= 8 else 9
+        # K is the prior's equivalent sample size: w = games/(games+K). At the old 5 and 9, two
+        # gameweeks moved a rating by 29% — Coventry's defensive weakness went 1.40 -> 1.20 on two
+        # matches, and that scales every attacking return in every fixture six weeks out.
+        # Swept in calibrate.py: MAE and rank correlation are flat from K=2 to K=40, but top-1 —
+        # the points scored by the model's best pick each week, i.e. the captaincy — sits at
+        # 5.61-5.70 for K<=8 and 5.91 from K=12 up. Slower ratings pick a better captain and cost
+        # nothing. Keeping the two-tier structure (a bigger implied adjustment means a less
+        # confident prior, so it should still move faster) and scaling both into that plateau.
+        adj = IMPLIED[name]; scale = 1 + adj/80.0; K = 12 if abs(adj) >= 8 else 22
         a, d = round(att_raw[name]*scale, 2), round(defw_raw[name]/scale, 2)
         R[name2sh[name]] = {"name":name,"att":a,"defw":d,"K":K,"adj":adj,"att_prior":a,"defw_prior":d}
     for name, pts in PROMOTED_PTS.items():
         sh = {"Ipswich":"IPS","Coventry":"COV","Hull":"HUL"}[name]
         a = round(0.55+(pts-24)/54*0.9, 2); d = round(1.55-(pts-24)/54*0.9, 2)
-        R[sh] = {"name":name,"att":a,"defw":d,"K":4,"adj":None,"att_prior":a,"defw_prior":d,"promoted":True}
+        # K=8, not 4. Promoted sides keep the FASTEST prior in the model — their Championship-points
+        # prior really is the weakest thing here, so the data should overtake it soonest — but 4
+        # gave two Premier League games a third of the weight, and two games is a poor basis however
+        # weak the prior. Coventry's defensive weakness moved 1.40 -> 1.20 on exactly that.
+        R[sh] = {"name":name,"att":a,"defw":d,"K":8,"adj":None,"att_prior":a,"defw_prior":d,"promoted":True}
 
     g["opp_defw"] = g["opp_name"].map(defw_raw.to_dict()); g["opp_att"] = g["opp_name"].map(att_raw.to_dict())
     app = g[g.minutes >= 60].dropna(subset=["opp_att","opp_defw"]).copy()
