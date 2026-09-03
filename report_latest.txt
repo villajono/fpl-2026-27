@@ -10,7 +10,8 @@
 SANTA CLAUDE (AI team) — GW3 DECISIONS
 Models updated: GW2 data ingested ✓ (2 GWs played →
   Bayesian blended)
-⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 53.6h)
+⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 29.6h)   ⚠
+  ACT BEFORE DEADLINE
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -21,12 +22,12 @@ MODEL UPDATES THIS WEEK
     xG (20 clubs)
   ⟳ overrides: 4 active for GW3; players.json
     refreshed for the form
-  CHE att 1.50→1.53 def 0.82→0.83  [K=5, prior
-    71%/data 29%]
-  MUN att 1.19→1.36 def 0.93→0.94  [K=9, prior
-    82%/data 18%]
-  LIV att 1.29→1.34 def 0.79→0.90  [K=5, prior
-    71%/data 29%]
+  CHE att 1.50→1.52 def 0.82→0.83  [K=12, prior
+    86%/data 14%]
+  MCI att 1.30→1.31 def 0.86→0.82  [K=22, prior
+    92%/data 8%]
+  LIV att 1.29→1.31 def 0.79→0.85  [K=12, prior
+    86%/data 14%]
   (team ratings move once GW1 xG lands; divergence>30%
     after 3 GWs → flag)
 
@@ -47,8 +48,8 @@ MODEL UPDATES THIS WEEK
   player          team   P(60+)  source
   Mateta          CRY      0.00  model
   Sarr            CRY      0.00  model
+  Sánchez         CHE      0.00  model
   Senesi          TOT      0.72  model
-  Sánchez         CHE      0.72  model
   Calafiori       ARS      0.92  model
   De Cuyper       BHA      0.92  model
   → Szoboszlai    LIV      0.97  model  (transfer
@@ -69,18 +70,18 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   Monitoring
-               rebuild value: +29 pts / 6 weeks vs
+               rebuild value: +28 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): No (GW2)
                free transfers banked (roll through
                WC): 1
   Bench Boost: Monitoring
-               bench EV this GW: 6.8   |   peak
-               remaining this half: 7.9
+               bench EV this GW: 3.8   |   peak
+               remaining this half: 4.7
   Triple Cap:  Monitoring
-               captain EV this GW: 6.9   |   best
-               remaining captain week this half: 8.0
+               captain EV this GW: 7.2   |   best
+               remaining captain week this half: 7.8
   Free Hit:    Monitoring
                players blanking this GW: 0   |
                free-hit team gain: +7.3 pts vs current
@@ -98,7 +99,7 @@ TRANSFER DECISION
       for a revised call
     quality upgrade · effective-out adjusted for bench
       cover · 6-GW hold
-    gain: GW+1 +5.3 · GW+1&2 +10.6 · full 6-GW +29.3
+    gain: GW+1 +5.3 · GW+1&2 +10.6 · full 6-GW +29.5
     → TRANSFER ✓ (free)    (budget after £0.3m ITB, 1
       banked)
 
@@ -113,13 +114,13 @@ WATCHLIST (monitor, not acting)
 
 CAPTAIN — highest-EV starter (doubles)
 ━━━━━━━
-  Captain: Haaland — EV 6.9 (×2 = 13.8), MCI vs COV
-  Vice:    Gvardiol — EV 6.1
+  Captain: Haaland — EV 7.2 (×2 = 14.4), MCI vs COV
+  Vice:    Gvardiol — EV 6.0
 
 STARTING XI — 4-4-2
 ━━━━━━━━━━━━━━━━━━━━━━━━
   GK: Leno
-  DEF: Gvardiol, De Cuyper, Calafiori, Van Hecke
+  DEF: Gvardiol, De Cuyper, Van Hecke, Calafiori
   MID: Mbeumo, Schade, Gomez, Palmer
   FWD: Haaland, Calvert-Lewin
   Bench: Sánchez, Senesi, Sarr, Mateta
@@ -127,8 +128,8 @@ STARTING XI — 4-4-2
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
   GW3  GW4  GW5  GW6  GW7  GW8
-    62    63    62    59    68    61   (min 59)
-  GW3 = XI 54 + captain bonus 7 + auto-sub 0.5
+    63    64    62    59    68    60   (min 59)
+  GW3 = XI 55 + captain bonus 7 + auto-sub 0.5
     (auto-sub small by design)
 
 PLANNED TRANSFERS
@@ -148,7 +149,8 @@ PLANNED TRANSFERS
 JON'S TEAM — GW3 DECISIONS
 Models updated: GW2 data ingested ✓ (2 GWs played →
   Bayesian blended)
-⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 53.6h)
+⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 29.6h)   ⚠
+  ACT BEFORE DEADLINE
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -159,12 +161,12 @@ MODEL UPDATES THIS WEEK
     xG (20 clubs)
   ⟳ overrides: 4 active for GW3; players.json
     refreshed for the form
-  CHE att 1.50→1.53 def 0.82→0.83  [K=5, prior
-    71%/data 29%]
-  MUN att 1.19→1.36 def 0.93→0.94  [K=9, prior
-    82%/data 18%]
-  LIV att 1.29→1.34 def 0.79→0.90  [K=5, prior
-    71%/data 29%]
+  CHE att 1.50→1.52 def 0.82→0.83  [K=12, prior
+    86%/data 14%]
+  MCI att 1.30→1.31 def 0.86→0.82  [K=22, prior
+    92%/data 8%]
+  LIV att 1.29→1.31 def 0.79→0.85  [K=12, prior
+    86%/data 14%]
   (team ratings move once GW1 xG lands; divergence>30%
     after 3 GWs → flag)
 
@@ -189,7 +191,7 @@ MODEL UPDATES THIS WEEK
   Kinsky          TOT      0.80  model
   Calafiori       ARS      0.92  model
   Ajer            BRE      0.93  model
-  → Tavernier     BOU      0.95  model  (transfer
+  → Dewsbury-Hall EVE      0.97  model  (transfer
     target)
 
 FIXTURE INPUTS — DATA SOURCES
@@ -207,18 +209,18 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   Monitoring
-               rebuild value: +17 pts / 6 weeks vs
+               rebuild value: +20 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): No (GW2)
                free transfers banked (roll through
                WC): 2
   Bench Boost: Used GW1
-               bench EV this GW: 8.8   |   peak
-               remaining this half: 9.8
+               bench EV this GW: 9.0   |   peak
+               remaining this half: 10.0
   Triple Cap:  Monitoring
-               captain EV this GW: 6.9   |   best
-               remaining captain week this half: 8.0
+               captain EV this GW: 7.2   |   best
+               remaining captain week this half: 7.8
   Free Hit:    Monitoring
                players blanking this GW: 0   |
                free-hit team gain: +4.4 pts vs current
@@ -226,23 +228,23 @@ CHIP EVALUATION
   → No chip this week — hold all available chips.
   Transfer threshold this week: 4.8 pts (×1.2 —
     wildcard approaching)
-  Wildcard declared for GW4, so a transfer made now is
-    yours for 1 gameweek, not 6.
-  Judged on that horizon — the 6-week gain is not
-    available to you.
+  Wildcard possible GW4 at p=50%, so a transfer made
+    now is yours for an expected 3.5 gameweeks, not 6.
+  Judged on that horizon. At p=100% it would be 1; the
+    rest is the branch where you do not play it.
 
 TRANSFER DECISION
 ━━━━━━━━━━━━━━━━━
-  Best target: OUT Tzolis (MID ARS) → IN Tavernier
-    (BOU £6.0)
-    P(60+) assumed: Tzolis 0.18 → Tavernier 0.95 — if
-      you know better, override in the form and re-run
-      for a revised call
+  Best target: OUT Tzolis (MID ARS) → IN Dewsbury-Hall
+    (EVE £6.5)
+    P(60+) assumed: Tzolis 0.18 → Dewsbury-Hall 0.97 —
+      if you know better, override in the form and
+      re-run for a revised call
     quality upgrade · effective-out adjusted for bench
-      cover · 1-GW hold
-    gain: GW+1 +3.5 · GW+1&2 +3.5 · full 1-GW +3.5
-    → BANK (gain +3.5 below the 4.8 threshold)
-      (budget after £0.5m ITB, 2 banked)
+      cover · 4-GW hold
+    gain: GW+1 +3.3 · GW+1&2 +6.3 · full 4-GW +14.3
+    → TRANSFER ✓ (free)    (budget after £0.0m ITB, 2
+      banked)
 
 WATCHLIST (monitor, not acting)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -253,21 +255,21 @@ WATCHLIST (monitor, not acting)
 
 CAPTAIN — highest-EV starter (doubles)
 ━━━━━━━
-  Captain: Haaland — EV 6.9 (×2 = 13.8), MCI vs COV
-  Vice:    Gabriel — EV 5.6
+  Captain: Haaland — EV 7.2 (×2 = 14.4), MCI vs COV
+  Vice:    Gabriel — EV 5.5
 
 STARTING XI — 4-3-3
 ━━━━━━━━━━━━━━━━━━━━━━━━
   GK: Verbruggen
   DEF: Gabriel, Ajer, Calafiori, Shaw
-  MID: Mbeumo, Semenyo, Schade
+  MID: Mbeumo, Schade, Semenyo
   FWD: Haaland, Calvert-Lewin, João Pedro
   Bench: Kinsky, F.Kadıoğlu, Hinshelwood, Tzolis
 
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
   GW3  GW4  GW5  GW6  GW7  GW8
-    60    61    59    60    63    63   (min 59)
+    61    61    59    59    62    62   (min 59)
   GW3 = XI 53 + captain bonus 7 + auto-sub 0.3
     (auto-sub small by design)
 
