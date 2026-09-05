@@ -1,45 +1,4 @@
 {
-  "gameweek": 3,
-  "overrides": [
-    {
-      "player_id": 439509,
-      "player_name": "Tzolis",
-      "club": "ARS",
-      "p_start": 0.5,
-      "mins_if_start": 57,
-      "notes": "Hooked at half time v Arsenal's last game. Starts about half the time and does not see the hour; Eze available to replace him. (Jon, 2026-09-01)",
-      "added": "2026-09-01"
-    },
-    {
-      "player_id": 209244,
-      "player_name": "Foden",
-      "club": "MCI",
-      "p_start": 0.65,
-      "mins_if_start": 67,
-      "notes": "Doku back 5 Sep, Cherki producing, Enzo Fernandez and Ndiaye arriving. Model's 0.93 is backward-looking from two starts. (Jon, 2026-09-01)",
-      "added": "2026-09-01"
-    },
-    {
-      "player_id": 216646,
-      "player_name": "Wissa",
-      "club": "NEW",
-      "p_start": 0.9,
-      "mins_if_start": 85,
-      "notes": "Newcastle's starting centre-forward - started both openers, 171 mins. Model's 0.73 is a thin-prior artifact (only 517 mins of last-season history), not a doubt about his role. (2026-09-01)",
-      "added": "2026-09-01"
-    },
-    {
-      "player_id": 215379,
-      "player_name": "Anderson",
-      "club": "MCI",
-      "p_start": 0.55,
-      "mins_if_start": 70,
-      "notes": "Man City signed Enzo Fernandez from Chelsea, a direct competitor for the defensive-mid spot; likely to share minutes. FPL still lists Enzo as CHE so the model cannot see it. Anderson was already averaging 71 mins a start. (Jon, 2026-09-02)",
-      "added": "2026-09-02"
-    }
-  ],
-  "planned_wildcard": {
-    "gw": 4,
-    "p": 0.5
-  }
+  "gameweek": 4,
+  "overrides": []
 }

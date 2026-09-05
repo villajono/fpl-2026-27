@@ -3,14 +3,14 @@
      data
    Bayesian team ratings updated from 2 live GW(s) of
      xG (20 clubs)
-   overrides: 4 active for GW3; players.json refreshed
+   overrides: 0 active for GW4; players.json refreshed
      for the form
 
 ══════════════════════════════════════════════════════
 SANTA CLAUDE (AI team) — GW3 DECISIONS
 Models updated: GW2 data ingested ✓ (2 GWs played →
   Bayesian blended)
-⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 5.6h)
+⏰ GW4 DEADLINE: Sat 12 Sep, 13:30 UK  (in 169.4h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -19,7 +19,7 @@ MODEL UPDATES THIS WEEK
     data
   ⟳ Bayesian team ratings updated from 2 live GW(s) of
     xG (20 clubs)
-  ⟳ overrides: 4 active for GW3; players.json
+  ⟳ overrides: 0 active for GW4; players.json
     refreshed for the form
   CHE att 1.50→1.52 def 0.82→0.83  [K=12, prior
     86%/data 14%]
@@ -34,11 +34,8 @@ MODEL UPDATES THIS WEEK
   phone form)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   No >20% P(starts) moves since last week.
-  4 override(s) live for GW3, none of them in this
-    squad: Tzolis p60 0.18, Foden p60 0.53, Wissa p60
-    0.90, Anderson p60 0.49.
-  They still price transfer targets and the wider
-    pool.
+  No overrides set — add one from the form when you
+    know something the model can't.
 
   P(START) THE MODEL IS RUNNING ON — shakiest first.
     Override any you know better
@@ -51,7 +48,7 @@ MODEL UPDATES THIS WEEK
   Senesi          TOT      0.72  model
   Calafiori       ARS      0.92  model
   De Cuyper       BHA      0.92  model
-  → Szoboszlai    LIV      0.97  model  (transfer
+  → Foden         MCI      0.93  model  (transfer
     target)
 
 FIXTURE INPUTS — DATA SOURCES
@@ -69,7 +66,7 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   Monitoring
-               rebuild value: +27 pts / 6 weeks vs
+               rebuild value: +26 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): No (GW2)
@@ -83,7 +80,7 @@ CHIP EVALUATION
                remaining captain week this half: 9.1
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +7.1 pts vs current
+               free-hit team gain: +7.9 pts vs current
                XI
   → RECOMMENDATION: play TC this week (confirm via the
     phone form). One chip per week max.
@@ -92,14 +89,14 @@ CHIP EVALUATION
 
 TRANSFER DECISION
 ━━━━━━━━━━━━━━━━━
-  Best target: OUT Sarr (MID CRY) → IN Szoboszlai (LIV
+  Best target: OUT Sarr (MID CRY) → IN Foden (MCI
     £7.0)
-    P(60+) assumed: Sarr 0.00 → Szoboszlai 0.97 — if
-      you know better, override in the form and re-run
-      for a revised call
-    quality upgrade · effective-out adjusted for bench
+    P(60+) assumed: Sarr 0.00 → Foden 0.93 — if you
+      know better, override in the form and re-run for
+      a revised call
+    fixture swing · effective-out adjusted for bench
       cover · 6-GW hold
-    gain: GW+1 +5.7 · GW+1&2 +10.9 · full 6-GW +29.9
+    gain: GW+1 +7.1 · GW+1&2 +11.4 · full 6-GW +32.4
     → TRANSFER ✓ (free)    (budget after £0.3m ITB, 1
       banked)
 
@@ -149,7 +146,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW3 DECISIONS
 Models updated: GW2 data ingested ✓ (2 GWs played →
   Bayesian blended)
-⏰ GW3 DEADLINE: Fri 04 Sep, 18:30 UK  (in 5.6h)
+⏰ GW4 DEADLINE: Sat 12 Sep, 13:30 UK  (in 169.4h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -158,7 +155,7 @@ MODEL UPDATES THIS WEEK
     data
   ⟳ Bayesian team ratings updated from 2 live GW(s) of
     xG (20 clubs)
-  ⟳ overrides: 4 active for GW3; players.json
+  ⟳ overrides: 0 active for GW4; players.json
     refreshed for the form
   CHE att 1.50→1.52 def 0.82→0.83  [K=12, prior
     86%/data 14%]
@@ -173,24 +170,21 @@ MODEL UPDATES THIS WEEK
   phone form)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   No >20% P(starts) moves since last week.
-  Your overrides applied to THIS squad:
-    ✓ Tzolis (ARS): p60→0.18 — Hooked at half time v
-      Arsenal's last game. Starts about half the time
-      and does not see the hour; Eze available to
-      replace him. (Jon, 2026-09-01)
+  No overrides set — add one from the form when you
+    know something the model can't.
 
   P(START) THE MODEL IS RUNNING ON — shakiest first.
     Override any you know better
   from the form, then re-run the workflow for a
     revised call.
   player          team   P(60+)  source
-  Tzolis          ARS      0.18  YOURS
+  Tzolis          ARS      0.28  model
   Hinshelwood     BHA      0.34  model
   F.Kadıoğlu      BHA      0.72  model
   Kinsky          TOT      0.80  model
   Calafiori       ARS      0.92  model
   Ajer            BRE      0.93  model
-  → Tavernier     BOU      0.95  model  (transfer
+  → Anderson      MCI      0.97  model  (transfer
     target)
 
 FIXTURE INPUTS — DATA SOURCES
@@ -208,42 +202,38 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   Monitoring
-               rebuild value: +20 pts / 6 weeks vs
+               rebuild value: +24 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): No (GW2)
                free transfers banked (roll through
                WC): 2
   Bench Boost: Used GW1
-               bench EV this GW: 7.9   |   peak
-               remaining this half: 10.0
+               bench EV this GW: 7.7   |   peak
+               remaining this half: 9.8
   Triple Cap:  RECOMMENDED ✓
                captain EV this GW: 9.1   |   best
                remaining captain week this half: 9.1
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +4.3 pts vs current
+               free-hit team gain: +5.2 pts vs current
                XI
   → RECOMMENDATION: play TC this week (confirm via the
     phone form). One chip per week max.
   Transfer threshold this week: 4.8 pts (×1.2 —
     wildcard approaching)
-  Wildcard possible GW4 at p=50%, so a transfer made
-    now is yours for an expected 3.5 gameweeks, not 6.
-  Judged on that horizon. At p=100% it would be 1; the
-    rest is the branch where you do not play it.
 
 TRANSFER DECISION
 ━━━━━━━━━━━━━━━━━
-  Best target: OUT Tzolis (MID ARS) → IN Tavernier
-    (BOU £6.0)
-    P(60+) assumed: Tzolis 0.18 → Tavernier 0.95 — if
+  Best target: OUT Tzolis (MID ARS) → IN Anderson (MCI
+    £6.4)
+    P(60+) assumed: Tzolis 0.28 → Anderson 0.97 — if
       you know better, override in the form and re-run
       for a revised call
-    quality upgrade · effective-out adjusted for bench
-      cover · 4-GW hold
-    gain: GW+1 +3.5 · GW+1&2 +7.4 · full 4-GW +13.9
-    → TRANSFER ✓ (free)    (budget after £0.5m ITB, 2
+    fixture swing · effective-out adjusted for bench
+      cover · 6-GW hold
+    gain: GW+1 +4.8 · GW+1&2 +8.4 · full 6-GW +24.7
+    → TRANSFER ✓ (free)    (budget after £0.1m ITB, 2
       banked)
 
 WATCHLIST (monitor, not acting)
