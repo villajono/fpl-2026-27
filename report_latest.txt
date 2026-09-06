@@ -10,7 +10,7 @@
 SANTA CLAUDE (AI team) — GW3 DECISIONS
 Models updated: GW2 data ingested ✓ (2 GWs played →
   Bayesian blended)
-⏰ GW4 DEADLINE: Sat 12 Sep, 13:30 UK  (in 169.4h)
+⏰ GW4 DEADLINE: Sat 12 Sep, 13:30 UK  (in 145.0h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -56,7 +56,7 @@ FIXTURE INPUTS — DATA SOURCES
   Bookmaker odds ON — market average
     (football-data.co.uk), 1X2 + O/U, overround
     removed ✓  (GW+4+ always xG model)
-  GW+1 (GW3): odds — 10/10 fixtures priced
+  GW+1 (GW3): xG model (no odds published)
   GW+2 (GW4): xG model (no odds published)
   GW+3 (GW5): xG model (no odds published)
   GW+4 (GW6): xG model (no odds published)
@@ -66,24 +66,23 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   Monitoring
-               rebuild value: +26 pts / 6 weeks vs
+               rebuild value: +24 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): No (GW2)
                free transfers banked (roll through
                WC): 1
   Bench Boost: Monitoring
-               bench EV this GW: 3.2   |   peak
+               bench EV this GW: 3.8   |   peak
                remaining this half: 4.7
-  Triple Cap:  RECOMMENDED ✓
-               captain EV this GW: 9.1   |   best
-               remaining captain week this half: 9.1
+  Triple Cap:  Monitoring
+               captain EV this GW: 7.2   |   best
+               remaining captain week this half: 7.8
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +7.9 pts vs current
+               free-hit team gain: +5.7 pts vs current
                XI
-  → RECOMMENDATION: play TC this week (confirm via the
-    phone form). One chip per week max.
+  → No chip this week — hold all available chips.
   Transfer threshold this week: 4.8 pts (×1.2 —
     wildcard approaching)
 
@@ -96,7 +95,7 @@ TRANSFER DECISION
       a revised call
     fixture swing · effective-out adjusted for bench
       cover · 6-GW hold
-    gain: GW+1 +7.1 · GW+1&2 +11.4 · full 6-GW +32.4
+    gain: GW+1 +5.8 · GW+1&2 +10.2 · full 6-GW +31.2
     → TRANSFER ✓ (free)    (budget after £0.3m ITB, 1
       banked)
 
@@ -111,13 +110,13 @@ WATCHLIST (monitor, not acting)
 
 CAPTAIN — highest-EV starter (doubles)
 ━━━━━━━
-  Captain: Haaland — EV 9.1 (×2 = 18.2), MCI vs COV
+  Captain: Haaland — EV 7.2 (×2 = 14.4), MCI vs COV
   Vice:    Gvardiol — EV 6.0
 
 STARTING XI — 4-4-2
 ━━━━━━━━━━━━━━━━━━━━━━━━
   GK: Leno
-  DEF: Gvardiol, De Cuyper, Calafiori, Van Hecke
+  DEF: Gvardiol, De Cuyper, Van Hecke, Calafiori
   MID: Mbeumo, Schade, Gomez, Palmer
   FWD: Haaland, Calvert-Lewin
   Bench: Sánchez, Senesi, Sarr, Mateta
@@ -125,8 +124,8 @@ STARTING XI — 4-4-2
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
   GW3  GW4  GW5  GW6  GW7  GW8
-    65    64    62    59    68    60   (min 59)
-  GW3 = XI 56 + captain bonus 9 + auto-sub 0.4
+    63    64    62    59    68    60   (min 59)
+  GW3 = XI 55 + captain bonus 7 + auto-sub 0.5
     (auto-sub small by design)
 
 PLANNED TRANSFERS
@@ -146,7 +145,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW3 DECISIONS
 Models updated: GW2 data ingested ✓ (2 GWs played →
   Bayesian blended)
-⏰ GW4 DEADLINE: Sat 12 Sep, 13:30 UK  (in 169.4h)
+⏰ GW4 DEADLINE: Sat 12 Sep, 13:30 UK  (in 145.0h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -192,7 +191,7 @@ FIXTURE INPUTS — DATA SOURCES
   Bookmaker odds ON — market average
     (football-data.co.uk), 1X2 + O/U, overround
     removed ✓  (GW+4+ always xG model)
-  GW+1 (GW3): odds — 10/10 fixtures priced
+  GW+1 (GW3): xG model (no odds published)
   GW+2 (GW4): xG model (no odds published)
   GW+3 (GW5): xG model (no odds published)
   GW+4 (GW6): xG model (no odds published)
@@ -202,24 +201,23 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   Monitoring
-               rebuild value: +24 pts / 6 weeks vs
+               rebuild value: +23 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): No (GW2)
                free transfers banked (roll through
                WC): 2
   Bench Boost: Used GW1
-               bench EV this GW: 7.7   |   peak
+               bench EV this GW: 8.8   |   peak
                remaining this half: 9.8
-  Triple Cap:  RECOMMENDED ✓
-               captain EV this GW: 9.1   |   best
-               remaining captain week this half: 9.1
+  Triple Cap:  Monitoring
+               captain EV this GW: 7.2   |   best
+               remaining captain week this half: 7.8
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +5.2 pts vs current
+               free-hit team gain: +4.7 pts vs current
                XI
-  → RECOMMENDATION: play TC this week (confirm via the
-    phone form). One chip per week max.
+  → No chip this week — hold all available chips.
   Transfer threshold this week: 4.8 pts (×1.2 —
     wildcard approaching)
 
@@ -232,7 +230,7 @@ TRANSFER DECISION
       for a revised call
     fixture swing · effective-out adjusted for bench
       cover · 6-GW hold
-    gain: GW+1 +4.8 · GW+1&2 +8.4 · full 6-GW +24.7
+    gain: GW+1 +4.5 · GW+1&2 +8.1 · full 6-GW +24.4
     → TRANSFER ✓ (free)    (budget after £0.1m ITB, 2
       banked)
 
@@ -245,22 +243,22 @@ WATCHLIST (monitor, not acting)
 
 CAPTAIN — highest-EV starter (doubles)
 ━━━━━━━
-  Captain: Haaland — EV 9.1 (×2 = 18.2), MCI vs COV
-  Vice:    Semenyo — EV 6.1
+  Captain: Haaland — EV 7.2 (×2 = 14.4), MCI vs COV
+  Vice:    Gabriel — EV 5.5
 
 STARTING XI — 4-3-3
 ━━━━━━━━━━━━━━━━━━━━━━━━
   GK: Verbruggen
-  DEF: Gabriel, Calafiori, Ajer, Shaw
-  MID: Semenyo, Mbeumo, Schade
-  FWD: Haaland, João Pedro, Calvert-Lewin
+  DEF: Gabriel, Ajer, Calafiori, Shaw
+  MID: Mbeumo, Schade, Semenyo
+  FWD: Haaland, Calvert-Lewin, João Pedro
   Bench: Kinsky, F.Kadıoğlu, Hinshelwood, Tzolis
 
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
   GW3  GW4  GW5  GW6  GW7  GW8
-    64    61    59    59    62    62   (min 59)
-  GW3 = XI 55 + captain bonus 9 + auto-sub 0.3
+    61    61    59    59    62    62   (min 59)
+  GW3 = XI 53 + captain bonus 7 + auto-sub 0.3
     (auto-sub small by design)
 
 PLANNED TRANSFERS
