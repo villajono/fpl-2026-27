@@ -1,5 +1,13 @@
 # Brief — model corrections outstanding
 
+> **GW4 decisions are locked in `notes/GW4_DECISION.md` (2026-09-09).** Village Idiots plays the
+> WILDCARD; Santa Claude makes one transfer, Mateta -> Barry, on pure model output. That file also
+> records what the session settled about the model: premium compression WITHDRAWN as a defect (the
+> test was wrong, see item 5 below), minutes recency confirmed as the live one, and three
+> gameweeks of team results measured at ~12% predictive weight. Read it before re-opening any of
+> those three.
+
+
 Written 2026-09-01 after a session that fixed nine things and left six known-wrong.
 For Jon and whoever picks this up next.
 
