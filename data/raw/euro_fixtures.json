@@ -1,0 +1,152 @@
+{
+ "generated": "2026-09-07T13:27:09",
+ "source": "thesportsdb free tier, per-team next/last events",
+ "note": "Feature only. Nothing adjusts p60 from this until the effect is measured. Horizon is short — refresh weekly rather than trusting a stored file.",
+ "clubs": {
+  "ARS": {
+   "name": "Arsenal",
+   "team_id": "133604",
+   "fixtures": [
+    {
+     "date": "2026-09-09",
+     "time": "19:00",
+     "comp": "UEFA Champions League",
+     "home": "Napoli",
+     "away": "Arsenal",
+     "when": "next"
+    }
+   ]
+  },
+  "AVL": {
+   "name": "Aston Villa",
+   "team_id": "133601",
+   "fixtures": [
+    {
+     "date": "2026-09-08",
+     "time": "16:45",
+     "comp": "UEFA Champions League",
+     "home": "Club Brugge",
+     "away": "Aston Villa",
+     "when": "next"
+    }
+   ]
+  },
+  "BOU": {
+   "name": "Bournemouth",
+   "team_id": "134301",
+   "fixtures": []
+  },
+  "BRE": {
+   "name": "Brentford",
+   "team_id": "134355",
+   "fixtures": []
+  },
+  "BHA": {
+   "name": "Brighton",
+   "team_id": "133619",
+   "fixtures": []
+  },
+  "CHE": {
+   "name": "Chelsea",
+   "team_id": "133610",
+   "fixtures": []
+  },
+  "COV": {
+   "name": "Coventry City",
+   "team_id": "133625",
+   "fixtures": []
+  },
+  "CRY": {
+   "name": "Crystal Palace",
+   "team_id": "133632",
+   "fixtures": []
+  },
+  "EVE": {
+   "name": "Everton",
+   "team_id": "133615",
+   "fixtures": []
+  },
+  "FUL": {
+   "name": "Fulham",
+   "team_id": "133600",
+   "fixtures": []
+  },
+  "HUL": {
+   "name": "Hull City",
+   "team_id": "133617",
+   "fixtures": []
+  },
+  "IPS": {
+   "name": "Ipswich Town",
+   "team_id": "133622",
+   "fixtures": []
+  },
+  "LEE": {
+   "name": "Leeds",
+   "team_id": "133635",
+   "fixtures": []
+  },
+  "LIV": {
+   "name": "Liverpool",
+   "team_id": "133602",
+   "fixtures": [
+    {
+     "date": "2026-09-09",
+     "time": "19:00",
+     "comp": "UEFA Champions League",
+     "home": "Liverpool",
+     "away": "Atlético Madrid",
+     "when": "next"
+    }
+   ]
+  },
+  "MCI": {
+   "name": "Man City",
+   "team_id": "133613",
+   "fixtures": [
+    {
+     "date": "2026-09-08",
+     "time": "19:00",
+     "comp": "UEFA Champions League",
+     "home": "Porto",
+     "away": "Manchester City",
+     "when": "next"
+    }
+   ]
+  },
+  "MUN": {
+   "name": "Man Utd",
+   "team_id": "133612",
+   "fixtures": [
+    {
+     "date": "2026-09-10",
+     "time": "19:00",
+     "comp": "UEFA Champions League",
+     "home": "Manchester United",
+     "away": "Sabah Baku",
+     "when": "next"
+    }
+   ]
+  },
+  "NEW": {
+   "name": "Newcastle",
+   "team_id": "134777",
+   "fixtures": []
+  },
+  "NFO": {
+   "name": "Nott'm Forest",
+   "team_id": "148600",
+   "fixtures": []
+  },
+  "TOT": {
+   "name": "Spurs",
+   "team_id": "133616",
+   "fixtures": []
+  },
+  "SUN": {
+   "name": "Sunderland",
+   "team_id": "133603",
+   "fixtures": []
+  }
+ }
+}
