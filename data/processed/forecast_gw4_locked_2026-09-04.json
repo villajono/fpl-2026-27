@@ -1,0 +1,8365 @@
+{
+ "generated": "2026-09-04T16:53:26",
+ "gw0": 4,
+ "horizon": 6,
+ "decay": {
+  "1": 1.0,
+  "2": 0.92,
+  "3": 0.88,
+  "4": 0.83,
+  "5": 0.8,
+  "6": 0.79
+ },
+ "current_gw": 2,
+ "n_players": 491,
+ "note": "Central estimates, locked. Downstream tools must read this file and must not recompute EV. Confidence is the share of each rate that is the player's own data rather than his position prior; it is information for the reader, not an input to the optimiser.",
+ "players": {
+  "Raya|ARS": {
+   "code": 154561,
+   "pos": "GK",
+   "team": "ARS",
+   "price": 6.0,
+   "ev": [
+    5.0431,
+    4.5006,
+    4.8572,
+    4.7078,
+    4.9611,
+    4.3316
+   ],
+   "p60": 0.97,
+   "minutes": 3510,
+   "confidence": 1.0
+  },
+  "Arrizabalaga|ARS": {
+   "code": 109745,
+   "pos": "GK",
+   "team": "ARS",
+   "price": 5.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 90,
+   "confidence": 0.2
+  },
+  "Meslier|ARS": {
+   "code": 437495,
+   "pos": "GK",
+   "team": "ARS",
+   "price": 5.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Gabriel|ARS": {
+   "code": 226597,
+   "pos": "DEF",
+   "team": "ARS",
+   "price": 8.0,
+   "ev": [
+    6.5579,
+    5.6212,
+    6.3708,
+    5.9596,
+    6.5445,
+    5.2867
+   ],
+   "p60": 0.97,
+   "minutes": 2930,
+   "confidence": 1.0
+  },
+  "Lewis-Skelly|ARS": {
+   "code": 499169,
+   "pos": "MID",
+   "team": "ARS",
+   "price": 5.5,
+   "ev": [
+    2.602,
+    2.4153,
+    2.5723,
+    2.4796,
+    2.6073,
+    2.3497
+   ],
+   "p60": 0.89,
+   "minutes": 857,
+   "confidence": 1.0
+  },
+  "Calafiori|ARS": {
+   "code": 466075,
+   "pos": "DEF",
+   "team": "ARS",
+   "price": 5.6,
+   "ev": [
+    5.5509,
+    4.5994,
+    5.4107,
+    4.9299,
+    5.5871,
+    4.2539
+   ],
+   "p60": 0.92,
+   "minutes": 1867,
+   "confidence": 1.0
+  },
+  "Hincapie|ARS": {
+   "code": 448104,
+   "pos": "DEF",
+   "team": "ARS",
+   "price": 5.4,
+   "ev": [
+    2.5034,
+    2.1246,
+    2.4052,
+    2.2675,
+    2.4755,
+    1.9919
+   ],
+   "p60": 0.42,
+   "minutes": 1796,
+   "confidence": 1.0
+  },
+  "White|ARS": {
+   "code": 198869,
+   "pos": "DEF",
+   "team": "ARS",
+   "price": 5.5,
+   "ev": [
+    5.295,
+    4.4592,
+    5.1091,
+    4.7662,
+    5.2642,
+    4.1629
+   ],
+   "p60": 0.89,
+   "minutes": 879,
+   "confidence": 1.0
+  },
+  "Mosquera|ARS": {
+   "code": 500040,
+   "pos": "DEF",
+   "team": "ARS",
+   "price": 5.5,
+   "ev": [
+    4.7725,
+    3.9783,
+    4.5392,
+    4.2851,
+    4.6867,
+    3.7035
+   ],
+   "p60": 0.92,
+   "minutes": 1154,
+   "confidence": 1.0
+  },
+  "Saka|ARS": {
+   "code": 223340,
+   "pos": "MID",
+   "team": "ARS",
+   "price": 9.5,
+   "ev": [
+    5.9359,
+    5.3599,
+    6.1312,
+    5.4842,
+    6.2376,
+    5.12
+   ],
+   "p60": 0.93,
+   "minutes": 2375,
+   "confidence": 1.0
+  },
+  "Rice|ARS": {
+   "code": 204480,
+   "pos": "MID",
+   "team": "ARS",
+   "price": 7.5,
+   "ev": [
+    4.7433,
+    4.4157,
+    4.7879,
+    4.5035,
+    4.8488,
+    4.288
+   ],
+   "p60": 0.95,
+   "minutes": 3244,
+   "confidence": 1.0
+  },
+  "Eze|ARS": {
+   "code": 232413,
+   "pos": "MID",
+   "team": "ARS",
+   "price": 6.4,
+   "ev": [
+    1.9637,
+    1.7676,
+    2.0139,
+    1.8141,
+    2.0502,
+    1.688
+   ],
+   "p60": 0.42,
+   "minutes": 1944,
+   "confidence": 1.0
+  },
+  "\u00d8degaard|ARS": {
+   "code": 184029,
+   "pos": "MID",
+   "team": "ARS",
+   "price": 6.6,
+   "ev": [
+    4.0213,
+    3.6891,
+    4.078,
+    3.7752,
+    4.1397,
+    3.5581
+   ],
+   "p60": 0.89,
+   "minutes": 1508,
+   "confidence": 1.0
+  },
+  "Madueke|ARS": {
+   "code": 248857,
+   "pos": "MID",
+   "team": "ARS",
+   "price": 6.4,
+   "ev": [
+    1.0554,
+    0.9688,
+    1.0705,
+    0.9911,
+    1.0866,
+    0.9345
+   ],
+   "p60": 0.23,
+   "minutes": 1227,
+   "confidence": 1.0
+  },
+  "Merino|ARS": {
+   "code": 195384,
+   "pos": "MID",
+   "team": "ARS",
+   "price": 5.9,
+   "ev": [
+    2.2902,
+    2.0754,
+    2.3562,
+    2.1235,
+    2.3959,
+    1.9869
+   ],
+   "p60": 0.39,
+   "minutes": 1057,
+   "confidence": 1.0
+  },
+  "Martinelli|ARS": {
+   "code": 444145,
+   "pos": "MID",
+   "team": "ARS",
+   "price": 6.3,
+   "ev": [
+    1.5225,
+    1.3604,
+    1.573,
+    1.3965,
+    1.603,
+    1.2934
+   ],
+   "p60": 0.29,
+   "minutes": 1065,
+   "confidence": 1.0
+  },
+  "Zubimendi|ARS": {
+   "code": 481655,
+   "pos": "MID",
+   "team": "ARS",
+   "price": 5.4,
+   "ev": [
+    1.7419,
+    1.6234,
+    1.746,
+    1.6582,
+    1.7681,
+    1.5787
+   ],
+   "p60": 0.42,
+   "minutes": 3018,
+   "confidence": 1.0
+  },
+  "Dowman|ARS": {
+   "code": 616077,
+   "pos": "MID",
+   "team": "ARS",
+   "price": 5.4,
+   "ev": [
+    1.2805,
+    1.1499,
+    1.3217,
+    1.1789,
+    1.3458,
+    1.096
+   ],
+   "p60": 0.23,
+   "minutes": 152,
+   "confidence": 0.338
+  },
+  "Nwaneri|ARS": {
+   "code": 499175,
+   "pos": "MID",
+   "team": "ARS",
+   "price": 5.4,
+   "ev": [
+    0.9863,
+    0.9033,
+    0.9993,
+    0.9251,
+    1.0147,
+    0.8707
+   ],
+   "p60": 0.23,
+   "minutes": 165,
+   "confidence": 0.367
+  },
+  "F\u00e1bio Vieira|ARS": {
+   "code": 438098,
+   "pos": "MID",
+   "team": "ARS",
+   "price": 5.5,
+   "ev": [
+    0.1922,
+    0.1777,
+    0.196,
+    0.1811,
+    0.1987,
+    0.1718
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Gy\u00f6keres|ARS": {
+   "code": 224117,
+   "pos": "FWD",
+   "team": "ARS",
+   "price": 7.3,
+   "ev": [
+    2.1093,
+    1.9236,
+    2.2197,
+    1.9514,
+    2.2538,
+    1.84
+   ],
+   "p60": 0.42,
+   "minutes": 2217,
+   "confidence": 1.0
+  },
+  "Havertz|ARS": {
+   "code": 219847,
+   "pos": "FWD",
+   "team": "ARS",
+   "price": 7.5,
+   "ev": [
+    3.1141,
+    2.8543,
+    3.2686,
+    2.8932,
+    3.3162,
+    2.7373
+   ],
+   "p60": 0.73,
+   "minutes": 757,
+   "confidence": 1.0
+  },
+  "G.Jesus|ARS": {
+   "code": 205651,
+   "pos": "FWD",
+   "team": "ARS",
+   "price": 5.9,
+   "ev": [
+    1.354,
+    1.2162,
+    1.4359,
+    1.2369,
+    1.4612,
+    1.1542
+   ],
+   "p60": 0.29,
+   "minutes": 418,
+   "confidence": 0.929
+  },
+  "Konsa|ARS": {
+   "code": 199798,
+   "pos": "DEF",
+   "team": "ARS",
+   "price": 4.4,
+   "ev": [
+    2.3958,
+    1.9786,
+    2.2822,
+    2.1374,
+    2.3597,
+    1.8331
+   ],
+   "p60": 0.47,
+   "minutes": 3046,
+   "confidence": 1.0
+  },
+  "Bruno G.|ARS": {
+   "code": 208706,
+   "pos": "MID",
+   "team": "ARS",
+   "price": 6.9,
+   "ev": [
+    2.6348,
+    2.4089,
+    2.6948,
+    2.4619,
+    2.7367,
+    2.3169
+   ],
+   "p60": 0.47,
+   "minutes": 2475,
+   "confidence": 1.0
+  },
+  "Tzolis|ARS": {
+   "code": 439509,
+   "pos": "MID",
+   "team": "ARS",
+   "price": 6.5,
+   "ev": [
+    1.2039,
+    1.0984,
+    1.2386,
+    1.1214,
+    1.2581,
+    1.0545
+   ],
+   "p60": 0.177,
+   "minutes": 120,
+   "confidence": 0.267
+  },
+  "M.Bizot|AVL": {
+   "code": 72147,
+   "pos": "GK",
+   "team": "AVL",
+   "price": 4.5,
+   "ev": [
+    2.416,
+    2.2824,
+    2.2718,
+    2.1694,
+    2.1791,
+    2.51
+   ],
+   "p60": 0.65,
+   "minutes": 675,
+   "confidence": 1.0
+  },
+  "Cash|AVL": {
+   "code": 199796,
+   "pos": "DEF",
+   "team": "AVL",
+   "price": 4.5,
+   "ev": [
+    3.4899,
+    2.9841,
+    3.1213,
+    2.6606,
+    2.713,
+    3.8013
+   ],
+   "p60": 0.97,
+   "minutes": 3183,
+   "confidence": 1.0
+  },
+  "Mings|AVL": {
+   "code": 149484,
+   "pos": "DEF",
+   "team": "AVL",
+   "price": 4.5,
+   "ev": [
+    2.0724,
+    1.8124,
+    1.9011,
+    1.6635,
+    1.691,
+    2.231
+   ],
+   "p60": 0.46,
+   "minutes": 1338,
+   "confidence": 1.0
+  },
+  "Pau|AVL": {
+   "code": 244954,
+   "pos": "DEF",
+   "team": "AVL",
+   "price": 4.5,
+   "ev": [
+    3.6716,
+    3.1727,
+    3.3115,
+    2.8568,
+    2.9086,
+    3.9786
+   ],
+   "p60": 0.95,
+   "minutes": 1836,
+   "confidence": 1.0
+  },
+  "Bogarde|AVL": {
+   "code": 515597,
+   "pos": "MID",
+   "team": "AVL",
+   "price": 5.0,
+   "ev": [
+    1.0766,
+    1.0444,
+    1.0484,
+    1.0208,
+    1.0238,
+    1.0975
+   ],
+   "p60": 0.39,
+   "minutes": 1058,
+   "confidence": 1.0
+  },
+  "Maatsen|AVL": {
+   "code": 441302,
+   "pos": "DEF",
+   "team": "AVL",
+   "price": 4.5,
+   "ev": [
+    4.0838,
+    3.5312,
+    3.7511,
+    3.245,
+    3.3045,
+    4.4188
+   ],
+   "p60": 0.92,
+   "minutes": 1761,
+   "confidence": 1.0
+  },
+  "Lindel\u00f6f|AVL": {
+   "code": 184667,
+   "pos": "DEF",
+   "team": "AVL",
+   "price": 4.5,
+   "ev": [
+    3.1418,
+    2.751,
+    2.7865,
+    2.4331,
+    2.4714,
+    3.3879
+   ],
+   "p60": 0.89,
+   "minutes": 1122,
+   "confidence": 1.0
+  },
+  "A.Garc\u00eda|AVL": {
+   "code": 606798,
+   "pos": "DEF",
+   "team": "AVL",
+   "price": 4.0,
+   "ev": [
+    1.0143,
+    0.8969,
+    0.9247,
+    0.8177,
+    0.8297,
+    1.0869
+   ],
+   "p60": 0.23,
+   "minutes": 83,
+   "confidence": 0.184
+  },
+  "Buend\u00eda|AVL": {
+   "code": 195546,
+   "pos": "MID",
+   "team": "AVL",
+   "price": 6.0,
+   "ev": [
+    3.6581,
+    3.3339,
+    3.6557,
+    3.3548,
+    3.3953,
+    3.8415
+   ],
+   "p60": 0.85,
+   "minutes": 1928,
+   "confidence": 1.0
+  },
+  "Bailey|AVL": {
+   "code": 215711,
+   "pos": "MID",
+   "team": "AVL",
+   "price": 5.5,
+   "ev": [
+    1.0827,
+    0.9709,
+    1.0877,
+    0.9835,
+    0.9976,
+    1.1454
+   ],
+   "p60": 0.23,
+   "minutes": 450,
+   "confidence": 1.0
+  },
+  "McGinn|AVL": {
+   "code": 122806,
+   "pos": "MID",
+   "team": "AVL",
+   "price": 5.5,
+   "ev": [
+    3.4626,
+    3.0903,
+    3.4649,
+    3.1191,
+    3.1657,
+    3.6726
+   ],
+   "p60": 0.92,
+   "minutes": 2307,
+   "confidence": 1.0
+  },
+  "Barkley|AVL": {
+   "code": 88894,
+   "pos": "MID",
+   "team": "AVL",
+   "price": 5.0,
+   "ev": [
+    3.2383,
+    2.9355,
+    3.2364,
+    2.9554,
+    2.9932,
+    3.4095
+   ],
+   "p60": 0.79,
+   "minutes": 994,
+   "confidence": 1.0
+  },
+  "Kamara|AVL": {
+   "code": 226944,
+   "pos": "MID",
+   "team": "AVL",
+   "price": 5.0,
+   "ev": [
+    3.2096,
+    3.0597,
+    3.1575,
+    3.0225,
+    3.0393,
+    3.2993
+   ],
+   "p60": 0.95,
+   "minutes": 1590,
+   "confidence": 1.0
+  },
+  "Burrowes|AVL": {
+   "code": 645618,
+   "pos": "MID",
+   "team": "AVL",
+   "price": 4.5,
+   "ev": [
+    0.9444,
+    0.8527,
+    0.9446,
+    0.8595,
+    0.871,
+    0.9961
+   ],
+   "p60": 0.23,
+   "minutes": 16,
+   "confidence": 0.036
+  },
+  "George Hemmings|AVL": {
+   "code": 577285,
+   "pos": "MID",
+   "team": "AVL",
+   "price": 4.5,
+   "ev": [
+    2.463,
+    2.2608,
+    2.4432,
+    2.257,
+    2.2816,
+    2.5791
+   ],
+   "p60": 0.73,
+   "minutes": 185,
+   "confidence": 0.411
+  },
+  "Alysson|AVL": {
+   "code": 653481,
+   "pos": "MID",
+   "team": "AVL",
+   "price": 5.0,
+   "ev": [
+    0.8939,
+    0.8068,
+    0.8931,
+    0.8123,
+    0.8231,
+    0.9432
+   ],
+   "p60": 0.23,
+   "minutes": 74,
+   "confidence": 0.164
+  },
+  "Abraham|AVL": {
+   "code": 173879,
+   "pos": "FWD",
+   "team": "AVL",
+   "price": 5.5,
+   "ev": [
+    1.9882,
+    1.7009,
+    2.0549,
+    1.7828,
+    1.8213,
+    2.1439
+   ],
+   "p60": 0.4,
+   "minutes": 297,
+   "confidence": 0.66
+  },
+  "Garnacho|AVL": {
+   "code": 493105,
+   "pos": "MID",
+   "team": "AVL",
+   "price": 5.9,
+   "ev": [
+    1.6769,
+    1.4499,
+    1.6976,
+    1.4852,
+    1.5143,
+    1.803
+   ],
+   "p60": 0.35,
+   "minutes": 1277,
+   "confidence": 1.0
+  },
+  "N.Jackson|AVL": {
+   "code": 517052,
+   "pos": "FWD",
+   "team": "AVL",
+   "price": 6.5,
+   "ev": [
+    1.118,
+    0.9832,
+    1.1493,
+    1.0216,
+    1.0397,
+    1.1911
+   ],
+   "p60": 0.28,
+   "minutes": 70,
+   "confidence": 0.156
+  },
+  "Ruggeri|AVL": {
+   "code": 487992,
+   "pos": "DEF",
+   "team": "AVL",
+   "price": 4.5,
+   "ev": [
+    0.1742,
+    0.1547,
+    0.1616,
+    0.1435,
+    0.1456,
+    0.186
+   ],
+   "p60": 0.03,
+   "minutes": 8,
+   "confidence": 0.018
+  },
+  "Suzuki|AVL": {
+   "code": 433969,
+   "pos": "GK",
+   "team": "AVL",
+   "price": 5.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 90,
+   "confidence": 0.2
+  },
+  "Rowe|AVL": {
+   "code": 569577,
+   "pos": "DEF",
+   "team": "AVL",
+   "price": 4.0,
+   "ev": [
+    0.1728,
+    0.1532,
+    0.1601,
+    0.142,
+    0.1441,
+    0.1846
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Lynch|AVL": {
+   "code": 571380,
+   "pos": "MID",
+   "team": "AVL",
+   "price": 4.5,
+   "ev": [
+    0.1858,
+    0.1689,
+    0.187,
+    0.1712,
+    0.1734,
+    0.1953
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Wan-Bissaka|AVL": {
+   "code": 214590,
+   "pos": "DEF",
+   "team": "AVL",
+   "price": 4.5,
+   "ev": [
+    2.1708,
+    1.9201,
+    1.9275,
+    1.7014,
+    1.7255,
+    2.3297
+   ],
+   "p60": 0.6,
+   "minutes": 2092,
+   "confidence": 1.0
+  },
+  "Goretzka|AVL": {
+   "code": 119090,
+   "pos": "MID",
+   "team": "AVL",
+   "price": 6.0,
+   "ev": [
+    0.1858,
+    0.1689,
+    0.187,
+    0.1712,
+    0.1734,
+    0.1953
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Petrovi\u0107|BOU": {
+   "code": 457569,
+   "pos": "GK",
+   "team": "BOU",
+   "price": 4.5,
+   "ev": [
+    3.5471,
+    3.4066,
+    3.1753,
+    4.1634,
+    3.2733,
+    3.7085
+   ],
+   "p60": 0.97,
+   "minutes": 3600,
+   "confidence": 1.0
+  },
+  "Forster|BOU": {
+   "code": 40383,
+   "pos": "GK",
+   "team": "BOU",
+   "price": 4.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Hill|BOU": {
+   "code": 463981,
+   "pos": "DEF",
+   "team": "BOU",
+   "price": 5.5,
+   "ev": [
+    3.8758,
+    3.5048,
+    2.7408,
+    4.9231,
+    3.1309,
+    4.1655
+   ],
+   "p60": 0.93,
+   "minutes": 2282,
+   "confidence": 1.0
+  },
+  "Truffert|BOU": {
+   "code": 494521,
+   "pos": "DEF",
+   "team": "BOU",
+   "price": 5.5,
+   "ev": [
+    4.1494,
+    3.7493,
+    2.9401,
+    5.2497,
+    3.3529,
+    4.4515
+   ],
+   "p60": 0.97,
+   "minutes": 3558,
+   "confidence": 1.0
+  },
+  "Diakit\u00e9|BOU": {
+   "code": 242882,
+   "pos": "DEF",
+   "team": "BOU",
+   "price": 5.0,
+   "ev": [
+    1.4611,
+    1.3233,
+    1.0003,
+    1.9265,
+    1.1664,
+    1.5958
+   ],
+   "p60": 0.43,
+   "minutes": 1275,
+   "confidence": 1.0
+  },
+  "Smith|BOU": {
+   "code": 54469,
+   "pos": "DEF",
+   "team": "BOU",
+   "price": 4.5,
+   "ev": [
+    2.6711,
+    2.3878,
+    1.7246,
+    3.6298,
+    2.0655,
+    2.9485
+   ],
+   "p60": 0.89,
+   "minutes": 1253,
+   "confidence": 1.0
+  },
+  "Soler|BOU": {
+   "code": 575901,
+   "pos": "DEF",
+   "team": "BOU",
+   "price": 4.0,
+   "ev": [
+    0.8425,
+    0.748,
+    0.5539,
+    1.1057,
+    0.6532,
+    0.9153
+   ],
+   "p60": 0.23,
+   "minutes": 34,
+   "confidence": 0.076
+  },
+  "Rayan|BOU": {
+   "code": 499604,
+   "pos": "MID",
+   "team": "BOU",
+   "price": 6.5,
+   "ev": [
+    3.8512,
+    3.5334,
+    3.1782,
+    4.2009,
+    3.3487,
+    3.9023
+   ],
+   "p60": 0.92,
+   "minutes": 1288,
+   "confidence": 1.0
+  },
+  "Tavernier|BOU": {
+   "code": 201658,
+   "pos": "MID",
+   "team": "BOU",
+   "price": 6.0,
+   "ev": [
+    5.1013,
+    4.6627,
+    4.1912,
+    5.5298,
+    4.4174,
+    5.154
+   ],
+   "p60": 0.95,
+   "minutes": 2912,
+   "confidence": 1.0
+  },
+  "Scott|BOU": {
+   "code": 503139,
+   "pos": "MID",
+   "team": "BOU",
+   "price": 6.0,
+   "ev": [
+    4.5029,
+    4.2717,
+    3.9971,
+    4.8046,
+    4.129,
+    4.5556
+   ],
+   "p60": 0.95,
+   "minutes": 3024,
+   "confidence": 1.0
+  },
+  "Kluivert|BOU": {
+   "code": 222683,
+   "pos": "MID",
+   "team": "BOU",
+   "price": 6.0,
+   "ev": [
+    3.5399,
+    3.2239,
+    2.878,
+    3.8664,
+    3.044,
+    3.5837
+   ],
+   "p60": 0.79,
+   "minutes": 1099,
+   "confidence": 1.0
+  },
+  "Cook|BOU": {
+   "code": 155408,
+   "pos": "MID",
+   "team": "BOU",
+   "price": 5.0,
+   "ev": [
+    3.1387,
+    3.0622,
+    2.9373,
+    3.3376,
+    2.9976,
+    3.1887
+   ],
+   "p60": 0.9,
+   "minutes": 1015,
+   "confidence": 1.0
+  },
+  "Gannon-Doak|BOU": {
+   "code": 496208,
+   "pos": "MID",
+   "team": "BOU",
+   "price": 5.0,
+   "ev": [
+    1.0266,
+    0.9561,
+    0.8758,
+    1.1086,
+    0.9144,
+    1.0394
+   ],
+   "p60": 0.23,
+   "minutes": 106,
+   "confidence": 0.236
+  },
+  "Adams|BOU": {
+   "code": 200785,
+   "pos": "MID",
+   "team": "BOU",
+   "price": 5.0,
+   "ev": [
+    1.5012,
+    1.4574,
+    1.3909,
+    1.6006,
+    1.4229,
+    1.5251
+   ],
+   "p60": 0.43,
+   "minutes": 1805,
+   "confidence": 1.0
+  },
+  "Brooks|BOU": {
+   "code": 111317,
+   "pos": "MID",
+   "team": "BOU",
+   "price": 5.0,
+   "ev": [
+    1.8109,
+    1.6088,
+    1.4006,
+    1.9817,
+    1.5004,
+    1.8264
+   ],
+   "p60": 0.28,
+   "minutes": 1197,
+   "confidence": 1.0
+  },
+  "Christie|BOU": {
+   "code": 158499,
+   "pos": "MID",
+   "team": "BOU",
+   "price": 5.0,
+   "ev": [
+    1.0436,
+    0.9859,
+    0.9178,
+    1.1177,
+    0.9505,
+    1.0563
+   ],
+   "p60": 0.23,
+   "minutes": 981,
+   "confidence": 1.0
+  },
+  "T\u00f3th.A|BOU": {
+   "code": 614574,
+   "pos": "MID",
+   "team": "BOU",
+   "price": 5.0,
+   "ev": [
+    0.9717,
+    0.9088,
+    0.8357,
+    1.049,
+    0.8708,
+    0.9845
+   ],
+   "p60": 0.23,
+   "minutes": 150,
+   "confidence": 0.333
+  },
+  "Evanilson|BOU": {
+   "code": 444102,
+   "pos": "FWD",
+   "team": "BOU",
+   "price": 6.0,
+   "ev": [
+    3.6862,
+    3.3877,
+    3.1042,
+    3.8686,
+    3.2399,
+    3.6862
+   ],
+   "p60": 0.93,
+   "minutes": 2895,
+   "confidence": 1.0
+  },
+  "Rodr\u00edguez|BOU": {
+   "code": 561245,
+   "pos": "FWD",
+   "team": "BOU",
+   "price": 6.0,
+   "ev": [
+    0.2022,
+    0.1861,
+    0.1708,
+    0.212,
+    0.1781,
+    0.2022
+   ],
+   "p60": 0.03,
+   "minutes": 9,
+   "confidence": 0.02
+  },
+  "Silva|BOU": {
+   "code": 483067,
+   "pos": "DEF",
+   "team": "BOU",
+   "price": 5.0,
+   "ev": [
+    1.9383,
+    1.7106,
+    1.2584,
+    2.5465,
+    1.4889,
+    2.104
+   ],
+   "p60": 0.53,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Sanchez|BOU": {
+   "code": 494928,
+   "pos": "DEF",
+   "team": "BOU",
+   "price": 4.5,
+   "ev": [
+    0.1565,
+    0.141,
+    0.1098,
+    0.1956,
+    0.1259,
+    0.1672
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Jebbison|BOU": {
+   "code": 523700,
+   "pos": "FWD",
+   "team": "BOU",
+   "price": 5.0,
+   "ev": [
+    0.2063,
+    0.1895,
+    0.1736,
+    0.2166,
+    0.1812,
+    0.2063
+   ],
+   "p60": 0.03,
+   "minutes": 15,
+   "confidence": 0.033
+  },
+  "Di Gregorio|BOU": {
+   "code": 230650,
+   "pos": "GK",
+   "team": "BOU",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Kelleher|BRE": {
+   "code": 200720,
+   "pos": "GK",
+   "team": "BRE",
+   "price": 5.0,
+   "ev": [
+    4.112,
+    3.9814,
+    4.3449,
+    4.0852,
+    4.7208,
+    4.4048
+   ],
+   "p60": 0.97,
+   "minutes": 3510,
+   "confidence": 1.0
+  },
+  "Valdimarsson|BRE": {
+   "code": 507433,
+   "pos": "GK",
+   "team": "BRE",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 90,
+   "confidence": 0.2
+  },
+  "Collins|BRE": {
+   "code": 432830,
+   "pos": "DEF",
+   "team": "BRE",
+   "price": 5.5,
+   "ev": [
+    4.0434,
+    3.5736,
+    4.5108,
+    3.8857,
+    5.3377,
+    4.6506
+   ],
+   "p60": 0.96,
+   "minutes": 3151,
+   "confidence": 1.0
+  },
+  "Lewis-Potter|BRE": {
+   "code": 249231,
+   "pos": "MID",
+   "team": "BRE",
+   "price": 5.5,
+   "ev": [
+    3.8966,
+    3.6366,
+    3.9209,
+    3.7117,
+    4.3588,
+    3.991
+   ],
+   "p60": 0.93,
+   "minutes": 2137,
+   "confidence": 1.0
+  },
+  "Ajer|BRE": {
+   "code": 191866,
+   "pos": "DEF",
+   "team": "BRE",
+   "price": 4.5,
+   "ev": [
+    3.4614,
+    3.073,
+    3.9359,
+    3.3666,
+    4.6327,
+    4.0549
+   ],
+   "p60": 0.93,
+   "minutes": 1985,
+   "confidence": 1.0
+  },
+  "Kayode|BRE": {
+   "code": 607464,
+   "pos": "DEF",
+   "team": "BRE",
+   "price": 4.6,
+   "ev": [
+    3.4002,
+    2.9352,
+    3.8756,
+    3.2493,
+    4.6959,
+    4.0145
+   ],
+   "p60": 0.97,
+   "minutes": 3420,
+   "confidence": 1.0
+  },
+  "Henry|BRE": {
+   "code": 194010,
+   "pos": "DEF",
+   "team": "BRE",
+   "price": 4.5,
+   "ev": [
+    1.2222,
+    1.0528,
+    1.44,
+    1.1854,
+    1.7448,
+    1.4923
+   ],
+   "p60": 0.42,
+   "minutes": 1324,
+   "confidence": 1.0
+  },
+  "Hickey|BRE": {
+   "code": 472713,
+   "pos": "DEF",
+   "team": "BRE",
+   "price": 4.5,
+   "ev": [
+    0.8522,
+    0.7492,
+    0.9695,
+    0.8238,
+    1.1523,
+    1.0007
+   ],
+   "p60": 0.23,
+   "minutes": 695,
+   "confidence": 1.0
+  },
+  "Ji-soo|BRE": {
+   "code": 570241,
+   "pos": "DEF",
+   "team": "BRE",
+   "price": 4.5,
+   "ev": [
+    0.1577,
+    0.1408,
+    0.1745,
+    0.1522,
+    0.2032,
+    0.1794
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Schuster|BRE": {
+   "code": 513086,
+   "pos": "DEF",
+   "team": "BRE",
+   "price": 4.5,
+   "ev": [
+    0.1577,
+    0.1408,
+    0.1745,
+    0.1522,
+    0.2032,
+    0.1794
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Schade|BRE": {
+   "code": 513418,
+   "pos": "MID",
+   "team": "BRE",
+   "price": 6.0,
+   "ev": [
+    4.6018,
+    4.197,
+    4.5793,
+    4.2912,
+    5.2436,
+    4.685
+   ],
+   "p60": 0.93,
+   "minutes": 2921,
+   "confidence": 1.0
+  },
+  "O.Dango|BRE": {
+   "code": 533463,
+   "pos": "MID",
+   "team": "BRE",
+   "price": 6.5,
+   "ev": [
+    3.6273,
+    3.3417,
+    3.6142,
+    3.4092,
+    4.0836,
+    3.6889
+   ],
+   "p60": 0.68,
+   "minutes": 2366,
+   "confidence": 1.0
+  },
+  "Damsgaard|BRE": {
+   "code": 440089,
+   "pos": "MID",
+   "team": "BRE",
+   "price": 5.5,
+   "ev": [
+    3.3653,
+    3.1684,
+    3.3797,
+    3.2238,
+    3.7101,
+    3.4325
+   ],
+   "p60": 0.67,
+   "minutes": 2128,
+   "confidence": 1.0
+  },
+  "Janelt|BRE": {
+   "code": 204580,
+   "pos": "MID",
+   "team": "BRE",
+   "price": 5.0,
+   "ev": [
+    3.5908,
+    3.4061,
+    3.6395,
+    3.4713,
+    3.9598,
+    3.6911
+   ],
+   "p60": 0.93,
+   "minutes": 1614,
+   "confidence": 1.0
+  },
+  "Carvalho|BRE": {
+   "code": 244858,
+   "pos": "MID",
+   "team": "BRE",
+   "price": 5.0,
+   "ev": [
+    1.967,
+    1.8285,
+    1.9689,
+    1.8644,
+    2.199,
+    2.0056
+   ],
+   "p60": 0.4,
+   "minutes": 100,
+   "confidence": 0.222
+  },
+  "Yarmoliuk|BRE": {
+   "code": 508395,
+   "pos": "MID",
+   "team": "BRE",
+   "price": 5.0,
+   "ev": [
+    1.5126,
+    1.4622,
+    1.5452,
+    1.4873,
+    1.6382,
+    1.5604
+   ],
+   "p60": 0.42,
+   "minutes": 2696,
+   "confidence": 1.0
+  },
+  "Dasilva|BRE": {
+   "code": 183656,
+   "pos": "MID",
+   "team": "BRE",
+   "price": 5.0,
+   "ev": [
+    0.9703,
+    0.9065,
+    0.9765,
+    0.925,
+    1.0841,
+    0.9937
+   ],
+   "p60": 0.23,
+   "minutes": 2,
+   "confidence": 0.004
+  },
+  "Anthony|BRE": {
+   "code": 444180,
+   "pos": "MID",
+   "team": "BRE",
+   "price": 6.0,
+   "ev": [
+    2.6316,
+    2.458,
+    2.6547,
+    2.5108,
+    2.9492,
+    2.7019
+   ],
+   "p60": 0.68,
+   "minutes": 2800,
+   "confidence": 1.0
+  },
+  "Thiago|BRE": {
+   "code": 502500,
+   "pos": "FWD",
+   "team": "BRE",
+   "price": 8.0,
+   "ev": [
+    4.8708,
+    4.4697,
+    4.7411,
+    4.5225,
+    5.368,
+    4.8396
+   ],
+   "p60": 0.95,
+   "minutes": 3454,
+   "confidence": 1.0
+  },
+  "Furo|BRE": {
+   "code": 593174,
+   "pos": "FWD",
+   "team": "BRE",
+   "price": 4.5,
+   "ev": [
+    0.9831,
+    0.9101,
+    0.9595,
+    0.9197,
+    1.0734,
+    0.9774
+   ],
+   "p60": 0.23,
+   "minutes": 1,
+   "confidence": 0.002
+  },
+  "Wilson|BRE": {
+   "code": 75115,
+   "pos": "FWD",
+   "team": "BRE",
+   "price": 5.5,
+   "ev": [
+    1.486,
+    1.3586,
+    1.4448,
+    1.3754,
+    1.6439,
+    1.4761
+   ],
+   "p60": 0.29,
+   "minutes": 1243,
+   "confidence": 1.0
+  },
+  "M.Sangar\u00e9|BRE": {
+   "code": 513545,
+   "pos": "MID",
+   "team": "BRE",
+   "price": 5.7,
+   "ev": [
+    3.2062,
+    3.062,
+    3.2213,
+    3.1043,
+    3.4647,
+    3.2603
+   ],
+   "p60": 0.53,
+   "minutes": 165,
+   "confidence": 0.367
+  },
+  "Diouf|BRE": {
+   "code": 613804,
+   "pos": "DEF",
+   "team": "BRE",
+   "price": 4.5,
+   "ev": [
+    2.007,
+    1.7367,
+    2.3206,
+    1.9344,
+    2.8028,
+    2.4028
+   ],
+   "p60": 0.62,
+   "minutes": 2706,
+   "confidence": 1.0
+  },
+  "Verbruggen|BHA": {
+   "code": 489639,
+   "pos": "GK",
+   "team": "BHA",
+   "price": 4.5,
+   "ev": [
+    4.3089,
+    3.9245,
+    4.3083,
+    3.985,
+    3.5892,
+    3.5891
+   ],
+   "p60": 0.97,
+   "minutes": 3600,
+   "confidence": 1.0
+  },
+  "Steele|BHA": {
+   "code": 49262,
+   "pos": "GK",
+   "team": "BHA",
+   "price": 4.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "F.Kad\u0131o\u011flu|BHA": {
+   "code": 231416,
+   "pos": "DEF",
+   "team": "BHA",
+   "price": 4.4,
+   "ev": [
+    3.3397,
+    2.6184,
+    3.2808,
+    2.9265,
+    2.1758,
+    2.1632
+   ],
+   "p60": 0.72,
+   "minutes": 3220,
+   "confidence": 1.0
+  },
+  "Boscagli|BHA": {
+   "code": 204120,
+   "pos": "DEF",
+   "team": "BHA",
+   "price": 4.5,
+   "ev": [
+    4.216,
+    3.5089,
+    4.188,
+    3.7148,
+    2.9026,
+    2.8966
+   ],
+   "p60": 0.9,
+   "minutes": 979,
+   "confidence": 1.0
+  },
+  "De Cuyper|BHA": {
+   "code": 465730,
+   "pos": "DEF",
+   "team": "BHA",
+   "price": 4.7,
+   "ev": [
+    5.8901,
+    4.2944,
+    5.6562,
+    5.311,
+    3.9174,
+    3.8673
+   ],
+   "p60": 0.92,
+   "minutes": 1571,
+   "confidence": 1.0
+  },
+  "Dunk|BHA": {
+   "code": 83299,
+   "pos": "DEF",
+   "team": "BHA",
+   "price": 4.5,
+   "ev": [
+    4.3652,
+    3.5121,
+    4.3136,
+    3.8183,
+    2.8843,
+    2.8732
+   ],
+   "p60": 0.97,
+   "minutes": 3017,
+   "confidence": 1.0
+  },
+  "Coppola|BHA": {
+   "code": 550090,
+   "pos": "DEF",
+   "team": "BHA",
+   "price": 4.5,
+   "ev": [
+    1.7345,
+    1.4074,
+    1.7194,
+    1.5098,
+    1.1393,
+    1.136
+   ],
+   "p60": 0.4,
+   "minutes": 193,
+   "confidence": 0.429
+  },
+  "Igor|BHA": {
+   "code": 223434,
+   "pos": "DEF",
+   "team": "BHA",
+   "price": 4.5,
+   "ev": [
+    1.9776,
+    1.6296,
+    1.9576,
+    1.7513,
+    1.3673,
+    1.363
+   ],
+   "p60": 0.4,
+   "minutes": 103,
+   "confidence": 0.229
+  },
+  "Costinha|BHA": {
+   "code": 451490,
+   "pos": "DEF",
+   "team": "BHA",
+   "price": 4.5,
+   "ev": [
+    0.1734,
+    0.1371,
+    0.17,
+    0.154,
+    0.1165,
+    0.1158
+   ],
+   "p60": 0.03,
+   "minutes": 36,
+   "confidence": 0.08
+  },
+  "Svoboda|BHA": {
+   "code": 454490,
+   "pos": "DEF",
+   "team": "BHA",
+   "price": 5.0,
+   "ev": [
+    0.1958,
+    0.1615,
+    0.1929,
+    0.1765,
+    0.1403,
+    0.1397
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Gro\u00df|BHA": {
+   "code": 60307,
+   "pos": "MID",
+   "team": "BHA",
+   "price": 5.5,
+   "ev": [
+    4.4233,
+    3.7735,
+    4.2994,
+    4.2796,
+    3.7977,
+    3.7712
+   ],
+   "p60": 0.97,
+   "minutes": 1816,
+   "confidence": 1.0
+  },
+  "O'Riley|BHA": {
+   "code": 219249,
+   "pos": "MID",
+   "team": "BHA",
+   "price": 5.5,
+   "ev": [
+    2.2048,
+    1.7273,
+    2.1045,
+    2.1296,
+    1.7956,
+    1.7741
+   ],
+   "p60": 0.4,
+   "minutes": 202,
+   "confidence": 0.449
+  },
+  "Gomez|BHA": {
+   "code": 514254,
+   "pos": "MID",
+   "team": "BHA",
+   "price": 5.0,
+   "ev": [
+    4.7447,
+    3.7772,
+    4.5446,
+    4.5816,
+    3.8978,
+    3.8549
+   ],
+   "p60": 0.92,
+   "minutes": 2292,
+   "confidence": 1.0
+  },
+  "Wieffer|BHA": {
+   "code": 467779,
+   "pos": "DEF",
+   "team": "BHA",
+   "price": 5.0,
+   "ev": [
+    5.1996,
+    4.1908,
+    5.1052,
+    4.6605,
+    3.6418,
+    3.6216
+   ],
+   "p60": 0.93,
+   "minutes": 2057,
+   "confidence": 1.0
+  },
+  "Oriola|BHA": {
+   "code": 556637,
+   "pos": "MID",
+   "team": "BHA",
+   "price": 4.5,
+   "ev": [
+    1.0087,
+    0.8317,
+    0.9739,
+    0.9729,
+    0.8438,
+    0.8364
+   ],
+   "p60": 0.23,
+   "minutes": 1,
+   "confidence": 0.002
+  },
+  "Yohanna|BHA": {
+   "code": 700308,
+   "pos": "MID",
+   "team": "BHA",
+   "price": 5.0,
+   "ev": [
+    0.1921,
+    0.1606,
+    0.1856,
+    0.1868,
+    0.1645,
+    0.1631
+   ],
+   "p60": 0.03,
+   "minutes": 12,
+   "confidence": 0.027
+  },
+  "Kostoulas|BHA": {
+   "code": 647850,
+   "pos": "FWD",
+   "team": "BHA",
+   "price": 5.5,
+   "ev": [
+    2.8409,
+    2.1875,
+    2.6873,
+    2.7909,
+    2.3691,
+    2.3362
+   ],
+   "p60": 0.54,
+   "minutes": 456,
+   "confidence": 1.0
+  },
+  "Struijk|BHA": {
+   "code": 222694,
+   "pos": "DEF",
+   "team": "BHA",
+   "price": 5.0,
+   "ev": [
+    2.4801,
+    2.0138,
+    2.4429,
+    2.2101,
+    1.7223,
+    1.7143
+   ],
+   "p60": 0.47,
+   "minutes": 2935,
+   "confidence": 1.0
+  },
+  "Vuskovic|BHA": {
+   "code": 610799,
+   "pos": "DEF",
+   "team": "BHA",
+   "price": 5.0,
+   "ev": [
+    2.4904,
+    1.996,
+    2.4558,
+    2.1885,
+    1.659,
+    1.6516
+   ],
+   "p60": 0.53,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "David|BHA": {
+   "code": 538007,
+   "pos": "FWD",
+   "team": "BHA",
+   "price": 6.0,
+   "ev": [
+    0.2034,
+    0.16,
+    0.1932,
+    0.2001,
+    0.1721,
+    0.1699
+   ],
+   "p60": 0.03,
+   "minutes": 10,
+   "confidence": 0.022
+  },
+  "Osman|BHA": {
+   "code": 612855,
+   "pos": "MID",
+   "team": "BHA",
+   "price": 5.0,
+   "ev": [
+    0.1923,
+    0.1614,
+    0.1859,
+    0.187,
+    0.1652,
+    0.1638
+   ],
+   "p60": 0.03,
+   "minutes": 28,
+   "confidence": 0.062
+  },
+  "Yalcouy\u00e9|BHA": {
+   "code": 611695,
+   "pos": "MID",
+   "team": "BHA",
+   "price": 4.5,
+   "ev": [
+    1.6469,
+    1.3022,
+    1.5742,
+    1.5934,
+    1.3529,
+    1.3373
+   ],
+   "p60": 0.28,
+   "minutes": 77,
+   "confidence": 0.171
+  },
+  "Hadjam|BHA": {
+   "code": 512123,
+   "pos": "DEF",
+   "team": "BHA",
+   "price": 4.5,
+   "ev": [
+    0.1958,
+    0.1615,
+    0.1929,
+    0.1765,
+    0.1403,
+    0.1397
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Cozier-Duberry|BHA": {
+   "code": 519324,
+   "pos": "MID",
+   "team": "BHA",
+   "price": 5.0,
+   "ev": [
+    0.1939,
+    0.1621,
+    0.1874,
+    0.1886,
+    0.1661,
+    0.1647
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Martinez|CHE": {
+   "code": 98980,
+   "pos": "GK",
+   "team": "CHE",
+   "price": 5.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 2925,
+   "confidence": 1.0
+  },
+  "Rogers|CHE": {
+   "code": 244850,
+   "pos": "MID",
+   "team": "CHE",
+   "price": 7.5,
+   "ev": [
+    5.5896,
+    4.2425,
+    4.9806,
+    4.379,
+    4.4373,
+    4.4282
+   ],
+   "p60": 0.97,
+   "minutes": 3451,
+   "confidence": 1.0
+  },
+  "Welbeck|CHE": {
+   "code": 50175,
+   "pos": "FWD",
+   "team": "CHE",
+   "price": 5.9,
+   "ev": [
+    2.4646,
+    1.8887,
+    2.2391,
+    1.9128,
+    1.9155,
+    1.9743
+   ],
+   "p60": 0.42,
+   "minutes": 2249,
+   "confidence": 1.0
+  },
+  "S\u00e1nchez|CHE": {
+   "code": 215059,
+   "pos": "GK",
+   "team": "CHE",
+   "price": 4.9,
+   "ev": [
+    3.6944,
+    3.1585,
+    3.3129,
+    3.2987,
+    3.392,
+    3.2003
+   ],
+   "p60": 0.72,
+   "minutes": 3130,
+   "confidence": 1.0
+  },
+  "James|CHE": {
+   "code": 225796,
+   "pos": "DEF",
+   "team": "CHE",
+   "price": 5.5,
+   "ev": [
+    4.143,
+    2.7673,
+    3.3326,
+    3.1247,
+    3.3164,
+    2.9278
+   ],
+   "p60": 0.68,
+   "minutes": 2069,
+   "confidence": 1.0
+  },
+  "Gusto|CHE": {
+   "code": 482609,
+   "pos": "DEF",
+   "team": "CHE",
+   "price": 5.0,
+   "ev": [
+    5.2353,
+    3.3907,
+    4.1417,
+    3.8773,
+    4.139,
+    3.6048
+   ],
+   "p60": 0.93,
+   "minutes": 2420,
+   "confidence": 1.0
+  },
+  "Fofana|CHE": {
+   "code": 444463,
+   "pos": "DEF",
+   "team": "CHE",
+   "price": 5.0,
+   "ev": [
+    3.9772,
+    2.7823,
+    3.2376,
+    3.1321,
+    3.323,
+    2.9159
+   ],
+   "p60": 0.68,
+   "minutes": 1785,
+   "confidence": 1.0
+  },
+  "Tosin|CHE": {
+   "code": 109646,
+   "pos": "DEF",
+   "team": "CHE",
+   "price": 4.5,
+   "ev": [
+    2.3995,
+    1.7168,
+    1.9719,
+    1.9224,
+    2.0351,
+    1.7924
+   ],
+   "p60": 0.4,
+   "minutes": 788,
+   "confidence": 1.0
+  },
+  "Hato|CHE": {
+   "code": 551210,
+   "pos": "DEF",
+   "team": "CHE",
+   "price": 4.5,
+   "ev": [
+    4.5304,
+    3.0039,
+    3.5774,
+    3.4596,
+    3.709,
+    3.1733
+   ],
+   "p60": 0.89,
+   "minutes": 1293,
+   "confidence": 1.0
+  },
+  "Colwill|CHE": {
+   "code": 460028,
+   "pos": "DEF",
+   "team": "CHE",
+   "price": 5.0,
+   "ev": [
+    4.7699,
+    3.2704,
+    3.8235,
+    3.7294,
+    3.9814,
+    3.4351
+   ],
+   "p60": 0.9,
+   "minutes": 386,
+   "confidence": 0.858
+  },
+  "Acheampong|CHE": {
+   "code": 577016,
+   "pos": "DEF",
+   "team": "CHE",
+   "price": 4.5,
+   "ev": [
+    3.2102,
+    2.2189,
+    2.606,
+    2.4988,
+    2.6509,
+    2.3313
+   ],
+   "p60": 0.54,
+   "minutes": 769,
+   "confidence": 1.0
+  },
+  "Palmer|CHE": {
+   "code": 244851,
+   "pos": "MID",
+   "team": "CHE",
+   "price": 9.6,
+   "ev": [
+    7.1059,
+    5.1571,
+    6.2647,
+    5.3155,
+    5.3744,
+    5.4328
+   ],
+   "p60": 0.93,
+   "minutes": 2126,
+   "confidence": 1.0
+  },
+  "Enzo|CHE": {
+   "code": 448047,
+   "pos": "MID",
+   "team": "CHE",
+   "price": 6.9,
+   "ev": [
+    2.933,
+    2.18,
+    2.6003,
+    2.2487,
+    2.2763,
+    2.2852
+   ],
+   "p60": 0.45,
+   "minutes": 3139,
+   "confidence": 1.0
+  },
+  "Neto|CHE": {
+   "code": 247632,
+   "pos": "MID",
+   "team": "CHE",
+   "price": 6.5,
+   "ev": [
+    3.7823,
+    2.854,
+    3.36,
+    2.9507,
+    2.9926,
+    2.9815
+   ],
+   "p60": 0.7,
+   "minutes": 2710,
+   "confidence": 1.0
+  },
+  "Est\u00eav\u00e3o|CHE": {
+   "code": 624773,
+   "pos": "MID",
+   "team": "CHE",
+   "price": 6.4,
+   "ev": [
+    1.4426,
+    1.0591,
+    1.2731,
+    1.0941,
+    1.1083,
+    1.1126
+   ],
+   "p60": 0.23,
+   "minutes": 846,
+   "confidence": 1.0
+  },
+  "Gittens|CHE": {
+   "code": 463936,
+   "pos": "MID",
+   "team": "CHE",
+   "price": 5.9,
+   "ev": [
+    1.4701,
+    1.1257,
+    1.3109,
+    1.1641,
+    1.1813,
+    1.1726
+   ],
+   "p60": 0.29,
+   "minutes": 486,
+   "confidence": 1.0
+  },
+  "Lavia|CHE": {
+   "code": 514356,
+   "pos": "MID",
+   "team": "CHE",
+   "price": 5.0,
+   "ev": [
+    3.8229,
+    2.9867,
+    3.4341,
+    3.082,
+    3.1251,
+    3.1
+   ],
+   "p60": 0.73,
+   "minutes": 505,
+   "confidence": 1.0
+  },
+  "D.Essugo|CHE": {
+   "code": 491007,
+   "pos": "MID",
+   "team": "CHE",
+   "price": 4.5,
+   "ev": [
+    1.0184,
+    0.7783,
+    0.9051,
+    0.8074,
+    0.8208,
+    0.8105
+   ],
+   "p60": 0.23,
+   "minutes": 26,
+   "confidence": 0.058
+  },
+  "Quenda|CHE": {
+   "code": 593117,
+   "pos": "MID",
+   "team": "CHE",
+   "price": 5.4,
+   "ev": [
+    0.2194,
+    0.1769,
+    0.2002,
+    0.1812,
+    0.183,
+    0.1828
+   ],
+   "p60": 0.03,
+   "minutes": 8,
+   "confidence": 0.018
+  },
+  "Jo\u00e3o Pedro|CHE": {
+   "code": 475168,
+   "pos": "FWD",
+   "team": "CHE",
+   "price": 7.7,
+   "ev": [
+    6.4515,
+    4.8986,
+    5.8433,
+    4.9635,
+    4.9707,
+    5.1293
+   ],
+   "p60": 0.93,
+   "minutes": 2838,
+   "confidence": 1.0
+  },
+  "Mheuka|CHE": {
+   "code": 567119,
+   "pos": "FWD",
+   "team": "CHE",
+   "price": 4.5,
+   "ev": [
+    1.1989,
+    0.9168,
+    1.0884,
+    0.9286,
+    0.9299,
+    0.9587
+   ],
+   "p60": 0.23,
+   "minutes": 1,
+   "confidence": 0.002
+  },
+  "Emegha|CHE": {
+   "code": 503037,
+   "pos": "FWD",
+   "team": "CHE",
+   "price": 5.0,
+   "ev": [
+    0.2404,
+    0.1869,
+    0.2195,
+    0.1892,
+    0.1894,
+    0.1949
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Lacroix|CHE": {
+   "code": 437499,
+   "pos": "DEF",
+   "team": "CHE",
+   "price": 6.0,
+   "ev": [
+    6.5424,
+    4.7061,
+    5.4362,
+    5.2098,
+    5.4824,
+    4.9164
+   ],
+   "p60": 0.97,
+   "minutes": 3265,
+   "confidence": 1.0
+  },
+  "Penders|CHE": {
+   "code": 549939,
+   "pos": "GK",
+   "team": "CHE",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Anselmino|CHE": {
+   "code": 622758,
+   "pos": "DEF",
+   "team": "CHE",
+   "price": 4.5,
+   "ev": [
+    0.2302,
+    0.1635,
+    0.1911,
+    0.1812,
+    0.1906,
+    0.1714
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Barco|CHE": {
+   "code": 543158,
+   "pos": "MID",
+   "team": "CHE",
+   "price": 5.5,
+   "ev": [
+    0.2223,
+    0.1787,
+    0.2027,
+    0.183,
+    0.1848,
+    0.1847
+   ],
+   "p60": 0.03,
+   "minutes": 8,
+   "confidence": 0.018
+  },
+  "Mudryk|CHE": {
+   "code": 465920,
+   "pos": "MID",
+   "team": "CHE",
+   "price": 5.4,
+   "ev": [
+    0.2206,
+    0.1775,
+    0.2012,
+    0.1818,
+    0.1836,
+    0.1835
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Chavarria|CHE": {
+   "code": 498444,
+   "pos": "DEF",
+   "team": "CHE",
+   "price": 5.0,
+   "ev": [
+    0.2281,
+    0.1626,
+    0.1895,
+    0.1802,
+    0.1896,
+    0.1703
+   ],
+   "p60": 0.03,
+   "minutes": 43,
+   "confidence": 0.096
+  },
+  "Pinnock|COV": {
+   "code": 231065,
+   "pos": "DEF",
+   "team": "COV",
+   "price": 4.5,
+   "ev": [
+    1.4437,
+    1.4302,
+    1.4651,
+    1.4323,
+    1.6877,
+    1.8359
+   ],
+   "p60": 0.35,
+   "minutes": 330,
+   "confidence": 0.733
+  },
+  "Onyeka|COV": {
+   "code": 428580,
+   "pos": "MID",
+   "team": "COV",
+   "price": 5.0,
+   "ev": [
+    1.8494,
+    1.7775,
+    1.8638,
+    1.7396,
+    1.9888,
+    2.0417
+   ],
+   "p60": 0.48,
+   "minutes": 178,
+   "confidence": 0.396
+  },
+  "Rushworth|COV": {
+   "code": 472739,
+   "pos": "GK",
+   "team": "COV",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Dovin|COV": {
+   "code": 484389,
+   "pos": "GK",
+   "team": "COV",
+   "price": 4.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Wilson|COV": {
+   "code": 110690,
+   "pos": "GK",
+   "team": "COV",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Thomas|COV": {
+   "code": 461102,
+   "pos": "DEF",
+   "team": "COV",
+   "price": 4.0,
+   "ev": [
+    2.4756,
+    2.4385,
+    2.5101,
+    2.4323,
+    2.8627,
+    3.0898
+   ],
+   "p60": 0.53,
+   "minutes": 167,
+   "confidence": 0.371
+  },
+  "Kitching|COV": {
+   "code": 436761,
+   "pos": "DEF",
+   "team": "COV",
+   "price": 4.0,
+   "ev": [
+    0.1501,
+    0.1461,
+    0.1526,
+    0.1448,
+    0.1771,
+    0.1918
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "van Ewijk|COV": {
+   "code": 451284,
+   "pos": "DEF",
+   "team": "COV",
+   "price": 4.0,
+   "ev": [
+    2.9388,
+    2.8709,
+    3.0006,
+    2.8589,
+    3.632,
+    4.038
+   ],
+   "p60": 0.95,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Dasilva|COV": {
+   "code": 173878,
+   "pos": "DEF",
+   "team": "COV",
+   "price": 4.0,
+   "ev": [
+    1.7172,
+    1.67,
+    1.753,
+    1.6581,
+    2.116,
+    2.3452
+   ],
+   "p60": 0.53,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Bidwell|COV": {
+   "code": 80178,
+   "pos": "DEF",
+   "team": "COV",
+   "price": 4.0,
+   "ev": [
+    0.1501,
+    0.1461,
+    0.1526,
+    0.1448,
+    0.1771,
+    0.1918
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Latibeaudiere|COV": {
+   "code": 204813,
+   "pos": "DEF",
+   "team": "COV",
+   "price": 4.0,
+   "ev": [
+    0.1501,
+    0.1461,
+    0.1526,
+    0.1448,
+    0.1771,
+    0.1918
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Amenda|COV": {
+   "code": 539142,
+   "pos": "DEF",
+   "team": "COV",
+   "price": 4.0,
+   "ev": [
+    1.432,
+    1.3976,
+    1.4662,
+    1.3929,
+    1.8161,
+    2.0426
+   ],
+   "p60": 0.53,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Rudoni|COV": {
+   "code": 480457,
+   "pos": "MID",
+   "team": "COV",
+   "price": 5.0,
+   "ev": [
+    1.1729,
+    1.1129,
+    1.1837,
+    1.0807,
+    1.2751,
+    1.3097
+   ],
+   "p60": 0.28,
+   "minutes": 90,
+   "confidence": 0.2
+  },
+  "Grimes|COV": {
+   "code": 168144,
+   "pos": "MID",
+   "team": "COV",
+   "price": 5.0,
+   "ev": [
+    1.8078,
+    1.7449,
+    1.8214,
+    1.7122,
+    1.9425,
+    1.9976
+   ],
+   "p60": 0.53,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Sakamoto|COV": {
+   "code": 501459,
+   "pos": "MID",
+   "team": "COV",
+   "price": 4.9,
+   "ev": [
+    0.1791,
+    0.1711,
+    0.1805,
+    0.1667,
+    0.192,
+    0.196
+   ],
+   "p60": 0.03,
+   "minutes": 31,
+   "confidence": 0.069
+  },
+  "Mason-Clark|COV": {
+   "code": 241293,
+   "pos": "MID",
+   "team": "COV",
+   "price": 5.5,
+   "ev": [
+    0.1738,
+    0.1662,
+    0.1751,
+    0.1621,
+    0.186,
+    0.19
+   ],
+   "p60": 0.03,
+   "minutes": 57,
+   "confidence": 0.127
+  },
+  "Eccles|COV": {
+   "code": 439668,
+   "pos": "MID",
+   "team": "COV",
+   "price": 4.9,
+   "ev": [
+    0.1807,
+    0.1722,
+    0.1821,
+    0.1677,
+    0.194,
+    0.1981
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Torp|COV": {
+   "code": 226965,
+   "pos": "MID",
+   "team": "COV",
+   "price": 5.5,
+   "ev": [
+    0.1799,
+    0.1713,
+    0.1813,
+    0.1667,
+    0.1933,
+    0.1974
+   ],
+   "p60": 0.03,
+   "minutes": 47,
+   "confidence": 0.104
+  },
+  "Shepherd|COV": {
+   "code": 684268,
+   "pos": "MID",
+   "team": "COV",
+   "price": 4.5,
+   "ev": [
+    0.1807,
+    0.1722,
+    0.1821,
+    0.1677,
+    0.194,
+    0.1981
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Tchaouna|COV": {
+   "code": 469272,
+   "pos": "MID",
+   "team": "COV",
+   "price": 5.5,
+   "ev": [
+    1.8621,
+    1.798,
+    1.8766,
+    1.7649,
+    2.0064,
+    2.0673
+   ],
+   "p60": 0.6,
+   "minutes": 1398,
+   "confidence": 1.0
+  },
+  "Borges Rodrigues|COV": {
+   "code": 492498,
+   "pos": "MID",
+   "team": "COV",
+   "price": 4.5,
+   "ev": [
+    0.1807,
+    0.1722,
+    0.1821,
+    0.1677,
+    0.194,
+    0.1981
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Thomas-Asante|COV": {
+   "code": 230730,
+   "pos": "FWD",
+   "team": "COV",
+   "price": 5.0,
+   "ev": [
+    1.0432,
+    0.9764,
+    1.0523,
+    0.939,
+    1.1207,
+    1.1344
+   ],
+   "p60": 0.28,
+   "minutes": 101,
+   "confidence": 0.224
+  },
+  "Simms|COV": {
+   "code": 218997,
+   "pos": "FWD",
+   "team": "COV",
+   "price": 5.0,
+   "ev": [
+    1.0757,
+    1.0034,
+    1.0856,
+    0.963,
+    1.1597,
+    1.1745
+   ],
+   "p60": 0.28,
+   "minutes": 69,
+   "confidence": 0.153
+  },
+  "Awoniyi|COV": {
+   "code": 210156,
+   "pos": "FWD",
+   "team": "COV",
+   "price": 5.5,
+   "ev": [
+    3.2724,
+    2.9679,
+    3.314,
+    2.7977,
+    3.626,
+    3.6884
+   ],
+   "p60": 0.6,
+   "minutes": 590,
+   "confidence": 1.0
+  },
+  "Yirenkyi|COV": {
+   "code": 661888,
+   "pos": "MID",
+   "team": "COV",
+   "price": 5.0,
+   "ev": [
+    1.5862,
+    1.5091,
+    1.6017,
+    1.4685,
+    1.7374,
+    1.7953
+   ],
+   "p60": 0.53,
+   "minutes": 131,
+   "confidence": 0.291
+  },
+  "Hamer|COV": {
+   "code": 196100,
+   "pos": "MID",
+   "team": "COV",
+   "price": 5.5,
+   "ev": [
+    0.1764,
+    0.1684,
+    0.1778,
+    0.164,
+    0.1892,
+    0.1932
+   ],
+   "p60": 0.03,
+   "minutes": 27,
+   "confidence": 0.06
+  },
+  "Cherif|COV": {
+   "code": 627221,
+   "pos": "FWD",
+   "team": "COV",
+   "price": 5.0,
+   "ev": [
+    0.1958,
+    0.1825,
+    0.1976,
+    0.175,
+    0.2113,
+    0.214
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Bentley|COV": {
+   "code": 79602,
+   "pos": "GK",
+   "team": "COV",
+   "price": 4.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 270,
+   "confidence": 0.6
+  },
+  "Guessand|CRY": {
+   "code": 485337,
+   "pos": "MID",
+   "team": "CRY",
+   "price": 5.5,
+   "ev": [
+    1.3238,
+    1.0717,
+    1.1408,
+    1.0323,
+    1.1194,
+    1.0353
+   ],
+   "p60": 0.29,
+   "minutes": 963,
+   "confidence": 1.0
+  },
+  "Disasi|CRY": {
+   "code": 220362,
+   "pos": "DEF",
+   "team": "CRY",
+   "price": 4.5,
+   "ev": [
+    2.1972,
+    1.6971,
+    1.9604,
+    1.5412,
+    1.8032,
+    1.7279
+   ],
+   "p60": 0.47,
+   "minutes": 1270,
+   "confidence": 1.0
+  },
+  "Henderson|CRY": {
+   "code": 172649,
+   "pos": "GK",
+   "team": "CRY",
+   "price": 5.0,
+   "ev": [
+    4.2538,
+    3.8682,
+    4.1098,
+    3.7483,
+    3.9456,
+    3.925
+   ],
+   "p60": 0.97,
+   "minutes": 3510,
+   "confidence": 1.0
+  },
+  "Benitez|CRY": {
+   "code": 121709,
+   "pos": "GK",
+   "team": "CRY",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 90,
+   "confidence": 0.2
+  },
+  "Richards|CRY": {
+   "code": 427623,
+   "pos": "DEF",
+   "team": "CRY",
+   "price": 5.0,
+   "ev": [
+    5.5136,
+    4.3299,
+    4.9021,
+    3.9918,
+    4.5765,
+    4.3612
+   ],
+   "p60": 0.97,
+   "minutes": 3005,
+   "confidence": 1.0
+  },
+  "Canvot|CRY": {
+   "code": 651426,
+   "pos": "DEF",
+   "team": "CRY",
+   "price": 5.0,
+   "ev": [
+    5.4564,
+    4.3694,
+    4.9085,
+    4.0508,
+    4.5971,
+    4.4094
+   ],
+   "p60": 0.93,
+   "minutes": 1511,
+   "confidence": 1.0
+  },
+  "Mitchell|CRY": {
+   "code": 244723,
+   "pos": "DEF",
+   "team": "CRY",
+   "price": 4.5,
+   "ev": [
+    4.5765,
+    3.4795,
+    4.0309,
+    3.1535,
+    3.7099,
+    3.5258
+   ],
+   "p60": 0.96,
+   "minutes": 3433,
+   "confidence": 1.0
+  },
+  "Sosa|CRY": {
+   "code": 218364,
+   "pos": "DEF",
+   "team": "CRY",
+   "price": 4.5,
+   "ev": [
+    1.1431,
+    0.8851,
+    1.0173,
+    0.8067,
+    0.9395,
+    0.8981
+   ],
+   "p60": 0.23,
+   "minutes": 99,
+   "confidence": 0.22
+  },
+  "Mingueza|CRY": {
+   "code": 242313,
+   "pos": "DEF",
+   "team": "CRY",
+   "price": 4.4,
+   "ev": [
+    0.2006,
+    0.1594,
+    0.1794,
+    0.1474,
+    0.168,
+    0.1606
+   ],
+   "p60": 0.03,
+   "minutes": 15,
+   "confidence": 0.033
+  },
+  "Wharton|CRY": {
+   "code": 496221,
+   "pos": "MID",
+   "team": "CRY",
+   "price": 5.5,
+   "ev": [
+    4.8203,
+    4.0028,
+    4.226,
+    3.8753,
+    4.1575,
+    3.884
+   ],
+   "p60": 0.93,
+   "minutes": 2732,
+   "confidence": 1.0
+  },
+  "Yeremy|CRY": {
+   "code": 488024,
+   "pos": "MID",
+   "team": "CRY",
+   "price": 5.5,
+   "ev": [
+    3.7882,
+    2.8891,
+    3.1118,
+    2.7613,
+    3.0576,
+    2.7398
+   ],
+   "p60": 0.67,
+   "minutes": 2176,
+   "confidence": 1.0
+  },
+  "Hughes|CRY": {
+   "code": 108413,
+   "pos": "MID",
+   "team": "CRY",
+   "price": 4.5,
+   "ev": [
+    1.6384,
+    1.3828,
+    1.4609,
+    1.3383,
+    1.4317,
+    1.3524
+   ],
+   "p60": 0.42,
+   "minutes": 1560,
+   "confidence": 1.0
+  },
+  "Lerma|CRY": {
+   "code": 152551,
+   "pos": "MID",
+   "team": "CRY",
+   "price": 4.9,
+   "ev": [
+    1.9235,
+    1.6452,
+    1.7278,
+    1.5981,
+    1.6983,
+    1.6102
+   ],
+   "p60": 0.42,
+   "minutes": 1722,
+   "confidence": 1.0
+  },
+  "Kamada|CRY": {
+   "code": 209400,
+   "pos": "MID",
+   "team": "CRY",
+   "price": 5.0,
+   "ev": [
+    4.1284,
+    3.4429,
+    3.6397,
+    3.3306,
+    3.5733,
+    3.3512
+   ],
+   "p60": 0.93,
+   "minutes": 2079,
+   "confidence": 1.0
+  },
+  "Devenny|CRY": {
+   "code": 489706,
+   "pos": "MID",
+   "team": "CRY",
+   "price": 5.0,
+   "ev": [
+    2.1153,
+    1.6676,
+    1.7821,
+    1.602,
+    1.7517,
+    1.5962
+   ],
+   "p60": 0.39,
+   "minutes": 785,
+   "confidence": 1.0
+  },
+  "Esse|CRY": {
+   "code": 606921,
+   "pos": "MID",
+   "team": "CRY",
+   "price": 5.0,
+   "ev": [
+    1.1154,
+    0.9016,
+    0.9591,
+    0.8688,
+    0.942,
+    0.8699
+   ],
+   "p60": 0.23,
+   "minutes": 40,
+   "confidence": 0.089
+  },
+  "M.Fran\u00e7a|CRY": {
+   "code": 536694,
+   "pos": "MID",
+   "team": "CRY",
+   "price": 4.9,
+   "ev": [
+    0.218,
+    0.1771,
+    0.1872,
+    0.1713,
+    0.1847,
+    0.1702
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Doucour\u00e9|CRY": {
+   "code": 438464,
+   "pos": "MID",
+   "team": "CRY",
+   "price": 4.9,
+   "ev": [
+    0.218,
+    0.1771,
+    0.1872,
+    0.1713,
+    0.1847,
+    0.1702
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "J.Rak-Sakyi|CRY": {
+   "code": 450542,
+   "pos": "MID",
+   "team": "CRY",
+   "price": 5.0,
+   "ev": [
+    0.218,
+    0.1771,
+    0.1872,
+    0.1713,
+    0.1847,
+    0.1702
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Drakes-Thomas|CRY": {
+   "code": 672492,
+   "pos": "MID",
+   "team": "CRY",
+   "price": 4.5,
+   "ev": [
+    1.1476,
+    0.924,
+    0.9835,
+    0.8899,
+    0.9662,
+    0.8902
+   ],
+   "p60": 0.23,
+   "minutes": 7,
+   "confidence": 0.016
+  },
+  "Strand Larsen|CRY": {
+   "code": 247412,
+   "pos": "FWD",
+   "team": "CRY",
+   "price": 6.0,
+   "ev": [
+    2.5245,
+    2.0336,
+    2.1316,
+    1.9769,
+    2.1239,
+    1.9328
+   ],
+   "p60": 0.67,
+   "minutes": 2390,
+   "confidence": 1.0
+  },
+  "Nketiah|CRY": {
+   "code": 205533,
+   "pos": "FWD",
+   "team": "CRY",
+   "price": 5.5,
+   "ev": [
+    3.1352,
+    2.307,
+    2.4724,
+    2.2113,
+    2.4594,
+    2.1369
+   ],
+   "p60": 0.48,
+   "minutes": 536,
+   "confidence": 1.0
+  },
+  "McNeil|CRY": {
+   "code": 433154,
+   "pos": "MID",
+   "team": "CRY",
+   "price": 5.5,
+   "ev": [
+    3.1154,
+    2.5554,
+    2.7104,
+    2.4669,
+    2.6615,
+    2.4758
+   ],
+   "p60": 0.67,
+   "minutes": 1245,
+   "confidence": 1.0
+  },
+  "Matthews|CRY": {
+   "code": 169593,
+   "pos": "GK",
+   "team": "CRY",
+   "price": 4.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Tomiyasu|CRY": {
+   "code": 223723,
+   "pos": "DEF",
+   "team": "CRY",
+   "price": 4.5,
+   "ev": [
+    1.3813,
+    1.0847,
+    1.2419,
+    0.9916,
+    1.1477,
+    1.1039
+   ],
+   "p60": 0.28,
+   "minutes": 91,
+   "confidence": 0.202
+  },
+  "Khalaili|CRY": {
+   "code": 570794,
+   "pos": "DEF",
+   "team": "CRY",
+   "price": 5.0,
+   "ev": [
+    1.4503,
+    1.1338,
+    1.295,
+    1.0384,
+    1.2005,
+    1.1489
+   ],
+   "p60": 0.28,
+   "minutes": 109,
+   "confidence": 0.242
+  },
+  "Gozo|CRY": {
+   "code": 559152,
+   "pos": "MID",
+   "team": "CRY",
+   "price": 5.0,
+   "ev": [
+    0.2128,
+    0.1737,
+    0.1834,
+    0.1681,
+    0.181,
+    0.1672
+   ],
+   "p60": 0.03,
+   "minutes": 22,
+   "confidence": 0.049
+  },
+  "Johnson|EVE": {
+   "code": 242898,
+   "pos": "MID",
+   "team": "EVE",
+   "price": 5.9,
+   "ev": [
+    1.3188,
+    1.652,
+    1.5634,
+    1.3156,
+    1.1927,
+    1.3185
+   ],
+   "p60": 0.42,
+   "minutes": 1744,
+   "confidence": 1.0
+  },
+  "Pickford|EVE": {
+   "code": 111234,
+   "pos": "GK",
+   "team": "EVE",
+   "price": 5.5,
+   "ev": [
+    3.7569,
+    4.1383,
+    4.3274,
+    3.4579,
+    3.5348,
+    3.5748
+   ],
+   "p60": 0.97,
+   "minutes": 3600,
+   "confidence": 1.0
+  },
+  "Travers|EVE": {
+   "code": 229600,
+   "pos": "GK",
+   "team": "EVE",
+   "price": 5.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "King|EVE": {
+   "code": 138001,
+   "pos": "GK",
+   "team": "EVE",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Tarkowski|EVE": {
+   "code": 17761,
+   "pos": "DEF",
+   "team": "EVE",
+   "price": 6.0,
+   "ev": [
+    4.4453,
+    5.5798,
+    5.6672,
+    3.8991,
+    3.8426,
+    4.1363
+   ],
+   "p60": 0.97,
+   "minutes": 3510,
+   "confidence": 1.0
+  },
+  "Branthwaite|EVE": {
+   "code": 480455,
+   "pos": "DEF",
+   "team": "EVE",
+   "price": 5.5,
+   "ev": [
+    3.5194,
+    4.3235,
+    4.505,
+    2.9741,
+    3.0422,
+    3.2087
+   ],
+   "p60": 0.9,
+   "minutes": 858,
+   "confidence": 1.0
+  },
+  "Keane|EVE": {
+   "code": 106611,
+   "pos": "DEF",
+   "team": "EVE",
+   "price": 4.9,
+   "ev": [
+    2.062,
+    2.5586,
+    2.6122,
+    1.802,
+    1.7915,
+    1.9147
+   ],
+   "p60": 0.45,
+   "minutes": 2588,
+   "confidence": 1.0
+  },
+  "O'Brien|EVE": {
+   "code": 512462,
+   "pos": "DEF",
+   "team": "EVE",
+   "price": 4.9,
+   "ev": [
+    1.5399,
+    1.9987,
+    2.0676,
+    1.2741,
+    1.2819,
+    1.389
+   ],
+   "p60": 0.45,
+   "minutes": 3118,
+   "confidence": 1.0
+  },
+  "Mykolenko|EVE": {
+   "code": 224967,
+   "pos": "DEF",
+   "team": "EVE",
+   "price": 4.5,
+   "ev": [
+    3.2082,
+    4.0239,
+    4.2399,
+    2.613,
+    2.7108,
+    2.8687
+   ],
+   "p60": 0.97,
+   "minutes": 3139,
+   "confidence": 1.0
+  },
+  "Patterson|EVE": {
+   "code": 243571,
+   "pos": "DEF",
+   "team": "EVE",
+   "price": 4.5,
+   "ev": [
+    1.1951,
+    1.4565,
+    1.5155,
+    1.0173,
+    1.0397,
+    1.0939
+   ],
+   "p60": 0.29,
+   "minutes": 238,
+   "confidence": 0.529
+  },
+  "Dewsbury-Hall|EVE": {
+   "code": 215413,
+   "pos": "MID",
+   "team": "EVE",
+   "price": 6.5,
+   "ev": [
+    4.1713,
+    5.343,
+    4.9761,
+    4.2259,
+    3.7472,
+    4.2091
+   ],
+   "p60": 0.97,
+   "minutes": 2809,
+   "confidence": 1.0
+  },
+  "Ndiaye|EVE": {
+   "code": 440993,
+   "pos": "MID",
+   "team": "EVE",
+   "price": 6.0,
+   "ev": [
+    3.9469,
+    5.2181,
+    4.8089,
+    4.0193,
+    3.4907,
+    3.9957
+   ],
+   "p60": 0.95,
+   "minutes": 2961,
+   "confidence": 1.0
+  },
+  "Garner|EVE": {
+   "code": 232928,
+   "pos": "MID",
+   "team": "EVE",
+   "price": 6.0,
+   "ev": [
+    2.8316,
+    3.3792,
+    3.2368,
+    2.8225,
+    2.6231,
+    2.8287
+   ],
+   "p60": 0.72,
+   "minutes": 3485,
+   "confidence": 1.0
+  },
+  "Iroegbunam|EVE": {
+   "code": 490094,
+   "pos": "MID",
+   "team": "EVE",
+   "price": 5.0,
+   "ev": [
+    1.3909,
+    1.5472,
+    1.53,
+    1.3605,
+    1.3232,
+    1.3736
+   ],
+   "p60": 0.42,
+   "minutes": 1481,
+   "confidence": 1.0
+  },
+  "George|EVE": {
+   "code": 550615,
+   "pos": "MID",
+   "team": "EVE",
+   "price": 5.5,
+   "ev": [
+    2.6515,
+    3.685,
+    3.3477,
+    2.7159,
+    2.2822,
+    2.6945
+   ],
+   "p60": 0.73,
+   "minutes": 495,
+   "confidence": 1.0
+  },
+  "Alcaraz|EVE": {
+   "code": 502697,
+   "pos": "MID",
+   "team": "EVE",
+   "price": 5.0,
+   "ev": [
+    1.1269,
+    1.4569,
+    1.3554,
+    1.1401,
+    1.0068,
+    1.1362
+   ],
+   "p60": 0.29,
+   "minutes": 684,
+   "confidence": 1.0
+  },
+  "Armstrong|EVE": {
+   "code": 609873,
+   "pos": "MID",
+   "team": "EVE",
+   "price": 5.0,
+   "ev": [
+    3.0048,
+    3.5462,
+    3.4206,
+    2.978,
+    2.7935,
+    2.9914
+   ],
+   "p60": 0.85,
+   "minutes": 700,
+   "confidence": 1.0
+  },
+  "Dibling|EVE": {
+   "code": 496661,
+   "pos": "MID",
+   "team": "EVE",
+   "price": 5.4,
+   "ev": [
+    1.3689,
+    1.6101,
+    1.5565,
+    1.3542,
+    1.274,
+    1.3613
+   ],
+   "p60": 0.4,
+   "minutes": 349,
+   "confidence": 0.776
+  },
+  "R\u00f6hl|EVE": {
+   "code": 513466,
+   "pos": "MID",
+   "team": "EVE",
+   "price": 5.0,
+   "ev": [
+    2.9701,
+    3.4136,
+    3.3318,
+    2.923,
+    2.7895,
+    2.9442
+   ],
+   "p60": 0.89,
+   "minutes": 850,
+   "confidence": 1.0
+  },
+  "Hackney|EVE": {
+   "code": 244860,
+   "pos": "MID",
+   "team": "EVE",
+   "price": 5.5,
+   "ev": [
+    0.9899,
+    1.2434,
+    1.1717,
+    0.9926,
+    0.8954,
+    0.9927
+   ],
+   "p60": 0.28,
+   "minutes": 106,
+   "confidence": 0.236
+  },
+  "Beto|EVE": {
+   "code": 486385,
+   "pos": "FWD",
+   "team": "EVE",
+   "price": 5.4,
+   "ev": [
+    1.5091,
+    2.1349,
+    1.8824,
+    1.6054,
+    1.3025,
+    1.5691
+   ],
+   "p60": 0.35,
+   "minutes": 1582,
+   "confidence": 1.0
+  },
+  "Barry|EVE": {
+   "code": 586309,
+   "pos": "FWD",
+   "team": "EVE",
+   "price": 5.5,
+   "ev": [
+    3.714,
+    5.3899,
+    4.7136,
+    3.9719,
+    3.1607,
+    3.8747
+   ],
+   "p60": 0.92,
+   "minutes": 2045,
+   "confidence": 1.0
+  },
+  "Leno|FUL": {
+   "code": 80201,
+   "pos": "GK",
+   "team": "FUL",
+   "price": 4.5,
+   "ev": [
+    3.3848,
+    3.5968,
+    3.8838,
+    4.5451,
+    4.1256,
+    3.8831
+   ],
+   "p60": 0.97,
+   "minutes": 3600,
+   "confidence": 1.0
+  },
+  "Lecomte|FUL": {
+   "code": 86873,
+   "pos": "GK",
+   "team": "FUL",
+   "price": 4.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Andersen|FUL": {
+   "code": 174874,
+   "pos": "DEF",
+   "team": "FUL",
+   "price": 5.0,
+   "ev": [
+    2.4143,
+    2.84,
+    3.3135,
+    4.1242,
+    3.5478,
+    3.2241
+   ],
+   "p60": 0.72,
+   "minutes": 2972,
+   "confidence": 1.0
+  },
+  "Robinson|FUL": {
+   "code": 169528,
+   "pos": "DEF",
+   "team": "FUL",
+   "price": 4.5,
+   "ev": [
+    2.9997,
+    3.6246,
+    4.3263,
+    5.4433,
+    4.5755,
+    4.1209
+   ],
+   "p60": 0.93,
+   "minutes": 1658,
+   "confidence": 1.0
+  },
+  "J.Cuenca|FUL": {
+   "code": 246301,
+   "pos": "DEF",
+   "team": "FUL",
+   "price": 4.5,
+   "ev": [
+    1.9255,
+    2.2696,
+    2.6493,
+    3.3381,
+    2.8819,
+    2.6109
+   ],
+   "p60": 0.64,
+   "minutes": 1025,
+   "confidence": 1.0
+  },
+  "Tete|FUL": {
+   "code": 167074,
+   "pos": "DEF",
+   "team": "FUL",
+   "price": 4.5,
+   "ev": [
+    1.5292,
+    1.821,
+    2.1469,
+    2.6837,
+    2.284,
+    2.0675
+   ],
+   "p60": 0.46,
+   "minutes": 1791,
+   "confidence": 1.0
+  },
+  "Bassey|FUL": {
+   "code": 232892,
+   "pos": "DEF",
+   "team": "FUL",
+   "price": 4.5,
+   "ev": [
+    2.7024,
+    3.2701,
+    3.9013,
+    4.9878,
+    4.2198,
+    3.7866
+   ],
+   "p60": 0.97,
+   "minutes": 2712,
+   "confidence": 1.0
+  },
+  "Castagne|FUL": {
+   "code": 166477,
+   "pos": "DEF",
+   "team": "FUL",
+   "price": 4.5,
+   "ev": [
+    2.6987,
+    3.312,
+    4.0,
+    5.1062,
+    4.2572,
+    3.8082
+   ],
+   "p60": 0.93,
+   "minutes": 1995,
+   "confidence": 1.0
+  },
+  "Iwobi|FUL": {
+   "code": 153133,
+   "pos": "MID",
+   "team": "FUL",
+   "price": 5.5,
+   "ev": [
+    3.2221,
+    3.5233,
+    3.8849,
+    4.2878,
+    3.7989,
+    3.6163
+   ],
+   "p60": 0.95,
+   "minutes": 2600,
+   "confidence": 1.0
+  },
+  "Smith Rowe|FUL": {
+   "code": 209289,
+   "pos": "MID",
+   "team": "FUL",
+   "price": 5.5,
+   "ev": [
+    1.2329,
+    1.3669,
+    1.5277,
+    1.6977,
+    1.48,
+    1.4014
+   ],
+   "p60": 0.35,
+   "minutes": 1923,
+   "confidence": 1.0
+  },
+  "Kevin|FUL": {
+   "code": 560552,
+   "pos": "MID",
+   "team": "FUL",
+   "price": 5.5,
+   "ev": [
+    0.9741,
+    1.0681,
+    1.1809,
+    1.3059,
+    1.1532,
+    1.0965
+   ],
+   "p60": 0.29,
+   "minutes": 1054,
+   "confidence": 1.0
+  },
+  "Bobb|FUL": {
+   "code": 477555,
+   "pos": "MID",
+   "team": "FUL",
+   "price": 5.5,
+   "ev": [
+    2.5309,
+    2.8292,
+    3.1871,
+    3.5669,
+    3.0823,
+    2.9071
+   ],
+   "p60": 0.79,
+   "minutes": 1163,
+   "confidence": 1.0
+  },
+  "Berge|FUL": {
+   "code": 207189,
+   "pos": "MID",
+   "team": "FUL",
+   "price": 5.0,
+   "ev": [
+    2.7236,
+    2.8988,
+    3.1096,
+    3.3949,
+    3.1115,
+    2.9904
+   ],
+   "p60": 0.95,
+   "minutes": 3058,
+   "confidence": 1.0
+  },
+  "King|FUL": {
+   "code": 577725,
+   "pos": "MID",
+   "team": "FUL",
+   "price": 5.5,
+   "ev": [
+    2.6787,
+    2.9909,
+    3.3655,
+    3.757,
+    3.2496,
+    3.068
+   ],
+   "p60": 0.78,
+   "minutes": 1470,
+   "confidence": 1.0
+  },
+  "Sessegnon|FUL": {
+   "code": 184349,
+   "pos": "DEF",
+   "team": "FUL",
+   "price": 4.5,
+   "ev": [
+    1.5901,
+    1.8867,
+    2.2204,
+    2.7389,
+    2.3248,
+    2.1124
+   ],
+   "p60": 0.42,
+   "minutes": 1855,
+   "confidence": 1.0
+  },
+  "Reed|FUL": {
+   "code": 153366,
+   "pos": "MID",
+   "team": "FUL",
+   "price": 4.5,
+   "ev": [
+    0.9481,
+    1.0474,
+    1.1665,
+    1.2887,
+    1.1273,
+    1.0702
+   ],
+   "p60": 0.23,
+   "minutes": 89,
+   "confidence": 0.198
+  },
+  "Muniz|FUL": {
+   "code": 244042,
+   "pos": "FWD",
+   "team": "FUL",
+   "price": 5.5,
+   "ev": [
+    0.9464,
+    1.0473,
+    1.1681,
+    1.2624,
+    1.0978,
+    1.0485
+   ],
+   "p60": 0.29,
+   "minutes": 995,
+   "confidence": 1.0
+  },
+  "Kusi-Asare|FUL": {
+   "code": 631786,
+   "pos": "FWD",
+   "team": "FUL",
+   "price": 4.5,
+   "ev": [
+    0.7816,
+    0.8848,
+    1.0084,
+    1.1047,
+    0.9364,
+    0.886
+   ],
+   "p60": 0.23,
+   "minutes": 49,
+   "confidence": 0.109
+  },
+  "Gonzalo|FUL": {
+   "code": 551466,
+   "pos": "FWD",
+   "team": "FUL",
+   "price": 6.0,
+   "ev": [
+    1.9216,
+    2.1949,
+    2.5224,
+    2.7777,
+    2.3316,
+    2.1981
+   ],
+   "p60": 0.53,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Palacios|FUL": {
+   "code": 571779,
+   "pos": "MID",
+   "team": "FUL",
+   "price": 5.5,
+   "ev": [
+    1.4738,
+    1.651,
+    1.8636,
+    2.097,
+    1.8093,
+    1.703
+   ],
+   "p60": 0.53,
+   "minutes": 147,
+   "confidence": 0.327
+  },
+  "Charles|FUL": {
+   "code": 463210,
+   "pos": "MID",
+   "team": "FUL",
+   "price": 5.0,
+   "ev": [
+    0.1649,
+    0.1806,
+    0.1995,
+    0.218,
+    0.1924,
+    0.1836
+   ],
+   "p60": 0.03,
+   "minutes": 45,
+   "confidence": 0.1
+  },
+  "Zepa|FUL": {
+   "code": 616069,
+   "pos": "MID",
+   "team": "FUL",
+   "price": 4.5,
+   "ev": [
+    0.1645,
+    0.1803,
+    0.1993,
+    0.218,
+    0.1922,
+    0.1833
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Phillips|HUL": {
+   "code": 167825,
+   "pos": "GK",
+   "team": "HUL",
+   "price": 4.0,
+   "ev": [
+    1.6685,
+    1.8203,
+    2.1198,
+    2.0205,
+    1.9264,
+    2.1877
+   ],
+   "p60": 0.6,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Egan|HUL": {
+   "code": 108416,
+   "pos": "DEF",
+   "team": "HUL",
+   "price": 4.0,
+   "ev": [
+    1.7736,
+    2.165,
+    2.6876,
+    2.5189,
+    2.3935,
+    2.853
+   ],
+   "p60": 0.53,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Ajayi|HUL": {
+   "code": 146426,
+   "pos": "DEF",
+   "team": "HUL",
+   "price": 4.1,
+   "ev": [
+    1.8417,
+    2.2751,
+    2.9059,
+    2.6773,
+    2.5999,
+    3.2369
+   ],
+   "p60": 0.53,
+   "minutes": 153,
+   "confidence": 0.34
+  },
+  "Drameh|HUL": {
+   "code": 433590,
+   "pos": "DEF",
+   "team": "HUL",
+   "price": 4.0,
+   "ev": [
+    0.0958,
+    0.125,
+    0.1634,
+    0.1503,
+    0.1436,
+    0.1796
+   ],
+   "p60": 0.03,
+   "minutes": 65,
+   "confidence": 0.144
+  },
+  "Giles|HUL": {
+   "code": 232351,
+   "pos": "DEF",
+   "team": "HUL",
+   "price": 4.0,
+   "ev": [
+    0.9088,
+    1.3072,
+    1.8476,
+    1.669,
+    1.5515,
+    2.0402
+   ],
+   "p60": 0.53,
+   "minutes": 174,
+   "confidence": 0.387
+  },
+  "McCarthy|HUL": {
+   "code": 661800,
+   "pos": "DEF",
+   "team": "HUL",
+   "price": 4.0,
+   "ev": [
+    0.0956,
+    0.1248,
+    0.1634,
+    0.1502,
+    0.1436,
+    0.1799
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "McNair|HUL": {
+   "code": 160817,
+   "pos": "DEF",
+   "team": "HUL",
+   "price": 4.0,
+   "ev": [
+    0.0943,
+    0.1234,
+    0.1615,
+    0.1486,
+    0.1418,
+    0.1774
+   ],
+   "p60": 0.03,
+   "minutes": 26,
+   "confidence": 0.058
+  },
+  "Belloumi|HUL": {
+   "code": 540324,
+   "pos": "MID",
+   "team": "HUL",
+   "price": 5.0,
+   "ev": [
+    1.741,
+    1.8429,
+    2.0638,
+    1.9596,
+    1.9991,
+    2.3002
+   ],
+   "p60": 0.53,
+   "minutes": 172,
+   "confidence": 0.382
+  },
+  "Millar|HUL": {
+   "code": 232905,
+   "pos": "MID",
+   "team": "HUL",
+   "price": 5.0,
+   "ev": [
+    0.145,
+    0.1557,
+    0.1809,
+    0.168,
+    0.1759,
+    0.2138
+   ],
+   "p60": 0.03,
+   "minutes": 50,
+   "confidence": 0.111
+  },
+  "Dowell|HUL": {
+   "code": 171270,
+   "pos": "MID",
+   "team": "HUL",
+   "price": 4.5,
+   "ev": [
+    0.1602,
+    0.169,
+    0.1891,
+    0.179,
+    0.1846,
+    0.2142
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Slater|HUL": {
+   "code": 243413,
+   "pos": "MID",
+   "team": "HUL",
+   "price": 4.5,
+   "ev": [
+    1.3538,
+    1.4602,
+    1.693,
+    1.5822,
+    1.627,
+    1.9475
+   ],
+   "p60": 0.53,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "\u00d6m\u00fcr|HUL": {
+   "code": 208481,
+   "pos": "MID",
+   "team": "HUL",
+   "price": 5.0,
+   "ev": [
+    0.1602,
+    0.169,
+    0.1891,
+    0.179,
+    0.1846,
+    0.2142
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "McBurnie|HUL": {
+   "code": 169432,
+   "pos": "FWD",
+   "team": "HUL",
+   "price": 5.5,
+   "ev": [
+    1.3226,
+    1.3996,
+    1.5984,
+    1.4885,
+    1.5767,
+    1.9026
+   ],
+   "p60": 0.53,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Akintola|HUL": {
+   "code": 213292,
+   "pos": "MID",
+   "team": "HUL",
+   "price": 5.0,
+   "ev": [
+    0.1602,
+    0.169,
+    0.1891,
+    0.179,
+    0.1846,
+    0.2142
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Targett|HUL": {
+   "code": 169359,
+   "pos": "DEF",
+   "team": "HUL",
+   "price": 4.0,
+   "ev": [
+    0.0948,
+    0.124,
+    0.1625,
+    0.1494,
+    0.1427,
+    0.1789
+   ],
+   "p60": 0.03,
+   "minutes": 5,
+   "confidence": 0.011
+  },
+  "Morita|HUL": {
+   "code": 445028,
+   "pos": "MID",
+   "team": "HUL",
+   "price": 5.0,
+   "ev": [
+    0.1552,
+    0.1633,
+    0.1819,
+    0.1726,
+    0.1776,
+    0.2046
+   ],
+   "p60": 0.03,
+   "minutes": 45,
+   "confidence": 0.1
+  },
+  "Tzolakis|HUL": {
+   "code": 473284,
+   "pos": "GK",
+   "team": "HUL",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Hjert\u00f8-Dahl|HUL": {
+   "code": 552946,
+   "pos": "MID",
+   "team": "HUL",
+   "price": 5.0,
+   "ev": [
+    0.1602,
+    0.169,
+    0.1891,
+    0.179,
+    0.1846,
+    0.2142
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Stroud|HUL": {
+   "code": 608227,
+   "pos": "MID",
+   "team": "HUL",
+   "price": 5.0,
+   "ev": [
+    0.7545,
+    0.8078,
+    0.9231,
+    0.8688,
+    0.8891,
+    1.046
+   ],
+   "p60": 0.28,
+   "minutes": 128,
+   "confidence": 0.284
+  },
+  "Herrington|HUL": {
+   "code": 597462,
+   "pos": "DEF",
+   "team": "HUL",
+   "price": 4.0,
+   "ev": [
+    0.0936,
+    0.1224,
+    0.1601,
+    0.1475,
+    0.1404,
+    0.1752
+   ],
+   "p60": 0.03,
+   "minutes": 57,
+   "confidence": 0.127
+  },
+  "Mendy|HUL": {
+   "code": 606930,
+   "pos": "DEF",
+   "team": "HUL",
+   "price": 4.0,
+   "ev": [
+    0.9555,
+    1.1796,
+    1.4958,
+    1.3852,
+    1.335,
+    1.6413
+   ],
+   "p60": 0.28,
+   "minutes": 121,
+   "confidence": 0.269
+  },
+  "Gourna-Douath|HUL": {
+   "code": 469266,
+   "pos": "MID",
+   "team": "HUL",
+   "price": 5.0,
+   "ev": [
+    0.1584,
+    0.1665,
+    0.1852,
+    0.1759,
+    0.1809,
+    0.208
+   ],
+   "p60": 0.03,
+   "minutes": 45,
+   "confidence": 0.1
+  },
+  "Cho|HUL": {
+   "code": 490884,
+   "pos": "MID",
+   "team": "HUL",
+   "price": 5.0,
+   "ev": [
+    0.159,
+    0.1676,
+    0.1876,
+    0.1776,
+    0.1831,
+    0.2123
+   ],
+   "p60": 0.03,
+   "minutes": 7,
+   "confidence": 0.016
+  },
+  "Diop|IPS": {
+   "code": 219924,
+   "pos": "DEF",
+   "team": "IPS",
+   "price": 4.0,
+   "ev": [
+    2.6292,
+    3.0424,
+    3.674,
+    2.1661,
+    3.3671,
+    4.0369
+   ],
+   "p60": 0.9,
+   "minutes": 992,
+   "confidence": 1.0
+  },
+  "Luki\u0107|IPS": {
+   "code": 212314,
+   "pos": "MID",
+   "team": "IPS",
+   "price": 5.0,
+   "ev": [
+    3.0112,
+    3.1044,
+    3.3789,
+    2.8413,
+    3.2296,
+    3.4882
+   ],
+   "p60": 0.93,
+   "minutes": 1892,
+   "confidence": 1.0
+  },
+  "Walton|IPS": {
+   "code": 108813,
+   "pos": "GK",
+   "team": "IPS",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Palmer|IPS": {
+   "code": 112520,
+   "pos": "GK",
+   "team": "IPS",
+   "price": 4.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Button|IPS": {
+   "code": 50093,
+   "pos": "GK",
+   "team": "IPS",
+   "price": 4.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Kipr\u00e9|IPS": {
+   "code": 183015,
+   "pos": "DEF",
+   "team": "IPS",
+   "price": 4.0,
+   "ev": [
+    0.1246,
+    0.1414,
+    0.1672,
+    0.1047,
+    0.1546,
+    0.1813
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "O'Shea|IPS": {
+   "code": 216616,
+   "pos": "DEF",
+   "team": "IPS",
+   "price": 4.0,
+   "ev": [
+    1.5702,
+    1.814,
+    2.1834,
+    1.2985,
+    2.0043,
+    2.3969
+   ],
+   "p60": 0.53,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Davis|IPS": {
+   "code": 455084,
+   "pos": "DEF",
+   "team": "IPS",
+   "price": 4.0,
+   "ev": [
+    1.7061,
+    1.966,
+    2.4305,
+    1.3735,
+    2.1965,
+    2.6675
+   ],
+   "p60": 0.53,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Greaves|IPS": {
+   "code": 449429,
+   "pos": "DEF",
+   "team": "IPS",
+   "price": 4.0,
+   "ev": [
+    1.1564,
+    1.3959,
+    1.7396,
+    0.9011,
+    1.5753,
+    1.9468
+   ],
+   "p60": 0.53,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Johnson|IPS": {
+   "code": 222018,
+   "pos": "DEF",
+   "team": "IPS",
+   "price": 4.0,
+   "ev": [
+    0.1246,
+    0.1414,
+    0.1672,
+    0.1047,
+    0.1546,
+    0.1813
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Furlong|IPS": {
+   "code": 176420,
+   "pos": "DEF",
+   "team": "IPS",
+   "price": 4.0,
+   "ev": [
+    0.1261,
+    0.1428,
+    0.1684,
+    0.1063,
+    0.156,
+    0.1825
+   ],
+   "p60": 0.03,
+   "minutes": 17,
+   "confidence": 0.038
+  },
+  "N\u00fa\u00f1ez|IPS": {
+   "code": 501390,
+   "pos": "MID",
+   "team": "IPS",
+   "price": 5.0,
+   "ev": [
+    1.9295,
+    1.9852,
+    2.1571,
+    1.8227,
+    2.0631,
+    2.2231
+   ],
+   "p60": 0.53,
+   "minutes": 140,
+   "confidence": 0.311
+  },
+  "Clarke|IPS": {
+   "code": 443261,
+   "pos": "MID",
+   "team": "IPS",
+   "price": 5.5,
+   "ev": [
+    0.223,
+    0.2274,
+    0.2447,
+    0.212,
+    0.235,
+    0.2503
+   ],
+   "p60": 0.03,
+   "minutes": 19,
+   "confidence": 0.042
+  },
+  "Ogbene|IPS": {
+   "code": 229164,
+   "pos": "MID",
+   "team": "IPS",
+   "price": 4.9,
+   "ev": [
+    0.1712,
+    0.1755,
+    0.1924,
+    0.1606,
+    0.183,
+    0.1979
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Fatawu|IPS": {
+   "code": 531442,
+   "pos": "MID",
+   "team": "IPS",
+   "price": 5.5,
+   "ev": [
+    1.575,
+    1.6376,
+    1.8507,
+    1.4418,
+    1.733,
+    1.927
+   ],
+   "p60": 0.53,
+   "minutes": 147,
+   "confidence": 0.327
+  },
+  "Akpom|IPS": {
+   "code": 147675,
+   "pos": "FWD",
+   "team": "IPS",
+   "price": 5.0,
+   "ev": [
+    0.2116,
+    0.2166,
+    0.2464,
+    0.1925,
+    0.2292,
+    0.2538
+   ],
+   "p60": 0.03,
+   "minutes": 69,
+   "confidence": 0.153
+  },
+  "Walle Egeli|IPS": {
+   "code": 557012,
+   "pos": "FWD",
+   "team": "IPS",
+   "price": 4.5,
+   "ev": [
+    1.6883,
+    1.7247,
+    1.9409,
+    1.5499,
+    1.8162,
+    1.9943
+   ],
+   "p60": 0.45,
+   "minutes": 10,
+   "confidence": 0.022
+  },
+  "McAteer|IPS": {
+   "code": 461587,
+   "pos": "MID",
+   "team": "IPS",
+   "price": 4.5,
+   "ev": [
+    0.1691,
+    0.1733,
+    0.1892,
+    0.1591,
+    0.1803,
+    0.1944
+   ],
+   "p60": 0.03,
+   "minutes": 31,
+   "confidence": 0.069
+  },
+  "Mehmeti|IPS": {
+   "code": 232457,
+   "pos": "MID",
+   "team": "IPS",
+   "price": 4.9,
+   "ev": [
+    0.1712,
+    0.1755,
+    0.1924,
+    0.1606,
+    0.183,
+    0.1979
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Maeda|IPS": {
+   "code": 442967,
+   "pos": "MID",
+   "team": "IPS",
+   "price": 5.5,
+   "ev": [
+    2.0056,
+    2.0735,
+    2.3178,
+    1.8524,
+    2.1821,
+    2.4018
+   ],
+   "p60": 0.53,
+   "minutes": 151,
+   "confidence": 0.336
+  },
+  "Scherpen|IPS": {
+   "code": 240514,
+   "pos": "GK",
+   "team": "IPS",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Enciso|IPS": {
+   "code": 474120,
+   "pos": "MID",
+   "team": "IPS",
+   "price": 5.5,
+   "ev": [
+    2.2328,
+    2.3109,
+    2.6158,
+    2.0409,
+    2.4451,
+    2.7147
+   ],
+   "p60": 0.53,
+   "minutes": 160,
+   "confidence": 0.356
+  },
+  "Ouattara|IPS": {
+   "code": 572584,
+   "pos": "DEF",
+   "team": "IPS",
+   "price": 4.0,
+   "ev": [
+    0.1229,
+    0.1396,
+    0.1651,
+    0.1032,
+    0.1527,
+    0.1791
+   ],
+   "p60": 0.03,
+   "minutes": 27,
+   "confidence": 0.06
+  },
+  "Humphreys|IPS": {
+   "code": 524180,
+   "pos": "MID",
+   "team": "IPS",
+   "price": 4.5,
+   "ev": [
+    0.1712,
+    0.1755,
+    0.1924,
+    0.1606,
+    0.183,
+    0.1979
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Palacios|IPS": {
+   "code": 218543,
+   "pos": "MID",
+   "team": "IPS",
+   "price": 5.0,
+   "ev": [
+    0.1722,
+    0.1764,
+    0.1925,
+    0.1621,
+    0.1835,
+    0.1978
+   ],
+   "p60": 0.03,
+   "minutes": 28,
+   "confidence": 0.062
+  },
+  "Wilson|LEE": {
+   "code": 153682,
+   "pos": "MID",
+   "team": "LEE",
+   "price": 6.4,
+   "ev": [
+    3.01,
+    3.0682,
+    2.4141,
+    2.9399,
+    3.059,
+    2.9952
+   ],
+   "p60": 0.68,
+   "minutes": 2784,
+   "confidence": 1.0
+  },
+  "Bijol|LEE": {
+   "code": 434752,
+   "pos": "DEF",
+   "team": "LEE",
+   "price": 5.0,
+   "ev": [
+    3.2507,
+    3.2906,
+    2.7697,
+    3.025,
+    3.6646,
+    3.0384
+   ],
+   "p60": 0.7,
+   "minutes": 2023,
+   "confidence": 1.0
+  },
+  "Bogle|LEE": {
+   "code": 226182,
+   "pos": "DEF",
+   "team": "LEE",
+   "price": 4.5,
+   "ev": [
+    3.6167,
+    3.6892,
+    2.7815,
+    3.3,
+    4.1677,
+    3.3371
+   ],
+   "p60": 0.95,
+   "minutes": 2952,
+   "confidence": 1.0
+  },
+  "Gudmundsson|LEE": {
+   "code": 243526,
+   "pos": "DEF",
+   "team": "LEE",
+   "price": 4.5,
+   "ev": [
+    1.7196,
+    1.7497,
+    1.3661,
+    1.5715,
+    1.9842,
+    1.5846
+   ],
+   "p60": 0.45,
+   "minutes": 2637,
+   "confidence": 1.0
+  },
+  "Justin|LEE": {
+   "code": 220627,
+   "pos": "DEF",
+   "team": "LEE",
+   "price": 4.5,
+   "ev": [
+    4.367,
+    4.4337,
+    3.5915,
+    4.0594,
+    4.9087,
+    4.0915
+   ],
+   "p60": 0.93,
+   "minutes": 2073,
+   "confidence": 1.0
+  },
+  "Muharemovi\u0107|LEE": {
+   "code": 522047,
+   "pos": "DEF",
+   "team": "LEE",
+   "price": 5.0,
+   "ev": [
+    2.3821,
+    2.4143,
+    1.9988,
+    2.2098,
+    2.6951,
+    2.2219
+   ],
+   "p60": 0.53,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Stach|LEE": {
+   "code": 466525,
+   "pos": "MID",
+   "team": "LEE",
+   "price": 6.0,
+   "ev": [
+    4.6101,
+    4.6697,
+    3.9956,
+    4.5252,
+    4.6903,
+    4.5799
+   ],
+   "p60": 0.95,
+   "minutes": 2549,
+   "confidence": 1.0
+  },
+  "Okafor|LEE": {
+   "code": 435997,
+   "pos": "MID",
+   "team": "LEE",
+   "price": 5.9,
+   "ev": [
+    2.9546,
+    3.0191,
+    2.2965,
+    2.8848,
+    2.9906,
+    2.9472
+   ],
+   "p60": 0.6,
+   "minutes": 1645,
+   "confidence": 1.0
+  },
+  "Aaronson|LEE": {
+   "code": 427637,
+   "pos": "MID",
+   "team": "LEE",
+   "price": 5.5,
+   "ev": [
+    2.5891,
+    2.6328,
+    2.1393,
+    2.5283,
+    2.6448,
+    2.5685
+   ],
+   "p60": 0.67,
+   "minutes": 2575,
+   "confidence": 1.0
+  },
+  "Ampadu|LEE": {
+   "code": 199598,
+   "pos": "MID",
+   "team": "LEE",
+   "price": 5.5,
+   "ev": [
+    3.9619,
+    3.997,
+    3.5919,
+    3.8905,
+    4.0578,
+    3.9198
+   ],
+   "p60": 0.97,
+   "minutes": 3299,
+   "confidence": 1.0
+  },
+  "Longstaff|LEE": {
+   "code": 180135,
+   "pos": "MID",
+   "team": "LEE",
+   "price": 5.0,
+   "ev": [
+    1.7912,
+    1.8208,
+    1.4876,
+    1.7533,
+    1.8214,
+    1.7811
+   ],
+   "p60": 0.39,
+   "minutes": 1011,
+   "confidence": 1.0
+  },
+  "Gnonto|LEE": {
+   "code": 492859,
+   "pos": "MID",
+   "team": "LEE",
+   "price": 5.0,
+   "ev": [
+    0.9332,
+    0.945,
+    0.8107,
+    0.9142,
+    0.9541,
+    0.9247
+   ],
+   "p60": 0.23,
+   "minutes": 521,
+   "confidence": 1.0
+  },
+  "James|LEE": {
+   "code": 200617,
+   "pos": "MID",
+   "team": "LEE",
+   "price": 5.0,
+   "ev": [
+    0.9287,
+    0.9472,
+    0.7392,
+    0.9057,
+    0.9459,
+    0.9232
+   ],
+   "p60": 0.23,
+   "minutes": 569,
+   "confidence": 1.0
+  },
+  "Tanaka|LEE": {
+   "code": 248056,
+   "pos": "MID",
+   "team": "LEE",
+   "price": 4.9,
+   "ev": [
+    1.779,
+    1.7998,
+    1.5627,
+    1.7447,
+    1.8175,
+    1.7632
+   ],
+   "p60": 0.42,
+   "minutes": 1352,
+   "confidence": 1.0
+  },
+  "Calvert-Lewin|LEE": {
+   "code": 177815,
+   "pos": "FWD",
+   "team": "LEE",
+   "price": 6.0,
+   "ev": [
+    4.495,
+    4.6079,
+    3.3612,
+    4.4272,
+    4.4334,
+    4.5443
+   ],
+   "p60": 0.93,
+   "minutes": 2901,
+   "confidence": 1.0
+  },
+  "Nmecha|LEE": {
+   "code": 174594,
+   "pos": "FWD",
+   "team": "LEE",
+   "price": 5.5,
+   "ev": [
+    1.6041,
+    1.6496,
+    1.1481,
+    1.5769,
+    1.5793,
+    1.624
+   ],
+   "p60": 0.29,
+   "minutes": 1086,
+   "confidence": 1.0
+  },
+  "Trafford|LEE": {
+   "code": 432720,
+   "pos": "GK",
+   "team": "LEE",
+   "price": 5.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 540,
+   "confidence": 1.0
+  },
+  "Elvedi|LEE": {
+   "code": 173774,
+   "pos": "DEF",
+   "team": "LEE",
+   "price": 4.5,
+   "ev": [
+    0.1667,
+    0.169,
+    0.1388,
+    0.1553,
+    0.1864,
+    0.1564
+   ],
+   "p60": 0.03,
+   "minutes": 56,
+   "confidence": 0.124
+  },
+  "Lienou|LEE": {
+   "code": 643970,
+   "pos": "DEF",
+   "team": "LEE",
+   "price": 4.0,
+   "ev": [
+    0.1679,
+    0.1704,
+    0.1384,
+    0.1565,
+    0.1875,
+    0.1577
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Cresswell|LEE": {
+   "code": 592740,
+   "pos": "MID",
+   "team": "LEE",
+   "price": 4.5,
+   "ev": [
+    0.1845,
+    0.1876,
+    0.1531,
+    0.1811,
+    0.1864,
+    0.1841
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Cairns|LEE": {
+   "code": 97846,
+   "pos": "GK",
+   "team": "LEE",
+   "price": 4.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Zetterer|LEE": {
+   "code": 155465,
+   "pos": "GK",
+   "team": "LEE",
+   "price": 4.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 1.0
+  },
+  "A.Becker|LIV": {
+   "code": 116535,
+   "pos": "GK",
+   "team": "LIV",
+   "price": 5.5,
+   "ev": [
+    4.4723,
+    3.9844,
+    3.9523,
+    3.8979,
+    4.12,
+    4.1093
+   ],
+   "p60": 0.97,
+   "minutes": 2520,
+   "confidence": 1.0
+  },
+  "Mamardashvili|LIV": {
+   "code": 449027,
+   "pos": "GK",
+   "team": "LIV",
+   "price": 5.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 867,
+   "confidence": 1.0
+  },
+  "Woodman|LIV": {
+   "code": 155503,
+   "pos": "GK",
+   "team": "LIV",
+   "price": 4.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 212,
+   "confidence": 0.471
+  },
+  "Davies|LIV": {
+   "code": 464353,
+   "pos": "GK",
+   "team": "LIV",
+   "price": 4.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Virgil|LIV": {
+   "code": 97032,
+   "pos": "DEF",
+   "team": "LIV",
+   "price": 6.5,
+   "ev": [
+    5.6555,
+    4.7381,
+    4.5314,
+    4.4497,
+    4.9377,
+    4.5718
+   ],
+   "p60": 0.97,
+   "minutes": 3600,
+   "confidence": 1.0
+  },
+  "Frimpong|LIV": {
+   "code": 216094,
+   "pos": "DEF",
+   "team": "LIV",
+   "price": 5.5,
+   "ev": [
+    3.8367,
+    3.0677,
+    2.9309,
+    2.853,
+    3.2541,
+    3.0379
+   ],
+   "p60": 0.85,
+   "minutes": 1192,
+   "confidence": 1.0
+  },
+  "Kerkez|LIV": {
+   "code": 544877,
+   "pos": "DEF",
+   "team": "LIV",
+   "price": 5.5,
+   "ev": [
+    4.2536,
+    3.4335,
+    3.3105,
+    3.2215,
+    3.6442,
+    3.47
+   ],
+   "p60": 0.93,
+   "minutes": 2411,
+   "confidence": 1.0
+  },
+  "Lucky|LIV": {
+   "code": 519440,
+   "pos": "DEF",
+   "team": "LIV",
+   "price": 4.0,
+   "ev": [
+    0.2019,
+    0.1711,
+    0.1649,
+    0.1619,
+    0.1783,
+    0.1681
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Jacquet|LIV": {
+   "code": 606702,
+   "pos": "DEF",
+   "team": "LIV",
+   "price": 5.0,
+   "ev": [
+    2.6216,
+    2.1542,
+    2.0856,
+    2.0345,
+    2.2752,
+    2.1796
+   ],
+   "p60": 0.53,
+   "minutes": 145,
+   "confidence": 0.322
+  },
+  "Tsimikas|LIV": {
+   "code": 214285,
+   "pos": "DEF",
+   "team": "LIV",
+   "price": 5.0,
+   "ev": [
+    0.2016,
+    0.1705,
+    0.164,
+    0.161,
+    0.1776,
+    0.1668
+   ],
+   "p60": 0.03,
+   "minutes": 19,
+   "confidence": 0.042
+  },
+  "Wirtz|LIV": {
+   "code": 494595,
+   "pos": "MID",
+   "team": "LIV",
+   "price": 7.5,
+   "ev": [
+    5.224,
+    4.8159,
+    4.4787,
+    4.5066,
+    4.7746,
+    4.004
+   ],
+   "p60": 0.93,
+   "minutes": 2526,
+   "confidence": 1.0
+  },
+  "Gakpo|LIV": {
+   "code": 243298,
+   "pos": "MID",
+   "team": "LIV",
+   "price": 7.0,
+   "ev": [
+    4.6889,
+    4.3015,
+    3.9906,
+    4.0147,
+    4.2669,
+    3.558
+   ],
+   "p60": 0.93,
+   "minutes": 2896,
+   "confidence": 1.0
+  },
+  "Szoboszlai|LIV": {
+   "code": 424876,
+   "pos": "MID",
+   "team": "LIV",
+   "price": 7.0,
+   "ev": [
+    5.2285,
+    4.8653,
+    4.5925,
+    4.6105,
+    4.8426,
+    4.2242
+   ],
+   "p60": 0.97,
+   "minutes": 3412,
+   "confidence": 1.0
+  },
+  "Ngumoha|LIV": {
+   "code": 611922,
+   "pos": "MID",
+   "team": "LIV",
+   "price": 5.9,
+   "ev": [
+    2.4247,
+    2.231,
+    2.0783,
+    2.0897,
+    2.2152,
+    1.8677
+   ],
+   "p60": 0.48,
+   "minutes": 628,
+   "confidence": 1.0
+  },
+  "Gravenberch|LIV": {
+   "code": 441266,
+   "pos": "MID",
+   "team": "LIV",
+   "price": 6.0,
+   "ev": [
+    2.7611,
+    2.5997,
+    2.5301,
+    2.5252,
+    2.6162,
+    2.4686
+   ],
+   "p60": 0.7,
+   "minutes": 3087,
+   "confidence": 1.0
+  },
+  "Mac Allister|LIV": {
+   "code": 243016,
+   "pos": "MID",
+   "team": "LIV",
+   "price": 5.5,
+   "ev": [
+    2.7931,
+    2.6002,
+    2.4868,
+    2.4885,
+    2.6044,
+    2.3537
+   ],
+   "p60": 0.68,
+   "minutes": 2757,
+   "confidence": 1.0
+  },
+  "Endo|LIV": {
+   "code": 158983,
+   "pos": "MID",
+   "team": "LIV",
+   "price": 5.0,
+   "ev": [
+    0.9908,
+    0.927,
+    0.8907,
+    0.8909,
+    0.929,
+    0.8488
+   ],
+   "p60": 0.23,
+   "minutes": 170,
+   "confidence": 0.378
+  },
+  "Nyoni|LIV": {
+   "code": 591386,
+   "pos": "MID",
+   "team": "LIV",
+   "price": 5.0,
+   "ev": [
+    1.1995,
+    1.1143,
+    1.0508,
+    1.0549,
+    1.1092,
+    0.9653
+   ],
+   "p60": 0.23,
+   "minutes": 34,
+   "confidence": 0.076
+  },
+  "Munoz|LIV": {
+   "code": 551499,
+   "pos": "MID",
+   "team": "LIV",
+   "price": 6.5,
+   "ev": [
+    1.1564,
+    1.0533,
+    0.9767,
+    0.9816,
+    1.0473,
+    0.8739
+   ],
+   "p60": 0.28,
+   "minutes": 117,
+   "confidence": 0.26
+  },
+  "McConnell|LIV": {
+   "code": 491501,
+   "pos": "MID",
+   "team": "LIV",
+   "price": 4.5,
+   "ev": [
+    0.1984,
+    0.1862,
+    0.1765,
+    0.1773,
+    0.1852,
+    0.1632
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Isak|LIV": {
+   "code": 219168,
+   "pos": "FWD",
+   "team": "LIV",
+   "price": 9.0,
+   "ev": [
+    4.0658,
+    3.8243,
+    3.5196,
+    3.5624,
+    3.7456,
+    3.0299
+   ],
+   "p60": 0.79,
+   "minutes": 874,
+   "confidence": 1.0
+  },
+  "Koumas|LIV": {
+   "code": 514514,
+   "pos": "MID",
+   "team": "LIV",
+   "price": 5.0,
+   "ev": [
+    0.1984,
+    0.1862,
+    0.1766,
+    0.1773,
+    0.1852,
+    0.1632
+   ],
+   "p60": 0.03,
+   "minutes": 12,
+   "confidence": 0.027
+  },
+  "Elliott|LIV": {
+   "code": 444884,
+   "pos": "MID",
+   "team": "LIV",
+   "price": 5.4,
+   "ev": [
+    1.0278,
+    0.9496,
+    0.8949,
+    0.8977,
+    0.9468,
+    0.8235
+   ],
+   "p60": 0.23,
+   "minutes": 110,
+   "confidence": 0.244
+  },
+  "Araujo|LIV": {
+   "code": 445087,
+   "pos": "DEF",
+   "team": "LIV",
+   "price": 5.4,
+   "ev": [
+    0.1765,
+    0.1457,
+    0.1396,
+    0.1366,
+    0.153,
+    0.1429
+   ],
+   "p60": 0.03,
+   "minutes": 33,
+   "confidence": 0.073
+  },
+  "Barcola|LIV": {
+   "code": 482616,
+   "pos": "MID",
+   "team": "LIV",
+   "price": 8.0,
+   "ev": [
+    0.2821,
+    0.2635,
+    0.2497,
+    0.2506,
+    0.2624,
+    0.231
+   ],
+   "p60": 0.05,
+   "minutes": 0,
+   "confidence": 1.0
+  },
+  "Grealish|MCI": {
+   "code": 114283,
+   "pos": "MID",
+   "team": "MCI",
+   "price": 6.5,
+   "ev": [
+    1.8613,
+    2.2178,
+    1.8189,
+    2.3795,
+    2.0375,
+    2.0188
+   ],
+   "p60": 0.47,
+   "minutes": 1635,
+   "confidence": 1.0
+  },
+  "Donnarumma|MCI": {
+   "code": 204936,
+   "pos": "GK",
+   "team": "MCI",
+   "price": 5.5,
+   "ev": [
+    3.6382,
+    4.546,
+    3.6081,
+    4.3432,
+    4.1214,
+    3.9756
+   ],
+   "p60": 0.97,
+   "minutes": 3240,
+   "confidence": 1.0
+  },
+  "Bettinelli|MCI": {
+   "code": 122074,
+   "pos": "GK",
+   "team": "MCI",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "O'Reilly|MCI": {
+   "code": 472769,
+   "pos": "DEF",
+   "team": "MCI",
+   "price": 6.5,
+   "ev": [
+    4.1869,
+    6.2875,
+    4.0142,
+    6.5806,
+    5.314,
+    5.0954
+   ],
+   "p60": 0.93,
+   "minutes": 2793,
+   "confidence": 1.0
+  },
+  "Gu\u00e9hi|MCI": {
+   "code": 209036,
+   "pos": "DEF",
+   "team": "MCI",
+   "price": 6.0,
+   "ev": [
+    4.2234,
+    6.1606,
+    4.0871,
+    6.2391,
+    5.2839,
+    5.0511
+   ],
+   "p60": 0.97,
+   "minutes": 3330,
+   "confidence": 1.0
+  },
+  "R\u00faben|MCI": {
+   "code": 171314,
+   "pos": "DEF",
+   "team": "MCI",
+   "price": 5.5,
+   "ev": [
+    3.3277,
+    4.9662,
+    3.2409,
+    4.7939,
+    4.251,
+    4.0152
+   ],
+   "p60": 0.96,
+   "minutes": 2319,
+   "confidence": 1.0
+  },
+  "Gvardiol|MCI": {
+   "code": 477424,
+   "pos": "DEF",
+   "team": "MCI",
+   "price": 5.6,
+   "ev": [
+    3.9681,
+    5.8624,
+    3.8351,
+    5.9366,
+    5.0054,
+    4.7773
+   ],
+   "p60": 0.95,
+   "minutes": 1534,
+   "confidence": 1.0
+  },
+  "A\u00eft-Nouri|MCI": {
+   "code": 448514,
+   "pos": "DEF",
+   "team": "MCI",
+   "price": 5.4,
+   "ev": [
+    1.7024,
+    2.4583,
+    1.652,
+    2.4656,
+    2.119,
+    2.0243
+   ],
+   "p60": 0.39,
+   "minutes": 971,
+   "confidence": 1.0
+  },
+  "Khusanov|MCI": {
+   "code": 578153,
+   "pos": "DEF",
+   "team": "MCI",
+   "price": 5.5,
+   "ev": [
+    3.4669,
+    5.0973,
+    3.3754,
+    4.9688,
+    4.3809,
+    4.1533
+   ],
+   "p60": 0.93,
+   "minutes": 1605,
+   "confidence": 1.0
+  },
+  "Lewis|MCI": {
+   "code": 477064,
+   "pos": "DEF",
+   "team": "MCI",
+   "price": 4.5,
+   "ev": [
+    1.5211,
+    2.3309,
+    1.4614,
+    2.3867,
+    1.9622,
+    1.8686
+   ],
+   "p60": 0.39,
+   "minutes": 457,
+   "confidence": 1.0
+  },
+  "Vitor Reis|MCI": {
+   "code": 616222,
+   "pos": "DEF",
+   "team": "MCI",
+   "price": 4.5,
+   "ev": [
+    0.154,
+    0.2156,
+    0.1501,
+    0.2138,
+    0.1886,
+    0.1804
+   ],
+   "p60": 0.03,
+   "minutes": 1,
+   "confidence": 0.002
+  },
+  "Semenyo|MCI": {
+   "code": 437730,
+   "pos": "MID",
+   "team": "MCI",
+   "price": 8.5,
+   "ev": [
+    3.9547,
+    4.9301,
+    3.826,
+    5.4789,
+    4.4271,
+    4.3931
+   ],
+   "p60": 0.97,
+   "minutes": 3380,
+   "confidence": 1.0
+  },
+  "Foden|MCI": {
+   "code": 209244,
+   "pos": "MID",
+   "team": "MCI",
+   "price": 7.0,
+   "ev": [
+    2.8662,
+    3.5926,
+    2.7623,
+    4.0673,
+    3.2119,
+    3.1972
+   ],
+   "p60": 0.526,
+   "minutes": 2249,
+   "confidence": 1.0
+  },
+  "Cherki|MCI": {
+   "code": 466052,
+   "pos": "MID",
+   "team": "MCI",
+   "price": 7.7,
+   "ev": [
+    3.5589,
+    4.5025,
+    3.4234,
+    5.1235,
+    4.0075,
+    3.9892
+   ],
+   "p60": 0.67,
+   "minutes": 1880,
+   "confidence": 1.0
+  },
+  "Kova\u010di\u0107|MCI": {
+   "code": 91651,
+   "pos": "MID",
+   "team": "MCI",
+   "price": 5.5,
+   "ev": [
+    0.9402,
+    1.1207,
+    0.9185,
+    1.2053,
+    1.0292,
+    1.0202
+   ],
+   "p60": 0.23,
+   "minutes": 167,
+   "confidence": 0.371
+  },
+  "Echeverri|MCI": {
+   "code": 575204,
+   "pos": "MID",
+   "team": "MCI",
+   "price": 4.9,
+   "ev": [
+    0.1717,
+    0.2025,
+    0.1676,
+    0.2201,
+    0.1866,
+    0.1856
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Mukasa|MCI": {
+   "code": 590039,
+   "pos": "MID",
+   "team": "MCI",
+   "price": 4.5,
+   "ev": [
+    0.8817,
+    1.0728,
+    0.8581,
+    1.1669,
+    0.9755,
+    0.9667
+   ],
+   "p60": 0.23,
+   "minutes": 25,
+   "confidence": 0.056
+  },
+  "Monga|MCI": {
+   "code": 649208,
+   "pos": "MID",
+   "team": "MCI",
+   "price": 4.9,
+   "ev": [
+    0.1717,
+    0.2025,
+    0.1676,
+    0.2201,
+    0.1866,
+    0.1856
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Haaland|MCI": {
+   "code": 223094,
+   "pos": "FWD",
+   "team": "MCI",
+   "price": 15.5,
+   "ev": [
+    5.4869,
+    6.7268,
+    5.2728,
+    7.8388,
+    6.0489,
+    6.0726
+   ],
+   "p60": 0.95,
+   "minutes": 3133,
+   "confidence": 1.0
+  },
+  "Anderson|MCI": {
+   "code": 215379,
+   "pos": "MID",
+   "team": "MCI",
+   "price": 6.4,
+   "ev": [
+    2.5622,
+    2.9019,
+    2.5237,
+    3.0412,
+    2.7316,
+    2.7113
+   ],
+   "p60": 0.492,
+   "minutes": 3475,
+   "confidence": 1.0
+  },
+  "Rulli|MCI": {
+   "code": 106921,
+   "pos": "GK",
+   "team": "MCI",
+   "price": 5.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Bouaddi|MCI": {
+   "code": 637238,
+   "pos": "MID",
+   "team": "MCI",
+   "price": 5.5,
+   "ev": [
+    0.1741,
+    0.206,
+    0.1698,
+    0.2246,
+    0.1895,
+    0.1885
+   ],
+   "p60": 0.03,
+   "minutes": 8,
+   "confidence": 0.018
+  },
+  "McAidoo|MCI": {
+   "code": 616288,
+   "pos": "MID",
+   "team": "MCI",
+   "price": 4.5,
+   "ev": [
+    0.1743,
+    0.2068,
+    0.1699,
+    0.2258,
+    0.1899,
+    0.1889
+   ],
+   "p60": 0.03,
+   "minutes": 8,
+   "confidence": 0.018
+  },
+  "Braithwaite|MCI": {
+   "code": 554054,
+   "pos": "DEF",
+   "team": "MCI",
+   "price": 4.0,
+   "ev": [
+    0.154,
+    0.2156,
+    0.1501,
+    0.2138,
+    0.1886,
+    0.1804
+   ],
+   "p60": 0.03,
+   "minutes": 1,
+   "confidence": 0.002
+  },
+  "Allan|MCI": {
+   "code": 624777,
+   "pos": "MID",
+   "team": "MCI",
+   "price": 6.0,
+   "ev": [
+    0.2424,
+    0.2886,
+    0.2364,
+    0.3133,
+    0.2649,
+    0.2631
+   ],
+   "p60": 0.05,
+   "minutes": 0,
+   "confidence": 1.0
+  },
+  "Tielemans|MUN": {
+   "code": 166989,
+   "pos": "MID",
+   "team": "MUN",
+   "price": 6.0,
+   "ev": [
+    3.5894,
+    3.7582,
+    3.7547,
+    3.6424,
+    3.984,
+    3.3587
+   ],
+   "p60": 0.93,
+   "minutes": 2013,
+   "confidence": 1.0
+  },
+  "Andrey Santos|MUN": {
+   "code": 532605,
+   "pos": "MID",
+   "team": "MUN",
+   "price": 5.0,
+   "ev": [
+    2.2978,
+    2.4077,
+    2.405,
+    2.3323,
+    2.5566,
+    2.1474
+   ],
+   "p60": 0.6,
+   "minutes": 1323,
+   "confidence": 1.0
+  },
+  "Darlow|MUN": {
+   "code": 59735,
+   "pos": "GK",
+   "team": "MUN",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 1980,
+   "confidence": 1.0
+  },
+  "Lammens|MUN": {
+   "code": 465247,
+   "pos": "GK",
+   "team": "MUN",
+   "price": 5.0,
+   "ev": [
+    4.0576,
+    4.3446,
+    4.4345,
+    4.1565,
+    4.2924,
+    3.7739
+   ],
+   "p60": 0.97,
+   "minutes": 3060,
+   "confidence": 1.0
+  },
+  "Dorgu|MUN": {
+   "code": 596777,
+   "pos": "MID",
+   "team": "MUN",
+   "price": 5.9,
+   "ev": [
+    1.8265,
+    1.9284,
+    1.9157,
+    1.8571,
+    2.1153,
+    1.6813
+   ],
+   "p60": 0.42,
+   "minutes": 1495,
+   "confidence": 1.0
+  },
+  "Dalot|MUN": {
+   "code": 216051,
+   "pos": "DEF",
+   "team": "MUN",
+   "price": 5.0,
+   "ev": [
+    2.6223,
+    3.042,
+    3.1284,
+    2.7706,
+    3.1297,
+    2.0545
+   ],
+   "p60": 0.68,
+   "minutes": 2692,
+   "confidence": 1.0
+  },
+  "Maguire|MUN": {
+   "code": 95658,
+   "pos": "DEF",
+   "team": "MUN",
+   "price": 5.0,
+   "ev": [
+    3.7223,
+    4.2867,
+    4.4163,
+    3.9237,
+    4.3394,
+    2.9644
+   ],
+   "p60": 0.95,
+   "minutes": 1829,
+   "confidence": 1.0
+  },
+  "Martinez|MUN": {
+   "code": 221820,
+   "pos": "DEF",
+   "team": "MUN",
+   "price": 5.0,
+   "ev": [
+    2.4844,
+    2.8721,
+    2.9724,
+    2.6244,
+    2.8539,
+    1.9678
+   ],
+   "p60": 0.68,
+   "minutes": 1319,
+   "confidence": 1.0
+  },
+  "Yoro|MUN": {
+   "code": 550864,
+   "pos": "DEF",
+   "team": "MUN",
+   "price": 4.9,
+   "ev": [
+    1.7247,
+    1.9814,
+    2.0364,
+    1.8157,
+    2.0243,
+    1.3779
+   ],
+   "p60": 0.42,
+   "minutes": 1746,
+   "confidence": 1.0
+  },
+  "Heaven|MUN": {
+   "code": 606745,
+   "pos": "DEF",
+   "team": "MUN",
+   "price": 4.5,
+   "ev": [
+    2.4517,
+    2.822,
+    2.9141,
+    2.5849,
+    2.8224,
+    1.9568
+   ],
+   "p60": 0.64,
+   "minutes": 1010,
+   "confidence": 1.0
+  },
+  "Mazraoui|MUN": {
+   "code": 230001,
+   "pos": "DEF",
+   "team": "MUN",
+   "price": 4.5,
+   "ev": [
+    2.1215,
+    2.4347,
+    2.5124,
+    2.2342,
+    2.4364,
+    1.7026
+   ],
+   "p60": 0.54,
+   "minutes": 1073,
+   "confidence": 1.0
+  },
+  "Shaw|MUN": {
+   "code": 106760,
+   "pos": "DEF",
+   "team": "MUN",
+   "price": 4.5,
+   "ev": [
+    3.103,
+    3.6551,
+    3.79,
+    3.3013,
+    3.667,
+    2.3648
+   ],
+   "p60": 0.95,
+   "minutes": 3382,
+   "confidence": 1.0
+  },
+  "Amass|MUN": {
+   "code": 577974,
+   "pos": "DEF",
+   "team": "MUN",
+   "price": 4.0,
+   "ev": [
+    0.1587,
+    0.1796,
+    0.1839,
+    0.1662,
+    0.1839,
+    0.1296
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "B.Fernandes|MUN": {
+   "code": 141746,
+   "pos": "MID",
+   "team": "MUN",
+   "price": 12.0,
+   "ev": [
+    6.1299,
+    6.4909,
+    6.4071,
+    6.2328,
+    7.3385,
+    5.5936
+   ],
+   "p60": 0.97,
+   "minutes": 3245,
+   "confidence": 1.0
+  },
+  "Mbeumo|MUN": {
+   "code": 446008,
+   "pos": "MID",
+   "team": "MUN",
+   "price": 8.0,
+   "ev": [
+    5.1903,
+    5.5665,
+    5.4746,
+    5.2969,
+    6.4717,
+    4.6288
+   ],
+   "p60": 0.95,
+   "minutes": 2791,
+   "confidence": 1.0
+  },
+  "Cunha|MUN": {
+   "code": 430871,
+   "pos": "MID",
+   "team": "MUN",
+   "price": 8.0,
+   "ev": [
+    3.9702,
+    4.2026,
+    4.1715,
+    4.0396,
+    4.6389,
+    3.6378
+   ],
+   "p60": 0.93,
+   "minutes": 2651,
+   "confidence": 1.0
+  },
+  "Rashford|MUN": {
+   "code": 176297,
+   "pos": "MID",
+   "team": "MUN",
+   "price": 7.0,
+   "ev": [
+    1.0253,
+    1.0841,
+    1.0796,
+    1.0433,
+    1.1785,
+    0.9431
+   ],
+   "p60": 0.28,
+   "minutes": 124,
+   "confidence": 0.276
+  },
+  "Mainoo|MUN": {
+   "code": 516895,
+   "pos": "MID",
+   "team": "MUN",
+   "price": 5.5,
+   "ev": [
+    2.4006,
+    2.4975,
+    2.5064,
+    2.4325,
+    2.5749,
+    2.2742
+   ],
+   "p60": 0.68,
+   "minutes": 1755,
+   "confidence": 1.0
+  },
+  "J.Fletcher|MUN": {
+   "code": 547037,
+   "pos": "MID",
+   "team": "MUN",
+   "price": 5.0,
+   "ev": [
+    0.8584,
+    0.9034,
+    0.9011,
+    0.8723,
+    0.9704,
+    0.7959
+   ],
+   "p60": 0.23,
+   "minutes": 107,
+   "confidence": 0.238
+  },
+  "Lacey|MUN": {
+   "code": 576628,
+   "pos": "MID",
+   "team": "MUN",
+   "price": 5.0,
+   "ev": [
+    0.8908,
+    0.9408,
+    0.9363,
+    0.906,
+    1.0237,
+    0.8207
+   ],
+   "p60": 0.23,
+   "minutes": 50,
+   "confidence": 0.111
+  },
+  "Bendito Mantato|MUN": {
+   "code": 576620,
+   "pos": "MID",
+   "team": "MUN",
+   "price": 4.5,
+   "ev": [
+    0.8832,
+    0.9328,
+    0.9285,
+    0.8983,
+    1.0149,
+    0.8134
+   ],
+   "p60": 0.23,
+   "minutes": 15,
+   "confidence": 0.033
+  },
+  "Fletcher|MUN": {
+   "code": 519913,
+   "pos": "MID",
+   "team": "MUN",
+   "price": 4.5,
+   "ev": [
+    0.8954,
+    0.9449,
+    0.9407,
+    0.9105,
+    1.0266,
+    0.8258
+   ],
+   "p60": 0.23,
+   "minutes": 17,
+   "confidence": 0.038
+  },
+  "\u0160e\u0161ko|MUN": {
+   "code": 485711,
+   "pos": "FWD",
+   "team": "MUN",
+   "price": 7.0,
+   "ev": [
+    2.0029,
+    2.0953,
+    2.0553,
+    2.0267,
+    2.4013,
+    1.8551
+   ],
+   "p60": 0.42,
+   "minutes": 1663,
+   "confidence": 1.0
+  },
+  "Zirkzee|MUN": {
+   "code": 458249,
+   "pos": "FWD",
+   "team": "MUN",
+   "price": 5.4,
+   "ev": [
+    1.4443,
+    1.509,
+    1.481,
+    1.461,
+    1.7231,
+    1.3409
+   ],
+   "p60": 0.35,
+   "minutes": 607,
+   "confidence": 1.0
+  },
+  "Obi|MUN": {
+   "code": 596047,
+   "pos": "FWD",
+   "team": "MUN",
+   "price": 4.5,
+   "ev": [
+    0.1849,
+    0.1929,
+    0.1894,
+    0.1869,
+    0.2195,
+    0.172
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "N.Gonzalez|NEW": {
+   "code": 465694,
+   "pos": "MID",
+   "team": "NEW",
+   "price": 5.5,
+   "ev": [
+    2.3504,
+    2.7188,
+    2.5141,
+    2.5428,
+    2.321,
+    2.4969
+   ],
+   "p60": 0.67,
+   "minutes": 1631,
+   "confidence": 1.0
+  },
+  "Pope|NEW": {
+   "code": 98747,
+   "pos": "GK",
+   "team": "NEW",
+   "price": 5.0,
+   "ev": [
+    2.0293,
+    2.3478,
+    2.1884,
+    2.1877,
+    1.9981,
+    2.1513
+   ],
+   "p60": 0.47,
+   "minutes": 2416,
+   "confidence": 1.0
+  },
+  "Gillespie|NEW": {
+   "code": 81441,
+   "pos": "GK",
+   "team": "NEW",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Jaouen|NEW": {
+   "code": 554578,
+   "pos": "GK",
+   "team": "NEW",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Thiaw|NEW": {
+   "code": 465642,
+   "pos": "DEF",
+   "team": "NEW",
+   "price": 5.0,
+   "ev": [
+    4.5477,
+    6.4124,
+    5.4726,
+    5.5524,
+    4.3412,
+    5.3301
+   ],
+   "p60": 0.96,
+   "minutes": 3143,
+   "confidence": 1.0
+  },
+  "Sch\u00e4r|NEW": {
+   "code": 119471,
+   "pos": "DEF",
+   "team": "NEW",
+   "price": 5.0,
+   "ev": [
+    1.7537,
+    2.4618,
+    2.113,
+    2.1371,
+    1.6707,
+    2.0536
+   ],
+   "p60": 0.39,
+   "minutes": 1090,
+   "confidence": 1.0
+  },
+  "Botman|NEW": {
+   "code": 220237,
+   "pos": "DEF",
+   "team": "NEW",
+   "price": 5.0,
+   "ev": [
+    4.2678,
+    5.8684,
+    5.0922,
+    5.1369,
+    4.0735,
+    4.9496
+   ],
+   "p60": 0.93,
+   "minutes": 2014,
+   "confidence": 1.0
+  },
+  "Hall|NEW": {
+   "code": 487838,
+   "pos": "DEF",
+   "team": "NEW",
+   "price": 5.1,
+   "ev": [
+    3.8996,
+    5.5504,
+    4.7414,
+    4.7941,
+    3.7038,
+    4.6
+   ],
+   "p60": 0.93,
+   "minutes": 2356,
+   "confidence": 1.0
+  },
+  "Barnes|NEW": {
+   "code": 201666,
+   "pos": "MID",
+   "team": "NEW",
+   "price": 6.0,
+   "ev": [
+    3.8447,
+    5.0776,
+    4.3227,
+    4.4768,
+    3.784,
+    4.3147
+   ],
+   "p60": 0.92,
+   "minutes": 2131,
+   "confidence": 1.0
+  },
+  "Elanga|NEW": {
+   "code": 449434,
+   "pos": "MID",
+   "team": "NEW",
+   "price": 6.1,
+   "ev": [
+    2.7657,
+    3.5168,
+    3.069,
+    3.1528,
+    2.7222,
+    3.0555
+   ],
+   "p60": 0.79,
+   "minutes": 1458,
+   "confidence": 1.0
+  },
+  "J.Ramsey|NEW": {
+   "code": 232653,
+   "pos": "MID",
+   "team": "NEW",
+   "price": 5.0,
+   "ev": [
+    1.5738,
+    1.877,
+    1.7016,
+    1.7309,
+    1.5534,
+    1.6923
+   ],
+   "p60": 0.42,
+   "minutes": 1483,
+   "confidence": 1.0
+  },
+  "J.Murphy|NEW": {
+   "code": 114243,
+   "pos": "MID",
+   "team": "NEW",
+   "price": 5.9,
+   "ev": [
+    1.0351,
+    1.3205,
+    1.1493,
+    1.182,
+    1.0192,
+    1.1449
+   ],
+   "p60": 0.28,
+   "minutes": 1628,
+   "confidence": 1.0
+  },
+  "L.Miley|NEW": {
+   "code": 547719,
+   "pos": "MID",
+   "team": "NEW",
+   "price": 5.5,
+   "ev": [
+    3.5819,
+    4.2544,
+    3.8652,
+    3.9304,
+    3.5366,
+    3.8448
+   ],
+   "p60": 0.93,
+   "minutes": 1658,
+   "confidence": 1.0
+  },
+  "Willock|NEW": {
+   "code": 200089,
+   "pos": "MID",
+   "team": "NEW",
+   "price": 5.0,
+   "ev": [
+    1.9067,
+    2.3953,
+    2.1054,
+    2.1587,
+    1.8777,
+    2.0956
+   ],
+   "p60": 0.54,
+   "minutes": 1076,
+   "confidence": 1.0
+  },
+  "Tour\u00e9|NEW": {
+   "code": 611665,
+   "pos": "MID",
+   "team": "NEW",
+   "price": 5.9,
+   "ev": [
+    0.1774,
+    0.219,
+    0.1935,
+    0.1987,
+    0.1754,
+    0.1933
+   ],
+   "p60": 0.03,
+   "minutes": 1,
+   "confidence": 0.002
+  },
+  "Steur|NEW": {
+   "code": 636852,
+   "pos": "MID",
+   "team": "NEW",
+   "price": 5.0,
+   "ev": [
+    0.1679,
+    0.2041,
+    0.1821,
+    0.1865,
+    0.1661,
+    0.1818
+   ],
+   "p60": 0.03,
+   "minutes": 74,
+   "confidence": 0.164
+  },
+  "Woltemade|NEW": {
+   "code": 470313,
+   "pos": "FWD",
+   "team": "NEW",
+   "price": 5.9,
+   "ev": [
+    1.3155,
+    1.6182,
+    1.4209,
+    1.4687,
+    1.307,
+    1.4275
+   ],
+   "p60": 0.35,
+   "minutes": 1915,
+   "confidence": 1.0
+  },
+  "Wissa|NEW": {
+   "code": 216646,
+   "pos": "FWD",
+   "team": "NEW",
+   "price": 6.1,
+   "ev": [
+    4.1538,
+    5.7707,
+    4.717,
+    4.9723,
+    4.1088,
+    4.752
+   ],
+   "p60": 0.899,
+   "minutes": 688,
+   "confidence": 1.0
+  },
+  "Neave|NEW": {
+   "code": 599303,
+   "pos": "FWD",
+   "team": "NEW",
+   "price": 4.5,
+   "ev": [
+    0.9106,
+    1.189,
+    1.0076,
+    1.0515,
+    0.9029,
+    1.0136
+   ],
+   "p60": 0.23,
+   "minutes": 13,
+   "confidence": 0.029
+  },
+  "Bamba|NEW": {
+   "code": 632794,
+   "pos": "MID",
+   "team": "NEW",
+   "price": 5.0,
+   "ev": [
+    0.1768,
+    0.2175,
+    0.1926,
+    0.1976,
+    0.1748,
+    0.1923
+   ],
+   "p60": 0.03,
+   "minutes": 14,
+   "confidence": 0.031
+  },
+  "Horn\u00ed\u010dek|NEW": {
+   "code": 470551,
+   "pos": "GK",
+   "team": "NEW",
+   "price": 5.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Dedi\u0107|NEW": {
+   "code": 463726,
+   "pos": "DEF",
+   "team": "NEW",
+   "price": 4.5,
+   "ev": [
+    2.6253,
+    3.4719,
+    3.0728,
+    3.0876,
+    2.5161,
+    2.9899
+   ],
+   "p60": 0.53,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "Shahar|NEW": {
+   "code": 553746,
+   "pos": "DEF",
+   "team": "NEW",
+   "price": 4.0,
+   "ev": [
+    0.164,
+    0.2236,
+    0.1946,
+    0.1965,
+    0.1568,
+    0.1895
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Delap|NFO": {
+   "code": 463034,
+   "pos": "FWD",
+   "team": "NFO",
+   "price": 5.5,
+   "ev": [
+    1.06,
+    1.234,
+    1.0067,
+    0.8733,
+    1.1994,
+    1.0149
+   ],
+   "p60": 0.29,
+   "minutes": 1116,
+   "confidence": 1.0
+  },
+  "Mu\u00f1oz|NFO": {
+   "code": 247348,
+   "pos": "DEF",
+   "team": "NFO",
+   "price": 5.4,
+   "ev": [
+    2.2894,
+    2.7983,
+    1.9687,
+    1.9676,
+    2.4326,
+    1.9253
+   ],
+   "p60": 0.46,
+   "minutes": 2454,
+   "confidence": 1.0
+  },
+  "Sels|NFO": {
+   "code": 85633,
+   "pos": "GK",
+   "team": "NFO",
+   "price": 5.0,
+   "ev": [
+    4.1476,
+    4.5377,
+    3.8965,
+    4.0145,
+    4.1495,
+    3.8563
+   ],
+   "p60": 0.97,
+   "minutes": 2847,
+   "confidence": 1.0
+  },
+  "John|NFO": {
+   "code": 221389,
+   "pos": "GK",
+   "team": "NFO",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 437,
+   "confidence": 0.971
+  },
+  "N.Williams|NFO": {
+   "code": 215136,
+   "pos": "DEF",
+   "team": "NFO",
+   "price": 5.0,
+   "ev": [
+    4.5432,
+    5.4841,
+    3.913,
+    4.0002,
+    4.7472,
+    3.8174
+   ],
+   "p60": 0.96,
+   "minutes": 3383,
+   "confidence": 1.0
+  },
+  "Morato|NFO": {
+   "code": 485047,
+   "pos": "DEF",
+   "team": "NFO",
+   "price": 5.0,
+   "ev": [
+    2.0271,
+    2.4377,
+    1.7507,
+    1.7914,
+    2.1144,
+    1.7084
+   ],
+   "p60": 0.42,
+   "minutes": 1340,
+   "confidence": 1.0
+  },
+  "Milenkovi\u0107|NFO": {
+   "code": 227444,
+   "pos": "DEF",
+   "team": "NFO",
+   "price": 5.5,
+   "ev": [
+    4.0139,
+    4.7737,
+    3.4356,
+    3.6701,
+    4.0671,
+    3.33
+   ],
+   "p60": 0.97,
+   "minutes": 3555,
+   "confidence": 1.0
+  },
+  "Murillo|NFO": {
+   "code": 575476,
+   "pos": "DEF",
+   "team": "NFO",
+   "price": 5.5,
+   "ev": [
+    4.3395,
+    5.1613,
+    3.7421,
+    3.9291,
+    4.4424,
+    3.6395
+   ],
+   "p60": 0.97,
+   "minutes": 2310,
+   "confidence": 1.0
+  },
+  "Aina|NFO": {
+   "code": 159506,
+   "pos": "DEF",
+   "team": "NFO",
+   "price": 4.5,
+   "ev": [
+    3.9453,
+    4.7825,
+    3.3432,
+    3.5184,
+    4.0606,
+    3.2413
+   ],
+   "p60": 0.97,
+   "minutes": 1745,
+   "confidence": 1.0
+  },
+  "Jair Cunha|NFO": {
+   "code": 575458,
+   "pos": "DEF",
+   "team": "NFO",
+   "price": 4.5,
+   "ev": [
+    3.6013,
+    4.3145,
+    3.0656,
+    3.2688,
+    3.6629,
+    2.9695
+   ],
+   "p60": 0.89,
+   "minutes": 694,
+   "confidence": 1.0
+  },
+  "O.Richards|NFO": {
+   "code": 204822,
+   "pos": "DEF",
+   "team": "NFO",
+   "price": 4.0,
+   "ev": [
+    0.1784,
+    0.211,
+    0.156,
+    0.1594,
+    0.1854,
+    0.1526
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Abbott|NFO": {
+   "code": 549067,
+   "pos": "DEF",
+   "team": "NFO",
+   "price": 4.0,
+   "ev": [
+    1.2091,
+    1.4556,
+    1.0291,
+    1.0866,
+    1.2391,
+    0.9979
+   ],
+   "p60": 0.29,
+   "minutes": 165,
+   "confidence": 0.367
+  },
+  "Netz|NFO": {
+   "code": 470315,
+   "pos": "DEF",
+   "team": "NFO",
+   "price": 4.5,
+   "ev": [
+    1.6294,
+    1.9568,
+    1.3892,
+    1.4686,
+    1.6672,
+    1.3474
+   ],
+   "p60": 0.39,
+   "minutes": 373,
+   "confidence": 0.829
+  },
+  "Gibbs-White|NFO": {
+   "code": 222531,
+   "pos": "MID",
+   "team": "NFO",
+   "price": 7.9,
+   "ev": [
+    5.0677,
+    5.9705,
+    4.7312,
+    4.1929,
+    5.683,
+    4.7486
+   ],
+   "p60": 0.95,
+   "minutes": 3281,
+   "confidence": 1.0
+  },
+  "Hudson-Odoi|NFO": {
+   "code": 209046,
+   "pos": "MID",
+   "team": "NFO",
+   "price": 5.9,
+   "ev": [
+    1.7281,
+    1.9795,
+    1.6246,
+    1.4999,
+    1.8818,
+    1.6253
+   ],
+   "p60": 0.42,
+   "minutes": 1839,
+   "confidence": 1.0
+  },
+  "Ndoye|NFO": {
+   "code": 456512,
+   "pos": "MID",
+   "team": "NFO",
+   "price": 5.5,
+   "ev": [
+    3.602,
+    4.1141,
+    3.3914,
+    3.1365,
+    3.9157,
+    3.3931
+   ],
+   "p60": 0.85,
+   "minutes": 1293,
+   "confidence": 1.0
+  },
+  "McAtee|NFO": {
+   "code": 432714,
+   "pos": "MID",
+   "team": "NFO",
+   "price": 5.5,
+   "ev": [
+    3.37,
+    3.7178,
+    3.2066,
+    3.0859,
+    3.5464,
+    3.1992
+   ],
+   "p60": 0.9,
+   "minutes": 451,
+   "confidence": 1.0
+  },
+  "Dominguez|NFO": {
+   "code": 250199,
+   "pos": "MID",
+   "team": "NFO",
+   "price": 5.0,
+   "ev": [
+    1.2635,
+    1.3954,
+    1.2048,
+    1.1507,
+    1.3362,
+    1.2034
+   ],
+   "p60": 0.29,
+   "minutes": 1169,
+   "confidence": 1.0
+  },
+  "Yates|NFO": {
+   "code": 204968,
+   "pos": "MID",
+   "team": "NFO",
+   "price": 4.5,
+   "ev": [
+    1.1152,
+    1.227,
+    1.0626,
+    1.024,
+    1.1718,
+    1.0603
+   ],
+   "p60": 0.29,
+   "minutes": 602,
+   "confidence": 1.0
+  },
+  "Wood|NFO": {
+   "code": 60689,
+   "pos": "FWD",
+   "team": "NFO",
+   "price": 5.9,
+   "ev": [
+    1.2538,
+    1.4619,
+    1.1901,
+    1.0306,
+    1.4205,
+    1.1999
+   ],
+   "p60": 0.29,
+   "minutes": 924,
+   "confidence": 1.0
+  },
+  "Igor Jesus|NFO": {
+   "code": 482973,
+   "pos": "FWD",
+   "team": "NFO",
+   "price": 5.9,
+   "ev": [
+    3.4071,
+    3.8693,
+    3.2656,
+    2.9111,
+    3.7774,
+    3.2873
+   ],
+   "p60": 0.92,
+   "minutes": 2473,
+   "confidence": 1.0
+  },
+  "Kalimuendo|NFO": {
+   "code": 465680,
+   "pos": "FWD",
+   "team": "NFO",
+   "price": 5.5,
+   "ev": [
+    0.9658,
+    1.1346,
+    0.9141,
+    0.7846,
+    1.1011,
+    0.9221
+   ],
+   "p60": 0.23,
+   "minutes": 90,
+   "confidence": 0.2
+  },
+  "Schlager|NFO": {
+   "code": 204561,
+   "pos": "MID",
+   "team": "NFO",
+   "price": 5.0,
+   "ev": [
+    1.1538,
+    1.2976,
+    1.092,
+    1.0272,
+    1.2372,
+    1.0914
+   ],
+   "p60": 0.28,
+   "minutes": 106,
+   "confidence": 0.236
+  },
+  "Diomande|NFO": {
+   "code": 568420,
+   "pos": "DEF",
+   "team": "NFO",
+   "price": 5.5,
+   "ev": [
+    0.1784,
+    0.211,
+    0.156,
+    0.1594,
+    0.1854,
+    0.1526
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Benda|NFO": {
+   "code": 428971,
+   "pos": "GK",
+   "team": "NFO",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Van Hecke|TOT": {
+   "code": 469142,
+   "pos": "DEF",
+   "team": "TOT",
+   "price": 5.0,
+   "ev": [
+    5.1664,
+    5.3674,
+    3.8524,
+    5.7955,
+    3.4252,
+    4.7633
+   ],
+   "p60": 0.97,
+   "minutes": 3390,
+   "confidence": 1.0
+  },
+  "Marmoush|TOT": {
+   "code": 438234,
+   "pos": "FWD",
+   "team": "TOT",
+   "price": 7.0,
+   "ev": [
+    1.9544,
+    2.0212,
+    1.705,
+    2.1379,
+    1.6368,
+    1.9127
+   ],
+   "p60": 0.48,
+   "minutes": 781,
+   "confidence": 1.0
+  },
+  "Tonali|TOT": {
+   "code": 432422,
+   "pos": "MID",
+   "team": "TOT",
+   "price": 5.4,
+   "ev": [
+    3.3695,
+    3.4463,
+    2.9868,
+    3.5965,
+    2.8771,
+    3.2696
+   ],
+   "p60": 0.93,
+   "minutes": 2698,
+   "confidence": 1.0
+  },
+  "Austin|TOT": {
+   "code": 214572,
+   "pos": "GK",
+   "team": "TOT",
+   "price": 4.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Kinsky|TOT": {
+   "code": 485055,
+   "pos": "GK",
+   "team": "TOT",
+   "price": 4.5,
+   "ev": [
+    3.2369,
+    3.322,
+    2.6311,
+    3.5223,
+    2.4594,
+    3.0204
+   ],
+   "p60": 0.8,
+   "minutes": 810,
+   "confidence": 1.0
+  },
+  "Dubravka|TOT": {
+   "code": 67089,
+   "pos": "GK",
+   "team": "TOT",
+   "price": 4.0,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 3150,
+   "confidence": 1.0
+  },
+  "Senesi|TOT": {
+   "code": 221466,
+   "pos": "DEF",
+   "team": "TOT",
+   "price": 5.9,
+   "ev": [
+    4.2323,
+    4.3729,
+    3.2885,
+    4.6757,
+    2.9798,
+    3.9383
+   ],
+   "p60": 0.72,
+   "minutes": 3378,
+   "confidence": 1.0
+  },
+  "Pedro Porro|TOT": {
+   "code": 441164,
+   "pos": "DEF",
+   "team": "TOT",
+   "price": 5.5,
+   "ev": [
+    3.5088,
+    3.6566,
+    2.5496,
+    3.9703,
+    2.2381,
+    3.2159
+   ],
+   "p60": 0.7,
+   "minutes": 2883,
+   "confidence": 1.0
+  },
+  "Danso|TOT": {
+   "code": 135720,
+   "pos": "DEF",
+   "team": "TOT",
+   "price": 5.0,
+   "ev": [
+    2.0665,
+    2.1387,
+    1.5514,
+    2.2982,
+    1.3807,
+    1.9007
+   ],
+   "p60": 0.42,
+   "minutes": 1489,
+   "confidence": 1.0
+  },
+  "Robertson|TOT": {
+   "code": 122798,
+   "pos": "DEF",
+   "team": "TOT",
+   "price": 4.5,
+   "ev": [
+    4.3818,
+    4.5719,
+    3.1547,
+    4.9747,
+    2.7568,
+    4.0084
+   ],
+   "p60": 0.89,
+   "minutes": 1322,
+   "confidence": 1.0
+  },
+  "Van de Ven|TOT": {
+   "code": 491279,
+   "pos": "DEF",
+   "team": "TOT",
+   "price": 5.0,
+   "ev": [
+    3.1389,
+    3.2678,
+    2.2386,
+    3.5502,
+    1.9418,
+    2.8521
+   ],
+   "p60": 0.72,
+   "minutes": 3131,
+   "confidence": 1.0
+  },
+  "Udogie|TOT": {
+   "code": 487053,
+   "pos": "DEF",
+   "team": "TOT",
+   "price": 4.5,
+   "ev": [
+    1.6677,
+    1.7379,
+    1.1599,
+    1.894,
+    0.9912,
+    1.5031
+   ],
+   "p60": 0.42,
+   "minutes": 1361,
+   "confidence": 1.0
+  },
+  "Davies|TOT": {
+   "code": 115556,
+   "pos": "DEF",
+   "team": "TOT",
+   "price": 4.0,
+   "ev": [
+    2.1582,
+    2.2492,
+    1.59,
+    2.4394,
+    1.4068,
+    1.9891
+   ],
+   "p60": 0.39,
+   "minutes": 136,
+   "confidence": 0.302
+  },
+  "Byfield|TOT": {
+   "code": 640419,
+   "pos": "DEF",
+   "team": "TOT",
+   "price": 4.0,
+   "ev": [
+    1.137,
+    1.181,
+    0.8371,
+    1.2762,
+    0.7383,
+    1.0429
+   ],
+   "p60": 0.23,
+   "minutes": 1,
+   "confidence": 0.002
+  },
+  "Rowswell|TOT": {
+   "code": 499716,
+   "pos": "DEF",
+   "team": "TOT",
+   "price": 4.0,
+   "ev": [
+    1.137,
+    1.181,
+    0.8371,
+    1.2762,
+    0.7383,
+    1.0429
+   ],
+   "p60": 0.23,
+   "minutes": 1,
+   "confidence": 0.002
+  },
+  "Kudus|TOT": {
+   "code": 460842,
+   "pos": "MID",
+   "team": "TOT",
+   "price": 6.5,
+   "ev": [
+    1.8773,
+    1.929,
+    1.6381,
+    2.027,
+    1.5703,
+    1.82
+   ],
+   "p60": 0.45,
+   "minutes": 1557,
+   "confidence": 1.0
+  },
+  "Tel|TOT": {
+   "code": 511499,
+   "pos": "MID",
+   "team": "TOT",
+   "price": 5.9,
+   "ev": [
+    4.127,
+    4.2558,
+    3.5512,
+    4.4968,
+    3.3887,
+    3.9953
+   ],
+   "p60": 0.92,
+   "minutes": 1491,
+   "confidence": 1.0
+  },
+  "Bentancur|TOT": {
+   "code": 202993,
+   "pos": "MID",
+   "team": "TOT",
+   "price": 5.5,
+   "ev": [
+    2.6752,
+    2.7102,
+    2.4758,
+    2.7827,
+    2.4176,
+    2.616
+   ],
+   "p60": 0.67,
+   "minutes": 2015,
+   "confidence": 1.0
+  },
+  "P.M.Sarr|TOT": {
+   "code": 482442,
+   "pos": "MID",
+   "team": "TOT",
+   "price": 4.9,
+   "ev": [
+    1.8458,
+    1.8865,
+    1.6509,
+    1.9647,
+    1.5953,
+    1.797
+   ],
+   "p60": 0.42,
+   "minutes": 1388,
+   "confidence": 1.0
+  },
+  "Gallagher|TOT": {
+   "code": 232787,
+   "pos": "MID",
+   "team": "TOT",
+   "price": 5.4,
+   "ev": [
+    1.7502,
+    1.7887,
+    1.5601,
+    1.8638,
+    1.5056,
+    1.7011
+   ],
+   "p60": 0.45,
+   "minutes": 1228,
+   "confidence": 1.0
+  },
+  "Bergvall|TOT": {
+   "code": 570526,
+   "pos": "MID",
+   "team": "TOT",
+   "price": 5.5,
+   "ev": [
+    1.0925,
+    1.1182,
+    0.9667,
+    1.1681,
+    0.9307,
+    1.0603
+   ],
+   "p60": 0.29,
+   "minutes": 1000,
+   "confidence": 1.0
+  },
+  "Gray|TOT": {
+   "code": 547701,
+   "pos": "MID",
+   "team": "TOT",
+   "price": 5.0,
+   "ev": [
+    3.3879,
+    3.467,
+    2.9972,
+    3.621,
+    2.8853,
+    3.2868
+   ],
+   "p60": 0.93,
+   "minutes": 1623,
+   "confidence": 1.0
+  },
+  "Moore|TOT": {
+   "code": 499721,
+   "pos": "MID",
+   "team": "TOT",
+   "price": 5.0,
+   "ev": [
+    1.2447,
+    1.2871,
+    1.0575,
+    1.366,
+    1.0048,
+    1.2026
+   ],
+   "p60": 0.28,
+   "minutes": 89,
+   "confidence": 0.198
+  },
+  "Olusesi|TOT": {
+   "code": 499726,
+   "pos": "MID",
+   "team": "TOT",
+   "price": 4.5,
+   "ev": [
+    1.01,
+    1.0403,
+    0.8732,
+    1.0972,
+    0.8345,
+    0.9782
+   ],
+   "p60": 0.23,
+   "minutes": 14,
+   "confidence": 0.031
+  },
+  "Fernandes|TOT": {
+   "code": 551226,
+   "pos": "MID",
+   "team": "TOT",
+   "price": 5.9,
+   "ev": [
+    2.8255,
+    2.8826,
+    2.5405,
+    2.9943,
+    2.4588,
+    2.7509
+   ],
+   "p60": 0.7,
+   "minutes": 3152,
+   "confidence": 1.0
+  },
+  "Solanke|TOT": {
+   "code": 154566,
+   "pos": "FWD",
+   "team": "TOT",
+   "price": 5.9,
+   "ev": [
+    1.536,
+    1.5797,
+    1.3727,
+    1.6561,
+    1.328,
+    1.5087
+   ],
+   "p60": 0.39,
+   "minutes": 1034,
+   "confidence": 1.0
+  },
+  "Richarlison|TOT": {
+   "code": 212319,
+   "pos": "FWD",
+   "team": "TOT",
+   "price": 5.9,
+   "ev": [
+    3.2579,
+    3.3667,
+    2.8509,
+    3.5572,
+    2.7395,
+    3.1898
+   ],
+   "p60": 0.68,
+   "minutes": 2021,
+   "confidence": 1.0
+  },
+  "Scarlett|TOT": {
+   "code": 490145,
+   "pos": "FWD",
+   "team": "TOT",
+   "price": 4.5,
+   "ev": [
+    1.0159,
+    1.054,
+    0.8737,
+    1.1205,
+    0.8348,
+    0.9921
+   ],
+   "p60": 0.23,
+   "minutes": 7,
+   "confidence": 0.016
+  },
+  "Williams-Barnett|TOT": {
+   "code": 611917,
+   "pos": "MID",
+   "team": "TOT",
+   "price": 4.5,
+   "ev": [
+    0.1945,
+    0.2,
+    0.171,
+    0.2101,
+    0.1644,
+    0.1894
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Roefs|SUN": {
+   "code": 498016,
+   "pos": "GK",
+   "team": "SUN",
+   "price": 5.0,
+   "ev": [
+    3.6555,
+    3.3225,
+    3.6686,
+    3.5346,
+    3.8324,
+    4.0677
+   ],
+   "p60": 0.97,
+   "minutes": 3330,
+   "confidence": 1.0
+  },
+  "Ellborg|SUN": {
+   "code": 515046,
+   "pos": "GK",
+   "team": "SUN",
+   "price": 4.5,
+   "ev": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "p60": 0.0,
+   "minutes": 270,
+   "confidence": 0.6
+  },
+  "Ballard|SUN": {
+   "code": 223827,
+   "pos": "DEF",
+   "team": "SUN",
+   "price": 5.0,
+   "ev": [
+    3.9521,
+    3.3421,
+    4.1985,
+    3.9805,
+    4.5228,
+    4.8916
+   ],
+   "p60": 0.93,
+   "minutes": 2324,
+   "confidence": 1.0
+  },
+  "Mukiele|SUN": {
+   "code": 200834,
+   "pos": "DEF",
+   "team": "SUN",
+   "price": 5.5,
+   "ev": [
+    2.9385,
+    2.4661,
+    3.1317,
+    2.9629,
+    3.3836,
+    3.6696
+   ],
+   "p60": 0.72,
+   "minutes": 2874,
+   "confidence": 1.0
+  },
+  "Hume|SUN": {
+   "code": 487676,
+   "pos": "DEF",
+   "team": "SUN",
+   "price": 4.5,
+   "ev": [
+    2.9729,
+    2.3698,
+    3.2427,
+    3.0273,
+    3.5725,
+    3.9424
+   ],
+   "p60": 0.93,
+   "minutes": 3201,
+   "confidence": 1.0
+  },
+  "Alderete|SUN": {
+   "code": 201895,
+   "pos": "DEF",
+   "team": "SUN",
+   "price": 5.0,
+   "ev": [
+    1.8111,
+    1.4883,
+    1.8928,
+    1.7773,
+    2.0471,
+    2.2323
+   ],
+   "p60": 0.47,
+   "minutes": 2820,
+   "confidence": 1.0
+  },
+  "Reinildo|SUN": {
+   "code": 434399,
+   "pos": "DEF",
+   "team": "SUN",
+   "price": 4.5,
+   "ev": [
+    3.0827,
+    2.4087,
+    3.1598,
+    2.9179,
+    3.4496,
+    3.8184
+   ],
+   "p60": 0.95,
+   "minutes": 2146,
+   "confidence": 1.0
+  },
+  "O'Nien|SUN": {
+   "code": 167512,
+   "pos": "DEF",
+   "team": "SUN",
+   "price": 4.0,
+   "ev": [
+    2.0648,
+    1.6138,
+    2.1317,
+    1.97,
+    2.331,
+    2.5806
+   ],
+   "p60": 0.64,
+   "minutes": 631,
+   "confidence": 1.0
+  },
+  "Meunier|SUN": {
+   "code": 93605,
+   "pos": "DEF",
+   "team": "SUN",
+   "price": 4.5,
+   "ev": [
+    1.7705,
+    1.4127,
+    1.882,
+    1.754,
+    2.0604,
+    2.27
+   ],
+   "p60": 0.53,
+   "minutes": 180,
+   "confidence": 0.4
+  },
+  "E.Le F\u00e9e|SUN": {
+   "code": 484420,
+   "pos": "MID",
+   "team": "SUN",
+   "price": 5.9,
+   "ev": [
+    3.9526,
+    4.0029,
+    4.5168,
+    4.5355,
+    4.6998,
+    4.7947
+   ],
+   "p60": 0.95,
+   "minutes": 3098,
+   "confidence": 1.0
+  },
+  "Xhaka|SUN": {
+   "code": 84450,
+   "pos": "MID",
+   "team": "SUN",
+   "price": 5.5,
+   "ev": [
+    3.6768,
+    3.6263,
+    3.9039,
+    3.8846,
+    4.008,
+    4.0891
+   ],
+   "p60": 0.97,
+   "minutes": 3081,
+   "confidence": 1.0
+  },
+  "Sadiki|SUN": {
+   "code": 577669,
+   "pos": "MID",
+   "team": "SUN",
+   "price": 5.0,
+   "ev": [
+    2.3987,
+    2.3326,
+    2.5643,
+    2.5391,
+    2.6528,
+    2.7296
+   ],
+   "p60": 0.95,
+   "minutes": 3071,
+   "confidence": 1.0
+  },
+  "Mundle|SUN": {
+   "code": 461199,
+   "pos": "MID",
+   "team": "SUN",
+   "price": 5.0,
+   "ev": [
+    1.4188,
+    1.4475,
+    1.6782,
+    1.6889,
+    1.7598,
+    1.8
+   ],
+   "p60": 0.39,
+   "minutes": 400,
+   "confidence": 0.889
+  },
+  "Rigg|SUN": {
+   "code": 554197,
+   "pos": "MID",
+   "team": "SUN",
+   "price": 5.0,
+   "ev": [
+    0.9576,
+    0.9545,
+    1.0667,
+    1.0654,
+    1.1075,
+    1.1336
+   ],
+   "p60": 0.29,
+   "minutes": 775,
+   "confidence": 1.0
+  },
+  "Talbi|SUN": {
+   "code": 549912,
+   "pos": "MID",
+   "team": "SUN",
+   "price": 5.4,
+   "ev": [
+    1.3505,
+    1.3431,
+    1.4983,
+    1.4954,
+    1.5551,
+    1.5925
+   ],
+   "p60": 0.42,
+   "minutes": 1584,
+   "confidence": 1.0
+  },
+  "Jocelin.T|SUN": {
+   "code": 699989,
+   "pos": "MID",
+   "team": "SUN",
+   "price": 5.0,
+   "ev": [
+    0.8018,
+    0.8059,
+    0.9108,
+    0.9123,
+    0.9485,
+    0.9702
+   ],
+   "p60": 0.23,
+   "minutes": 38,
+   "confidence": 0.084
+  },
+  "Angulo|SUN": {
+   "code": 536661,
+   "pos": "MID",
+   "team": "SUN",
+   "price": 5.0,
+   "ev": [
+    1.6872,
+    1.6781,
+    1.8788,
+    1.8752,
+    1.9522,
+    2.0003
+   ],
+   "p60": 0.54,
+   "minutes": 523,
+   "confidence": 1.0
+  },
+  "Brobbey|SUN": {
+   "code": 441264,
+   "pos": "FWD",
+   "team": "SUN",
+   "price": 5.9,
+   "ev": [
+    2.7741,
+    2.9184,
+    3.2685,
+    3.3229,
+    3.3856,
+    3.4081
+   ],
+   "p60": 0.92,
+   "minutes": 2049,
+   "confidence": 1.0
+  },
+  "Isidor|SUN": {
+   "code": 437505,
+   "pos": "FWD",
+   "team": "SUN",
+   "price": 5.5,
+   "ev": [
+    1.1484,
+    1.2352,
+    1.4457,
+    1.4784,
+    1.5161,
+    1.5296
+   ],
+   "p60": 0.29,
+   "minutes": 1197,
+   "confidence": 1.0
+  },
+  "Methalie|SUN": {
+   "code": 638411,
+   "pos": "DEF",
+   "team": "SUN",
+   "price": 4.5,
+   "ev": [
+    0.1482,
+    0.1252,
+    0.1585,
+    0.1504,
+    0.1707,
+    0.1842
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Ahoka|SUN": {
+   "code": 696104,
+   "pos": "MID",
+   "team": "SUN",
+   "price": 4.5,
+   "ev": [
+    0.16,
+    0.1628,
+    0.1819,
+    0.183,
+    0.1887,
+    0.1919
+   ],
+   "p60": 0.03,
+   "minutes": 0,
+   "confidence": 0.0
+  }
+ }
+}
