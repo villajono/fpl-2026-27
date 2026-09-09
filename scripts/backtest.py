@@ -36,7 +36,13 @@ FREE_THR = 2.0                             # simulate(): flat control threshold 
 FT_CAP = 5                                 # FPL banks up to FIVE free transfers (since 2024-25). Was 2 —
                                            # which capped `banked` at 2 and made the 3/4/5 threshold tiers unreachable.
 HORIZON = 6                                # weekly.py transfer evaluation window
-DECAY = {1: 1.0, 2: 0.85, 3: 0.70, 4: 0.55, 5: 0.40, 6: 0.25}
+# Measured, not guessed: scripts/hazard.py, walk-forward over 2025-26, 55k player-gameweek
+# projections. DECAY[k] is the share of a PROJECTED EDGE still realised k weeks out — the OLS
+# slope of actual on projected, normalised to k=1. The old guess ran 1.00/0.85/0.70/0.55/0.40/0.25
+# and was far too steep: it threw away three quarters of a GW+6 gain when four fifths survives.
+# Conditional on the player actually appearing the curve is flat (0.94 at k=6), so what decays is
+# knowing WHETHER he plays, not how well he plays. The lever is a minutes model, not a discount.
+DECAY = {1: 1.0, 2: 0.92, 3: 0.88, 4: 0.83, 5: 0.80, 6: 0.79}
 
 # ---- fabricated 2025-26 pre-season team priors (plausible last-year tiers; att>1 = strong attack, defw>1 = leaky) ----
 PRIOR = {  # att, defw
@@ -397,7 +403,7 @@ def simulate(season, start_squad, gw_from, gw_to, verbose=False, anti_churn=Fals
         no_tr_pts, _ = score(season, gw, pre["xi"], pre["bench"], pre["captain"], pre["vice"])
         if planned_wc and gw == planned_wc:
             # Wildcard week: unlimited transfers, no hit, and the free transfer is not consumed.
-            squad = wildcard_refit(season, squad, itb, cut, gw)
+            squad = wildcard_refit_exact(season, squad, itb, cut, gw)
             itb = round(100.0 - sum(price(season, e, cut) for e in squad), 1)
             for e in squad: acquired.setdefault(e, gw)
             post = select_xi(squad, season, cut, gw)
@@ -441,7 +447,7 @@ def simulate(season, start_squad, gw_from, gw_to, verbose=False, anti_churn=Fals
                         out_el=(tv["out"] if made else None), in_el=(tv["inn"] if made else None),
                         tv_gain_pred=(tv["gain"] if tv else 0.0), tv_gain_actual=(pts - no_tr_pts) if made else 0.0,
                         captain=season.meta[post["captain"]]["name"], captain_pts=_pts(season, post["captain"], gw),
-                        ft=ft, itb=itb))
+                        ft=ft, itb=itb, squad=list(squad)))
         if verbose:
             tstr = f'{season.meta[tv["out"]]["name"]}->{season.meta[tv["inn"]]["name"]}(g{tv["gain"]:.1f})' if made else 'bank'
             print(f'GW{gw:>2}: {pts-hit:>5.1f} (hit{hit}) | no-tr {no_tr_pts:>5.1f} | opt {opt_pts:>5.1f} | '
@@ -592,10 +598,90 @@ def cluster_ahead(season, gw, ahead=4):
     return out
 
 
+def wildcard_refit_exact(season, current, itb, cut, gw, horizon=HORIZON, pool_per_pos=30):
+    """Wildcard rebuild solved EXACTLY, replacing the greedy hill-climb above.
+
+    wildcard_refit() applied improving single swaps until none remained. That cannot reach a squad
+    which requires two simultaneous changes — a second premium defender funded by dropping a
+    premium forward, say — because no single step on the way improves. In production the same
+    algorithm landed 33-36 points below optimal and returned squads 3 points apart on repeat runs.
+
+    That matters here more than anywhere: wc_gain is refit MINUS current, and the wildcard timing
+    rule compares those gains ACROSS weeks. A refit that is understated by a varying amount each
+    week turns the timing signal into noise, and the chip decision inherits it.
+
+    Solved with squad_opt (MILP / HiGHS): about 0.2s per call, so a full-season sweep is seconds.
+    """
+    import squad_opt as SO
+    els = set(_pool(season, cut, gw)) | set(current)
+    players = {}
+    for el in els:
+        m = season.meta[el]
+        players[str(el)] = dict(pos=m["pos"], team=m["short"], price=price(season, el, cut),
+                                ev=[ev_multi(season, el, cut, gw + o) for o in range(horizon)])
+    budget = sum(price(season, e, cut) for e in current) + itb
+    decay = [DECAY[i + 1] for i in range(horizon)]
+    keys, _obj, _binding = SO.solve(players, decay, horizon, budget=budget,
+                                    pool_per_pos=pool_per_pos)
+    return [int(k) for k in keys]
+
+
 def wc_gain(season, squad, itb, cut, gw, horizon=6):
-    refit = wildcard_refit(season, squad, itb, cut, gw, horizon)
+    refit = wildcard_refit_exact(season, squad, itb, cut, gw, horizon)
     g = sum(_xi_ev(season, refit, cut, gw + o)[0] - _xi_ev(season, squad, cut, gw + o)[0] for o in range(horizon))
     return max(0.0, g), refit
+
+
+def wc_decision(season, squad, itb, cut, gw, end=None, look=6):
+    """REJECTED 2026-09-04. Kept because the way it fails is the useful finding.
+
+    Measured against hindsight it fires in GW4, the earliest week offered, and captures +0 of the
+    +111 points available. Not mistuned — DEGENERATE. With information frozen at `cut`, rebuilding
+    earlier always weakly dominates: the rebuilt squad is better in every week, so owning it for
+    more weeks cannot be worse. No input to this function can ever recommend waiting.
+
+    What it leaves out is the whole reason waiting can be right: FREE TRANSFERS. A squad rebuilt in
+    GW4 does not sit frozen to GW19, it gets maintained a player at a time. The wildcard's real
+    value is its advantage OVER fixing the same problems with free transfers, and that advantage is
+    largest when many changes are needed at once — which is what accumulates while you wait.
+
+    Any timing rule that models both branches as frozen squads has the same defect, INCLUDING the
+    hindsight sweep in hazard.py that this was measured against. Fix the benchmark before fitting
+    anything to it.
+
+    Original intent below, for whoever tries again:
+
+    The old rule was `gain > CHIP_THRESH and no better week in the next 2-3`. Two constants, both
+    guessed, and both sitting on a quantity that misbehaves: wc_gain RISES the longer you wait,
+    because it measures how stale your squad has become rather than what rebuilding now is worth.
+    A threshold on a number that climbs with delay will fire at the wrong time, and re-tuning it on
+    one season and one squad would be memorising, not fitting.
+
+    So ask the question the decision actually poses. Rebuilding in week w' means holding what you
+    have from now until w', then owning the rebuilt squad to the end of the half:
+
+        total(w') = projected points held, gw .. w'-1   +   projected points rebuilt, w' .. end
+
+    Fire now iff total(gw) is at least total(w') for every later w' we can see. Waiting is costed
+    explicitly, which is exactly what the gain threshold never did.
+
+    Uses ONLY information available at `cut` — including for the future rebuilds, which therefore
+    look slightly worse than they will be, since by then the model will know more. That biases
+    mildly towards firing early, and is stated rather than hidden.
+    """
+    end = half_end(gw) if end is None else end
+
+    def total_if_rebuilt_at(wp):
+        hold = sum(_xi_ev(season, squad, cut, g)[0] for g in range(gw, wp))
+        h = max(1, min(HORIZON, end - wp + 1))
+        refit = wildcard_refit_exact(season, squad, itb, cut, wp, horizon=h)
+        after = sum(_xi_ev(season, refit, cut, g)[0] for g in range(wp, end + 1))
+        return hold + after
+
+    now = total_if_rebuilt_at(gw)
+    futures = {w: total_if_rebuilt_at(w) for w in range(gw + 1, min(gw + look, end) + 1)}
+    best_w, best_v = (max(futures.items(), key=lambda kv: kv[1]) if futures else (gw, now))
+    return dict(fire=now >= best_v - 1e-9, now=now, best_future=best_v, best_week=best_w)
 
 
 def wc_fires(season, squad, itb, cut, gw, used):

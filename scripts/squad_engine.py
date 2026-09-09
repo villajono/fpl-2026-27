@@ -13,7 +13,13 @@ import fixture_ratings as FR
 
 RAW = Path(__file__).resolve().parent.parent / "data" / "raw"
 BUDGET_CAP = 100.0   # squad budget cap (£m)
-DECAY = {1: 1.0, 2: 0.85, 3: 0.70, 4: 0.55, 5: 0.40, 6: 0.25}
+# Measured, not guessed: scripts/hazard.py, walk-forward over 2025-26, 55k player-gameweek
+# projections. DECAY[k] is the share of a PROJECTED EDGE still realised k weeks out — the OLS
+# slope of actual on projected, normalised to k=1. The old guess ran 1.00/0.85/0.70/0.55/0.40/0.25
+# and was far too steep: it threw away three quarters of a GW+6 gain when four fifths survives.
+# Conditional on the player actually appearing the curve is flat (0.94 at k=6), so what decays is
+# knowing WHETHER he plays, not how well he plays. The lever is a minutes model, not a discount.
+DECAY = {1: 1.0, 2: 0.92, 3: 0.88, 4: 0.83, 5: 0.80, 6: 0.79}
 MULT_OLD = {  # legacy 3-tier — kept only for before/after comparison
  "DEF defensive": {"T1": 0.83, "T2": 1.0, "T3": 1.17},
  "DEF attacking": {"T1": 0.84, "T2": 1.0, "T3": 1.16},

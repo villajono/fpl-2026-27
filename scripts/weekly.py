@@ -26,7 +26,13 @@ STATE.mkdir(parents=True, exist_ok=True)
 OVERRIDES = {}                       # {player_id(code): override}, GW-scoped, loaded at startup from the form file
 
 nxt = V._nxt; ID2SH = SE.ID2SH; FX = SE.FX; POSN = {1: "GK", 2: "DEF", 3: "MID", 4: "FWD"}
-DECAY = {1: 1.0, 2: 0.85, 3: 0.70, 4: 0.55, 5: 0.40, 6: 0.25}
+# Measured, not guessed: scripts/hazard.py, walk-forward over 2025-26, 55k player-gameweek
+# projections. DECAY[k] is the share of a PROJECTED EDGE still realised k weeks out — the OLS
+# slope of actual on projected, normalised to k=1. The old guess ran 1.00/0.85/0.70/0.55/0.40/0.25
+# and was far too steep: it threw away three quarters of a GW+6 gain when four fifths survives.
+# Conditional on the player actually appearing the curve is flat (0.94 at k=6), so what decays is
+# knowing WHETHER he plays, not how well he plays. The lever is a minutes model, not a discount.
+DECAY = {1: 1.0, 2: 0.92, 3: 0.88, 4: 0.83, 5: 0.80, 6: 0.79}
 CURRENT_GW = 0                       # gameweeks completed (0 = pre-season); next deadline = GW CURRENT_GW+1
 HORIZON = 6
 EMAIL_WINDOW_H = 30                   # email once per GW when the deadline is within this many hours
@@ -333,7 +339,15 @@ def build_pool():
         if team not in FIX: continue
         code = int(r.code); pos = POSN[int(r.element_type)]
         rt = V.get_per_90_rates(code, pos)
-        if rt["thin"]: continue
+        # Do NOT drop thin rates. That guard predates ev_v2._shrink_thin() and is now actively
+        # harmful: `thin` just means under MIN_MINUTES, and get_per_90_rates already shrinks such
+        # a sample towards the position average in proportion to minutes played. Dropping them
+        # made every summer signing INVISIBLE to the transfer engine — not mis-scored, absent.
+        # M.Sangaré (165 mins, 18 pts) and Dedić (180 mins, a nailed Newcastle starter) both
+        # scored zero in squad comparisons because of this line. Players who genuinely never play
+        # are still handled, but by the minutes model — p_start gives no-history players 0.05,
+        # so their EV collapses there rather than here, which is where it belongs.
+        _ = rt
         ev = [ev_gw(code, r.web_name, pos, team, CURRENT_GW + o) for o in range(1, HORIZON + 1)]
         rows.append(dict(code=code, name=r.web_name, pos=pos, team=team, price=r.now_cost / 10,
                          ev=ev, defw=FR.RATINGS.get(team, {}).get("defw", 1)))
@@ -357,8 +371,8 @@ def _can_field_xi(squad, gw):
 
 
 def best_transfer(squad, itb, hold=HORIZON):
-    """Best single swap over the realistic HOLDING PERIOD (equal-weighted — points matter equally,
-    no discount). effective_out = EV(out) + P(out blanks)·EV(bench cover): the loss is small in weeks
+    """Best single swap over the realistic HOLDING PERIOD, discounted by the measured DECAY so a
+    GW+6 point counts ~79% of a GW+1 one. effective_out = EV(out) + P(out blanks)·EV(bench cover):
     'out' wouldn't have started anyway. Returns the full-hold gain plus GW+1 / GW+2 gains for the hit
     decision. This is 'materially better for the next {hold} weeks', NOT highest remaining-season EV."""
     if POOL is None: build_pool()
@@ -385,7 +399,11 @@ def best_transfer(squad, itb, hold=HORIZON):
             if c["pos"] != out["pos"] or (c["name"], c["team"]) in held: continue
             if c["price"] > out["price"] + itb + 1e-9: continue
             if club.get(c["team"], 0) + (0 if c["team"] == out["team"] else 1) > 3: continue
-            diff = [c["ev"][o] - eff_out[o] for o in range(hold)]               # equal weight, no decay
+            # Discounted, not equal-weighted. DECAY is measured (scripts/hazard.py): only ~79% of
+            # a projected GW+6 edge is realised, because by then you may not know whether he is
+            # even playing. Summing six weeks flat overstated far-horizon gains, which is what
+            # made marginal fixture-swing moves look better than near-term quality upgrades.
+            diff = [(c["ev"][o] - eff_out[o]) * DECAY[o + 1] for o in range(hold)]
             gain = sum(diff)
             if best is None or gain > best["gain"]:
                 sig = "fixture swing" if fixture_swing(c["team"]) > fixture_swing(out["team"]) + 0.05 else "quality upgrade"
@@ -453,6 +471,51 @@ def _xi_ev(squad, gw):
     return sum(p["e"] for p in xi), xi, bench
 
 
+def _wc_refit_exact(squad, itb, gw, horizon=HORIZON, pool_per_pos=30):
+    """Wildcard / Free-Hit squad, solved EXACTLY. Replaces the greedy climb below.
+
+    The hill-climb applied improving single swaps until none remained, which cannot reach a squad
+    needing two simultaneous changes — and in testing it landed 33-36 points below optimal and
+    returned squads 3 points apart on repeat runs of the same objective.
+
+    That noise did not stay put. `wc_gain` is refit MINUS current, and the wildcard timing rule
+    compares those gains across weeks, so a refit that is understated by a varying amount each week
+    corrupts the chip decision, the transfer threshold and every weekly call underneath it.
+
+    Falls back to the hill-climb if the solver is unavailable, so a missing scipy degrades the
+    answer rather than breaking the report.
+    """
+    try:
+        import squad_opt as SO
+    except Exception:
+        return _wc_refit(squad, itb, gw, horizon)
+    if POOL is None:
+        build_pool()
+    players = {}
+    for c in POOL:
+        players[f"{c['name']}|{c['team']}"] = dict(
+            pos=c["pos"], team=c["team"], price=c["price"],
+            ev=[ev_multi(c["code"], c["name"], c["pos"], c["team"], gw + o)
+                for o in range(horizon)])
+    codes = {f"{c['name']}|{c['team']}": c["code"] for c in POOL}
+    for p in squad:                      # a held player the pool dropped is still ownable
+        k = f"{p['name']}|{p['team']}"
+        if k not in players:
+            players[k] = dict(pos=p["pos"], team=p["team"], price=p["price"],
+                              ev=[ev_multi(p["code"], p["name"], p["pos"], p["team"], gw + o)
+                                  for o in range(horizon)])
+        codes[k] = p["code"]
+    budget = sum(p["price"] for p in squad) + itb
+    decay = [DECAY[i + 1] for i in range(horizon)]
+    try:
+        keys, _obj, _binding = SO.solve(players, decay, horizon, budget=budget,
+                                        pool_per_pos=pool_per_pos)
+    except Exception:
+        return _wc_refit(squad, itb, gw, horizon)
+    return [dict(name=k.split("|")[0], pos=players[k]["pos"], team=players[k]["team"],
+                 price=players[k]["price"], code=codes[k]) for k in keys]
+
+
 def _wc_refit(squad, itb, gw, horizon=HORIZON, max_swaps=15):
     """Wildcard/Free-Hit as unlimited free transfers: hill-climb from the current squad, only
     improving swaps -> can never lose EV. horizon=1 gives the one-week Free-Hit team."""
@@ -518,7 +581,7 @@ def chip_evaluation(squad, itb, banked, gw, chips=None):
 
     # --- Wildcard ---
     lineup_ok = CURRENT_GW >= 3
-    refit = _wc_refit(squad, itb, gw); wgain = sum(_seq_ev(refit, gw + o) - _seq_ev(squad, gw + o) for o in range(HORIZON))
+    refit = _wc_refit_exact(squad, itb, gw); wgain = sum(_seq_ev(refit, gw + o) - _seq_ev(squad, gw + o) for o in range(HORIZON))
     swing = _swing_present(gw)
     if _half(gw) == 1:
         wc_rec = U["WC"] is None and lineup_ok and wgain > CHIP_THRESH["wc"] and swing
@@ -550,7 +613,7 @@ def chip_evaluation(squad, itb, banked, gw, chips=None):
 
     # --- Free Hit ---
     blanks = sum(1 for p in squad if not _fx(p["team"], gw))
-    fh_team = _wc_refit(squad, itb, gw, horizon=1); fh_gain = _seq_ev(fh_team, gw) - _seq_ev(squad, gw)
+    fh_team = _wc_refit_exact(squad, itb, gw, horizon=1); fh_gain = _seq_ev(fh_team, gw) - _seq_ev(squad, gw)
     fh_rec = U["FH"] is None and (fh_gain > CHIP_THRESH["fh"] or (_half(gw) == 2 and blanks > 4))
     L.append(f"  Free Hit:    {status('FH', fh_rec)}")
     L.append(f"               players blanking this GW: {blanks}   |   free-hit team gain: +{fh_gain:.1f} pts vs current XI")
@@ -674,6 +737,54 @@ def _wrap_report(lines, cols=WRAP_COLS):
     return out
 
 
+ACTIONS = []          # one dict per team, filled by report(), rendered by tldr()
+
+
+def tldr(acts):
+    """The do-this-now block that opens the email.
+
+    The report below stays complete — this is only the part you have to act on before the deadline,
+    in the order you act on it in the app: transfer, chip, captain, XI. It is read on a phone, so it
+    goes first and it fits on one screen. Returns lines, like _wrap_report, for the caller to print."""
+    if not acts:
+        return []
+    L = ["=" * 54]
+    hdr = f"DO THIS  --  GW{acts[0]['gw']}"
+    if DL_INFO.get("deadline"):
+        hdr += f", by {DL_INFO['deadline']} ({DL_INFO['hours']}h)"
+    L += [hdr, "=" * 54]
+    for a in acts:
+        L += ["", f"  {a['team'].upper()}"]
+        t, step = a["transfer"], 1
+        if t.get("do"):
+            # A hit has to be visible HERE. This block is what gets acted on, and a -4 that only
+            # appears in the detail below is a -4 taken by accident.
+            hit = t["why"].startswith("TAKE")
+            L.append(f"    {step}. {'TRANSFER (-4 HIT)' if hit else 'TRANSFER'}  "
+                     f"{t['out']} -> {t['inn']} ({t['team']} £{t['price']})")
+            L.append(f"                 {t['gain']:+.1f} over {t['hold']} GWs"
+                     + (f" BEFORE the -4" if hit else "")
+                     + f", £{t['itb_after']:.1f}m left")
+        elif t.get("out"):
+            L.append(f"    {step}. NO MOVE   bank it. Best available was {t['out']} -> {t['inn']} at {t['gain']:+.1f}")
+        else:
+            L.append(f"    {step}. NO MOVE   {t['why']}")
+        if a["chips"]:
+            step += 1
+            L.append(f"    {step}. CHIP      play {', '.join(a['chips'])}")
+        step += 1
+        L.append(f"    {step}. CAPTAIN   {a['captain']}" + (f", vice {a['vice']}" if a["vice"] else ""))
+        step += 1
+        L.append(f"    {step}. XI        " + a["xi"][0])
+        for extra in a["xi"][1:]:
+            L.append("                 " + extra)
+        L.append(f"                 bench: {a['bench']}")
+    L += ["", "  " + "-" * 50,
+          "  Everything below is the reasoning behind these four lines, and the watchlist.",
+          "  If you are in a hurry, you are done."]
+    return _wrap_report(L)
+
+
 def report(team_name, squad_def, itb, banked, chips, planned, planned_wc=None):
     # defw must be present here: best_transfer() compares a candidate's defw against the outgoing
     # player's, and POOL rows carry it — squad rows must have the same shape or that lookup KeyErrors.
@@ -756,6 +867,7 @@ def report(team_name, squad_def, itb, banked, chips, planned, planned_wc=None):
         # model rates, but never as an instruction.
         L.append("  Unlimited free transfers until the GW1 deadline — the whole squad is editable,")
         L.append("  so the single-swap engine does not apply. Pick the 15 you want.")
+        _act_tr = dict(do=False, why='unlimited transfers before the GW1 deadline — pick the 15 you want')
         if tv and tv["gain"] > 0:
             L.append(f"  FYI, the biggest single upgrade it can see: {tv['out']['name']} → "
                      f"{tv['inn']['name']} ({tv['inn']['team']} £{tv['inn']['price']}), "
@@ -777,8 +889,28 @@ def report(team_name, squad_def, itb, banked, chips, planned, planned_wc=None):
         L.append(f"    {tv['signal']} · effective-out adjusted for bench cover · {tv['hold']}-GW hold")
         L.append(f"    gain: GW+1 {tv['gw1']:+.1f} · GW+1&2 {tv['gw1']+tv['gw2']:+.1f} · full {tv['hold']}-GW {tv['gain']:+.1f}")
         L.append(f"    → {dec}    (budget after £{itb - (i['price']-o['price']):.1f}m ITB, {banked} banked)")
+        _act_tr = dict(out=o['name'], inn=i['name'], team=i['team'], price=i['price'],
+                       gain=tv['gain'], hold=tv['hold'], why=dec,
+                       itb_after=itb - (i['price'] - o['price']),
+                       do=dec.startswith('TRANSFER') or dec.startswith('TAKE'))
     else:
         L.append("  No improving transfer available — BANK")
+        _act_tr = dict(do=False, why='no improving transfer available')
+    # Runs every week, unprompted. The projections have been doubted correctly more than once,
+    # and a check that depends on somebody remembering to run it is a check that stops happening.
+    # This compares LOCKED forecasts against results, and needs nobody to ask for it.
+    try:
+        import model_review
+        L += model_review.report_lines(__import__("weekly"), V)
+    except Exception as e:
+        L.append("")
+        L.append("MODEL REVIEW: unavailable (" + str(e) + ")")
+    try:
+        import calibration
+        L += calibration.report_lines()
+    except Exception as e:
+        L.append("")
+        L.append("FORECAST ACCURACY: unavailable (" + str(e) + ")")
     L.append("\nWATCHLIST (monitor, not acting)\n" + "━" * 31)
     for w in watchlist(squad): L.append("  • " + w)
     L.append("\nCAPTAIN — highest-EV starter (doubles)\n" + "━" * 7)
@@ -798,8 +930,45 @@ def report(team_name, squad_def, itb, banked, chips, planned, planned_wc=None):
     L.append("\nPLANNED TRANSFERS\n" + "━" * 17)
     for pt in planned: L.append("  " + pt)
     L.append("═" * 54)
+    ACTIONS.append(dict(
+        team=team_name, gw=gw, transfer=_act_tr,
+        chips=[k.upper() for k, v in chip_rec.items() if v],
+        captain=(f"{caps[0][0]['name']} ({caps[0][0]['team']} v "
+                 f"{FIX[caps[0][0]['team']].get(gw, ('?',))[0]})" if caps else '—'),
+        vice=(caps[1][0]['name'] if len(caps) > 1 else ''),
+        xi=[f"{po}  " + ", ".join(q['name'] for q in xi if q['pos'] == po)
+            for po in ('GK', 'DEF', 'MID', 'FWD') if any(q['pos'] == po for q in xi)],
+        bench=', '.join(p['name'] for p in bench)))
     return "\n".join(_wrap_report(L))
 
+
+# LOCKED 2026-08-13, ahead of the GW1 deadline. Chosen by optimize_v2.py on the neutral
+# season-long objective (GW1-8 XI + captain + auto-sub), with the human overrides applied and
+# backup keepers correctly zeroed: £100.0m exactly, GW1-8 EV 534.9 vs the previous squad's 497.3.
+# Deliberately unshaped — no chip tilt — because this team exists to follow the engine's weekly
+# recommendations precisely, so its baseline should reflect the model and nothing else.
+# Both squads pulled from the live API by fetch_squads.py on 2026-09-01, after GW2.
+# Do not hand-edit these again — re-run `python scripts/fetch_squads.py` and paste, or the
+# engine goes back to recommending transfers that have already been made.
+# Santa Claude (entry 4180925): took the GW2 recommendation, Mosquera -> De Cuyper, then the
+# GW3 one, Sarr -> Szoboszlai (executed 4 Sep, before the deadline). Hand-edited because the
+# API does not publish a gameweek's picks until its deadline passes, so fetch_squads.py still
+# returns the GW2 fifteen — re-run it after the deadline to confirm this matches. £0.3m ITB.
+SANTA = [("Leno","GK","FUL",4.5),("Sánchez","GK","CHE",4.9),
+         ("Van Hecke","DEF","TOT",5.0),("De Cuyper","DEF","BHA",4.7),("Calafiori","DEF","ARS",5.6),
+         ("Gvardiol","DEF","MCI",5.6),("Senesi","DEF","TOT",6.0),
+         ("Schade","MID","BRE",6.0),("Palmer","MID","CHE",9.6),("Mbeumo","MID","MUN",8.0),
+         ("Gomez","MID","BHA",5.0),("Szoboszlai","MID","LIV",7.0),
+         ("Haaland","FWD","MCI",15.5),("Calvert-Lewin","FWD","LEE",6.0),("Mateta","FWD","CRY",6.4)]
+# Village Idiots (entry 1169767). Rebuilt before the GW1 deadline under unlimited transfers, so
+# it bears little resemblance to the 13 August draft; no transfers since, and GW2 was rolled,
+# hence 2 free. Bench Boost was played in GW1 — not GW2 as the old plan here assumed.
+HUMAN = [("Kinsky","GK","TOT",4.5),("Verbruggen","GK","BHA",4.5),
+         ("Shaw","DEF","MUN",4.5),("Gabriel","DEF","ARS",8.0),("Calafiori","DEF","ARS",5.6),
+         ("Ajer","DEF","BRE",4.5),("F.Kadıoğlu","DEF","BHA",4.4),
+         ("Schade","MID","BRE",6.0),("Mbeumo","MID","MUN",8.0),("Tzolis","MID","ARS",6.5),
+         ("Semenyo","MID","MCI",8.5),("Hinshelwood","MID","BHA",6.0),
+         ("João Pedro","FWD","CHE",7.6),("Haaland","FWD","MCI",15.5),("Calvert-Lewin","FWD","LEE",6.0)]
 
 if __name__ == "__main__":
     ODDS.set_source("fd")          # live tool uses market-average odds (no key); a key still wins if set
@@ -807,44 +976,29 @@ if __name__ == "__main__":
     # these go straight to stdout rather than through report(), so wrap them here too
     for line in _wrap_report(["   " + l for l in auto_ingest_and_refresh()]): print(line)
     print()
-    # LOCKED 2026-08-13, ahead of the GW1 deadline. Chosen by optimize_v2.py on the neutral
-    # season-long objective (GW1-8 XI + captain + auto-sub), with the human overrides applied and
-    # backup keepers correctly zeroed: £100.0m exactly, GW1-8 EV 534.9 vs the previous squad's 497.3.
-    # Deliberately unshaped — no chip tilt — because this team exists to follow the engine's weekly
-    # recommendations precisely, so its baseline should reflect the model and nothing else.
-    # Both squads pulled from the live API by fetch_squads.py on 2026-09-01, after GW2.
-    # Do not hand-edit these again — re-run `python scripts/fetch_squads.py` and paste, or the
-    # engine goes back to recommending transfers that have already been made.
-    # Santa Claude (entry 4180925): took the GW2 recommendation, Mosquera -> De Cuyper. £0.9m ITB.
-    SANTA = [("Leno","GK","FUL",4.5),("Sánchez","GK","CHE",4.9),
-             ("Van Hecke","DEF","TOT",5.0),("De Cuyper","DEF","BHA",4.7),("Calafiori","DEF","ARS",5.6),
-             ("Gvardiol","DEF","MCI",5.6),("Senesi","DEF","TOT",6.0),
-             ("Schade","MID","BRE",6.0),("Palmer","MID","CHE",9.6),("Mbeumo","MID","MUN",8.0),
-             ("Gomez","MID","BHA",5.0),("Sarr","MID","CRY",6.4),
-             ("Haaland","FWD","MCI",15.5),("Calvert-Lewin","FWD","LEE",6.0),("Mateta","FWD","CRY",6.4)]
-    # Village Idiots (entry 1169767). Rebuilt before the GW1 deadline under unlimited transfers, so
-    # it bears little resemblance to the 13 August draft; no transfers since, and GW2 was rolled,
-    # hence 2 free. Bench Boost was played in GW1 — not GW2 as the old plan here assumed.
-    HUMAN = [("Kinsky","GK","TOT",4.5),("Verbruggen","GK","BHA",4.5),
-             ("Shaw","DEF","MUN",4.5),("Gabriel","DEF","ARS",8.0),("Calafiori","DEF","ARS",5.6),
-             ("Ajer","DEF","BRE",4.5),("F.Kadıoğlu","DEF","BHA",4.4),
-             ("Schade","MID","BRE",6.0),("Mbeumo","MID","MUN",8.0),("Tzolis","MID","ARS",6.5),
-             ("Semenyo","MID","MCI",8.5),("Hinshelwood","MID","BHA",6.0),
-             ("João Pedro","FWD","CHE",7.6),("Haaland","FWD","MCI",15.5),("Calvert-Lewin","FWD","LEE",6.0)]
-    print(report("SANTA CLAUDE (AI team)", SANTA, itb=0.9, banked=1,
+    _santa = report("SANTA CLAUDE (AI team)", SANTA, itb=0.3, banked=0,
                  chips={}, planned_wc=None, planned=[
                      "Neutral baseline — follow this engine's weekly call exactly, no chip shaping.",
                      "All four chips still held. 141 pts, overall 3.15m after GW2.",
                      "Spurs pair (Senesi, Van Hecke) held on model EV only: new manager, WC "
                      "returnees and the Spence rumour are invisible to the model. Revisit ~GW5 "
                      "once lineups settle.",
-                     "£0.9m ITB from the Mosquera → De Cuyper move."]))
-    print()
-    print(report("JON'S TEAM", HUMAN, itb=0.0, banked=2,
+                     "£0.3m ITB. GW3 transfer already made (Sarr → Szoboszlai), so 0 free this week."])
+    # both reports are built into strings first, so ACTIONS is complete before the TLDR
+    _jon = report("JON'S TEAM", HUMAN, itb=0.0, banked=2,
                  chips={"1": {"BB": 1}}, planned_wc=planned_wildcard(), planned=[
                      "BENCH BOOST PLAYED GW1. 163 pts, overall 846k after GW2 — the whole 22-pt "
                      "lead over Santa Claude came in GW1; GW2 was 87 apiece.",
                      "Remaining first-half chips: Wildcard, Triple Captain, Free Hit. The old plan "
                      "here was a GW3/GW4 Wildcard — still open, and GW3's deadline is Fri 4 Sep.",
                      "Two free transfers: GW2 was rolled.",
-                     "£0.0m ITB."]))
+                     "£0.0m ITB."])
+
+
+    # The do-this-now summary prints FIRST but can only be built LAST, because it reads
+    # what each report decided. Hence the two strings above.
+    for line in tldr(ACTIONS): print(line)
+    print()
+    print(_santa)
+    print()
+    print(_jon)

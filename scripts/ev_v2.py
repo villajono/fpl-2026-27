@@ -150,9 +150,41 @@ def get_per_90_rates(code, pos_hint=None):
 
 # ---------------------------------------------------------------- STEP 2: team CS probability
 def _calibrate_cs():
+    """Fit C in P(clean sheet) = exp(-C * opp_att * team_defw * home_adj).
+
+    THE TARGET MUST BE THE TEAM'S CLEAN SHEET, NOT THE PLAYER STAT
+
+    FPL awards a clean sheet for not conceding WHILE ON THE PITCH, given 60+ minutes. A defender
+    substituted on the hour whose team concedes in the 75th minute still records `clean_sheets`
+    = 1. So taking the max of that stat across a team's 60-minute players answers "did anybody
+    manage a clean sheet" rather than "did the team keep one", and the two differ in 92 of 760
+    team-matches.
+
+    That inflated the calibration target from the true 0.2553 to 0.3763 — and since C is chosen
+    to reproduce the target, every clean-sheet probability in the model was scaled to a rate
+    that never happened. Measured against the 60 team-matches of 2026-27 played by 2026-09-07:
+    mean predicted 0.373 against an actual 0.267, a bias of +0.106, which is the +0.121
+    inflation almost exactly.
+
+    Consequences ran everywhere, because for a keeper or defender the clean sheet IS the
+    projection: defenders at leaky clubs were rated as though they kept clean sheets a third of
+    the time (Chelsea 0.529 on seven conceded in three), and the model preferred Newcastle's
+    defence to Arsenal's.
+
+    Use goals_conceded == 0, which is unambiguous. Fall back to the old measure only if the
+    column is missing, and say so rather than silently reverting to the wrong number.
+    """
     g, att, defw, _n2s, _pr2 = FR._prep()
-    g["cs"] = pd.to_numeric(g["clean_sheets"], errors="coerce").fillna(0)
-    tm = g[g.minutes >= 60].groupby(["GW", "team", "opp_name", "was_home"]).agg(cs=("cs", "max")).reset_index()
+    key = ["GW", "team", "opp_name", "was_home"]
+    if "goals_conceded" in g.columns:
+        g["gc"] = pd.to_numeric(g["goals_conceded"], errors="coerce").fillna(0)
+        tm = g[g.minutes >= 60].groupby(key).agg(gc=("gc", "max")).reset_index()
+        tm["cs"] = (tm.gc == 0).astype(float)
+    else:                                    # pragma: no cover - only if the feed loses a column
+        import warnings
+        warnings.warn("goals_conceded missing; calibrating CS on the inflated player stat")
+        g["cs"] = pd.to_numeric(g["clean_sheets"], errors="coerce").fillna(0)
+        tm = g[g.minutes >= 60].groupby(key).agg(cs=("cs", "max")).reset_index()
     tm["x"] = tm.opp_name.map(att.to_dict()) * tm.team.map(defw.to_dict()) * np.where(tm.was_home, 0.90, 1.10)
     tm = tm.dropna(subset=["x"]); target = tm.cs.mean(); x = tm.x.values
     lo, hi = 0.1, 5.0
@@ -289,6 +321,26 @@ def _backup_keeper_codes():
     P60_OVR is checked first in get_minutes_probs — so a contested job can be resolved from the
     phone form the moment team news lands.
     """
+    # THIS season's minutes beat last season's, and the distinction is not academic.
+    #
+    # _nxt.minutes is LAST season's total — refresh_players.py deliberately preserves the
+    # performance columns as the model's prior and refreshes only identity and availability. So a
+    # keeper who won the job THIS season reads as having zero minutes and is classed an
+    # understudy, which sets p60 to exactly 0.00 and makes him invisible.
+    #
+    # Found 2026-09-07 by model_tests.test_minutes_recency: six keepers with p60 0.00 had played
+    # 90 minutes in each of the last two gameweeks — Hornicek (NEW), Martinez (CHE), Rushworth
+    # (COV), Scherpen (IPS), Suzuki (AVL), Trafford (LEE). Suzuki was projected 0.00 for GW3 and
+    # returned 10. Chelsea's case shows the mechanism plainly: Sanchez went to Como on loan and
+    # Martinez inherited the shirt, but last season's minutes still say otherwise.
+    live_mins = {}
+    try:
+        if H.has_inseason():
+            _d = H.load_inseason()
+            live_mins = _d.groupby("code").minutes.sum().to_dict()
+    except Exception:
+        live_mins = {}
+
     gks = _nxt[_nxt.element_type == 1]
     non_starters = set()
     for _, grp in gks.groupby("team_name"):
@@ -296,6 +348,12 @@ def _backup_keeper_codes():
         # NB no leading underscore: itertuples() renames such columns positionally (_1, _2, ...)
         g["selpct"] = pd.to_numeric(g.selected_by_percent, errors="coerce").fillna(0.0)
         g["mins"] = pd.to_numeric(g.minutes, errors="coerce").fillna(0.0)
+        if live_mins:
+            this_season = g.code.map(lambda c: live_mins.get(int(c), 0.0))
+            # only override where somebody at this club has played this season; otherwise the
+            # club has no evidence yet and last season's prior is still the best guide
+            if float(this_season.sum()) > 0:
+                g["mins"] = this_season
         rows = [(int(r.code), float(r.now_cost), float(r.selpct), float(r.mins))
                 for r in g.itertuples()]
         by_minutes = any(m > 0 for _, _, _, m in rows)
