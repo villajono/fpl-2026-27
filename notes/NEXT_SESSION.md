@@ -150,6 +150,37 @@ Chelsea shows the mechanism plainly — Sanchez left for Como on loan and Martin
 shirt. Suzuki was projected 0.00 for GW3 and returned 10. Now prefers this season's minutes from
 the in-season store where any keeper at that club has played.
 
+### 5. PREMIUM COMPRESSION - WITHDRAWN 2026-09-09. THE TEST WAS WRONG, THE MODEL IS FINE.
+
+**Read this before acting on anything below in this item.** The defect does not exist. Measured
+like for like - the model's own per-90 attacking rates against the same players' raw historical
+per-90 rates, 187 attackers with 900+ minutes - it keeps **1.02** of the elite-to-mid gap.
+Haaland, the player the defect was named for, comes out at 0.93 of his raw rate.
+
+`test_premium_compression` was wrong in two independent ways, both inflating the apparent failure:
+
+1. **Units.** It compared an xGI ratio against an EV ratio. EV is total points and includes ~2
+   appearance points, a clean-sheet share and a DefCon share for every attacker whatever his
+   attacking output. Over 538 attacker-seasons of 2022-25 a 2.54x gap in xGI/90 converts to a
+   1.55x gap in points/90 - a conversion of 0.36, not 1.0. Requiring 0.85 asked for more spread
+   than football produces.
+2. **Sample.** The xGI came from the live bootstrap over the gameweeks played - three of them.
+   The top decile of a three-game xGI table is mostly finishing noise, and regressing it is
+   correct. Ranking on the first three gameweeks of 2022-25, the top decile shows 6.69x the
+   mid-tier's xGI/90 and then scores 1.70x their points per game.
+
+This is the THIRD test in this project distorted by comparing quantities that answer different
+questions, after the two recorded in FORECAST_SPEC.md. The methodological rule stands and should
+be applied before any failing test becomes a work item: **check the units, and check what the
+sample conditions on.** A failing test is a hypothesis, not a finding.
+
+The optimiser dropping Haaland is therefore NOT evidence of compression. It is a £15.5m price
+judgement against a six-week horizon, and forcing him back into the wildcard squad costs 1.0
+point of objective - the model is close to indifferent, which is a reasonable view rather than
+a broken one.
+
+The original item is kept below for the record.
+
 ### 5. PREMIUM COMPRESSION (open since 2026-09-04, now much worse than thought)
 
 Top five attackers by xGI/90 against the mid-tier:

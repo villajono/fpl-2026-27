@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-07T16:37:29",
+ "generated": "2026-09-09T09:32:20",
  "gw0": 4,
  "horizon": 6,
  "decay": {
@@ -11,7 +11,7 @@
   "6": 0.79
  },
  "current_gw": 3,
- "n_players": 484,
+ "n_players": 486,
  "note": "Central estimates, locked. Downstream tools must read this file and must not recompute EV. Confidence is the share of each rate that is the player's own data rather than his position prior; it is information for the reader, not an input to the optimiser.",
  "players": {
   "Raya|ARS": {
@@ -358,7 +358,7 @@
    "code": 439509,
    "pos": "MID",
    "team": "ARS",
-   "price": 6.5,
+   "price": 6.4,
    "ev": [
     1.4707,
     1.3388,
@@ -511,7 +511,7 @@
    "code": 195546,
    "pos": "MID",
    "team": "AVL",
-   "price": 6.0,
+   "price": 5.9,
    "ev": [
     3.7205,
     3.3663,
@@ -1616,7 +1616,7 @@
    "code": 465730,
    "pos": "DEF",
    "team": "BHA",
-   "price": 4.7,
+   "price": 4.8,
    "ev": [
     5.1031,
     3.4901,
@@ -3656,7 +3656,7 @@
    "code": 167074,
    "pos": "DEF",
    "team": "FUL",
-   "price": 4.5,
+   "price": 4.4,
    "ev": [
     0.9828,
     1.2092,
@@ -4162,6 +4162,23 @@
    "minutes": 0,
    "confidence": 0.0
   },
+  "Crooks|HUL": {
+   "code": 101282,
+   "pos": "MID",
+   "team": "HUL",
+   "price": 4.5,
+   "ev": [
+    0.4849,
+    0.5152,
+    0.5999,
+    0.5576,
+    0.5827,
+    0.6911
+   ],
+   "p60": 0.22,
+   "minutes": 90,
+   "confidence": 0.2
+  },
   "Slater|HUL": {
    "code": 243413,
    "pos": "MID",
@@ -4184,6 +4201,23 @@
    "pos": "MID",
    "team": "HUL",
    "price": 4.9,
+   "ev": [
+    0.1283,
+    0.133,
+    0.1468,
+    0.14,
+    0.1452,
+    0.1637
+   ],
+   "p60": 0.02,
+   "minutes": 0,
+   "confidence": 0.0
+  },
+  "Zambrano|HUL": {
+   "code": 553783,
+   "pos": "MID",
+   "team": "HUL",
+   "price": 4.5,
    "ev": [
     0.1283,
     0.133,
@@ -4914,7 +4948,7 @@
    "code": 153682,
    "pos": "MID",
    "team": "LEE",
-   "price": 6.4,
+   "price": 6.3,
    "ev": [
     2.2978,
     2.3723,
@@ -5645,7 +5679,7 @@
    "code": 219168,
    "pos": "FWD",
    "team": "LIV",
-   "price": 9.0,
+   "price": 9.1,
    "ev": [
     4.4143,
     4.0864,
@@ -5866,7 +5900,7 @@
    "code": 448514,
    "pos": "DEF",
    "team": "MCI",
-   "price": 5.4,
+   "price": 5.3,
    "ev": [
     1.1417,
     1.7571,
@@ -6206,7 +6240,7 @@
    "code": 596777,
    "pos": "MID",
    "team": "MUN",
-   "price": 5.9,
+   "price": 5.8,
    "ev": [
     1.4506,
     1.5234,
@@ -6240,7 +6274,7 @@
    "code": 95658,
    "pos": "DEF",
    "team": "MUN",
-   "price": 5.0,
+   "price": 4.9,
    "ev": [
     3.0314,
     3.5286,
@@ -6478,7 +6512,7 @@
    "code": 576628,
    "pos": "MID",
    "team": "MUN",
-   "price": 5.0,
+   "price": 4.9,
    "ev": [
     0.7269,
     0.7633,
@@ -7668,7 +7702,7 @@
    "code": 511499,
    "pos": "MID",
    "team": "TOT",
-   "price": 5.9,
+   "price": 5.8,
    "ev": [
     3.956,
     4.0629,

@@ -50,9 +50,15 @@ THE SIX, AND WHAT EACH COST TO FIND
    0.57. This is what made Newcastle's fourth-choice defender look better than Arsenal's new
    starter.
 
-4. PREMIUM COMPRESSION (2026-09-04, still open). The model keeps only about three quarters of the
-   real gap between elite and mid-tier attackers, so the optimiser drops Haaland for someone
-   cheaper. Measured then on xG90: Haaland/Mbeumo 1.41 in the model against 1.88 in history.
+4. PREMIUM COMPRESSION - WITHDRAWN 2026-09-09, IT WAS THE TEST. Carried as an open defect from
+   2026-09-04 on the claim that the model kept only 0.12 of the elite-to-mid gap. It does not:
+   measured like for like, its per-90 attacking rates keep 1.02 of the gap in the history it
+   learned from, and Haaland himself comes out at 0.93 of his raw rate. The old test compared an
+   xGI ratio against an EV ratio (different units - every attacker banks ~2 appearance points
+   regardless, so a 2.54x xGI gap converts to a 1.55x points gap over 538 attacker-seasons), and
+   measured that xGI over three gameweeks, where the top decile is noise that SHOULD regress
+   (a 6.69x three-game xGI gap predicts a 1.70x gap in later points per game). Rewritten to
+   compare rates with rates. Do not "fix" the model for this.
 
 5. NO COVER VALUE (2026-09-07). Squad metrics score a non-starting player at zero, so a dead
    bench player looks free to hold. Mateta was out until 11 October and did not surface as a
@@ -285,34 +291,84 @@ def test_minutes_recency(ctx):
 
 # ---------------------------------------------------------------- 4. premium compression
 MIN_GAP_KEPT = 0.85
+# Minutes of history needed before a player's own per-90 is worth comparing to the
+# model's. Below ev_v2.MIN_MINUTES the rates are deliberately shrunk to the position
+# average, so including thin samples would measure that shrinkage and call it
+# compression - which is the error this test was rewritten to stop making.
+RATE_MIN_MINUTES = 900
 
 
 def test_premium_compression(ctx):
-    """The model must preserve the gap between elite and mid-tier attackers.
+    """The model must not flatten the gap between elite and mid-tier attackers.
 
-    Compression is not a rounding error: it decides whether the optimiser keeps Haaland. Measured
-    as the ratio of the top attackers' projection to the mid-tier's, against the same ratio in
-    their actual underlying output. Anything below 0.85 means the model is flattening the top.
+    WHAT THIS TEST USED TO DO, AND WHY IT WAS WRONG (rewritten 2026-09-09)
+
+    It ranked attackers by THIS SEASON'S xGI/90 and demanded that the ratio of their EV reproduce
+    at least 0.85 of the ratio of their xGI. It failed at 0.12 and was carried as an open defect
+    for five days. Both halves of it were wrong, and in the same direction.
+
+      UNITS. EV is total points; xGI is attacking output alone. Every attacker banks ~2 appearance
+      points, a clean sheet share and a DefCon share whatever his xGI, so a 3x gap in attacking
+      output cannot produce a 3x gap in total points. Measured over 538 attacker-seasons of
+      2022-25, a 2.54x gap in xGI/90 converts to a 1.55x gap in points/90. The conversion is 0.36,
+      not 1.0, and demanding 0.85 of it asked the model for more spread than football produces.
+
+      SAMPLE. `regulars` reads expected_goal_involvements from the live bootstrap over the
+      gameweeks played so far - three of them, in this case. The top decile of a three-game xGI
+      table is mostly noise, and regressing it is correct behaviour, not compression. Ranking on
+      the first three gameweeks of 2022-25, the top decile shows 6.69x the mid-tier's xGI/90 and
+      goes on to score 1.70x their points per game. The old test would have called that a 75%
+      failure. It is the market working normally.
+
+      This is the third time a test in this file has been distorted by comparing quantities that
+      answer different questions - see the correction on test 1. Check the units and check what
+      the sample conditions on, before believing a failure.
+
+    WHAT IT DOES NOW
+
+    Compares like with like: the model's own per-90 attacking rate against the SAME players' raw
+    historical per-90 rate. If the model flattens the top - which is the thing that would make the
+    optimiser drop Haaland - the elite-to-mid ratio of its rates comes out below the ratio in the
+    data it learned from. No units conversion, no calibration constant, and it is measured on the
+    rates rather than on EV, so appearance points cannot mask the effect.
     """
-    rs = [r for r in regulars(ctx) if r["pos"] in ("MID", "FWD")]
-    if len(rs) < 30:
-        return "premium-compression", None, [f"only {len(rs)} attackers with enough minutes"]
-    rs.sort(key=lambda r: -r["xgi90"])
-    n = max(3, len(rs) // 10)
-    top, mid = rs[:n], rs[len(rs) // 2 - n // 2: len(rs) // 2 + n // 2 + 1]
-    xt = sum(r["xgi90"] for r in top) / len(top)
-    xm = sum(r["xgi90"] for r in mid) / len(mid)
-    et = sum(r["ev"] for r in top) / len(top)
-    em = sum(r["ev"] for r in mid) / len(mid)
-    if xm <= 0 or em <= 0:
-        return "premium-compression", None, ["mid-tier baseline is zero"]
-    real, modelled = xt / xm, et / em
-    kept = (modelled - 1) / (real - 1) if real > 1 else 1.0
-    lines = [f"top {len(top)} by xGI/90 vs {len(mid)} mid-tier",
-             f"real gap    {real:.2f}x  (xGI/90 {xt:.3f} vs {xm:.3f})",
-             f"modelled    {modelled:.2f}x  (ev {et:.2f} vs {em:.2f})",
-             f"share of the gap kept {kept:.2f} (need >= {MIN_GAP_KEPT})",
-             "top names: " + ", ".join(r["name"] for r in top[:5])]
+    try:
+        sys.path.insert(0, str(ROOT / "scripts"))
+        import ev_v2 as V
+    except Exception as e:                                  # pragma: no cover - import guard
+        return "premium-compression", None, [f"ev_v2 unavailable: {type(e).__name__}: {e}"]
+
+    rows = []
+    for code, el in V._code2id.items():
+        pos = V._id2pos.get(el)
+        if pos not in ("MID", "FWD"):
+            continue
+        sub = V._g[(V._g.element == el) & (V._g.minutes > 0)]
+        mins = float(sub.minutes.sum())
+        if mins < RATE_MIN_MINUTES:
+            continue
+        raw = float(sub.expected_goals.sum() + sub.expected_assists.sum()) / (mins / 90.0)
+        rr = V.get_per_90_rates(code, pos)
+        rows.append((raw, float(rr["xG90"] + rr["xA90"])))
+    if len(rows) < 30:
+        return "premium-compression", None, [f"only {len(rows)} attackers with enough history"]
+
+    rows.sort(key=lambda r: -r[0])
+    n = max(3, len(rows) // 10)
+    mid0 = len(rows) // 2 - n // 2
+    top, mid = rows[:n], rows[mid0:mid0 + n + 1]
+    rt = sum(r[0] for r in top) / len(top)
+    rm = sum(r[0] for r in mid) / len(mid)
+    mt = sum(r[1] for r in top) / len(top)
+    mm = sum(r[1] for r in mid) / len(mid)
+    if rm <= 0 or mm <= 0 or rt / rm <= 1:
+        return "premium-compression", None, ["degenerate baseline"]
+    real, modelled = rt / rm, mt / mm
+    kept = (modelled - 1) / (real - 1)
+    lines = [f"top {len(top)} by raw xGI/90 vs {len(mid)} mid-tier, {len(rows)} attackers",
+             f"raw history  {real:.3f}x  (xGI/90 {rt:.4f} vs {rm:.4f})",
+             f"model rates  {modelled:.3f}x  (xGI/90 {mt:.4f} vs {mm:.4f})",
+             f"share of the rate gap kept {kept:.2f} (need >= {MIN_GAP_KEPT})"]
     return "premium-compression", kept >= MIN_GAP_KEPT, lines
 
 

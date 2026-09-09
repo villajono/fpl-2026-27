@@ -53,21 +53,34 @@ POOL_PER_POS = 45          # candidates per position; --validate checks this doe
 
 
 def solve(players, decay, horizon, budget=BUDGET, forced=(), pool_per_pos=POOL_PER_POS,
-          banned=()):
-    """players: {key: {pos, team, price, ev[]}}. Returns (keys, objective, binding_report)."""
+          banned=(), keep=(), max_changes=None):
+    """players: {key: {pos, team, price, ev[]}}. Returns (keys, objective, binding_report).
+
+    keep / max_changes turn the wildcard solve into an N-TRANSFER solve. `keep` is the squad you
+    hold now; `max_changes` is how many of them you may replace. Without these the solver rebuilds
+    from scratch, which answers the wildcard question and not the weekly one.
+
+    This matters because a greedy single-swap search cannot evaluate a PACKAGE. Selling a premium
+    to fund two upgrades is worse on every intermediate step and better at the end, so a hill-climb
+    rejects it at step one. That is the same reason the wildcard refit was made exact — the
+    formulation is identical, with one extra row.
+    """
     val = {k: sum(decay[i] * e for i, e in enumerate(v["ev"])) for k, v in players.items()}
     forced = set(forced)
     banned = set(banned)
 
     # restrict to the best few per position, plus anything forced — the full 491 is solvable but
     # slow inside a timing sweep that calls this sixty times
-    cand = set(forced)
+    # anyone you already hold is a candidate by definition - he is keepable whether or not he
+    # ranks in the top few of his position, and leaving him out makes the solver "sell" him for
+    # free, understating the cost of a package.
+    cand = set(forced) | {k for k in keep if k in players}
     for pos in QUOTA:
         byp = sorted((k for k, v in players.items()
                       if v["pos"] == pos and k not in banned),
                      key=lambda k: -val[k])
         cand.update(byp[:pool_per_pos])
-    cand = sorted(cand - banned | forced)
+    cand = sorted((cand - banned) | set(forced) | {k for k in keep if k in players})
     idx = {k: i for i, k in enumerate(cand)}
 
     # ---- variables: x[(player, slot)] then y[(player, week)] ----
@@ -137,6 +150,24 @@ def solve(players, decay, horizon, budget=BUDGET, forced=(), pool_per_pos=POOL_P
             for o in owned:
                 r[o] = -1
             A.append(r); lo.append(-np.inf); hi.append(0)
+
+    # keep at least (15 - max_changes) of the squad you already hold: an N-transfer solve.
+    # Players you hold who are NOT in the candidate pool cannot be kept by the solver, so they
+    # count as forced changes; subtract them from the allowance rather than letting the solver
+    # silently get free transfers it does not have.
+    if keep and max_changes is not None:
+        keepable = [k for k in keep if k in idx]
+        unkeepable = len(keep) - len(keepable)
+        allowance = max_changes - unkeepable
+        if allowance < 0:
+            raise ValueError(
+                f"{unkeepable} held player(s) are outside the candidate pool, which already "
+                f"exceeds max_changes={max_changes}. Widen --pool or raise the transfer count.")
+        r = row()
+        for j, (kk, _, _) in enumerate(xs):
+            if kk in set(keepable):
+                r[j] = 1
+        A.append(r); lo.append(len(keepable) - allowance); hi.append(np.inf)
 
     # forced picks
     for k in forced:
