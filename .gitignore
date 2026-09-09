@@ -12,3 +12,12 @@ Thumbs.db
 
 # Odds API key — local only, never commit
 data/state/odds_key.txt
+
+# Prior-season archives for structural calibration — 24M, and reproducible at any time by
+# scripts/fetch_history.py from github.com/vaastav/Fantasy-Premier-League. Only the local
+# analysis scripts (theories.py, structural.py) read them; the weekly run does not.
+data/raw/history/
+
+# Derived caches. hazard.py rebuilds these on demand; the forecast_*.json alongside them ARE
+# tracked, because squad_opt.py globs them during the weekly run on the ephemeral cloud runner.
+data/processed/hazard_*.csv
