@@ -55,6 +55,30 @@ Improve BOTH halves every week. Today was almost entirely the minutes half.
   3. Bonus is a flat per-appearance rate, not fixture-adjusted. ~7% of all points.
   4. Bookmaker odds cover GW+1 only; GW+2 onwards falls back to the xG model.
 
+### NO CONCEPT OF CORRELATED OUTCOMES (found by Jon, 2026-09-10)
+
+`select_xi` maximises the SUM of expected points. That is correct for expectation and completely
+blind to covariance, and the model therefore cannot see that two players behind the same defence
+are perfectly correlated on the clean-sheet component.
+
+The case: Verbruggen (BHA) and Kadioglu (BHA) both start, so 8 clean-sheet points ride on a single
+event at p=0.356 - expected 2.85, standard deviation 3.83. Swapping to Kinsky (TOT, p=0.414)
+splits it across two independent fixtures: expected 3.08, standard deviation 2.75. HIGHER expected
+points AND lower variance, and the model preferred the double-up because Verbruggen's save points
+are worth 0.15 more in isolation.
+
+Jon: "just chase the clean sheet, and avoid doubling up on Brighton def." The model has no way to
+express the second half of that sentence.
+
+Worth fixing for two reasons beyond XI selection. Under a BENCH BOOST all fifteen score, so
+concentration is at its most dangerous. And when protecting a rank rather than chasing one, the
+variance is the thing you actually want to manage - a squad with three players behind one defence
+is a different bet from a diversified one with the same expected total.
+
+Cheapest version: when two candidates for the same XI slot are within a small margin, prefer the
+one whose club is less represented in the squad. The full version needs a covariance structure -
+clean sheets are perfectly correlated within a club, attacking returns partially so.
+
 ### Strategy layer - scripts/strategy.py, new today
 
   Decides the chip week rather than asking for it. Searches every wildcard week against a
