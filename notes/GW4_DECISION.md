@@ -135,7 +135,44 @@ about the old approach. This method - two concrete squads on identical projectio
 using their transfers - reproduces an independent human prior to within 1% and should replace the
 prohibition.
 
-### The squad
+### ACTIONED 2026-09-10. Wildcard played, this squad is live.
+
+    GK   Suzuki       AVL   5.0        Tzolakis      HUL   4.6
+    DEF  Gabriel      ARS   8.0        Calafiori     ARS   5.7
+         Thiaw        NEW   5.0        De Cuyper     BHA   4.8
+         Thomas (Bobby, COV)     4.0
+    MID  B.Fernandes  MUN  12.0        Saka          ARS   9.5
+         Palmer       CHE   9.6        Tavernier     BOU   6.0
+         Anderson     MCI   6.3
+    FWD  Joao Pedro   CHE   7.7        Calvert-Lewin LEE   6.0
+         Awoniyi      COV   5.5
+                                            GBP99.7m, GBP0.20m bank
+
+    GW4 XI: Suzuki; Gabriel, Calafiori, De Cuyper; Palmer, B.Fernandes, Saka, Tavernier,
+            Anderson; Joao Pedro, Calvert-Lewin.   CAPTAIN Palmer, vice Joao Pedro.
+    Bench: Awoniyi, Thiaw, Thomas (GK Tzolakis).
+
+PALMER WAS FORCED IN AGAINST THE OPTIMISER, and the reason is a defect worth fixing. Left to
+itself the solver sold Palmer - a player Santa Claude already OWNED - immediately before Hull at
+home, the best attacking fixture any Chelsea player gets in the run (multiplier 1.705, his 6.89 is
+the highest single-week EV in either squad). It preferred Saka on a 13-week decayed number by
+2.87, while over six weeks the two are a dead heat at 33.26 against 33.48. Forcing Palmer costs
+2.0 over thirteen weeks and gains 0.84 in GW4.
+
+Jon spotted it: "you're transferring out Palmer ahead of Hull (h)?"
+
+The defect is that strategy.py picks the post-wildcard squad to maximise the WHOLE remaining
+horizon as a block, so a player who is best NOW loses to one who is better on average. On a
+wildcard that is backwards - you keep your free transfers either way, so the right play is to take
+the near-term squad and transfer into the long-term one. Weighting the rebuild towards the first
+two or three gameweeks would fix it. Until then, sanity-check the rebuild against the immediate
+fixture list before playing the chip.
+
+Chips remaining: BENCH BOOST and FREE HIT, both deliberately held. The model valued them at +14.5
+and +3.7 inside a GW4-16 horizon that contains no blanks or doubles; those cluster in the second
+half, so an unplayed chip is being held rather than wasted, and the model cannot see that.
+
+### The squad as first solved (superseded by the above)
 
     GK   Raya          ARS  6.0      Verbruggen    BHA  4.5
     DEF  Gabriel       ARS  8.0      Calafiori     ARS  5.7    Lacroix  CHE 6.0
