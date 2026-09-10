@@ -3,7 +3,41 @@
 Both teams. Written after a session that priced the wildcard against transfers, withdrew one
 defect and confirmed another. Overrides and the wildcard flag are in `data/state/human_input.json`.
 
-## Village Idiots — PLAY THE WILDCARD
+## Village Idiots - ACTIONED 2026-09-10: THREE TRANSFERS, WILDCARD HELD
+
+**The wildcard section below was superseded.** Jon chose transfers, keeping the chip, on the
+football view that Chelsea are worth loading up on now. Executed:
+
+    OUT  Gabriel (ARS 8.0)   Semenyo (MCI 8.4)   Hinshelwood (BHA 6.0)
+    IN   Konsa (ARS 4.4)     Palmer (CHE 9.6)    Rogers (CHE 7.6)
+
+    GW4 XI (3-4-3): Verbruggen; Calafiori, Konsa, F.Kadioglu; Palmer, Rogers, Mbeumo, Schade;
+                    Joao Pedro, Haaland, Calvert-Lewin.
+    CAPTAIN Palmer, vice Joao Pedro.  Bench: Ajer, Shaw, Tzolis (GK Kinsky).
+    About GBP0.1-0.2m left - sell prices are private, so the app is the authority.
+
+Arsenal and Chelsea are both at the three-club limit. Chips remaining: WILDCARD and FREE HIT.
+
+**What this costs against the model, stated plainly because it was a deliberate choice.** The
+optimiser's own three transfers were Hinshelwood, Shaw and Tzolis out for Damsgaard, Tavernier and
+Thiaw, scoring 343.8 against this package's 325.9 over six weeks - a gap of 17.6, essentially all
+of it selling Gabriel. And strategy.py valued the wildcard at +17.6 over transferring normally,
+which is now foregone for this gameweek.
+
+Jon's counter-argument, tested: Chelsea's attack is under-rated and their fixtures turn. The
+fixtures do turn for GW4 specifically (Hull at home, attacking multiplier 1.705, by far the best
+in the run) but not across it - GW5, GW7, GW8 and GW9 are ordinary to hard, and Spurs at home in
+GW8 is the second-best defence in the league. On the attack, fixture-adjusted xG has Chelsea 3rd
+at 1.99 per game against the 2.10 the model already implies from the highest attack rating in the
+league. So the model is not under-rating them; it declines to rate them above best.
+
+The one finding that did come out of testing it: **Manchester City are the most over-rated attack
+in the model** - implied 1.82, delivering 0.83 fixture-adjusted, a gap of -0.99 and the largest
+either direction. Village Idiots holds Haaland at GBP15.5m through that. Three games is thin and
+City are the last side to write off on it, but it is the largest single position in either squad
+and worth watching from GW8, when the team ratings start to weight this season properly.
+
+## The superseded wildcard recommendation for Village Idiots
 
 ```
 GK   Verbruggen  BHA  4.5     Kinsky      TOT  4.5
