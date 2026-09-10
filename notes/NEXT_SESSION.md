@@ -55,55 +55,33 @@ Improve BOTH halves every week. Today was almost entirely the minutes half.
   3. Bonus is a flat per-appearance rate, not fixture-adjusted. ~7% of all points.
   4. Bookmaker odds cover GW+1 only; GW+2 onwards falls back to the xG model.
 
-### NO CONCEPT OF CORRELATED OUTCOMES (found by Jon, 2026-09-10)
+### CORRELATED OUTCOMES - CONSIDERED AND CLOSED, 2026-09-10. DO NOT REOPEN.
 
-`select_xi` maximises the SUM of expected points. That is correct for expectation and completely
-blind to covariance, and the model therefore cannot see that two players behind the same defence
-are perfectly correlated on the clean-sheet component.
+`select_xi` maximises the SUM of expected points and is blind to covariance: two players behind the
+same defence are perfectly correlated on the clean sheet and it treats them as independent. Found
+when Jon chose his GW4 keeper - Verbruggen and Kadioglu are both Brighton, so 8 clean-sheet points
+rode on one event at p=0.356.
 
-The case: Verbruggen (BHA) and Kadioglu (BHA) both start, so 8 clean-sheet points ride on a single
-event at p=0.356 - expected 2.85, standard deviation 3.83. Swapping to Kinsky (TOT, p=0.414)
-splits it across two independent fixtures: expected 3.08, standard deviation 2.75. HIGHER expected
-points AND lower variance, and the model preferred the double-up because Verbruggen's save points
-are worth 0.15 more in isolation.
+**It does not matter, and the objective is settled.** Jon, asked directly whether he is chasing a
+rank or maximising points:
 
-Jon: "just chase the clean sheet, and avoid doubling up on Brighton def." The model has no way to
-express the second half of that sentence.
+> *"I think we can really just maximise expected points as an objective. The subtleties of chasing
+> / protecting are mainly emotional, and apply mostly only very late in the season."*
 
-**VARIANCE IS NOT A RISK TO MINIMISE. IT IS A CHOICE THAT SHOULD FOLLOW THE OBJECTIVE.** The
-first version of this note got that wrong and Jon corrected it immediately:
+Under expected-point maximisation E[a+b] = E[a] + E[b] whatever the covariance, so concentration
+changes the SPREAD of outcomes and not the expectation. There is nothing to fix. Do not add a
+concentration penalty: it would optimise something the objective does not ask for and would cost
+real expected points to buy variance reduction that is not wanted.
 
-> *"Not necessarily worse. If you sit, say, 100k in the world, and want to maximise your chances
-> of breaking the top 50k, doubling up is right - there's more downside, but more upside."*
+Two things to keep from the episode. First, the objective is now stated and should be treated as
+settled - MAXIMISE EXPECTED POINTS, not P(top 50k) - and anything that quietly optimises something
+else is a bug. Second, an interesting variance question is not automatically a useful one; this one
+consumed a fix, a correction to the fix, and a retraction inside two hours.
 
-He is right, and it goes deeper than XI selection. In a rank-based competition the objective is
-not "maximise expected points", it is "maximise P(finishing above X)", and those give opposite
-answers depending on where you sit:
-
-  CHASING     behind the target - variance is your FRIEND. Correlated picks buy the upper tail,
-              and the extra downside costs nothing you were not already losing.
-  PROTECTING  ahead of it - variance is the enemy, and correlation is what takes a rank away in
-              one afternoon.
-  INDIFFERENT expected points is the right objective and correlation genuinely does not matter,
-              because E[a+b] = E[a] + E[b] whatever the covariance.
-
-The model currently assumes the third case without being told to. It maximises expected points and
-has neither a covariance structure nor any notion of a rank target, so it cannot deliberately take
-or avoid risk - it just happens to be risk-neutral.
-
-TO FIX PROPERLY, in order:
-  1. Ask what the objective actually is. "Maximise season points" and "break the top 50k" are
-     different problems and Jon has only ever stated the first. Village Idiots sits ~690k and
-     Santa Claude ~2.3m, so if a rank target exists the two teams should be taking DIFFERENT
-     amounts of risk - and Santa Claude, further behind, should be taking more.
-  2. A covariance structure. Clean sheets are perfectly correlated within a club; attacking
-     returns partially so; a captain doubles whatever correlation he already carries.
-  3. Only then, a variance-aware objective. Until 1 and 2 exist, do not "fix" this by penalising
-     concentration - that would hard-code the protecting case and be wrong for a chasing team.
-
-Cheap interim: SURFACE the concentration rather than acting on it. When an XI has several players
-behind one defence, say so and say how many points ride on the single event, and let the human
-choose the risk. That is honest about what the model does not know.
+The one live consequence: on pure expected points the GW4 keeper is VERBRUGGEN at 3.58, not Kinsky
+at 3.43. Kinsky has the better clean-sheet chance (41% against 36%) and Verbruggen the better total
+because of saves (0.64 against 0.41). Jon picked Kinsky partly on diversification, which the stated
+objective says is worth nothing. The gap is 0.15 and it is his call, but the two are inconsistent.
 
 ### Strategy layer - scripts/strategy.py, new today
 
