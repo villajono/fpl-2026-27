@@ -83,6 +83,47 @@ at 3.43. Kinsky has the better clean-sheet chance (41% against 36%) and Verbrugg
 because of saves (0.64 against 0.41). Jon picked Kinsky partly on diversification, which the stated
 objective says is worth nothing. The gap is 0.15 and it is his call, but the two are inconsistent.
 
+### DEFENSIVE TEAM RATINGS - A PRIOR PROBLEM, NOT AN UPDATE-SPEED ONE (2026-09-10)
+
+Three of the model's top four defences are in the BOTTOM HALF of the league on actual xG conceded:
+
+    model rank  club  defw    actual xGA/game   actual rank
+        1       ARS   0.60         0.31              1
+        2       TOT   0.78         1.85             19    <--
+        3       LIV   0.79         1.55             13    <--
+        4       CHE   0.82         1.63             16    <--
+        5       MCI   0.86         0.90              3
+
+Found while arguing about whether Man City are a hard fixture. City turn out to be the ACCURATE
+one - the model has them 5th and they are genuinely 3rd. The problem is who sits above them.
+
+**The obvious reading is that ratings update too slowly. Jon's is the opposite and better:**
+
+> *"I think team ratings should update more slowly if anything. The best teams over the last 5
+> years have been Man City, Arsenal, Liverpool, Villa, Man Utd and Chelsea. Only Villa are
+> questionable this year (because they sold loads of players). The others have been steady or
+> improved."*
+
+Club strength is genuinely durable, so three gameweeks of xGA is mostly noise - which is what the
+measurement already said: a 3-game defensive record carries ~12% predictive weight, rising to
+40-58% by GW8. The model is correctly slow.
+
+So the disagreement is not about SPEED, it is about whether the PRIOR is right. Note that Spurs
+are not on Jon's list of durable top clubs at all, and Spurs are the single largest discrepancy:
+rated 2nd, conceding at 19th. Villa, which he flags as this year's genuine question, the model
+already rates 15th at 1.11 - so it agrees with him there. Its top five and his list overlap on
+ARS, LIV, CHE and MCI; the model adds TOT and demotes MUN.
+
+**THIS IS TESTABLE AND GW8 SETTLES IT.** If Spurs' xGA reverts towards their 0.78 rating, the
+prior was right and slow updating is correct - leave everything alone. If it does not, the prior
+is stale for Spurs specifically and the fix is a better prior, not a faster one. Do not touch the
+update rate in the meantime: it is measured, and changing it would trade a known-correct
+parameter for an unmeasured hunch.
+
+Related and probably the same root: `fixture-spread` fails at +0.79 against a 1.5 requirement, so
+whatever the ratings say, the model under-uses them. Fixing the SPREAD is likely worth more than
+fixing any individual club's rating, and it is the largest open defect in the model.
+
 ### Strategy layer - scripts/strategy.py, new today
 
   Decides the chip week rather than asking for it. Searches every wildcard week against a
