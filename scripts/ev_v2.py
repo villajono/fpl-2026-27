@@ -252,7 +252,9 @@ def _ovr_p60(name, default=None):
     """P60_OVR values are EITHER a bare float (p60, the original form) OR a dict carrying the
     whole minutes shape {p60, p_cameo, partial}. Everything that only wants the p60 number goes
     through here so both forms work."""
-    v = P60_OVR.get(name, default)
+    # PRESEASON_OVR is consulted too: this path is only reached for a player with no data at
+    # all, which is exactly the case a pre-season judgement was written for and has not expired.
+    v = P60_OVR.get(name, PRESEASON_OVR.get(name, default))
     return float(v["p60"]) if isinstance(v, dict) else v
 
 
@@ -263,13 +265,36 @@ def _ovr_p60(name, default=None):
 #     "Tzolis": {"p60": 0.18, "p_cameo": 0.33, "partial": 55}
 # p_cameo is P(appears but under 60) and partial is his minutes when that happens; weekly.py builds
 # both from a p_start / mins_if_start pair, which is how the football is actually known.
-P60_OVR = {"Mosquera": 0.92, "van Ewijk": 0.95, "Walle Egeli": 0.45, "Phillips": 0.60,
-           # Spurs keeper, 2026-08-13: Kinsky is regarded as the likely starter but it is not
-           # settled. Last season's minutes point the other way (Dubravka 3,150 v Kinsky 630), so
-           # the first-choice rule below would hand Spurs to Dubravka on stale evidence — he is
-           # behind Kinsky now. Durable here rather than a form override, which is GW-scoped and
-           # would have to be re-entered every week from the road.
-           "Kinsky": 0.80, "Dubravka": 0.0}
+# PRE-SEASON overrides. These EXPIRE the moment a player has in-season minutes, because they were
+# written to settle questions that only existed while last season was the only evidence.
+#
+# They were silently outliving their purpose. The Kinsky entry states its own expiry condition -
+# it exists because "last season's minutes point the other way (Dubravka 3,150 v Kinsky 630)" -
+# and Kinsky has since played all 270 minutes of 2026-27, yet was still pinned at 0.80 instead of
+# the 0.97 his actual record earns. Worse, Phillips was held at 0.60 having played NOTHING, which
+# made Hull look like a contested goalkeeping job and blocked Tzolakis - 270 minutes, 26 points -
+# from being recognised as the first choice. A pre-season judgement that survives three gameweeks
+# of contradicting evidence is not an override, it is a stale constant.
+#
+# Overrides from human_input.json are different and still win outright: they are gameweek-scoped
+# and describe team news that has just happened.
+PRESEASON_OVR = {"Mosquera": 0.92, "van Ewijk": 0.95, "Walle Egeli": 0.45, "Phillips": 0.60,
+                 # Spurs keeper, 2026-08-13: Kinsky regarded as likely starter but not settled;
+                 # last season pointed at Dubravka. Superseded by 2026-27 minutes.
+                 "Kinsky": 0.80, "Dubravka": 0.0}
+
+# Live overrides, merged in from human_input.json by weekly._load_overrides. Always win.
+P60_OVR = {}
+
+
+def _active_ovr(name, code):
+    """The override in force: a live one always, a pre-season one only before he has played."""
+    if name in P60_OVR:
+        return P60_OVR[name]
+    if name in PRESEASON_OVR and not (H.has_inseason() and code in H.inseason_codes()
+                                      and H.inseason_rows(code)):
+        return PRESEASON_OVR[name]
+    return None
 
 
 # How many games last season is worth as a prior, once this season is under way. Low on purpose:
@@ -456,13 +481,14 @@ BACKUP_GK = _backup_keeper_codes()
 
 def get_minutes_probs(code, name=None):
     el = _code2id.get(code); r = _raw_rates(el) if el is not None else None
-    if name in P60_OVR:
+    _ov = _active_ovr(name, code)
+    if _ov is not None:
         # An explicit human override ALWAYS wins — it encodes team news the data cannot see (a sale,
         # a confirmed benching, a returnee). This must be checked BEFORE the in-season branch below,
         # which returns a purely data-derived start rate and would silently ignore the override once
         # four gameweeks are logged. p_cameo goes to zero for a ruled-out player, so "won't start"
         # actually drives EV to ~0 rather than leaving him a cameo's worth of points.
-        ov = P60_OVR[name]
+        ov = _ov
         cam = _g[(_g.element == el) & (_g.minutes >= 1) & (_g.minutes < 60)] if el is not None else []
         partial = float(cam.minutes.mean()) if len(cam) else 30.0
         if isinstance(ov, dict):
@@ -477,7 +503,67 @@ def get_minutes_probs(code, name=None):
         return dict(p60=p60, p_cameo=(0.05 if p60 > 0 else 0.0), partial=partial)
     if code in BACKUP_GK:
         return dict(p60=0.0, p_cameo=0.0, partial=0.0)      # understudy keeper: no minutes at all
-    return _apply_availability(code, _minutes_from_data(code, name, el, r))
+    d = _minutes_from_data(code, name, el, r)
+    d = _gk_normalise(code, d)
+    return _apply_availability(code, d)
+
+
+GK_CEILING = 0.97      # what an established first-choice keeper already scores here
+
+
+def _gk_normalise(code, d):
+    """Exactly one keeper starts per club, so their start probabilities must sum to about 1.
+
+    The model rates each player independently, which is right for outfielders competing for one of
+    ten shirts and wrong for a goalkeeper competing for the only one. Suzuki came out at 0.78 after
+    two starts of 90 for Villa - a fair reading of two games in isolation, but Villa's only other
+    keeper is Bizot, whom BACKUP_GK has already ruled out. The residual 0.22 had nowhere to go.
+    Somebody has to play in goal.
+
+    So: among a club's keepers who are NOT already zeroed as understudies, scale the probabilities
+    up to sum to one. Where that leaves a single rated keeper - the usual case, because BACKUP_GK
+    is deliberately strict - it means he starts unless injured, which is what the availability
+    multiplier applied afterwards is for.
+
+    This is a RULE OF THE GAME rather than a fitted parameter, which is why it is worth preferring
+    to another estimated table: one keeper per club is not a regularity that might not hold next
+    season. The ceiling is the only judgement in it, set to what an established first-choice keeper
+    already scores by the ordinary path, so a newly installed keeper converges on the same number
+    rather than exceeding it.
+
+    Deliberately NOT extended to outfielders. Ten shirts, twenty-odd candidates and no exclusivity
+    - the same arithmetic there would be an invention rather than a rule.
+    """
+    # Position from THIS season's file, not _id2pos. _id2pos is built from the 2025-26 player
+    # list, so every new arrival maps to None - and a newly installed keeper is exactly the case
+    # this function exists for. Suzuki silently skipped normalisation for that reason.
+    if not d.get("p60"):
+        return d
+    try:
+        row = _nxt[_nxt.code == code]
+        if not len(row) or int(row.iloc[0].get("element_type", 0)) != 1:
+            return d
+        team = row.iloc[0].get("team")
+        mates = _nxt[(_nxt.team == team) & (_nxt.element_type == 1) & (_nxt.code != code)]
+    except Exception:
+        return d
+    # Share the club's single shirt out across whoever is still in contention, rather than
+    # skipping normalisation whenever anyone else is un-zeroed. The binary version left Suzuki at
+    # 0.78 because Bizot merely EXISTS, when Bizot has been benched twice while fit.
+    total = d["p60"]
+    for c in mates.code.tolist():
+        if c in BACKUP_GK:
+            continue
+        try:
+            rp = _minutes_from_data(c, None, _code2id.get(c),
+                                    _raw_rates(_code2id.get(c)) if _code2id.get(c) else None)
+            total += max(0.0, rp.get("p60", 0.0))
+        except Exception:
+            pass
+    if total <= 1e-9:
+        return d
+    p = min(GK_CEILING, d["p60"] / total)
+    return dict(p60=round(p, 2), p_cameo=0.0, partial=d.get("partial", 0.0))
 
 
 def _availability(code):
