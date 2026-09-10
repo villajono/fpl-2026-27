@@ -122,8 +122,14 @@ def bench_pts(keys, w, P):
     return sum(P[k]["ev"][w] for k in b)
 
 
-def path(P, decay, H, held, budget, wc=None, pool=55):
-    """The squad held each week: one free transfer a week, plus a wildcard rebuild if wc given."""
+def path(P, decay, H, held, budget, wc=None, pool=55, ft=1):
+    """The squad held each week: free transfers accruing weekly, plus a wildcard rebuild if given.
+
+    `ft` is how many are BANKED NOW and it matters. Village Idiots came into GW4 having rolled
+    three times; assuming one made the no-wildcard path look worse than it is and inflated the
+    wildcard by several points. A chip is being compared against what you could do without it, so
+    what you could do without it has to be right.
+    """
     squads, base = [], list(held)
     for i in range(H):
         sub = {k: dict(v, ev=v["ev"][i:]) for k, v in P.items()}
@@ -131,7 +137,7 @@ def path(P, decay, H, held, budget, wc=None, pool=55):
             base, _, _ = SO.solve(sub, decay[i:], H - i, budget=budget, pool_per_pos=pool)
             squads.append(list(base))
             continue
-        nt = min(i + 1, MAX_BANK) if (wc is None or i < wc) else min(i - wc, MAX_BANK)
+        nt = min(ft + i, MAX_BANK) if (wc is None or i < wc) else min(i - wc, MAX_BANK)
         if nt <= 0:
             squads.append(list(base))
             continue
@@ -169,7 +175,7 @@ def main():
     best = None
     print("\n  searching wildcard weeks:")
     for wc in cands:
-        sq = path(P, decay, H, held, budget, wc=wc)
+        sq = path(P, decay, H, held, budget, wc=wc, ft=ft)
         tot = sum(score_week(sq[i], i, P) * decay[i] for i in range(H))
         lab = "none" if wc is None else "GW%d" % (gw0 + wc)
         print("    %-6s %8.1f" % (lab, tot))

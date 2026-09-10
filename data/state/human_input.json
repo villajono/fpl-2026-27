@@ -7,14 +7,7 @@
       "p_start": 0.92,
       "mins_if_start": 88,
       "note": "0, 11, 90 minutes across GW1-3 - he has taken the place, not lost it. status=a, no news. The model's unweighted starts count reads 1-of-3 and blends to p60 0.57; that is the recency defect, not a rotation signal. Jon's read, confirmed against minutes 2026-09-09."
-    },
-    {
-      "player_id": 464,
-      "player_name": "Wissa",
-      "p_start": 0.95,
-      "mins_if_start": 88,
-      "note": "90, 81, 90 across GW1-3 - nailed. Model carries 0.79 from last season's share. Raised by the comparison against a professional manager's wildcard squad, 2026-09-09."
     }
   ],
-  "note": "No planned_wildcard. The chip is UNUSED for Village Idiots but no week is intended, and the transfer recommender should not need one - it needs only the squad, the free transfer count, and whether the chip is still available. Declaring a week collapses weekly.planned_wildcard()'s horizon to a single gameweek and suppresses nearly every recommendation, which is worse than saying nothing. Set it only when a week is genuinely committed."
+  "note": "No planned_wildcard - the chip week is an OUTPUT of scripts/strategy.py, not an input. The Wissa override was removed 2026-09-10: it was written to patch the minutes-recency defect, and ev_v2 now weights in-season starts by recency and carries a position/streak prior, so the model reaches the same answer on its own. An override that compensates for a bug should be deleted with the bug. Konsa's stays because it is football knowledge the model does not have - Jon reads him at 0.92, the model gets to 0.76 unaided."
 }
