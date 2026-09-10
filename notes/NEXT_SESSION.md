@@ -70,14 +70,40 @@ are worth 0.15 more in isolation.
 Jon: "just chase the clean sheet, and avoid doubling up on Brighton def." The model has no way to
 express the second half of that sentence.
 
-Worth fixing for two reasons beyond XI selection. Under a BENCH BOOST all fifteen score, so
-concentration is at its most dangerous. And when protecting a rank rather than chasing one, the
-variance is the thing you actually want to manage - a squad with three players behind one defence
-is a different bet from a diversified one with the same expected total.
+**VARIANCE IS NOT A RISK TO MINIMISE. IT IS A CHOICE THAT SHOULD FOLLOW THE OBJECTIVE.** The
+first version of this note got that wrong and Jon corrected it immediately:
 
-Cheapest version: when two candidates for the same XI slot are within a small margin, prefer the
-one whose club is less represented in the squad. The full version needs a covariance structure -
-clean sheets are perfectly correlated within a club, attacking returns partially so.
+> *"Not necessarily worse. If you sit, say, 100k in the world, and want to maximise your chances
+> of breaking the top 50k, doubling up is right - there's more downside, but more upside."*
+
+He is right, and it goes deeper than XI selection. In a rank-based competition the objective is
+not "maximise expected points", it is "maximise P(finishing above X)", and those give opposite
+answers depending on where you sit:
+
+  CHASING     behind the target - variance is your FRIEND. Correlated picks buy the upper tail,
+              and the extra downside costs nothing you were not already losing.
+  PROTECTING  ahead of it - variance is the enemy, and correlation is what takes a rank away in
+              one afternoon.
+  INDIFFERENT expected points is the right objective and correlation genuinely does not matter,
+              because E[a+b] = E[a] + E[b] whatever the covariance.
+
+The model currently assumes the third case without being told to. It maximises expected points and
+has neither a covariance structure nor any notion of a rank target, so it cannot deliberately take
+or avoid risk - it just happens to be risk-neutral.
+
+TO FIX PROPERLY, in order:
+  1. Ask what the objective actually is. "Maximise season points" and "break the top 50k" are
+     different problems and Jon has only ever stated the first. Village Idiots sits ~690k and
+     Santa Claude ~2.3m, so if a rank target exists the two teams should be taking DIFFERENT
+     amounts of risk - and Santa Claude, further behind, should be taking more.
+  2. A covariance structure. Clean sheets are perfectly correlated within a club; attacking
+     returns partially so; a captain doubles whatever correlation he already carries.
+  3. Only then, a variance-aware objective. Until 1 and 2 exist, do not "fix" this by penalising
+     concentration - that would hard-code the protecting case and be wrong for a chasing team.
+
+Cheap interim: SURFACE the concentration rather than acting on it. When an XI has several players
+behind one defence, say so and say how many points ride on the single event, and let the human
+choose the risk. That is honest about what the model does not know.
 
 ### Strategy layer - scripts/strategy.py, new today
 
