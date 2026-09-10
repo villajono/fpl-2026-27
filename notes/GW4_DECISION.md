@@ -73,14 +73,94 @@ Wissa is the genuinely borrowable pick.
 
 Their squad also costs £100.3m against a £99.9m budget — not buildable as listed.
 
-## Santa Claude — ONE TRANSFER, PURE MODEL
+## Santa Claude - PLAY THE WILDCARD (reversed 2026-09-10)
 
-**Mateta → Barry (EVE £5.6m).** Free, +21.8 over six weeks, leaves £1.0m.
+**This section reversed the day after it was written.** The original recommendation was one
+transfer, Mateta -> Barry, on the argument that only two slots were broken and two weeks of free
+transfers would fix both. That argument was never tested against numbers and does not survive
+them. Recorded in full because the reasoning failure is more instructive than the answer.
 
-No human input, by design. The model spends its single free transfer on the slot that affects the
-XI: Mateta is out to 11 October and Santa Claude has only two other forwards, while Sánchez —
-dead all season on loan at Como — is a backup keeper who would never be fielded, so his cost is
-tied-up cash rather than points. Sánchez is next week's transfer.
+**Why the original argument was wrong.** Mateta is a BENCH player, so replacing him barely touches
+the XI - the best single transfer is worth **+2.8** over six weeks. Fixing the two dead slots was
+never the issue; the squad underneath them is mediocre. Holding scores 305.7 against 327.7 for a
+rebuild. This is the "no cover value" blind spot from the defect list, committed by the model's
+operator rather than the model.
+
+### The wildcard survives both stress tests
+
+| test | chip premium before | after |
+|---|---|---|
+| 196-player minutes correction (63 raised, 133 lowered) | +19.2 | **+21.5** |
+| 30% discount on GBP 5.0-7.5m outfielders | +27.1 | **+51.3** |
+
+The second test corrected a mistake running through the whole session. "The model over-rates
+mid-price players" was asserted repeatedly, never measured, and used to discount wildcards. For a
+squad already stuffed with that band - De Cuyper, Gomez, Schade, Calvert-Lewin, Senesi, Gvardiol,
+Szoboszlai, Mateta - the hunch is an argument FOR a wildcard, not against: discounting the band
+damages what you hold more than what you would buy, because only a wildcard can restructure away
+from it. The sign was backwards.
+
+### Timing: GW4 beats GW7 and GW10, tested properly
+
+A 13-week forecast (GW4-16, `data/processed/_forecast_long_gw4_16.json`) compares wildcarding at
+GW4, GW7 and GW10 against a control that never wildcards, with **every path making one free
+transfer a week**.
+
+    WC at GW4    +17.2 over never wildcarding      <- play it now
+    WC at GW10   +12.0
+    WC at GW7     +9.4
+
+GW4 wins under a deliberate handicap: pre-wildcard transfers were allowed to apply from GW4 in the
+waiting scenarios, which flatters GW7 and GW10. GW10 coming second matches the earlier backtest
+work that identified GW10; GW7 being worst rather than in between is probably noise.
+
+**THE FIRST TWO ATTEMPTS AT THIS TEST WERE BOTH WRONG, IN OPPOSITE DIRECTIONS.** Worth recording
+as a class of error:
+
+1. The +19.2 and +21.5 chip-premium figures compared a wildcard against a squad making ONE
+   transfer in six weeks. Santa Claude gets one every week. The alternative was under-resourced,
+   so the chip was overstated.
+2. The first timing run then froze the wildcard squad for thirteen weeks after the rebuild while
+   the control kept transferring. By GW16 the control had thirteen transfers and the wildcarded
+   team none. That produced a meaningless +6.3 with no decay structure at all.
+
+Both were caught because Jon supplied a prior - a generic wildcard is worth about 20 points,
+shaped 8/5/3 then 1 a week - and asked whether the model reproduced its SHAPE, not just its total.
+The corrected run gives **+19.8 undecayed against that ~20**, front-loaded at +5.2 and tailing to
+zero by GW16 as free transfers let the field converge. A model that produces the right total by
+the wrong mechanism is not validated; checking the shape is what found the bug.
+
+`NEXT_SESSION.md` says the model cannot answer wildcard timing and not to try. That was right
+about the old approach. This method - two concrete squads on identical projections, both paths
+using their transfers - reproduces an independent human prior to within 1% and should replace the
+prohibition.
+
+### The squad
+
+    GK   Raya          ARS  6.0      Verbruggen    BHA  4.5
+    DEF  Gabriel       ARS  8.0      Calafiori     ARS  5.7    Lacroix  CHE 6.0
+         Thiaw         NEW  5.0      Van Hecke     TOT  4.9
+    MID  B.Fernandes   MUN 12.0      Palmer        CHE  9.6    Mbeumo   MUN 7.9
+         Tavernier     BOU  6.0      Gomez         BHA  5.0
+    FWD  Joao Pedro    CHE  7.7      Calvert-Lewin LEE  6.0    Barry    EVE 5.6
+                                                   GBP 99.9m, GBP 0.0m bank
+
+**No Haaland, and the captaincy barely suffers.** Bruno Fernandes takes the armband in four of six
+weeks; six-week captain value is 32.9 against 33.2 for always captaining Haaland - a difference of
+**0.3 points**. Bruno at 12.0 is flatter (5.46-6.94) than Haaland at 15.5 (5.40-7.83), and the
+trade banks GBP 3.5m. Two caveats: 0.3 is far inside the model's error, so this is a coin flip
+that lands on Bruno rather than a preference; and it assumes perfect captain foresight.
+Captaining Bruno blindly every week scores 30.5, which Haaland-every-week beats. The squad's case
+rests on what the GBP 3.5m buys, not on the armband.
+
+**Overrides and purity.** With the live Konsa/Wissa overrides active the best single transfer is
+Mateta -> Wissa; pure model it is Mateta -> Barry. Moot now the answer is a wildcard, but the
+overrides in `human_input.json` are global and do reach Santa Claude, which sits awkwardly with
+"entirely model-driven". The squad above is the pure-model version.
+
+**Both teams wildcarding in GW4 makes them converge** - they would share Palmer, Joao Pedro,
+Calafiori, Thiaw, Tavernier and Verbruggen. If the point of running two teams is to compare a
+human-steered squad against a model-driven one, simultaneous wildcards weaken that test.
 
 ## Overrides written, and why
 
