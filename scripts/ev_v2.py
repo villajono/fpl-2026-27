@@ -315,6 +315,50 @@ INSEASON_K = 1.0
 # in-season signal and it was being spent badly.
 START_HALF_LIFE = 0.75
 
+# P(starts next gameweek | current run of starts or non-starts), by position. Measured over
+# 2022-25, Laplace-smoothed. Positive keys are consecutive STARTS ending last gameweek, negative
+# keys consecutive NON-starts. Capped at 6 and -4 because the curves are flat beyond that.
+#
+# WHY THIS EXISTS. The Beta blend answers "what rate does this player start at". It cannot answer
+# "has he just taken someone's place", which is a different question and often the only one that
+# matters. Jon: "Suzuki has just replaced Martinez as GK of Villa, and will play unless injured.
+# I just know that." The streak is how that knowledge shows up in data a model can read.
+#
+# GOALKEEPER IS THE STRONGEST CASE and the reason position is a key here. Keeper minutes are
+# binary and exclusive - one plays, plays 90, and the rest get nothing - so a run of starts is
+# close to conclusive (0.918 at three, against 0.752 for a midfielder) and a run of non-starts is
+# close to fatal (0.037 at three, against ~0.13 outfield). The table separates Suzuki, who has
+# started, from Hemmings at the same club, who has not, without knowing anything about Martinez.
+#
+# NOT USED ALONE. Out of sample, leave-one-season-out over 74,092 player-gameweeks, this table
+# scores 0.3155 against the Beta blend's 0.3069 - it is WORSE by itself. Averaged with the blend
+# it gives 0.2999, better than either. So it is an ensemble member, not a replacement.
+START_STREAK = {
+    "GK":  {-4: 0.018, -3: 0.040, -2: 0.101, -1: 0.146,
+            1: 0.777, 2: 0.806, 3: 0.918, 4: 0.894, 5: 0.921, 6: 0.939},
+    "DEF": {-4: 0.047, -3: 0.130, -2: 0.167, -1: 0.304,
+            1: 0.669, 2: 0.762, 3: 0.820, 4: 0.787, 5: 0.835, 6: 0.877},
+    "MID": {-4: 0.040, -3: 0.124, -2: 0.187, -1: 0.348,
+            1: 0.623, 2: 0.703, 3: 0.752, 4: 0.782, 5: 0.838, 6: 0.862},
+    "FWD": {-4: 0.038, -3: 0.139, -2: 0.154, -1: 0.262,
+            1: 0.621, 2: 0.736, 3: 0.770, 4: 0.749, 5: 0.750, 6: 0.853},
+}
+
+
+def _streak_p60(rows, pos):
+    """P(start next) from the current run of starts / non-starts. None if unusable."""
+    tbl = START_STREAK.get(pos)
+    if not tbl or not rows:
+        return None
+    st = [1 if g["minutes"] >= 60 else 0 for g in rows]
+    last, n = st[-1], 0
+    for v in reversed(st):
+        if v != last:
+            break
+        n += 1
+    k = min(n, 6) if last == 1 else max(-n, -4)
+    return tbl.get(k)
+
 
 def _preseason_p60(el, name, r):
     """The pre-season P(start) estimate — also the prior the in-season update starts from.
@@ -489,7 +533,30 @@ def _minutes_from_data(code, name, el, r):
         n = len(rows)
         w = [0.5 ** ((n - 1 - i) / START_HALF_LIFE) for i in range(n)]
         starts = sum(wi for wi, g in zip(w, rows) if g["minutes"] >= 60)
+        # A player with no prior season cannot be shrunk towards NO_HISTORY_P60 once he has
+        # actually played. 0.05 is the correct unconditional rate for someone who has NEVER
+        # appeared, and it stops describing him the moment he starts: Suzuki, two starts of 90
+        # for Villa, came out at 0.57 because a 0.05 prior held 39% of the weight. Shrink him
+        # towards his own in-season rate instead, which is the only evidence there is.
+        if r is None and n:
+            prior = sum(1 for g in rows if g["minutes"] >= 60) / float(n)
         p = (prior * INSEASON_K + starts) / (INSEASON_K + sum(w))
+        # Ensemble with the position/streak table - see START_STREAK - but ONLY where the Beta
+        # blend is weak, which means a thin or absent prior season.
+        #
+        # A flat 50/50 for everyone was tried first and was wrong. The table tops out at 0.877 for
+        # a defender on six straight starts, because it averages over every defender including the
+        # rotated ones; Gabriel, with 3,000 minutes of history and a start every week, fell from
+        # 0.97 to 0.90 and Thiaw from 0.97 to 0.89. For an established player the blend already
+        # holds better information than a positional average, and blending it with a worse
+        # estimate can only hurt. The table is a SUBSTITUTE FOR A MISSING PRIOR, not an upgrade to
+        # a good one - which is also why the out-of-sample test liked it: that test gave every
+        # player the same weak prior, so it never saw the case this gate protects.
+        thin_prior = r is None or (r.get("minutes") or 0) < MIN_MINUTES
+        if thin_prior:
+            sp = _streak_p60(rows, _id2pos.get(el) or POSN.get(2))
+            if sp is not None:
+                p = 0.5 * p + 0.5 * sp
         return dict(p60=round(min(max(p, 0.02), 0.98), 2), p_cameo=0.05, partial=30.0)
     if r is None:
         p60 = _ovr_p60(name, NO_HISTORY_P60)
