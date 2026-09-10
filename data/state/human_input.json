@@ -1,9 +1,5 @@
 {
   "gameweek": 4,
-  "planned_wildcard": {
-    "gw": 4,
-    "p": 1.0
-  },
   "overrides": [
     {
       "player_id": 31,
@@ -19,5 +15,6 @@
       "mins_if_start": 88,
       "note": "90, 81, 90 across GW1-3 - nailed. Model carries 0.79 from last season's share. Raised by the comparison against a professional manager's wildcard squad, 2026-09-09."
     }
-  ]
+  ],
+  "note": "No planned_wildcard. The chip is UNUSED for Village Idiots but no week is intended, and the transfer recommender should not need one - it needs only the squad, the free transfer count, and whether the chip is still available. Declaring a week collapses weekly.planned_wildcard()'s horizon to a single gameweek and suppresses nearly every recommendation, which is worse than saying nothing. Set it only when a week is genuinely committed."
 }

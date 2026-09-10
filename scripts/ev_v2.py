@@ -274,7 +274,46 @@ P60_OVR = {"Mosquera": 0.92, "van Ewijk": 0.95, "Walle Egeli": 0.45, "Phillips":
 
 # How many games last season is worth as a prior, once this season is under way. Low on purpose:
 # role changes over a summer, so a handful of current starts should dominate.
-INSEASON_K = 2.0
+# Re-measured 2026-09-10 alongside START_HALF_LIFE, because the two interact and changing one
+# alone made things worse. Discounting old gameweeks shrinks the total weight of the evidence, so
+# a prior worth a fixed 2 games began to dominate: Wissa, who had started all three, fell from
+# 0.79 to 0.70. Fitting the pair jointly over the same 76,511 player-gameweeks:
+#
+#     HL \ K      0.5      1.0      1.5      2.0      3.0
+#     flat      0.3598   0.3598   0.3598   0.3598   0.3598
+#     0.75      0.3137   0.3076   0.3080   0.3102   0.3153     <- 0.75 / 1.0 is the optimum
+#     1.00      0.3126   0.3081   0.3085   0.3104   0.3150
+#
+# The basin is broad - anything in HL 0.5-1.0 with K 1.0-1.5 lands within 0.0013 of the best -
+# so this is a plateau, not a fitted point. Never tune one of these without the other.
+INSEASON_K = 1.0
+
+# How fast in-season starts should decay, in gameweeks. MEASURED, not chosen: over 76,511
+# player-gameweeks of 2022-25, weighting each past gameweek by 0.5**(age/HL) and predicting
+# whether the player starts the NEXT one, half-life 0.75 minimises log loss.
+#
+#     half-life     log-loss    Brier
+#     unweighted      0.3598    0.1141   <- what this model used to do
+#     0.50            0.3112    0.0937
+#     0.75            0.3102    0.0933   <- best
+#     1.00            0.3104    0.0935
+#     2.00            0.3153    0.0959
+#     20.0            0.3481    0.1098
+#
+# That is a 13.8% improvement in log loss and 18.2% in Brier over the unweighted count, and the
+# optimum is flat from 0.5 to 1.0, so it is a plateau rather than a knife-edge.
+#
+# WHY THE UNWEIGHTED COUNT WAS WRONG. It gave a start three gameweeks ago exactly the weight of
+# one last week, so a player who had just won his place read the same as one who had just lost it.
+# Konsa went 0, 11 then 90 minutes for Arsenal in GW1-3 of 2026-27 and came out at p60 0.57 -
+# below the naive 1-of-3 rate - because two games of not starting, both of them stale, cancelled
+# the 90 that actually described his current role. 42 players who started 60+ minutes in BOTH of
+# the last two gameweeks were carrying p60 under 0.7 for the same reason. On the same rows the
+# weighting below puts Konsa near 0.80.
+#
+# Minutes predict minutes and attacking output does not (A2, +0.02), so this is the whole of the
+# in-season signal and it was being spent badly.
+START_HALF_LIFE = 0.75
 
 
 def _preseason_p60(el, name, r):
@@ -445,8 +484,12 @@ def _minutes_from_data(code, name, el, r):
         # because he was dropped late last season, though he is expected to start this one. Last
         # season's closing state is precisely the thing a summer can invalidate.
         prior = _preseason_p60(el, name, r)
-        starts = sum(1 for g in rows if g["minutes"] >= 60)
-        p = (prior * INSEASON_K + starts) / (INSEASON_K + len(rows))
+        # Recency-weighted, not a flat count - see START_HALF_LIFE. rows is oldest-to-newest
+        # (history.inseason_rows sorts on season, gw), so age counts back from the last row.
+        n = len(rows)
+        w = [0.5 ** ((n - 1 - i) / START_HALF_LIFE) for i in range(n)]
+        starts = sum(wi for wi, g in zip(w, rows) if g["minutes"] >= 60)
+        p = (prior * INSEASON_K + starts) / (INSEASON_K + sum(w))
         return dict(p60=round(min(max(p, 0.02), 0.98), 2), p_cameo=0.05, partial=30.0)
     if r is None:
         p60 = _ovr_p60(name, NO_HISTORY_P60)
