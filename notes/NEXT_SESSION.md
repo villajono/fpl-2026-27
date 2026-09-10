@@ -1,5 +1,87 @@
 # Brief — model corrections outstanding
 
+## STATE OF PLAY, end of 2026-09-10. Read this first.
+
+Jon's standing objective, restated because it kept having to be: **build a set of models that
+RUN an FPL team to maximise season points.** Three components - a player weekly points forecast, a
+strategy overlay, and the rules of the game. The model should say "I reckon I should wildcard this
+week and bench-boost next, worth X, better than anything else I can see." It should not ask "shall
+I play the Bench Boost?" A chip week is an OUTPUT.
+
+    E[points] = E[minutes] x E[points per 90]
+
+Improve BOTH halves every week. Today was almost entirely the minutes half.
+
+### Test suite: 3 of 6 failing (was 5 of 6)
+
+    PASS  cs-calibration        bias -0.013 on 60 team-matches
+    PASS  premium-compression   WITHDRAWN as a defect - the test was wrong, see item 5
+    PASS  minutes-recency       0 of 177 under p60 0.7, was 42
+    FAIL  fixture-spread        +0.79 easiest-to-hardest, needs 1.5   <- biggest open defect
+    FAIL  point-chasing         luck premium +0.66, needs <= 0.25
+    FAIL  cover                 squad-shape check, not a model defect
+
+### E[MINUTES] - six changes shipped today, all measured
+
+  * Recency weighting on in-season starts. START_HALF_LIFE 0.75, fitted over 76,511
+    player-gameweeks. Log loss -14.5%, Brier -18.2%.
+  * INSEASON_K 2.0 -> 1.0, refitted JOINTLY with the half-life. Changing one alone made Wissa
+    worse. Never tune one without the other.
+  * Position/streak prior for players with no prior season, ensembled 50/50 and GATED to thin
+    priors. Ungated it broke Gabriel (0.97 -> 0.90).
+  * No-prior-season players shrink towards their own in-season rate, not NO_HISTORY_P60 = 0.05.
+  * PRESEASON_OVR expires once a player has in-season minutes. Kinsky was pinned at 0.80 having
+    played every minute; Phillips at 0.60 having played none.
+  * Goalkeeper within-club normalisation - one keeper starts per club, a rule of the game rather
+    than a fitted parameter. Now exactly 20 rated keepers across 20 clubs.
+
+  STILL OPEN on minutes, in the order to take them:
+  1. Injury-return dates (e2). FPL publishes them - Mateta "expected back 11 Oct" - and nothing
+     reads the field. Cheapest remaining win.
+  2. Displacement: whether the man who lost his place is FIT or INJURED separates taking a shirt
+     from deputising. Suzuki, Hornicek, Lammens and Martinez are all cases where the displaced
+     keeper is fit or gone. Needs measuring before the size is trusted.
+
+### E[POINTS PER 90] - barely touched today, so this is where next week should go
+
+  1. **fixture-spread, the biggest open defect.** +0.79 between easiest and hardest fixture
+     against a 1.5 requirement. Clean-sheet probability alone should move a defender more than
+     that.
+  2. **Per-90 rates are applied as though every starter plays 90.** Given a start, mean minutes
+     are GK 89.9, DEF 87.5, MID 83.2, FWD 81.8, and only 56% of midfield and 47% of forward
+     starts reach 90 - so xG, xA and DefCon are overstated ~8% for midfielders, ~10% for forwards,
+     22% for a 74-minute regular. `_minutes_from_data` already computes `mm` and spends it only on
+     p60. NOT a flat mm/90: appearance and clean-sheet points do not scale with minutes.
+  3. Bonus is a flat per-appearance rate, not fixture-adjusted. ~7% of all points.
+  4. Bookmaker odds cover GW+1 only; GW+2 onwards falls back to the xG model.
+
+### Strategy layer - scripts/strategy.py, new today
+
+  Decides the chip week rather than asking for it. Searches every wildcard week against a
+  never-wildcard control, then values BB/TC/FH against the squad path that implies.
+
+  ONE KNOWN BUG, hand-overruled three times today, which is the signal it should be code: it will
+  spend a Free Hit for +4 because every fixture it can see out to GW16 is a single. Blanks and
+  doubles cluster in the SECOND half (Jon), so an unplayed chip is being held, not wasted. Needs a
+  full-season horizon or a floor on what a chip may be spent for.
+
+### Out-of-sample test pending
+
+  Two locked GW4 forecasts from either side of today's work, both written before the gameweek.
+  After Saturday: `python scripts/score_p60.py --gw 4`. Believe the minutes work if the after-model
+  wins on the THIN-PRIOR group specifically - the keeper group is near-deterministic and will look
+  spectacular either way.
+
+### The methodological rule, now earned three times over
+
+  Every one of premium-compression, the first wildcard-timing test and the first streak ensemble
+  measured something adjacent to the thing it was named for, and each would have shipped a wrong
+  conclusion. **Check the units, check what the sample conditions on, and check whether the
+  evaluation contains the case you are about to change.** A failing test is a hypothesis.
+
+---
+
+
 > **GW4 decisions are locked in `notes/GW4_DECISION.md` (2026-09-09).** Village Idiots plays the
 > WILDCARD; Santa Claude makes one transfer, Mateta -> Barry, on pure model output. That file also
 > records what the session settled about the model: premium compression WITHDRAWN as a defect (the
