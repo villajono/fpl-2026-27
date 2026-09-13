@@ -3,14 +3,14 @@
      data
    Bayesian team ratings updated from 3 live GW(s) of
      xG (20 clubs)
-   overrides: 0 active for GW4; players.json refreshed
+   overrides: 0 active for GW5; players.json refreshed
      for the form
 
 ══════════════════════════════════════════════════════
 SANTA CLAUDE (AI team) — GW4 DECISIONS
 Models updated: GW3 data ingested ✓ (3 GWs played →
   Bayesian blended)
-⏰ GW4 DEADLINE: Sat 12 Sep, 13:30 UK  (in 1.1h)
+⏰ GW5 DEADLINE: Fri 18 Sep, 18:30 UK  (in 125.0h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -19,7 +19,7 @@ MODEL UPDATES THIS WEEK
     data
   ⟳ Bayesian team ratings updated from 3 live GW(s) of
     xG (20 clubs)
-  ⟳ overrides: 0 active for GW4; players.json
+  ⟳ overrides: 0 active for GW5; players.json
     refreshed for the form
   CHE att 1.50→1.44 def 0.82→0.86  [K=12, prior
     80%/data 20%]
@@ -146,7 +146,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW4 DECISIONS
 Models updated: GW3 data ingested ✓ (3 GWs played →
   Bayesian blended)
-⏰ GW4 DEADLINE: Sat 12 Sep, 13:30 UK  (in 1.1h)
+⏰ GW5 DEADLINE: Fri 18 Sep, 18:30 UK  (in 125.0h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -155,7 +155,7 @@ MODEL UPDATES THIS WEEK
     data
   ⟳ Bayesian team ratings updated from 3 live GW(s) of
     xG (20 clubs)
-  ⟳ overrides: 0 active for GW4; players.json
+  ⟳ overrides: 0 active for GW5; players.json
     refreshed for the form
   CHE att 1.50→1.44 def 0.82→0.86  [K=12, prior
     80%/data 20%]
