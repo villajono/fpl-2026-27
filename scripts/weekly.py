@@ -433,7 +433,7 @@ def watchlist(squad):
         if rt.get("thin"):
             w.append(f"{p['name']} ({p['team']}): PRIOR-ONLY (promoted/new) — rating updating, check GW3")
         elif rt["pos"] in ("DEF", "MID") and rt["DC90"] >= 9.0:
-            pdc = V.get_p_dc_bonus(rt, 90)
+            pdc = V.get_p_dc_bonus(rt, V.get_mins_given_60(p["code"], rt["pos"]))
             w.append(f"{p['name']}: DC90 {rt['DC90']:.1f}, P(DC bonus) {pdc:.0%} — DC-point engine, hold")
         elif rt["pos"] == "DEF" and rt["xA90"] > V.POS_AVG["MID"]["xA90"]:
             w.append(f"{p['name']}: DEF with MID-level xA ({rt['xA90']:.2f}) — attacking-defender value")

@@ -106,6 +106,37 @@ def _pos_avg_rates():
 POS_AVG = _pos_avg_rates()
 
 
+# ---------------------------------------------------------------- minutes given a 60+ appearance
+# ev_full prices a 60+ appearance. It used to price it at 90 minutes of per-90 output, but rates are
+# per 90 minutes PLAYED and such appearances average 85 (DEF 87.7, MID 83.6, FWD 81.0), so attacking
+# output was overstated 7% overall, 11% for midfielders and 9% for forwards, and DefCon hit rates
+# 0.243 against an actual 0.204. measure_minutes_scaling.py, walk-forward over 2025-26 (5,468
+# appearances): scaling by the player's own recency-weighted minutes in 60+ appearances took xGI
+# bias to 0.996, cut xGI MSE 3.2% and DefCon Brier 1.5%. Half-life and shrinkage barely matter
+# (all within 0.4% of each other); 20 matches HALF_LIFE, and 3 pseudo-appearances keeps a player
+# with one or two long games from being priced at 90.
+#
+# Scaled: xG, xA, saves and DefCon, which accrue by the minute. NOT scaled: appearance and
+# clean-sheet points (a 60+ player gets them whenever he goes off), bonus and yellows (already per
+# appearance), and goals conceded (untested; defenders average 87.7, so it is small).
+MINS60_HALF_LIFE, MINS60_K = 20, 3
+_POS_MINS60 = _g[_g.minutes >= 60].assign(pos=lambda d: d.element.map(_id2pos))     .groupby("pos").minutes.mean().to_dict()
+
+
+def get_mins_given_60(code, pos):
+    """E[minutes | 60+ appearance]: recency-weighted over prior-season and in-season 60+ appearances,
+    shrunk towards the position mean with MINS60_K pseudo-appearances."""
+    el = _code2id.get(code)
+    rows = _prior_games(el) + (H.inseason_rows(code) if H.has_inseason() and code in H.inseason_codes() else [])
+    mins = [g["minutes"] for g in rows if g["minutes"] >= 60]
+    prior = _POS_MINS60.get(pos, 85.0)
+    n = len(mins)
+    if not n:
+        return prior
+    w = [0.5 ** ((n - 1 - i) / MINS60_HALF_LIFE) for i in range(n)]
+    return (sum(a * b for a, b in zip(w, mins)) + prior * MINS60_K) / (sum(w) + MINS60_K)
+
+
 def _prior_games(el):
     """2025-26 per-game appearance rows (oldest→newest) for the recency blend."""
     if el is None: return []
@@ -672,8 +703,10 @@ def compute_ev_v2(code, name, pos, team, opp, home, breakdown=False):
         att_f = orat["defw"] * (HOME_ADV if home else 2 - HOME_ADV)   # scales with opp defensive weakness
         sv_f = orat["att"] * ((2 - HOME_ADV) if home else HOME_ADV)   # saves scale with opp attack strength
         fsrc = "xG model"
-    p_dc_full = get_p_dc_bonus(rates, 90); p_dc_part = get_p_dc_bonus(rates, mp["partial"])
+    m60 = get_mins_given_60(code, pos)        # a 60+ appearance is not 90 minutes - see MINS60_HALF_LIFE
+    p_dc_full = get_p_dc_bonus(rates, m60); p_dc_part = get_p_dc_bonus(rates, mp["partial"])
     xg, xa, sv = rates["xG90"], rates["xA90"], rates["sv90"]
+    f60 = m60 / 90.0
     gp = GOAL_PTS.get(pos, 5)          # a goal is NOT worth the same to everyone — see GOAL_PTS
     bon = float(rates.get("bonus_app", 0.0) or 0.0)     # 7% of all points; see history.recency_weighted_rates
     # FPL takes a point off a keeper or defender for every TWO goals conceded. The model priced
@@ -685,14 +718,15 @@ def compute_ev_v2(code, name, pos, team, opp, home, breakdown=False):
     concede_pts = -0.5 * conceded
     # A yellow is -1, and falls hardest on the defensive midfielders the DC term rewards.
     yel = -float(rates.get("yellow_app", 0.0) or 0.0)
-    ev_full = (cs_prob * cs_pts + 2 + xg * gp * att_f + xa * 3 * att_f + p_dc_full * 2
-               + sv * save_pts * sv_f + bon + concede_pts + yel)
+    ev_full = (cs_prob * cs_pts + 2 + f60 * (xg * gp * att_f + xa * 3 * att_f + sv * save_pts * sv_f)
+               + p_dc_full * 2 + bon + concede_pts + yel)
     ev_part = (1 + (mp["partial"] / 90.0) * (xg * gp * att_f + xa * 3 * att_f + sv * save_pts * sv_f
                                              + concede_pts) + p_dc_part * 2 + 0.4 * bon + 0.5 * yel)
     ev = mp["p60"] * ev_full + mp["p_cameo"] * ev_part
     if breakdown:
         f = mp["p60"]
-        return dict(ev=ev, cs=cs_prob * cs_pts * f, app=2 * f, xg=xg * gp * att_f * f, xa=xa * 3 * att_f * f,
-                    dc=p_dc_full * 2 * f, sv=sv * save_pts * sv_f * f, p60=f, cs_prob=cs_prob,
+        return dict(ev=ev, cs=cs_prob * cs_pts * f, app=2 * f, xg=xg * gp * att_f * f * f60,
+                    xa=xa * 3 * att_f * f * f60, dc=p_dc_full * 2 * f, sv=sv * save_pts * sv_f * f * f60,
+                    p60=f, m60=m60, cs_prob=cs_prob,
                     p_dc=p_dc_full, att_f=att_f, thin=rates["thin"], fixture_source=fsrc)
     return ev

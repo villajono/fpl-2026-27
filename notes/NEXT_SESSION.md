@@ -69,11 +69,13 @@ Improve BOTH halves every week. Today was almost entirely the minutes half.
   1. **fixture-spread, the biggest open defect.** +0.79 between easiest and hardest fixture
      against a 1.5 requirement. Clean-sheet probability alone should move a defender more than
      that.
-  2. **Per-90 rates are applied as though every starter plays 90.** Given a start, mean minutes
-     are GK 89.9, DEF 87.5, MID 83.2, FWD 81.8, and only 56% of midfield and 47% of forward
-     starts reach 90 - so xG, xA and DefCon are overstated ~8% for midfielders, ~10% for forwards,
-     22% for a 74-minute regular. `_minutes_from_data` already computes `mm` and spends it only on
-     p60. NOT a flat mm/90: appearance and clean-sheet points do not scale with minutes.
+  2. **DONE 2026-09-15: per-90 output now scaled by minutes given a 60+ appearance** (ev_v2
+     get_mins_given_60). Measured first (measure_minutes_scaling.py, 2025-26 walk-forward, 5,468
+     appearances): xGI bias 1.073 -> 0.996, xGI MSE -3.2%, DefCon P 0.243 -> 0.215 vs 0.204 actual.
+     GW5 EV falls ~4% for MID/FWD, ~2% DEF, 0 GK; Barry -0.36, Emersonn -0.29. Emersonn's real
+     problem is p60 (0.80 for a 45-65 minute player), which is the fringe p60 item, not this one.
+     Still open: defenders' xGI is UNDER-predicted ~6% after the fix; backtest.py and optimize_v2.py
+     keep their own 90-minute copies of the formula (historical/pre-season tools, not production).
   3. Bonus is a flat per-appearance rate, not fixture-adjusted. ~7% of all points.
   4. Bookmaker odds cover GW+1 only; GW+2 onwards falls back to the xG model.
 
