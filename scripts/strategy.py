@@ -91,11 +91,22 @@ def live(entry, gw=None):
         meta[k] = dict(pos=POS[e["element_type"]], team=short[e["team"]],
                        price=e["now_cost"] / 10.0)
     bank = picks["entry_history"]["bank"] / 10.0
-    ft = 1
+    # Free transfers available for the NEXT gameweek. One arrives each week, banked to MAX_BANK.
+    # Transfers made on a Wildcard or Free Hit week are free AND do not use up the bank - FPL rules
+    # since 2024-25 - so those weeks only add. The old loop subtracted a wildcard's 15 moves and
+    # clamped to 1, which would have told Santa Claude it had one transfer after its GW4 wildcard
+    # when it has two.
+    chip_week = {c["event"] for c in hist.get("chips", []) if c["name"] in ("wildcard", "freehit")}
+    ft = 1                                            # available for GW2
     for g in hist["current"]:
-        if g["event"] > 1:
-            ft = min(ft + 1 - g["event_transfers"], MAX_BANK)
-    return keys, meta, bank, spend, used, max(1, ft)
+        e = g["event"]
+        if e < 2 or e > gw:
+            continue
+        if e in chip_week:
+            ft = min(ft + 1, MAX_BANK)
+        else:
+            ft = min(max(ft - g["event_transfers"], 0) + 1, MAX_BANK)
+    return keys, meta, bank, spend, used, ft
 
 
 def xi(keys, w, P):
@@ -155,13 +166,20 @@ def free_hit_gain(P, squads, w, budget, pool=55):
 
 def main():
     entry = _arg("--entry", 4180925, int)
-    fc = json.load(open(ROOT / "data" / "processed" / "_forecast_long_gw4_16.json",
-                        encoding="utf-8"))
+    fpath = _arg("--forecast", None)
+    if fpath is None:                                  # newest long forecast on disk
+        import glob, re as _re
+        cands = glob.glob(str(ROOT / "data" / "processed" / "_forecast_long_gw*_*.json"))
+        fpath = max(cands, key=lambda f: int(_re.search(r"_gw(\d+)_", f).group(1)))
+    fc = json.load(open(fpath, encoding="utf-8"))
+    print("  forecast:", fpath.split("\\")[-1].split("/")[-1])
     H = min(_arg("--horizon", 13, int), fc["horizon"])
     decay = [fc["decay"][str(i + 1)] for i in range(H)]
     P = {k: dict(v, ev=v["ev"][:H]) for k, v in fc["players"].items()}
     gw0 = fc["gw0"]
-    held, meta, bank, spend, used, ft = live(entry)
+    # The forecast knows which gameweek its data runs to; prefer that over the API's "finished" flag,
+    # which lags a day or two behind the last match while bonus points are confirmed.
+    held, meta, bank, spend, used, ft = live(entry, fc.get("current_gw") or None)
     budget = spend + bank
     for k in held:
         if k not in P:

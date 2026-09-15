@@ -44,6 +44,16 @@ Improve BOTH halves every week. Today was almost entirely the minutes half.
 
 ### E[POINTS PER 90] - barely touched today, so this is where next week should go
 
+  0. **CLUB CHANGERS ARE RATED ON THEIR OLD CLUB (found 2026-09-15, via Jon on Rogers).** The recency
+     blend over appearances (HALF_LIFE 20) lets last season dominate: Rogers has 37 Villa appearances
+     and 4 Chelsea ones, so the model uses xGI/90 0.38 while he is producing 0.66 at Chelsea. That alone
+     is why the Village Idiots wildcard solution sold him. HALF_LIFE was measured on players who stayed
+     at their club; a transfer breaks the premise that last season describes the same role. Compounded
+     by player EV adjusting only for the OPPONENT's defence, never the player's own team attack - fine
+     for stayers, whose rates embed their team, wrong for movers. Fix: detect a club change and discount
+     prior-club appearances hard (measure the right weight on 2022-25 transfers), and/or rescale prior
+     rates by new-club / old-club attack strength. Same family as spec item e1 (new signings).
+
   1. **fixture-spread, the biggest open defect.** +0.79 between easiest and hardest fixture
      against a 1.5 requirement. Clean-sheet probability alone should move a defender more than
      that.

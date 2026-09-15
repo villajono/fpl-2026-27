@@ -1,13 +1,4 @@
 {
-  "gameweek": 4,
-  "overrides": [
-    {
-      "player_id": 31,
-      "player_name": "Konsa",
-      "p_start": 0.92,
-      "mins_if_start": 88,
-      "note": "0, 11, 90 minutes across GW1-3 - he has taken the place, not lost it. status=a, no news. The model's unweighted starts count reads 1-of-3 and blends to p60 0.57; that is the recency defect, not a rotation signal. Jon's read, confirmed against minutes 2026-09-09."
-    }
-  ],
-  "note": "No planned_wildcard - the chip week is an OUTPUT of scripts/strategy.py, not an input. The Wissa override was removed 2026-09-10: it was written to patch the minutes-recency defect, and ev_v2 now weights in-season starts by recency and carries a position/streak prior, so the model reaches the same answer on its own. An override that compensates for a bug should be deleted with the bug. Konsa's stays because it is football knowledge the model does not have - Jon reads him at 0.92, the model gets to 0.76 unaided."
+  "gameweek": 5,
+  "overrides": []
 }

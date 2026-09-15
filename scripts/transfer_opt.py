@@ -63,6 +63,9 @@ def main():
     n = _arg("--transfers", 1, int)
     pool = _arg("--pool", SO.POOL_PER_POS, int)
     forced = [x.strip() for x in _arg("--force-in", "").split(",") if x.strip()]
+    # --ban "Emersonn|IPS" bans players; "NEW:DEF" bans a club's whole position group. For human
+    # judgement the model cannot see yet, e.g. a defence conceding far more than its rating says.
+    bans = [x.strip() for x in _arg("--ban", "").split(",") if x.strip()]
 
     fc = F.load(_arg("--gw", None, int) or SO._next_gw())
     players = fc["players"]
@@ -89,8 +92,17 @@ def main():
         return sum(sum(decay[i] * e for i, e in enumerate(players[k]["ev"]))
                    for k in keys if k in players)
 
+    banned = set()
+    for b in bans:
+        if ":" in b:
+            club, pos = b.split(":", 1)
+            banned |= {k for k, v in players.items() if v["team"] == club and v["pos"] == pos and k not in held}
+        elif b in players and b not in held:
+            banned.add(b)
+    if banned:
+        print(f"  banned: {len(banned)} player(s) ({', '.join(bans)})")
     chosen, obj, binding = SO.solve(players, decay, fc["horizon"], budget=budget,
-                                    forced=forced, pool_per_pos=pool,
+                                    forced=forced, pool_per_pos=pool, banned=tuple(banned),
                                     keep=held, max_changes=n)
 
     out = [k for k in held if k not in set(chosen)]
