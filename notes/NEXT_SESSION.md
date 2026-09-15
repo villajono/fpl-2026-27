@@ -44,6 +44,13 @@ Improve BOTH halves every week. Today was almost entirely the minutes half.
 
 ### E[POINTS PER 90] - barely touched today, so this is where next week should go
 
+  0a. **FIXTURE SENSITIVITY FOR ATTACKERS - MEASURED, NOT A DEFECT (2026-09-15).** Jon suspected the
+     model under-rates fixtures (Tavernier 4.9 v LIV vs 5.2 average). 2025-26 MID/FWD 60+ min, xGI/90
+     relative to own season mean, by opponent xG-allowed quintile: 0.83 / 0.99 / 1.01 / 1.04 / 1.21 against
+     opponent strength 0.83 / 0.98 / 1.02 / 1.05 / 1.23, so output scales ~1:1, which is what att_f = defw
+     does. Points scale flatter (0.86 -> 1.15) because appearance, DefCon and some bonus do not move.
+     Against Liverpool: 0.89 xGI, 0.94 points; the model gives Tavernier 94%. Do not steepen fixtures
+     without a better test (e.g. out-of-sample with current-season ratings).
   0. **CLUB CHANGERS ARE RATED ON THEIR OLD CLUB (found 2026-09-15, via Jon on Rogers).** The recency
      blend over appearances (HALF_LIFE 20) lets last season dominate: Rogers has 37 Villa appearances
      and 4 Chelsea ones, so the model uses xGI/90 0.38 while he is producing 0.66 at Chelsea. That alone
