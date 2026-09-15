@@ -92,20 +92,16 @@ def live(entry, gw=None):
                        price=e["now_cost"] / 10.0)
     bank = picks["entry_history"]["bank"] / 10.0
     # Free transfers available for the NEXT gameweek. One arrives each week, banked to MAX_BANK.
-    # Transfers made on a Wildcard or Free Hit week are free AND do not use up the bank - FPL rules
-    # since 2024-25 - so those weeks only add. The old loop subtracted a wildcard's 15 moves and
-    # clamped to 1, which would have told Santa Claude it had one transfer after its GW4 wildcard
-    # when it has two.
+    # A Wildcard or Free Hit week leaves the count exactly where it was: the moves made that week
+    # use none of it, but the week's new transfer does not arrive either. Checked against the app:
+    # Santa Claude had 1 going into its GW4 wildcard and has 1 for GW5, not 2.
     chip_week = {c["event"] for c in hist.get("chips", []) if c["name"] in ("wildcard", "freehit")}
     ft = 1                                            # available for GW2
     for g in hist["current"]:
         e = g["event"]
-        if e < 2 or e > gw:
+        if e < 2 or e > gw or e in chip_week:
             continue
-        if e in chip_week:
-            ft = min(ft + 1, MAX_BANK)
-        else:
-            ft = min(max(ft - g["event_transfers"], 0) + 1, MAX_BANK)
+        ft = min(max(ft - g["event_transfers"], 0) + 1, MAX_BANK)
     return keys, meta, bank, spend, used, ft
 
 
