@@ -51,15 +51,20 @@ Improve BOTH halves every week. Today was almost entirely the minutes half.
      does. Points scale flatter (0.86 -> 1.15) because appearance, DefCon and some bonus do not move.
      Against Liverpool: 0.89 xGI, 0.94 points; the model gives Tavernier 94%. Do not steepen fixtures
      without a better test (e.g. out-of-sample with current-season ratings).
-  0. **CLUB CHANGERS ARE RATED ON THEIR OLD CLUB (found 2026-09-15, via Jon on Rogers).** The recency
-     blend over appearances (HALF_LIFE 20) lets last season dominate: Rogers has 37 Villa appearances
-     and 4 Chelsea ones, so the model uses xGI/90 0.38 while he is producing 0.66 at Chelsea. That alone
-     is why the Village Idiots wildcard solution sold him. HALF_LIFE was measured on players who stayed
-     at their club; a transfer breaks the premise that last season describes the same role. Compounded
-     by player EV adjusting only for the OPPONENT's defence, never the player's own team attack - fine
-     for stayers, whose rates embed their team, wrong for movers. Fix: detect a club change and discount
-     prior-club appearances hard (measure the right weight on 2022-25 transfers), and/or rescale prior
-     rates by new-club / old-club attack strength. Same family as spec item e1 (new signings).
+  0. **CLUB CHANGERS - MEASURED 2026-09-15, THE PROPOSED FIX IS WRONG. DO NOT REOPEN WITHOUT NEW DATA.**
+     Suspicion: Rogers at GW5 rated 0.38 xGI/90 (37 Villa apps) while producing 0.66 in 4 Chelsea games.
+     scripts/measure_club_change.py, walk-forward over 2022-23 -> 2025-26, 69 club changers, target =
+     xGI/90 over the next 10 appearances:
+     - Discounting old-club games makes predictions WORSE at every checkpoint (d=0.5: +5% MSE; d=0: +96%).
+       Stayers also prefer d=1, so HALF_LIFE 20 holds up.
+     - Early surge at the new club (first 4-6 games >1.5x the blended rate; 15 players): new games said
+       0.352, production 0.191, actual 0.176. The surge did not persist; production was right. Same for
+       stayers (0.448 / 0.241 / 0.217). That is the Rogers pattern exactly.
+     - Moving to a stronger attack lifted output ~5% (0.248 vs 0.236 predicted); rescaling prior output by
+       club attack strength overshoots (0.311, +61% MSE). Moving to a weaker attack DID cost output
+       (0.231 actual vs 0.292 predicted) and a sqrt rescale fixes most of that (MSE 0.80), but it is 14
+       players; retest after 2026-27 before shipping an asymmetric down-only adjustment.
+     So the model's view of Rogers stands on the evidence, and Jon's objection is not supported on average.
 
   1. **fixture-spread, the biggest open defect.** +0.79 between easiest and hardest fixture
      against a 1.5 requirement. Clean-sheet probability alone should move a defender more than
