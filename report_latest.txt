@@ -1,5 +1,6 @@
 ⟳ Refreshing models from live FPL API (detect → ingest → refresh)...
-   ingested GW4: 307 players played
+   all 4 completed GW(s) already ingested — no new
+     data
    Bayesian team ratings updated from 4 live GW(s) of
      xG (20 clubs)
    overrides: 0 active for GW5; players.json refreshed
@@ -9,12 +10,14 @@
 SANTA CLAUDE (AI team) — GW5 DECISIONS
 Models updated: GW4 data ingested ✓ (4 GWs played →
   Bayesian blended)
-⏰ GW5 DEADLINE: Fri 18 Sep, 18:30 UK  (in 53.1h)
+⏰ GW5 DEADLINE: Fri 18 Sep, 18:30 UK  (in 29.1h)   ⚠
+  ACT BEFORE DEADLINE
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━
-  ⟳ ingested GW4: 307 players played
+  ⟳ all 4 completed GW(s) already ingested — no new
+    data
   ⟳ Bayesian team ratings updated from 4 live GW(s) of
     xG (20 clubs)
   ⟳ overrides: 0 active for GW5; players.json
@@ -41,8 +44,8 @@ MODEL UPDATES THIS WEEK
     revised call.
   player          team   P(60+)  source
   Mateta          CRY      0.00  model
-  Sarr            CRY      0.00  model
   Sánchez         CHE      0.00  model
+  Sarr            CRY      0.14  model
   Senesi          TOT      0.48  model
   Calafiori       ARS      0.95  model
   De Cuyper       BHA      0.95  model
@@ -71,8 +74,8 @@ CHIP EVALUATION
                free transfers banked (roll through
                WC): 1
   Bench Boost: Monitoring
-               bench EV this GW: 2.9   |   peak
-               remaining this half: 3.1
+               bench EV this GW: 3.7   |   peak
+               remaining this half: 3.8
   Triple Cap:  Monitoring
                captain EV this GW: 7.1   |   best
                remaining captain week this half: 7.9
@@ -89,12 +92,12 @@ TRANSFER DECISION
 ━━━━━━━━━━━━━━━━━
   Best target: OUT Sarr (MID CRY) → IN Tavernier (BOU
     £6.1)
-    P(60+) assumed: Sarr 0.00 → Tavernier 0.97 — if
+    P(60+) assumed: Sarr 0.14 → Tavernier 0.97 — if
       you know better, override in the form and re-run
       for a revised call
     fixture swing · effective-out adjusted for bench
       cover · 6-GW hold
-    gain: GW+1 +5.0 · GW+1&2 +9.8 · full 6-GW +32.0
+    gain: GW+1 +4.3 · GW+1&2 +8.2 · full 6-GW +27.6
     → TRANSFER ✓ (free)    (budget after £1.2m ITB, 1
       banked)
 
@@ -144,12 +147,14 @@ PLANNED TRANSFERS
 JON'S TEAM — GW5 DECISIONS
 Models updated: GW4 data ingested ✓ (4 GWs played →
   Bayesian blended)
-⏰ GW5 DEADLINE: Fri 18 Sep, 18:30 UK  (in 53.1h)
+⏰ GW5 DEADLINE: Fri 18 Sep, 18:30 UK  (in 29.1h)   ⚠
+  ACT BEFORE DEADLINE
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━
-  ⟳ ingested GW4: 307 players played
+  ⟳ all 4 completed GW(s) already ingested — no new
+    data
   ⟳ Bayesian team ratings updated from 4 live GW(s) of
     xG (20 clubs)
   ⟳ overrides: 0 active for GW5; players.json
@@ -178,9 +183,9 @@ MODEL UPDATES THIS WEEK
   Hinshelwood     BHA      0.00  model
   Tzolis          ARS      0.52  model
   Shaw            MUN      0.60  model
+  João Pedro      CHE      0.72  model
   Kinsky          TOT      0.80  model
   F.Kadıoğlu      BHA      0.81  model
-  Ajer            BRE      0.95  model
   → E.Le Fée      SUN      0.97  model  (transfer
     target)
 
@@ -199,7 +204,7 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   RECOMMENDED ✓
-               rebuild value: +32 pts / 6 weeks vs
+               rebuild value: +38 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): Yes
@@ -213,7 +218,7 @@ CHIP EVALUATION
                remaining captain week this half: 7.9
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +7.5 pts vs current
+               free-hit team gain: +9.1 pts vs current
                XI
   → RECOMMENDATION: play WC this week (confirm via the
     phone form). One chip per week max.
@@ -256,8 +261,8 @@ STARTING XI — 4-3-3
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
   GW5  GW6  GW7  GW8  GW9  GW10
-    60    59    62    62    57    62   (min 57)
-  GW5 = XI 52 + captain bonus 7 + auto-sub 0.3
+    59    58    61    61    56    62   (min 56)
+  GW5 = XI 51 + captain bonus 7 + auto-sub 0.8
     (auto-sub small by design)
 
 PLANNED TRANSFERS
