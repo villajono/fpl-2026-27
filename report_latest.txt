@@ -10,8 +10,7 @@
 SANTA CLAUDE (AI team) — GW5 DECISIONS
 Models updated: GW4 data ingested ✓ (4 GWs played →
   Bayesian blended)
-⏰ GW5 DEADLINE: Fri 18 Sep, 18:30 UK  (in 29.1h)   ⚠
-  ACT BEFORE DEADLINE
+⏰ GW5 DEADLINE: Fri 18 Sep, 18:30 UK  (in 5.5h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -45,11 +44,11 @@ MODEL UPDATES THIS WEEK
   player          team   P(60+)  source
   Mateta          CRY      0.00  model
   Sánchez         CHE      0.00  model
-  Sarr            CRY      0.14  model
+  Sarr            CRY      0.28  model
   Senesi          TOT      0.48  model
   Calafiori       ARS      0.95  model
   De Cuyper       BHA      0.95  model
-  → Tavernier     BOU      0.97  model  (transfer
+  → Barry         EVE      0.95  model  (transfer
     target)
 
 FIXTURE INPUTS — DATA SOURCES
@@ -74,8 +73,8 @@ CHIP EVALUATION
                free transfers banked (roll through
                WC): 1
   Bench Boost: Monitoring
-               bench EV this GW: 3.7   |   peak
-               remaining this half: 3.8
+               bench EV this GW: 4.4   |   peak
+               remaining this half: 4.8
   Triple Cap:  Monitoring
                captain EV this GW: 7.1   |   best
                remaining captain week this half: 7.9
@@ -90,15 +89,15 @@ CHIP EVALUATION
 
 TRANSFER DECISION
 ━━━━━━━━━━━━━━━━━
-  Best target: OUT Sarr (MID CRY) → IN Tavernier (BOU
-    £6.1)
-    P(60+) assumed: Sarr 0.14 → Tavernier 0.97 — if
-      you know better, override in the form and re-run
-      for a revised call
+  Best target: OUT Mateta (FWD CRY) → IN Barry (EVE
+    £5.6)
+    P(60+) assumed: Mateta 0.00 → Barry 0.95 — if you
+      know better, override in the form and re-run for
+      a revised call
     fixture swing · effective-out adjusted for bench
       cover · 6-GW hold
-    gain: GW+1 +4.3 · GW+1&2 +8.2 · full 6-GW +27.6
-    → TRANSFER ✓ (free)    (budget after £1.2m ITB, 1
+    gain: GW+1 +5.3 · GW+1&2 +10.1 · full 6-GW +27.1
+    → TRANSFER ✓ (free)    (budget after £1.7m ITB, 1
       banked)
 
 WATCHLIST (monitor, not acting)
@@ -147,8 +146,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW5 DECISIONS
 Models updated: GW4 data ingested ✓ (4 GWs played →
   Bayesian blended)
-⏰ GW5 DEADLINE: Fri 18 Sep, 18:30 UK  (in 29.1h)   ⚠
-  ACT BEFORE DEADLINE
+⏰ GW5 DEADLINE: Fri 18 Sep, 18:30 UK  (in 5.5h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
