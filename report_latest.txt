@@ -10,7 +10,7 @@
 SANTA CLAUDE (AI team) — GW5 DECISIONS
 Models updated: GW4 data ingested ✓ (4 GWs played →
   Bayesian blended)
-⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 502.3h)
+⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 478.0h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -146,7 +146,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW5 DECISIONS
 Models updated: GW4 data ingested ✓ (4 GWs played →
   Bayesian blended)
-⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 502.3h)
+⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 478.0h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
