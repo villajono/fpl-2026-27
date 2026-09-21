@@ -793,7 +793,7 @@ def tldr(acts):
     return _wrap_report(L)
 
 
-def report(team_name, squad_def, itb, banked, chips, planned, planned_wc=None):
+def report(team_name, squad_def, itb, banked, chips, planned, planned_wc=None, entry=None):
     # defw must be present here: best_transfer() compares a candidate's defw against the outgoing
     # player's, and POOL rows carry it — squad rows must have the same shape or that lookup KeyErrors.
     squad = [dict(name=n, pos=po, team=t, price=pr, code=code_of(n, po, t),
@@ -955,7 +955,7 @@ def report(team_name, squad_def, itb, banked, chips, planned, planned_wc=None):
     for pt in planned: L.append("  " + pt)
     L.append("═" * 54)
     ACTIONS.append(dict(
-        team=team_name, gw=gw, transfer=_act_tr,
+        team=team_name, gw=gw, entry=entry, transfer=_act_tr,
         chips=[k.upper() for k, v in chip_rec.items() if v],
         captain=(f"{caps[0][0]['name']} ({caps[0][0]['team']} v "
                  f"{FIX[caps[0][0]['team']].get(gw, ('?',))[0]})" if caps else '—'),
@@ -1066,6 +1066,7 @@ if __name__ == "__main__":
         _santa = report(_santa_src["team_name"], _santa_src["squad_def"],
                         itb=_santa_src["itb"], banked=_santa_src["banked"],
                         chips=_santa_src["chips"], planned_wc=None,
+                        entry=_santa_src["entry"]["id"],
                         planned=["Neutral baseline — follow this engine's weekly call exactly, "
                                  "no chip shaping."]
                                 + squad_notes(_santa_src["entry"], _santa_src["gw"]))
@@ -1073,6 +1074,7 @@ if __name__ == "__main__":
         _jon = report(_jon_src["team_name"], _jon_src["squad_def"],
                       itb=_jon_src["itb"], banked=_jon_src["banked"],
                       chips=_jon_src["chips"], planned_wc=planned_wildcard(),
+                      entry=_jon_src["entry"]["id"],
                       planned=squad_notes(_jon_src["entry"], _jon_src["gw"]))
     else:
         _santa = report("SANTA CLAUDE (AI team)", SANTA, itb=0.3, banked=0,
@@ -1088,6 +1090,31 @@ if __name__ == "__main__":
     # The do-this-now summary prints FIRST but can only be built LAST, because it reads
     # what each report decided. Hence the two strings above.
     for line in tldr(ACTIONS): print(line)
+    print()
+
+    # What was recommended last week, against what the FPL site records actually happened. This
+    # sits directly under the do-this-now block because it is the check on the PREVIOUS one: the
+    # squad is always read live, but whether a recommendation was actioned, actioned differently,
+    # or missed entirely is not visible in a valid fifteen, and assuming it was followed is how a
+    # wrong premise gets carried into the next week's reasoning.
+    try:
+        import reconcile as RC
+        _els = {e["id"]: dict(name=e["web_name"]) for e in RC.get("bootstrap-static/")["elements"]}
+        _last = CURRENT_GW if CURRENT_GW >= 1 else None
+        if DL_INFO.get("next_gw"):
+            _last = int(DL_INFO["next_gw"]) - 1      # the gameweek just gone, deadline-based
+        if _last and _last >= 1:
+            for line in _wrap_report(RC.block(_last, _els)): print(line)
+        # Only record a recommendation for the gameweek that is actually OPEN. While the model is
+        # a week behind (GW played, FPL not finished with it), ACTIONS holds projections for a
+        # gameweek already in the books; filing those as "what we recommended" would have next
+        # week comparing them against results they were produced after, and calling the agreement
+        # meaningful. Better to record nothing and say nothing.
+        _proj = ACTIONS[0]["gw"] if ACTIONS else None
+        if _proj and DL_INFO.get("next_gw") and _proj == int(DL_INFO["next_gw"]):
+            RC.save_recommendations(ACTIONS, _proj)
+    except Exception as _e:
+        print(f"  (recommended-vs-actual check unavailable: {_e})")
     print()
     print(_santa)
     print()
