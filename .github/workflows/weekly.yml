@@ -68,6 +68,9 @@ jobs:
       - name: Chip and transfer plan for the coming gameweek
         if: steps.decide.outputs.email == 'true'
         continue-on-error: true
+        # Hard ceiling, because every notification step is downstream of this one. A chip search
+        # that grinds must cost Jon the chip plan, never the deadline alert itself.
+        timeout-minutes: 45
         working-directory: scripts
         run: |
           set -o pipefail
