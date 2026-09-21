@@ -54,11 +54,12 @@ import sys
 import urllib.request
 from pathlib import Path
 
+import fetch_squads as FS
 import squad_opt as SO
 
 API = "https://fantasy.premierleague.com/api"
 ROOT = Path(__file__).resolve().parent.parent
-MAX_BANK = 5
+MAX_BANK = FS.MAX_BANK
 
 
 def _arg(flag, default=None, cast=str):
@@ -91,17 +92,9 @@ def live(entry, gw=None):
         meta[k] = dict(pos=POS[e["element_type"]], team=short[e["team"]],
                        price=e["now_cost"] / 10.0)
     bank = picks["entry_history"]["bank"] / 10.0
-    # Free transfers available for the NEXT gameweek. One arrives each week, banked to MAX_BANK.
-    # A Wildcard or Free Hit week leaves the count exactly where it was: the moves made that week
-    # use none of it, but the week's new transfer does not arrive either. Checked against the app:
-    # Santa Claude had 1 going into its GW4 wildcard and has 1 for GW5, not 2.
-    chip_week = {c["event"] for c in hist.get("chips", []) if c["name"] in ("wildcard", "freehit")}
-    ft = 1                                            # available for GW2
-    for g in hist["current"]:
-        e = g["event"]
-        if e < 2 or e > gw or e in chip_week:
-            continue
-        ft = min(max(ft - g["event_transfers"], 0) + 1, MAX_BANK)
+    # The free-transfer rule now lives in fetch_squads.free_transfers, so weekly.py and this file
+    # cannot drift apart on it. Same rule, one copy.
+    ft = FS.free_transfers(hist, gw)
     return keys, meta, bank, spend, used, ft
 
 

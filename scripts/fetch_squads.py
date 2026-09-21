@@ -27,6 +27,7 @@ data/state/team_scores.csv so the AI-vs-human benchmark finally has a record.
 from __future__ import annotations
 
 import csv
+import datetime as dt
 import json
 import sys
 import urllib.request
@@ -50,17 +51,55 @@ def get(path: str):
 
 
 def bootstrap():
+    """Player universe, the finished gameweeks, and the last one whose picks are PUBLIC.
+
+    Those last two are not the same gameweek and the difference bit us. Picks go public the
+    moment a DEADLINE passes; `finished` only flips after FPL's final data check, a day or two
+    later while bonus is confirmed. Reading `finished[-1]` on the Monday after GW5 therefore
+    returned the GW4 fifteen and silently missed that week's transfer — Santa Claude's
+    Awoniyi -> Barry, made for GW5, was invisible.
+    """
     b = get("bootstrap-static/")
     teams = {t["id"]: t["short_name"] for t in b["teams"]}
     els = {e["id"]: dict(name=e["web_name"], pos=POSN[e["element_type"]],
                          team=teams[e["team"]], price=e["now_cost"] / 10.0,
                          code=e["code"]) for e in b["elements"]}
     finished = [e["id"] for e in b["events"] if e["finished"]]
-    return els, finished
+    now = dt.datetime.now(dt.timezone.utc)
+    passed = [e["id"] for e in b["events"]
+              if dt.datetime.fromisoformat(e["deadline_time"].replace("Z", "+00:00")) <= now]
+    return els, finished, max(passed, default=0)
 
 
 def half(gw: int) -> str:
     return "1" if gw <= 19 else "2"
+
+
+MAX_BANK = 5
+
+
+def free_transfers(hist: dict, gw: int) -> int:
+    """Free transfers available for the gameweek AFTER `gw`.
+
+    One arrives each week and they bank up to MAX_BANK. A Wildcard or Free Hit week leaves the
+    count exactly where it was: the moves made that week use none of it, but the week's new
+    transfer does not arrive either. Checked against the app — Santa Claude had 1 going into its
+    GW4 wildcard and 1 for GW5, not 2.
+
+    This rule lived inside strategy.py, where weekly.py could not reach it, so weekly.py was
+    passed a hand-typed `banked=` instead. Getting it wrong is not cosmetic: a chip is valued
+    against what you could do WITHOUT it, so the transfer count feeds straight into that
+    comparison.
+    """
+    chip_week = {c["event"] for c in hist.get("chips", [])
+                 if c["name"] in ("wildcard", "freehit")}
+    ft = 1                                             # available for GW2
+    for g in hist.get("current", []):
+        e = g["event"]
+        if e < 2 or e > gw or e in chip_week:
+            continue
+        ft = min(max(ft - g["event_transfers"], 0) + 1, MAX_BANK)
+    return ft
 
 
 def one_entry(eid: int, gw: int, els: dict) -> dict:
@@ -91,6 +130,7 @@ def one_entry(eid: int, gw: int, els: dict) -> dict:
         bank=eh.get("bank", 0) / 10.0,
         value=eh.get("value", 0) / 10.0,
         transfers_this_gw=eh.get("event_transfers", 0),
+        free_transfers=free_transfers(hist, gw),
         chips=chips,
         squad=squad,
         history=hist.get("current", []),
@@ -130,7 +170,8 @@ def show(t: dict, gw: int) -> None:
     print()
     print("    SQUAD = [" + as_python_list(t["squad"]) + "]")
     print()
-    print(f'    itb={t["bank"]:.1f}, chips={json.dumps(played) if played else "{}"}')
+    print(f'    itb={t["bank"]:.1f}, banked={t["free_transfers"]}, '
+          f'chips={json.dumps(played) if played else "{}"}')
     print()
 
 
@@ -148,13 +189,13 @@ def main() -> None:
         sys.exit("usage: python fetch_squads.py <entry_id> [<entry_id> ...]   "
                  "(find the id in the FPL url: /entry/<id>/event/2)")
 
-    els, finished = bootstrap()
+    els, finished, public = bootstrap()
     if gw is None:
-        if not finished:
-            sys.exit("no finished gameweeks yet — picks are not public until a deadline passes")
-        gw = finished[-1]
-    print(f"reading GW{gw} picks (the last completed gameweek — picks for the upcoming "
-          f"gameweek are not public until its deadline)\n")
+        if not public:
+            sys.exit("no deadlines have passed yet — picks are not public until one does")
+        gw = public
+    print(f"reading GW{gw} picks (the last gameweek whose deadline has passed — picks for the "
+          f"upcoming gameweek are not public until its own deadline)\n")
 
     teams = [one_entry(i, gw, els) for i in ids]
     for t in teams:

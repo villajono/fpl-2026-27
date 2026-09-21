@@ -1,2 +1,6 @@
 pandas
 numpy
+# squad_opt.py solves the squad as a MILP with scipy.optimize.milp (HiGHS). It was described as
+# "already installed" because it is, locally — but the cloud runner installs only this file, so
+# the weekly run silently fell back to the hill-climb and strategy.py could not import at all.
+scipy

@@ -52,20 +52,50 @@ jobs:
       - name: Verify the report is complete before emailing it
         run: python scripts/check_report.py report_latest.txt
 
-      - name: Build phone-friendly HTML
-        run: python scripts/to_html.py report_latest.txt report.html
-
       - name: Decide whether to email (deadline-aware, once per GW)
         id: decide
         run: |
           echo "email=$(python -c "import json;print('true' if json.load(open('data/state/deadline.json')).get('should_email') else 'false')")" >> "$GITHUB_OUTPUT"
           python -c "import json;d=json.load(open('data/state/deadline.json'));print('next GW deadline:',d.get('deadline'),'| hours away:',d.get('hours'),'| email now:',d.get('should_email'))"
 
+      # The chip plan — which chip in which week, and what it is worth — is the one decision Jon
+      # cannot make from a phone, so it has to be IN the message rather than something he runs on
+      # getting home. Deliberately placed here, AFTER check_report: it appends to the report, and
+      # gating the guard on optional extra content would be backwards. Only runs in the ~30h
+      # before a deadline, because it is the expensive step (a MILP squad solve per candidate
+      # wildcard week per team) and its answer only changes when the forecast does.
+      # continue-on-error: a failure here must never cost Jon the deadline notification itself.
+      - name: Chip and transfer plan for the coming gameweek
+        if: steps.decide.outputs.email == 'true'
+        continue-on-error: true
+        working-directory: scripts
+        run: |
+          set -o pipefail
+          python -W ignore forecast.py 2> ../strategy_errors.log || true
+          {
+            echo
+            echo "══════════════════════════════════════════════════════"
+            echo "CHIP AND TRANSFER PLAN — searched, not guessed"
+            echo "══════════════════════════════════════════════════════"
+            for entry in 4180925 1169767; do
+              echo
+              python -W ignore strategy.py --entry "$entry" || echo "  (strategy.py failed for entry $entry — see the run log)"
+            done
+          } >> ../report_latest.txt 2>> ../strategy_errors.log
+          cat ../strategy_errors.log || true
+
+      - name: Build phone-friendly HTML
+        run: python scripts/to_html.py report_latest.txt report.html
+
       - name: Commit updated state + report back to repo
         run: |
           git config user.name "fpl-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/state report_latest.txt data/raw/players_2026-27.csv || true
+          # data/processed carries the LOCKED forecast files. The runner is ephemeral, so if they
+          # are not committed the next run rebuilds a forecast from scratch and the optimiser's
+          # answer moves for reasons nobody can inspect — the exact thing forecast.py exists to
+          # prevent.
+          git add data/state data/processed report_latest.txt data/raw/players_2026-27.csv || true
           git commit -m "weekly run $(date -u +'%Y-%m-%d %H:%M UTC')" || echo "nothing to commit"
           git pull --rebase --autostash || true
           git push || true

@@ -753,6 +753,14 @@ def tldr(acts):
     if DL_INFO.get("deadline"):
         hdr += f", by {DL_INFO['deadline']} ({DL_INFO['hours']}h)"
     L += [hdr, "=" * 54]
+    # The same stale check report() makes, repeated here because this block is the one that gets
+    # acted on. A warning that only appears 200 lines below "if you are in a hurry, you are done"
+    # is a warning nobody reads.
+    if DL_INFO.get("next_gw") and int(DL_INFO["next_gw"]) != acts[0]["gw"]:
+        L += ["", f"  ⚠ DO NOT ACT — these are GW{acts[0]['gw']} projections and GW{acts[0]['gw']} "
+                  f"has been played.",
+              f"    FPL has not finalised it, so the model cannot see it yet. The next run after "
+              f"their data check will project GW{DL_INFO['next_gw']} properly.", ""]
     for a in acts:
         L += ["", f"  {a['team'].upper()}"]
         t, step = a["transfer"], 1
@@ -812,6 +820,16 @@ def report(team_name, squad_def, itb, banked, chips, planned, planned_wc=None):
     if DL_INFO.get("deadline"):
         L.append(f"⏰ GW{DL_INFO['next_gw']} DEADLINE: {DL_INFO['deadline']}  (in {DL_INFO['hours']}h)"
                  + ("   ⚠ ACT BEFORE DEADLINE" if DL_INFO.get("should_email") else ""))
+        # The gameweek being projected comes from the INGESTED history; the deadline comes from the
+        # API. They part company for a day or two after every gameweek, while FPL runs its final
+        # data check and `finished` stays false, and the report then shows last week's projection
+        # under next week's deadline. Harmless when someone is watching, dangerous when the reader
+        # is on the road and taking the report at face value — so say it rather than imply it.
+        if DL_INFO.get("next_gw") and int(DL_INFO["next_gw"]) != gw:
+            L.append(f"⚠ STALE: these are GW{gw} projections, but the open deadline is "
+                     f"GW{DL_INFO['next_gw']}. GW{gw} is played and not yet finalised by FPL, so "
+                     f"the model cannot see it. Do NOT act on the transfer call below — the next "
+                     f"run after FPL's data check will project GW{DL_INFO['next_gw']} properly.")
     L.append("═" * 54)
     L.append("\nMODEL UPDATES THIS WEEK\n" + "━" * 24)
     for line in rf.get("ingest", []): L.append("  ⟳ " + line)
@@ -853,7 +871,13 @@ def report(team_name, squad_def, itb, banked, chips, planned, planned_wc=None):
         L.append(f"  → RECOMMENDATION: play {', '.join(fired)} this week (confirm via the phone form). One chip per week max.")
     else:
         L.append("  → No chip this week — hold all available chips.")
-    tr_thr, tr_note = transfer_threshold_live(banked, gw, load_chip_state()[str(_half(gw))]["WC"])
+    # THIS TEAM's wildcard, not the shared file's. chips.json has never been written by anything,
+    # so reading it alone reported every team's wildcard as unused — which doubled the transfer
+    # threshold to 8.0 "banking for the rebuild" for Santa Claude, whose wildcard went in GW4.
+    # It banked a +4.2 transfer that clears the real 4.0 bar. Same merge chip_evaluation() does.
+    _chip_state = dict(load_chip_state()[str(_half(gw))])
+    _chip_state.update((chips or {}).get(str(_half(gw)), {}))
+    tr_thr, tr_note = transfer_threshold_live(banked, gw, _chip_state["WC"])
     L.append(f"  Transfer threshold this week: {tr_thr:.1f} pts{tr_note}")
     if _wc and _wc > gw and _hold < HORIZON:
         L.append(f"  Wildcard possible GW{_wc} at p={_wc_p:.0%}, so a transfer made now is yours "
@@ -942,6 +966,11 @@ def report(team_name, squad_def, itb, banked, chips, planned, planned_wc=None):
     return "\n".join(_wrap_report(L))
 
 
+# EMERGENCY FALLBACK ONLY — live_squads() reads both fifteens from the API on every run and these
+# are used only if that read fails, in which case the report says so in its first lines. Snapshot
+# taken after GW5 (2026-09-21) so a fallback run is wrong by a week rather than by a month; there
+# is no need to keep pasting them, and a run that quietly used them would be a bug to investigate.
+#
 # LOCKED 2026-08-13, ahead of the GW1 deadline. Chosen by optimize_v2.py on the neutral
 # season-long objective (GW1-8 XI + captain + auto-sub), with the human overrides applied and
 # backup keepers correctly zeroed: £100.0m exactly, GW1-8 EV 534.9 vs the previous squad's 497.3.
@@ -954,21 +983,67 @@ def report(team_name, squad_def, itb, banked, chips, planned, planned_wc=None):
 # GW3 one, Sarr -> Szoboszlai (executed 4 Sep, before the deadline). Hand-edited because the
 # API does not publish a gameweek's picks until its deadline passes, so fetch_squads.py still
 # returns the GW2 fifteen — re-run it after the deadline to confirm this matches. £0.3m ITB.
-SANTA = [("Leno","GK","FUL",4.5),("Sánchez","GK","CHE",4.9),
-         ("Van Hecke","DEF","TOT",5.0),("De Cuyper","DEF","BHA",4.7),("Calafiori","DEF","ARS",5.6),
-         ("Gvardiol","DEF","MCI",5.6),("Senesi","DEF","TOT",6.0),
-         ("Schade","MID","BRE",6.0),("Palmer","MID","CHE",9.6),("Mbeumo","MID","MUN",8.0),
-         ("Gomez","MID","BHA",5.0),("Szoboszlai","MID","LIV",7.0),
-         ("Haaland","FWD","MCI",15.5),("Calvert-Lewin","FWD","LEE",6.0),("Mateta","FWD","CRY",6.4)]
+SANTA = [("Suzuki","GK","AVL",5.0),("Calafiori","DEF","ARS",5.8),("Thiaw","DEF","NEW",5.0),
+         ("Gabriel","DEF","ARS",8.0),("Palmer","MID","CHE",9.7),("Saka","MID","ARS",9.5),
+         ("B.Fernandes","MID","MUN",12.0),("Anderson","MID","MCI",6.3),("Tavernier","MID","BOU",6.1),
+         ("Calvert-Lewin","FWD","LEE",6.0),("Barry","FWD","EVE",5.6),
+         ("Tzolakis","GK","HUL",4.6),("João Pedro","FWD","CHE",7.8),("De Cuyper","DEF","BHA",4.9),
+         ("Thomas","DEF","COV",4.0)]
 # Village Idiots (entry 1169767). Rebuilt before the GW1 deadline under unlimited transfers, so
 # it bears little resemblance to the 13 August draft; no transfers since, and GW2 was rolled,
 # hence 2 free. Bench Boost was played in GW1 — not GW2 as the old plan here assumed.
-HUMAN = [("Kinsky","GK","TOT",4.5),("Verbruggen","GK","BHA",4.5),
-         ("Shaw","DEF","MUN",4.5),("Gabriel","DEF","ARS",8.0),("Calafiori","DEF","ARS",5.6),
-         ("Ajer","DEF","BRE",4.5),("F.Kadıoğlu","DEF","BHA",4.4),
-         ("Schade","MID","BRE",6.0),("Mbeumo","MID","MUN",8.0),("Tzolis","MID","ARS",6.5),
-         ("Semenyo","MID","MCI",8.5),("Hinshelwood","MID","BHA",6.0),
-         ("João Pedro","FWD","CHE",7.6),("Haaland","FWD","MCI",15.5),("Calvert-Lewin","FWD","LEE",6.0)]
+HUMAN = [("Kinsky","GK","TOT",4.5),("N.Williams","DEF","NFO",5.0),("Konsa","DEF","ARS",4.6),
+         ("Calafiori","DEF","ARS",5.8),("Mbeumo","MID","MUN",7.9),("Rogers","MID","CHE",7.7),
+         ("Palmer","MID","CHE",9.7),("Schade","MID","BRE",6.1),("Tzolis","MID","ARS",6.3),
+         ("Haaland","FWD","MCI",15.6),("Calvert-Lewin","FWD","LEE",6.0),
+         ("Verbruggen","GK","BHA",4.5),("João Pedro","FWD","CHE",7.8),("Ajer","DEF","BRE",4.5),
+         ("F.Kadıoğlu","DEF","BHA",4.4)]
+
+# Entry ids never change; squads do. Reading the fifteen from the API at run time is the whole
+# point of live_squads() below — these two numbers are the only thing worth hardcoding.
+ENTRIES = [("SANTA CLAUDE (AI team)", 4180925), ("JON'S TEAM", 1169767)]
+
+
+def live_squads():
+    """Both squads, their bank, their banked free transfers and their chips — read live.
+
+    The literals below (SANTA, HUMAN) were refreshed by running fetch_squads.py and pasting the
+    output, which made every cloud run depend on Jon being at his PC. They were last pasted on
+    2026-09-01: by GW5 they still held Santa Claude's PRE-WILDCARD fifteen, so the engine was
+    reasoning about eleven players it no longer owned. Jon is away from GW6 to roughly GW12, so
+    nothing in the weekly loop may depend on a paste.
+
+    Falls back to the literals if the API is unreachable, and the report says which it used —
+    silently advising on the wrong squad is far worse than a visible degradation.
+    """
+    import fetch_squads as FSQ
+    els, _finished, gw = FSQ.bootstrap()   # gw = last deadline passed, i.e. last public picks
+    out = []
+    for name, eid in ENTRIES:
+        t = FSQ.one_entry(eid, gw, els)
+        squad_def = [(p["name"], p["pos"], p["team"], p["price"]) for p in t["squad"]]
+        played = {h: v for h, v in t["chips"].items() if v}
+        out.append(dict(team_name=name, squad_def=squad_def, itb=t["bank"],
+                        banked=t["free_transfers"], chips=played, entry=t, gw=gw))
+    return out
+
+
+def squad_notes(t, gw):
+    """The per-team context block, stated from the API rather than from last month's memory."""
+    h = t["history"][-1] if t["history"] else {}
+    played = {c: g for half in t["chips"].values() for c, g in half.items()}
+    left = [c for c in ("WC", "BB", "TC", "FH") if c not in played]
+    notes = [f"Squad, bank and chips read live from the FPL API after GW{gw} — not hand-entered."]
+    if h:
+        notes.append(f"GW{h['event']}: {h['points']} pts, {h['points_on_bench']} left on the bench. "
+                     f"{t['points']} overall, rank {t['rank']:,}." if t.get("rank")
+                     else f"GW{h['event']}: {h['points']} pts.")
+    notes.append("Chips played: " + (", ".join(f"{c} GW{g}" for c, g in sorted(played.items(),
+                 key=lambda kv: kv[1])) if played else "none") +
+                 ". Still held: " + (", ".join(left) if left else "none") + ".")
+    notes.append(f"£{t['bank']:.1f}m in the bank, {t['free_transfers']} free transfer(s).")
+    return notes
+
 
 if __name__ == "__main__":
     ODDS.set_source("fd")          # live tool uses market-average odds (no key); a key still wins if set
@@ -976,23 +1051,38 @@ if __name__ == "__main__":
     # these go straight to stdout rather than through report(), so wrap them here too
     for line in _wrap_report(["   " + l for l in auto_ingest_and_refresh()]): print(line)
     print()
-    _santa = report("SANTA CLAUDE (AI team)", SANTA, itb=0.3, banked=0,
-                 chips={}, planned_wc=None, planned=[
-                     "Neutral baseline — follow this engine's weekly call exactly, no chip shaping.",
-                     "All four chips still held. 141 pts, overall 3.15m after GW2.",
-                     "Spurs pair (Senesi, Van Hecke) held on model EV only: new manager, WC "
-                     "returnees and the Spence rumour are invisible to the model. Revisit ~GW5 "
-                     "once lineups settle.",
-                     "£0.3m ITB. GW3 transfer already made (Sarr → Szoboszlai), so 0 free this week."])
-    # both reports are built into strings first, so ACTIONS is complete before the TLDR
-    _jon = report("JON'S TEAM", HUMAN, itb=0.0, banked=2,
-                 chips={"1": {"BB": 1}}, planned_wc=planned_wildcard(), planned=[
-                     "BENCH BOOST PLAYED GW1. 163 pts, overall 846k after GW2 — the whole 22-pt "
-                     "lead over Santa Claude came in GW1; GW2 was 87 apiece.",
-                     "Remaining first-half chips: Wildcard, Triple Captain, Free Hit. The old plan "
-                     "here was a GW3/GW4 Wildcard — still open, and GW3's deadline is Fri 4 Sep.",
-                     "Two free transfers: GW2 was rolled.",
-                     "£0.0m ITB."])
+    try:
+        _live = live_squads()
+        print(f"   squads read live from the FPL API (after GW{_live[0]['gw']})")
+    except Exception as _e:                            # network, API shape change, anything
+        _live = None
+        print(f"   ⚠ LIVE SQUAD READ FAILED ({_e}) — falling back to the literals pasted "
+              f"2026-09-01. Treat every transfer call below as suspect.")
+    print()
+
+    if _live:
+        _santa_src, _jon_src = _live
+        # Santa Claude never chip-shapes, so it is never given a planned wildcard week.
+        _santa = report(_santa_src["team_name"], _santa_src["squad_def"],
+                        itb=_santa_src["itb"], banked=_santa_src["banked"],
+                        chips=_santa_src["chips"], planned_wc=None,
+                        planned=["Neutral baseline — follow this engine's weekly call exactly, "
+                                 "no chip shaping."]
+                                + squad_notes(_santa_src["entry"], _santa_src["gw"]))
+        # both reports are built into strings first, so ACTIONS is complete before the TLDR
+        _jon = report(_jon_src["team_name"], _jon_src["squad_def"],
+                      itb=_jon_src["itb"], banked=_jon_src["banked"],
+                      chips=_jon_src["chips"], planned_wc=planned_wildcard(),
+                      planned=squad_notes(_jon_src["entry"], _jon_src["gw"]))
+    else:
+        _santa = report("SANTA CLAUDE (AI team)", SANTA, itb=0.3, banked=0,
+                     chips={}, planned_wc=None, planned=[
+                         "⚠ STALE SQUAD (pasted 2026-09-01) — the live read failed.",
+                         "Neutral baseline — follow this engine's weekly call exactly, no chip shaping."])
+        _jon = report("JON'S TEAM", HUMAN, itb=0.0, banked=2,
+                     chips={"1": {"BB": 1}}, planned_wc=planned_wildcard(), planned=[
+                         "⚠ STALE SQUAD (pasted 2026-09-01) — the live read failed.",
+                         "BENCH BOOST PLAYED GW1."])
 
 
     # The do-this-now summary prints FIRST but can only be built LAST, because it reads
