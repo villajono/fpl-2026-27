@@ -11,8 +11,15 @@
 players_2026-27.csv refreshed: 667 -> 667 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW5, by Sat 10 Oct, 11:00 UK (456.6h)
+DO THIS  --  GW5, by Sat 10 Oct, 11:00 UK (456.0h)
 ======================================================
+
+  ⚠ DO NOT ACT — these are GW5 projections and GW5 has
+    been played.
+    FPL has not finalised it, so the model cannot see
+      it yet. The next run after their data check will
+      project GW6 properly.
+
 
   SANTA CLAUDE (AI TEAM)
     1. TRANSFER  João Pedro -> Thiago (BRE £7.8)
@@ -48,7 +55,8 @@ DO THIS  --  GW5, by Sat 10 Oct, 11:00 UK (456.6h)
 SANTA CLAUDE (AI team) — GW5 DECISIONS
 Models updated: GW4 data ingested ✓ (4 GWs played →
   Bayesian blended)
-⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 456.6h)
+⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 456.0h)   ⚠
+  ACT BEFORE DEADLINE
 ⚠ STALE: these are GW5 projections, but the open
   deadline is GW6. GW5 is played and not yet finalised
   by FPL, so the model cannot see it. Do NOT act on
@@ -208,8 +216,8 @@ PLANNED TRANSFERS
     exactly, no chip shaping.
   Squad, bank and chips read live from the FPL API
     after GW5 — not hand-entered.
-  GW5: 26 pts, 23 left on the bench. 309 overall, rank
-    3,316,695.
+  GW5: 26 pts, 23 left on the bench. 311 overall, rank
+    3,453,346.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £0.0m in the bank, 1 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -218,7 +226,8 @@ PLANNED TRANSFERS
 JON'S TEAM — GW5 DECISIONS
 Models updated: GW4 data ingested ✓ (4 GWs played →
   Bayesian blended)
-⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 456.6h)
+⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 456.0h)   ⚠
+  ACT BEFORE DEADLINE
 ⚠ STALE: these are GW5 projections, but the open
   deadline is GW6. GW5 is played and not yet finalised
   by FPL, so the model cannot see it. Do NOT act on
@@ -371,10 +380,67 @@ PLANNED TRANSFERS
 ━━━━━━━━━━━━━━━━━
   Squad, bank and chips read live from the FPL API
     after GW5 — not hand-entered.
-  GW5: 35 pts, 20 left on the bench. 346 overall, rank
-    762,182.
+  GW5: 35 pts, 20 left on the bench. 348 overall, rank
+    833,980.
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £0.2m in the bank, 1 free transfer(s).
 ══════════════════════════════════════════════════════
 
-[exited with code 0]
+══════════════════════════════════════════════════════
+CHIP AND TRANSFER PLAN — searched, not guessed
+══════════════════════════════════════════════════════
+
+players_2026-27.csv refreshed: 667 -> 667 players
+  no squad changes since the last refresh
+  forecast: _forecast_long_gw5_17.json
+
+  ENTRY 4180925 - planning GW5-17
+  budget 100.2 - 1 free transfer(s) - chips available: bboost, freehit
+
+  searching wildcard weeks:
+    none      686.6
+  -> best wildcard: none (686.6)
+
+  bboost    best weeks: GW5 +15.2, GW6 +14.3, GW7 +13.8
+  freehit   best weeks: GW5 +6.3, GW7 +3.8, GW13 +2.0
+
+  ==================== PLAN ====================
+   BBOOST     GW5   worth +15.2
+   FREEHIT    GW7   worth +3.8
+   projected GW5-17: 705.7  (686.6 squad and transfers, +19.0 remaining chips)
+
+   GW5 XI: Suzuki, Thiaw, Gabriel, Calafiori, B.Fernandes, Saka, Calvert-Lewin, Anderson, Palmer, João Pedro, Tavernier
+   bench:  Tzolakis, De Cuyper, Emersonn, Thomas
+
+players_2026-27.csv refreshed: 667 -> 667 players
+  no squad changes since the last refresh
+  forecast: _forecast_long_gw5_17.json
+
+  ENTRY 1169767 - planning GW5-17
+  budget 100.5 - 1 free transfer(s) - chips available: freehit, wildcard
+
+  searching wildcard weeks:
+    none      659.3
+    GW5       692.0
+    GW6       685.9
+    GW7       681.7
+    GW8       676.9
+    GW9       676.9
+    GW10      672.4
+    GW11      667.2
+    GW12      667.7
+    GW13      664.7
+    GW14      661.2
+    GW15      660.6
+    GW16      658.3
+  -> best wildcard: GW5 (692.0)
+
+  freehit   best weeks: GW5 +5.5, GW14 +2.7, GW10 +2.1
+
+  ==================== PLAN ====================
+   WILDCARD   GW5
+   FREEHIT    GW14  worth +2.7
+   projected GW5-17: 694.6  (692.0 squad and transfers, +2.7 remaining chips)
+
+   GW5 XI: Suzuki, Gvardiol, Gabriel, Calafiori, Mbeumo, Saka, Haaland, João Pedro, Tavernier, Emersonn, E.Le Fée
+   bench:  Tzolakis, Davis, De Cuyper, Yalcouyé
