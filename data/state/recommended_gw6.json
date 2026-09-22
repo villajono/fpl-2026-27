@@ -1,0 +1,38 @@
+{
+ "gw": 6,
+ "written": "2026-09-22T12:24:13+00:00",
+ "teams": {
+  "4180925": {
+   "team": "SANTA CLAUDE (AI team)",
+   "transfer": {
+    "out": "João Pedro",
+    "in": "Gonzalo"
+   },
+   "chip": null,
+   "captain": "Saka",
+   "vice": "B.Fernandes",
+   "bench": [
+    "Suzuki",
+    "Palmer",
+    "Calvert-Lewin",
+    "João Pedro"
+   ]
+  },
+  "1169767": {
+   "team": "JON'S TEAM",
+   "transfer": {
+    "out": "Tzolis",
+    "in": "Tavernier"
+   },
+   "chip": "WC",
+   "captain": "Haaland",
+   "vice": "Mbeumo",
+   "bench": [
+    "Kinsky",
+    "F.Kadıoğlu",
+    "Tzolis",
+    "João Pedro"
+   ]
+  }
+ }
+}
