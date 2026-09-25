@@ -11,7 +11,7 @@
 players_2026-27.csv refreshed: 667 -> 667 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW6, by Sat 10 Oct, 11:00 UK (381.5h)
+DO THIS  --  GW6, by Sat 10 Oct, 11:00 UK (357.5h)
 ======================================================
 
   SANTA CLAUDE (AI TEAM)
@@ -81,7 +81,7 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW6 DECISIONS
 Models updated: GW5 data ingested ✓ (5 GWs played →
   Bayesian blended)
-⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 381.5h)
+⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 357.5h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -236,7 +236,7 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW5 — not hand-entered.
   GW5: 28 pts, 21 left on the bench. 311 overall, rank
-    3,453,268.
+    3,453,257.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £0.0m in the bank, 1 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -245,7 +245,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW6 DECISIONS
 Models updated: GW5 data ingested ✓ (5 GWs played →
   Bayesian blended)
-⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 381.5h)
+⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 357.5h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -396,7 +396,7 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW5 — not hand-entered.
   GW5: 37 pts, 18 left on the bench. 348 overall, rank
-    833,965.
+    833,962.
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £0.2m in the bank, 1 free transfer(s).
 ══════════════════════════════════════════════════════
