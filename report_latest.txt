@@ -11,7 +11,7 @@
 players_2026-27.csv refreshed: 667 -> 667 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW6, by Sat 10 Oct, 11:00 UK (236.7h)
+DO THIS  --  GW6, by Sat 10 Oct, 11:00 UK (211.9h)
 ======================================================
 
   SANTA CLAUDE (AI TEAM)
@@ -81,7 +81,7 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW6 DECISIONS
 Models updated: GW5 data ingested ✓ (5 GWs played →
   Bayesian blended)
-⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 236.7h)
+⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 211.9h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -139,7 +139,7 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   Used GW4
-               rebuild value: +19 pts / 6 weeks vs
+               rebuild value: +18 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): Yes
@@ -236,7 +236,7 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW5 — not hand-entered.
   GW5: 28 pts, 21 left on the bench. 311 overall, rank
-    3,453,081.
+    3,453,071.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £0.0m in the bank, 1 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -245,7 +245,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW6 DECISIONS
 Models updated: GW5 data ingested ✓ (5 GWs played →
   Bayesian blended)
-⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 236.7h)
+⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 211.9h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
