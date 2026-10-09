@@ -11,20 +11,20 @@
 players_2026-27.csv refreshed: 667 -> 667 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW6, by Sat 10 Oct, 11:00 UK (43.7h)
+DO THIS  --  GW6, by Sat 10 Oct, 11:00 UK (19.9h)
 ======================================================
 
   SANTA CLAUDE (AI TEAM)
     1. TRANSFER  João Pedro -> Gonzalo (FUL £6.0)
-                 +10.2 over 6 GWs, £1.7m left
-    2. CAPTAIN   Saka (ARS v LEE), vice B.Fernandes
+                 +9.7 over 6 GWs, £1.7m left
+    2. CAPTAIN   B.Fernandes (MUN v TOT), vice Saka
     3. XI        GK  Tzolakis
-                 DEF  Gabriel, Calafiori, Thiaw, De
-                 Cuyper, Thomas
-                 MID  Saka, B.Fernandes, Tavernier,
-                 Anderson
+                 DEF  Gabriel, Calafiori, De Cuyper,
+                 Thiaw
+                 MID  B.Fernandes, Saka, Tavernier,
+                 Anderson, Palmer
                  FWD  Barry
-                 bench: Suzuki, Palmer, Calvert-Lewin,
+                 bench: Suzuki, Thomas, Calvert-Lewin,
                  João Pedro
 
   JON'S TEAM
@@ -81,7 +81,8 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW6 DECISIONS
 Models updated: GW5 data ingested ✓ (5 GWs played →
   Bayesian blended)
-⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 43.7h)
+⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 19.9h)   ⚠
+  ACT BEFORE DEADLINE
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -129,7 +130,7 @@ FIXTURE INPUTS — DATA SOURCES
   Bookmaker odds ON — market average
     (football-data.co.uk), 1X2 + O/U, overround
     removed ✓  (GW+4+ always xG model)
-  GW+1 (GW6): xG model (no odds published)
+  GW+1 (GW6): odds — 10/10 fixtures priced
   GW+2 (GW7): xG model (no odds published)
   GW+3 (GW8): xG model (no odds published)
   GW+4 (GW9): xG model (no odds published)
@@ -139,17 +140,17 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   Used GW4
-               rebuild value: +18 pts / 6 weeks vs
+               rebuild value: +19 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): Yes
                free transfers banked (roll through
                WC): 1
   Bench Boost: Monitoring
-               bench EV this GW: 13.7   |   peak
-               remaining this half: 15.0
+               bench EV this GW: 14.3   |   peak
+               remaining this half: 15.6
   Triple Cap:  Used GW3
-               captain EV this GW: 6.0   |   best
+               captain EV this GW: 7.1   |   best
                remaining captain week this half: 7.2
   Free Hit:    Monitoring
                players blanking this GW: 0   |
@@ -167,7 +168,7 @@ TRANSFER DECISION
       re-run for a revised call
     fixture swing · effective-out adjusted for bench
       cover · 6-GW hold
-    gain: GW+1 +1.9 · GW+1&2 +4.5 · full 6-GW +10.2
+    gain: GW+1 +1.4 · GW+1&2 +4.0 · full 6-GW +9.7
     → TRANSFER ✓ (free)    (budget after £1.7m ITB, 1
       banked)
 
@@ -211,22 +212,23 @@ WATCHLIST (monitor, not acting)
 
 CAPTAIN — highest-EV starter (doubles)
 ━━━━━━━
-  Captain: Saka — EV 6.0 (×2 = 11.9), ARS vs LEE
-  Vice:    B.Fernandes — EV 5.9
+  Captain: B.Fernandes — EV 7.1 (×2 = 14.2), MUN vs
+    TOT
+  Vice:    Saka — EV 6.8
 
-STARTING XI — 5-4-1
+STARTING XI — 4-5-1
 ━━━━━━━━━━━━━━━━━━━━━━━━
   GK: Tzolakis
-  DEF: Gabriel, Calafiori, Thiaw, De Cuyper, Thomas
-  MID: Saka, B.Fernandes, Tavernier, Anderson
+  DEF: Gabriel, Calafiori, De Cuyper, Thiaw
+  MID: B.Fernandes, Saka, Tavernier, Anderson, Palmer
   FWD: Barry
-  Bench: Suzuki, Palmer, Calvert-Lewin, João Pedro
+  Bench: Suzuki, Thomas, Calvert-Lewin, João Pedro
 
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
   GW6  GW7  GW8  GW9  GW10  GW11
-    58    58    60    56    64    56   (min 56)
-  GW6 = XI 52 + captain bonus 6 + auto-sub 0.3
+    64    58    60    56    64    56   (min 56)
+  GW6 = XI 55 + captain bonus 7 + auto-sub 1.2
     (auto-sub small by design)
 
 PLANNED TRANSFERS
@@ -236,7 +238,7 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW5 — not hand-entered.
   GW5: 28 pts, 21 left on the bench. 311 overall, rank
-    3,452,991.
+    3,452,915.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £0.0m in the bank, 1 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -245,7 +247,8 @@ PLANNED TRANSFERS
 JON'S TEAM — GW6 DECISIONS
 Models updated: GW5 data ingested ✓ (5 GWs played →
   Bayesian blended)
-⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 43.7h)
+⏰ GW6 DEADLINE: Sat 10 Oct, 11:00 UK  (in 19.9h)   ⚠
+  ACT BEFORE DEADLINE
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -293,7 +296,7 @@ FIXTURE INPUTS — DATA SOURCES
   Bookmaker odds ON — market average
     (football-data.co.uk), 1X2 + O/U, overround
     removed ✓  (GW+4+ always xG model)
-  GW+1 (GW6): xG model (no odds published)
+  GW+1 (GW6): odds — 10/10 fixtures priced
   GW+2 (GW7): xG model (no odds published)
   GW+3 (GW8): xG model (no odds published)
   GW+4 (GW9): xG model (no odds published)
@@ -310,14 +313,14 @@ CHIP EVALUATION
                free transfers banked (roll through
                WC): 1
   Bench Boost: Used GW1
-               bench EV this GW: 9.9   |   peak
+               bench EV this GW: 10.1   |   peak
                remaining this half: 10.9
   Triple Cap:  Used GW3
-               captain EV this GW: 5.3   |   best
+               captain EV this GW: 6.7   |   best
                remaining captain week this half: 7.6
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +11.0 pts vs
+               free-hit team gain: +10.3 pts vs
                current XI
   → RECOMMENDATION: play WC this week (confirm via the
     phone form). One chip per week max.
@@ -333,7 +336,7 @@ TRANSFER DECISION
       for a revised call
     quality upgrade · effective-out adjusted for bench
       cover · 6-GW hold
-    gain: GW+1 +2.5 · GW+1&2 +6.0 · full 6-GW +16.0
+    gain: GW+1 +2.5 · GW+1&2 +5.9 · full 6-GW +16.0
     → TRANSFER ✓ (free)    (budget after £0.4m ITB, 1
       banked)
 
@@ -373,8 +376,8 @@ WATCHLIST (monitor, not acting)
 
 CAPTAIN — highest-EV starter (doubles)
 ━━━━━━━
-  Captain: Haaland — EV 5.3 (×2 = 10.6), MCI vs LIV
-  Vice:    Mbeumo — EV 5.0
+  Captain: Haaland — EV 6.7 (×2 = 13.3), MCI vs LIV
+  Vice:    Mbeumo — EV 6.3
 
 STARTING XI — 4-4-2
 ━━━━━━━━━━━━━━━━━━━━━━━━
@@ -387,8 +390,8 @@ STARTING XI — 4-4-2
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
   GW6  GW7  GW8  GW9  GW10  GW11
-    50    54    55    51    54    54   (min 50)
-  GW6 = XI 44 + captain bonus 5 + auto-sub 0.8
+    56    54    55    51    54    54   (min 51)
+  GW6 = XI 48 + captain bonus 7 + auto-sub 0.8
     (auto-sub small by design)
 
 PLANNED TRANSFERS
@@ -396,7 +399,66 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW5 — not hand-entered.
   GW5: 37 pts, 18 left on the bench. 348 overall, rank
-    833,818.
+    833,806.
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £0.2m in the bank, 1 free transfer(s).
 ══════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════
+CHIP AND TRANSFER PLAN — searched, not guessed
+══════════════════════════════════════════════════════
+
+players_2026-27.csv refreshed: 667 -> 667 players
+  no squad changes since the last refresh
+  forecast: _forecast_long_gw5_17.json
+
+  ENTRY 4180925 - planning GW5-17
+  budget 100.4 - 1 free transfer(s) - chips available: bboost, freehit
+
+  searching wildcard weeks:
+    none      687.0
+  -> best wildcard: none (687.0)
+
+  bboost    best weeks: GW5 +15.2, GW7 +14.8, GW6 +14.3
+  freehit   best weeks: GW5 +6.3, GW7 +4.0, GW13 +2.0
+
+  ==================== PLAN ====================
+   BBOOST     GW5   worth +15.2
+   FREEHIT    GW7   worth +4.0
+   projected GW5-17: 706.2  (687.0 squad and transfers, +19.2 remaining chips)
+
+   GW5 XI: Suzuki, Thiaw, Gabriel, Calafiori, B.Fernandes, Saka, Calvert-Lewin, Anderson, Palmer, João Pedro, Tavernier
+   bench:  Tzolakis, De Cuyper, Emersonn, Thomas
+
+players_2026-27.csv refreshed: 667 -> 667 players
+  no squad changes since the last refresh
+  forecast: _forecast_long_gw5_17.json
+
+  ENTRY 1169767 - planning GW5-17
+  budget 100.7 - 1 free transfer(s) - chips available: freehit, wildcard
+
+  searching wildcard weeks:
+    none      661.6
+    GW5       690.9
+    GW6       683.3
+    GW7       679.8
+    GW8       676.8
+    GW9       675.1
+    GW10      671.3
+    GW11      668.2
+    GW12      670.1
+    GW13      666.9
+    GW14      665.0
+    GW15      662.8
+    GW16      661.0
+  -> best wildcard: GW5 (690.9)
+
+  freehit   best weeks: GW5 +4.3, GW14 +3.8, GW10 +2.4
+
+  ==================== PLAN ====================
+   WILDCARD   GW5
+   FREEHIT    GW14  worth +3.8
+   projected GW5-17: 694.6  (690.9 squad and transfers, +3.8 remaining chips)
+
+   GW5 XI: Suzuki, Thiaw, Gabriel, Van Hecke, Mbeumo, Saka, Haaland, João Pedro, Tavernier, Emersonn, E.Le Fée
+   bench:  Tzolakis, Calafiori, De Cuyper, Yalcouyé

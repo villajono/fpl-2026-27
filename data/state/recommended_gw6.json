@@ -1,6 +1,6 @@
 {
  "gw": 6,
- "written": "2026-10-08T14:27:45+00:00",
+ "written": "2026-10-09T14:12:36+00:00",
  "teams": {
   "4180925": {
    "team": "SANTA CLAUDE (AI team)",
@@ -9,11 +9,11 @@
     "in": "Gonzalo"
    },
    "chip": null,
-   "captain": "Saka",
-   "vice": "B.Fernandes",
+   "captain": "B.Fernandes",
+   "vice": "Saka",
    "bench": [
     "Suzuki",
-    "Palmer",
+    "Thomas",
     "Calvert-Lewin",
     "João Pedro"
    ]
