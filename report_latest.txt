@@ -11,7 +11,7 @@
 players_2026-27.csv refreshed: 667 -> 667 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW6, by Sat 17 Oct, 11:00 UK (140.3h)
+DO THIS  --  GW6, by Sat 17 Oct, 11:00 UK (113.6h)
 ======================================================
 
   ⚠ DO NOT ACT — these are GW6 projections and GW6 has
@@ -86,7 +86,7 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW6 DECISIONS
 Models updated: GW5 data ingested ✓ (5 GWs played →
   Bayesian blended)
-⏰ GW7 DEADLINE: Sat 17 Oct, 11:00 UK  (in 140.3h)
+⏰ GW7 DEADLINE: Sat 17 Oct, 11:00 UK  (in 113.6h)
 ⚠ STALE: these are GW6 projections, but the open
   deadline is GW7. GW6 is played and not yet finalised
   by FPL, so the model cannot see it. Do NOT act on
@@ -149,7 +149,7 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   Used GW4
-               rebuild value: +9 pts / 6 weeks vs
+               rebuild value: +11 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): Yes
@@ -163,7 +163,7 @@ CHIP EVALUATION
                remaining captain week this half: 7.2
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +2.5 pts vs current
+               free-hit team gain: +2.4 pts vs current
                XI
   → No chip this week — hold all available chips.
   Transfer threshold this week: 4.0 pts
@@ -248,8 +248,8 @@ PLANNED TRANSFERS
     exactly, no chip shaping.
   Squad, bank and chips read live from the FPL API
     after GW6 — not hand-entered.
-  GW6: 41 pts, 4 left on the bench. 354 overall, rank
-    3,415,032.
+  GW6: 49 pts, 10 left on the bench. 360 overall, rank
+    4,125,304.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £1.7m in the bank, 1 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -258,7 +258,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW6 DECISIONS
 Models updated: GW5 data ingested ✓ (5 GWs played →
   Bayesian blended)
-⏰ GW7 DEADLINE: Sat 17 Oct, 11:00 UK  (in 140.3h)
+⏰ GW7 DEADLINE: Sat 17 Oct, 11:00 UK  (in 113.6h)
 ⚠ STALE: these are GW6 projections, but the open
   deadline is GW7. GW6 is played and not yet finalised
   by FPL, so the model cannot see it. Do NOT act on
@@ -321,7 +321,7 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   RECOMMENDED ✓
-               rebuild value: +43 pts / 6 weeks vs
+               rebuild value: +45 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): Yes
@@ -335,7 +335,7 @@ CHIP EVALUATION
                remaining captain week this half: 7.6
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +7.8 pts vs current
+               free-hit team gain: +8.2 pts vs current
                XI
   → RECOMMENDATION: play WC this week (confirm via the
     phone form). One chip per week max.
@@ -411,8 +411,8 @@ PLANNED TRANSFERS
 ━━━━━━━━━━━━━━━━━
   Squad, bank and chips read live from the FPL API
     after GW6 — not hand-entered.
-  GW6: 85 pts, 9 left on the bench. 433 overall, rank
-    127,522.
+  GW6: 91 pts, 10 left on the bench. 439 overall, rank
+    198,853.
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £0.6m in the bank, 1 free transfer(s).
 ══════════════════════════════════════════════════════
