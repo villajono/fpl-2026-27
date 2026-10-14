@@ -1,5 +1,6 @@
 ⟳ Refreshing models from live FPL API (detect → ingest → refresh)...
-   ingested GW6: 315 players played
+   all 6 completed GW(s) already ingested — no new
+     data
    Bayesian team ratings updated from 6 live GW(s) of
      xG (20 clubs)
    overrides: 0 active for GW7; players.json refreshed
@@ -10,7 +11,7 @@
 players_2026-27.csv refreshed: 667 -> 667 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW7, by Sat 17 Oct, 11:00 UK (91.2h)
+DO THIS  --  GW7, by Sat 17 Oct, 11:00 UK (69.4h)
 ======================================================
 
   SANTA CLAUDE (AI TEAM)
@@ -78,12 +79,13 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW7 DECISIONS
 Models updated: GW6 data ingested ✓ (6 GWs played →
   Bayesian blended)
-⏰ GW7 DEADLINE: Sat 17 Oct, 11:00 UK  (in 91.2h)
+⏰ GW7 DEADLINE: Sat 17 Oct, 11:00 UK  (in 69.4h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━
-  ⟳ ingested GW6: 315 players played
+  ⟳ all 6 completed GW(s) already ingested — no new
+    data
   ⟳ Bayesian team ratings updated from 6 live GW(s) of
     xG (20 clubs)
   ⟳ overrides: 0 active for GW7; players.json
@@ -227,7 +229,7 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW6 — not hand-entered.
   GW6: 49 pts, 14 left on the bench. 360 overall, rank
-    4,398,392.
+    4,398,380.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £1.7m in the bank, 1 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -236,12 +238,13 @@ PLANNED TRANSFERS
 JON'S TEAM — GW7 DECISIONS
 Models updated: GW6 data ingested ✓ (6 GWs played →
   Bayesian blended)
-⏰ GW7 DEADLINE: Sat 17 Oct, 11:00 UK  (in 91.2h)
+⏰ GW7 DEADLINE: Sat 17 Oct, 11:00 UK  (in 69.4h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━
-  ⟳ ingested GW6: 315 players played
+  ⟳ all 6 completed GW(s) already ingested — no new
+    data
   ⟳ Bayesian team ratings updated from 6 live GW(s) of
     xG (20 clubs)
   ⟳ overrides: 0 active for GW7; players.json
@@ -291,7 +294,7 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   RECOMMENDED ✓
-               rebuild value: +37 pts / 6 weeks vs
+               rebuild value: +39 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): Yes
