@@ -11,7 +11,7 @@
 players_2026-27.csv refreshed: 667 -> 667 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW7, by Sat 17 Oct, 11:00 UK (69.4h)
+DO THIS  --  GW7, by Sat 17 Oct, 11:00 UK (45.6h)
 ======================================================
 
   SANTA CLAUDE (AI TEAM)
@@ -79,7 +79,7 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW7 DECISIONS
 Models updated: GW6 data ingested ✓ (6 GWs played →
   Bayesian blended)
-⏰ GW7 DEADLINE: Sat 17 Oct, 11:00 UK  (in 69.4h)
+⏰ GW7 DEADLINE: Sat 17 Oct, 11:00 UK  (in 45.6h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -238,7 +238,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW7 DECISIONS
 Models updated: GW6 data ingested ✓ (6 GWs played →
   Bayesian blended)
-⏰ GW7 DEADLINE: Sat 17 Oct, 11:00 UK  (in 69.4h)
+⏰ GW7 DEADLINE: Sat 17 Oct, 11:00 UK  (in 45.6h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
