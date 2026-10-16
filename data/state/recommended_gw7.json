@@ -1,16 +1,16 @@
 {
  "gw": 7,
- "written": "2026-10-15T12:38:09+00:00",
+ "written": "2026-10-16T12:17:29+00:00",
  "teams": {
   "4180925": {
    "team": "SANTA CLAUDE (AI team)",
    "transfer": null,
    "chip": null,
-   "captain": "B.Fernandes",
-   "vice": "Tavernier",
+   "captain": "Saka",
+   "vice": "B.Fernandes",
    "bench": [
-    "Tzolakis",
-    "Calafiori",
+    "Suzuki",
+    "Thiaw",
     "Barry",
     "Thomas"
    ]
@@ -23,11 +23,11 @@
    },
    "chip": "WC",
    "captain": "Haaland",
-   "vice": "Mbeumo",
+   "vice": "Groß",
    "bench": [
-    "Verbruggen",
-    "F.Kadıoğlu",
+    "Kinsky",
     "Ajer",
+    "N.Williams",
     "Schade"
    ]
   }
