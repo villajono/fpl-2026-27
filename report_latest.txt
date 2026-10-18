@@ -11,7 +11,7 @@
 players_2026-27.csv refreshed: 667 -> 667 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW7, by Fri 23 Oct, 18:30 UK (150.2h)
+DO THIS  --  GW7, by Fri 23 Oct, 18:30 UK (125.6h)
 ======================================================
 
   ⚠ DO NOT ACT — these are GW7 projections and GW7 has
@@ -34,7 +34,7 @@ DO THIS  --  GW7, by Fri 23 Oct, 18:30 UK (150.2h)
 
   JON'S TEAM
     1. TRANSFER  Schade -> Tavernier (BOU £6.1)
-                 +14.7 over 6 GWs, £0.7m left
+                 +11.2 over 6 GWs, £0.7m left
     2. CHIP      play WC
     3. CAPTAIN   Haaland (MCI v IPS), vice Groß
     4. XI        GK  Verbruggen
@@ -42,8 +42,8 @@ DO THIS  --  GW7, by Fri 23 Oct, 18:30 UK (150.2h)
                  MID  Groß, Palmer, Mbeumo, Rogers
                  FWD  Haaland, Calvert-Lewin, João
                  Pedro
-                 bench: Kinsky, Ajer, N.Williams,
-                 Schade
+                 bench: Kinsky, Ajer, Schade,
+                 N.Williams
 
   --------------------------------------------------
   Everything below is the reasoning behind these four
@@ -83,7 +83,7 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW7 DECISIONS
 Models updated: GW6 data ingested ✓ (6 GWs played →
   Bayesian blended)
-⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 150.2h)
+⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 125.6h)
 ⚠ STALE: these are GW7 projections, but the open
   deadline is GW8. GW7 is played and not yet finalised
   by FPL, so the model cannot see it. Do NOT act on
@@ -236,8 +236,8 @@ PLANNED TRANSFERS
     exactly, no chip shaping.
   Squad, bank and chips read live from the FPL API
     after GW7 — not hand-entered.
-  GW7: 0 pts, 0 left on the bench. 360 overall, rank
-    4,346,738.
+  GW7: 10 pts, 9 left on the bench. 370 overall, rank
+    5,789,173.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £1.7m in the bank, 2 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -246,7 +246,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW7 DECISIONS
 Models updated: GW6 data ingested ✓ (6 GWs played →
   Bayesian blended)
-⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 150.2h)
+⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 125.6h)
 ⚠ STALE: these are GW7 projections, but the open
   deadline is GW8. GW7 is played and not yet finalised
   by FPL, so the model cannot see it. Do NOT act on
@@ -283,7 +283,7 @@ MODEL UPDATES THIS WEEK
   from the form, then re-run the workflow for a
     revised call.
   player          team   P(60+)  source
-  Schade          BRE      0.43  model
+  Schade          BRE      0.57  model
   João Pedro      CHE      0.80  model
   Ajer            BRE      0.94  model
   Calafiori       ARS      0.94  model
@@ -314,8 +314,8 @@ CHIP EVALUATION
                free transfers banked (roll through
                WC): 2
   Bench Boost: Used GW1
-               bench EV this GW: 11.2   |   peak
-               remaining this half: 12.6
+               bench EV this GW: 11.9   |   peak
+               remaining this half: 13.4
   Triple Cap:  Used GW3
                captain EV this GW: 8.8   |   best
                remaining captain week this half: 8.8
@@ -332,12 +332,12 @@ TRANSFER DECISION
 ━━━━━━━━━━━━━━━━━
   Best target: OUT Schade (MID BRE) → IN Tavernier
     (BOU £6.1)
-    P(60+) assumed: Schade 0.43 → Tavernier 0.96 — if
+    P(60+) assumed: Schade 0.57 → Tavernier 0.96 — if
       you know better, override in the form and re-run
       for a revised call
     fixture swing · effective-out adjusted for bench
       cover · 6-GW hold
-    gain: GW+1 +2.9 · GW+1&2 +4.9 · full 6-GW +14.7
+    gain: GW+1 +2.2 · GW+1&2 +3.5 · full 6-GW +11.2
     → TRANSFER ✓ (free)    (budget after £0.7m ITB, 2
       banked)
 
@@ -386,7 +386,7 @@ STARTING XI — 3-4-3
   DEF: Calafiori, Konsa, F.Kadıoğlu
   MID: Groß, Palmer, Mbeumo, Rogers
   FWD: Haaland, Calvert-Lewin, João Pedro
-  Bench: Kinsky, Ajer, N.Williams, Schade
+  Bench: Kinsky, Ajer, Schade, N.Williams
 
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -399,8 +399,8 @@ PLANNED TRANSFERS
 ━━━━━━━━━━━━━━━━━
   Squad, bank and chips read live from the FPL API
     after GW7 — not hand-entered.
-  GW7: 0 pts, 0 left on the bench. 439 overall, rank
-    223,482.
+  GW7: 32 pts, 3 left on the bench. 471 overall, rank
+    283,320.
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £0.6m in the bank, 2 free transfer(s).
 ══════════════════════════════════════════════════════
