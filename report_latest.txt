@@ -11,7 +11,7 @@
 players_2026-27.csv refreshed: 668 -> 668 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW7, by Fri 23 Oct, 18:30 UK (99.2h)
+DO THIS  --  GW7, by Fri 23 Oct, 18:30 UK (77.0h)
 ======================================================
 
   ⚠ DO NOT ACT — these are GW7 projections and GW7 has
@@ -85,7 +85,7 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW7 DECISIONS
 Models updated: GW6 data ingested ✓ (6 GWs played →
   Bayesian blended)
-⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 99.2h)
+⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 77.0h)
 ⚠ STALE: these are GW7 projections, but the open
   deadline is GW8. GW7 is played and not yet finalised
   by FPL, so the model cannot see it. Do NOT act on
@@ -239,8 +239,8 @@ PLANNED TRANSFERS
     exactly, no chip shaping.
   Squad, bank and chips read live from the FPL API
     after GW7 — not hand-entered.
-  GW7: 45 pts, 18 left on the bench. 405 overall, rank
-    5,170,655.
+  GW7: 45 pts, 21 left on the bench. 405 overall, rank
+    5,404,197.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £1.7m in the bank, 2 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -249,7 +249,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW7 DECISIONS
 Models updated: GW6 data ingested ✓ (6 GWs played →
   Bayesian blended)
-⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 99.2h)
+⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 77.0h)
 ⚠ STALE: these are GW7 projections, but the open
   deadline is GW8. GW7 is played and not yet finalised
   by FPL, so the model cannot see it. Do NOT act on
@@ -402,8 +402,8 @@ PLANNED TRANSFERS
 ━━━━━━━━━━━━━━━━━
   Squad, bank and chips read live from the FPL API
     after GW7 — not hand-entered.
-  GW7: 75 pts, 12 left on the bench. 514 overall, rank
-    153,867.
+  GW7: 77 pts, 12 left on the bench. 516 overall, rank
+    156,348.
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £0.6m in the bank, 2 free transfer(s).
 ══════════════════════════════════════════════════════
