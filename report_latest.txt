@@ -1,7 +1,6 @@
 ⟳ Refreshing models from live FPL API (detect → ingest → refresh)...
-   all 6 completed GW(s) already ingested — no new
-     data
-   Bayesian team ratings updated from 6 live GW(s) of
+   ingested GW7: 305 players played
+   Bayesian team ratings updated from 7 live GW(s) of
      xG (20 clubs)
    overrides: 0 active for GW8; players.json refreshed
      for the form
@@ -11,40 +10,33 @@
 players_2026-27.csv refreshed: 668 -> 668 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW7, by Fri 23 Oct, 18:30 UK (77.0h)
+DO THIS  --  GW8, by Fri 23 Oct, 18:30 UK (52.8h)
 ======================================================
 
-  ⚠ DO NOT ACT — these are GW7 projections and GW7 has
-    been played.
-    FPL has not finalised it, so the model cannot see
-      it yet. The next run after their data check will
-      project GW8 properly.
-
-
   SANTA CLAUDE (AI TEAM)
-    1. NO MOVE   bank it. Best available was Anderson
-      -> Mbeumo at +3.5
-    2. CAPTAIN   B.Fernandes (MUN v LEE), vice
-      Tavernier
+    1. TRANSFER  Anderson -> Mbeumo (MUN £7.8)
+                 +12.6 over 6 GWs, £0.2m left
+    2. CAPTAIN   B.Fernandes (MUN v BOU), vice Gabriel
     3. XI        GK  Suzuki
-                 DEF  Gabriel, Thiaw, De Cuyper
-                 MID  B.Fernandes, Tavernier, Saka,
-                 Anderson, Palmer
-                 FWD  Gonzalo, Calvert-Lewin
-                 bench: Tzolakis, Calafiori, Barry,
-                 Thomas
+                 DEF  Gabriel, Calafiori, Thomas,
+                 Thiaw
+                 MID  B.Fernandes, Saka, Tavernier,
+                 Palmer
+                 FWD  Calvert-Lewin, Gonzalo
+                 bench: Tzolakis, De Cuyper, Barry,
+                 Anderson
 
   JON'S TEAM
     1. TRANSFER  Schade -> Tavernier (BOU £6.2)
-                 +11.8 over 6 GWs, £0.6m left
+                 +16.3 over 6 GWs, £0.6m left
     2. CHIP      play WC
-    3. CAPTAIN   Haaland (MCI v IPS), vice Mbeumo
-    4. XI        GK  Kinsky
+    3. CAPTAIN   Haaland (MCI v AVL), vice Mbeumo
+    4. XI        GK  Verbruggen
                  DEF  Calafiori, Konsa, N.Williams
-                 MID  Mbeumo, Groß, Palmer, Rogers
+                 MID  Mbeumo, Palmer, Rogers, Groß
                  FWD  Haaland, Calvert-Lewin, João
                  Pedro
-                 bench: Verbruggen, F.Kadıoğlu, Ajer,
+                 bench: Kinsky, Ajer, F.Kadıoğlu,
                  Schade
 
   --------------------------------------------------
@@ -82,31 +74,25 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 
 
 ══════════════════════════════════════════════════════
-SANTA CLAUDE (AI team) — GW7 DECISIONS
-Models updated: GW6 data ingested ✓ (6 GWs played →
+SANTA CLAUDE (AI team) — GW8 DECISIONS
+Models updated: GW7 data ingested ✓ (7 GWs played →
   Bayesian blended)
-⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 77.0h)
-⚠ STALE: these are GW7 projections, but the open
-  deadline is GW8. GW7 is played and not yet finalised
-  by FPL, so the model cannot see it. Do NOT act on
-  the transfer call below — the next run after FPL's
-  data check will project GW8 properly.
+⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 52.8h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━
-  ⟳ all 6 completed GW(s) already ingested — no new
-    data
-  ⟳ Bayesian team ratings updated from 6 live GW(s) of
+  ⟳ ingested GW7: 305 players played
+  ⟳ Bayesian team ratings updated from 7 live GW(s) of
     xG (20 clubs)
   ⟳ overrides: 0 active for GW8; players.json
     refreshed for the form
-  CHE att 1.50→1.31 def 0.82→0.93  [K=12, prior
-    67%/data 33%]
-  MCI att 1.30→1.30 def 0.86→0.87  [K=22, prior
-    79%/data 21%]
-  LIV att 1.29→1.20 def 0.79→0.80  [K=12, prior
-    67%/data 33%]
+  MCI att 1.30→1.34 def 0.86→0.88  [K=22, prior
+    76%/data 24%]
+  CHE att 1.50→1.30 def 0.82→0.90  [K=12, prior
+    63%/data 37%]
+  LIV att 1.29→1.20 def 0.79→0.79  [K=12, prior
+    63%/data 37%]
   (team ratings move once GW1 xG lands; divergence>30%
     after 3 GWs → flag)
 
@@ -122,12 +108,12 @@ MODEL UPDATES THIS WEEK
   from the form, then re-run the workflow for a
     revised call.
   player          team   P(60+)  source
+  Anderson        MCI      0.60  model
   Barry           EVE      0.94  model
   Calafiori       ARS      0.94  model
   De Cuyper       BHA      0.94  model
   Gonzalo         FUL      0.94  model
   Saka            ARS      0.94  model
-  Thomas          COV      0.94  model
   → Mbeumo        MUN      0.96  model  (transfer
     target)
 
@@ -136,31 +122,31 @@ FIXTURE INPUTS — DATA SOURCES
   Bookmaker odds ON — market average
     (football-data.co.uk), 1X2 + O/U, overround
     removed ✓  (GW+4+ always xG model)
-  GW+1 (GW7): xG model (no odds published)
-  GW+2 (GW8): xG model (no odds published)
-  GW+3 (GW9): xG model (no odds published)
-  GW+4 (GW10): xG model (no odds published)
-  GW+5 (GW11): xG model (no odds published)
-  GW+6 (GW12): xG model (no odds published)
+  GW+1 (GW8): xG model (no odds published)
+  GW+2 (GW9): xG model (no odds published)
+  GW+3 (GW10): xG model (no odds published)
+  GW+4 (GW11): xG model (no odds published)
+  GW+5 (GW12): xG model (no odds published)
+  GW+6 (GW13): xG model (no odds published)
 
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   Used GW4
-               rebuild value: +8 pts / 6 weeks vs
+               rebuild value: +17 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): Yes
                free transfers banked (roll through
                WC): 2
   Bench Boost: Monitoring
-               bench EV this GW: 15.9   |   peak
-               remaining this half: 18.2
+               bench EV this GW: 12.5   |   peak
+               remaining this half: 15.4
   Triple Cap:  Used GW3
-               captain EV this GW: 5.6   |   best
-               remaining captain week this half: 6.9
+               captain EV this GW: 5.9   |   best
+               remaining captain week this half: 6.8
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +4.0 pts vs current
+               free-hit team gain: +3.5 pts vs current
                XI
   → No chip this week — hold all available chips.
   Transfer threshold this week: 4.0 pts
@@ -169,14 +155,14 @@ TRANSFER DECISION
 ━━━━━━━━━━━━━━━━━
   Best target: OUT Anderson (MID MCI) → IN Mbeumo (MUN
     £7.8)
-    P(60+) assumed: Anderson 0.97 → Mbeumo 0.96 — if
+    P(60+) assumed: Anderson 0.60 → Mbeumo 0.96 — if
       you know better, override in the form and re-run
       for a revised call
     quality upgrade · effective-out adjusted for bench
       cover · 6-GW hold
-    gain: GW+1 +0.1 · GW+1&2 +1.2 · full 6-GW +3.5
-    → BANK (gain +3.5 below the 4.0 threshold)
-      (budget after £0.2m ITB, 2 banked)
+    gain: GW+1 +2.8 · GW+1&2 +4.5 · full 6-GW +12.6
+    → TRANSFER ✓ (free)    (budget after £0.2m ITB, 2
+      banked)
 
 STAGE 1 — RE-CALIBRATION (what moved in the inputs)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -207,30 +193,30 @@ FORECAST ACCURACY (locked predictions vs what
 
 WATCHLIST (monitor, not acting)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  • De Cuyper: DEF with MID-level xA (0.24) —
+  • De Cuyper: DEF with MID-level xA (0.23) —
     attacking-defender value
-  • Anderson: DC90 13.3, P(DC bonus) 63% — DC-point
+  • Anderson: DC90 13.5, P(DC bonus) 62% — DC-point
     engine, hold
 
 CAPTAIN — highest-EV starter (doubles)
 ━━━━━━━
-  Captain: B.Fernandes — EV 5.6 (×2 = 11.1), MUN vs
-    LEE
-  Vice:    Tavernier — EV 5.4
+  Captain: B.Fernandes — EV 5.9 (×2 = 11.8), MUN vs
+    BOU
+  Vice:    Gabriel — EV 5.9
 
-STARTING XI — 3-5-2
+STARTING XI — 4-4-2
 ━━━━━━━━━━━━━━━━━━━━━━━━
   GK: Suzuki
-  DEF: Gabriel, Thiaw, De Cuyper
-  MID: B.Fernandes, Tavernier, Saka, Anderson, Palmer
-  FWD: Gonzalo, Calvert-Lewin
-  Bench: Tzolakis, Calafiori, Barry, Thomas
+  DEF: Gabriel, Calafiori, Thomas, Thiaw
+  MID: B.Fernandes, Saka, Tavernier, Palmer
+  FWD: Calvert-Lewin, Gonzalo
+  Bench: Tzolakis, De Cuyper, Barry, Anderson
 
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  GW7  GW8  GW9  GW10  GW11  GW12
-    58    60    56    64    57    58   (min 56)
-  GW7 = XI 53 + captain bonus 6 + auto-sub 0.1
+  GW8  GW9  GW10  GW11  GW12  GW13
+    58    55    64    56    57    56   (min 55)
+  GW8 = XI 52 + captain bonus 6 + auto-sub 0.1
     (auto-sub small by design)
 
 PLANNED TRANSFERS
@@ -240,37 +226,31 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW7 — not hand-entered.
   GW7: 45 pts, 21 left on the bench. 405 overall, rank
-    5,404,197.
+    5,404,166.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £1.7m in the bank, 2 free transfer(s).
 ══════════════════════════════════════════════════════
 
 ══════════════════════════════════════════════════════
-JON'S TEAM — GW7 DECISIONS
-Models updated: GW6 data ingested ✓ (6 GWs played →
+JON'S TEAM — GW8 DECISIONS
+Models updated: GW7 data ingested ✓ (7 GWs played →
   Bayesian blended)
-⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 77.0h)
-⚠ STALE: these are GW7 projections, but the open
-  deadline is GW8. GW7 is played and not yet finalised
-  by FPL, so the model cannot see it. Do NOT act on
-  the transfer call below — the next run after FPL's
-  data check will project GW8 properly.
+⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 52.8h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━
-  ⟳ all 6 completed GW(s) already ingested — no new
-    data
-  ⟳ Bayesian team ratings updated from 6 live GW(s) of
+  ⟳ ingested GW7: 305 players played
+  ⟳ Bayesian team ratings updated from 7 live GW(s) of
     xG (20 clubs)
   ⟳ overrides: 0 active for GW8; players.json
     refreshed for the form
-  CHE att 1.50→1.31 def 0.82→0.93  [K=12, prior
-    67%/data 33%]
-  MCI att 1.30→1.30 def 0.86→0.87  [K=22, prior
-    79%/data 21%]
-  LIV att 1.29→1.20 def 0.79→0.80  [K=12, prior
-    67%/data 33%]
+  MCI att 1.30→1.34 def 0.86→0.88  [K=22, prior
+    76%/data 24%]
+  CHE att 1.50→1.30 def 0.82→0.90  [K=12, prior
+    63%/data 37%]
+  LIV att 1.29→1.20 def 0.79→0.79  [K=12, prior
+    63%/data 37%]
   (team ratings move once GW1 xG lands; divergence>30%
     after 3 GWs → flag)
 
@@ -286,12 +266,12 @@ MODEL UPDATES THIS WEEK
   from the form, then re-run the workflow for a
     revised call.
   player          team   P(60+)  source
-  Schade          BRE      0.57  model
-  Haaland         MCI      0.72  model
-  João Pedro      CHE      0.80  model
+  Schade          BRE      0.42  model
+  João Pedro      CHE      0.89  model
   Ajer            BRE      0.94  model
   Calafiori       ARS      0.94  model
   Calvert-Lewin   LEE      0.95  model
+  Palmer          CHE      0.95  model
   → Tavernier     BOU      0.96  model  (transfer
     target)
 
@@ -300,31 +280,31 @@ FIXTURE INPUTS — DATA SOURCES
   Bookmaker odds ON — market average
     (football-data.co.uk), 1X2 + O/U, overround
     removed ✓  (GW+4+ always xG model)
-  GW+1 (GW7): xG model (no odds published)
-  GW+2 (GW8): xG model (no odds published)
-  GW+3 (GW9): xG model (no odds published)
-  GW+4 (GW10): xG model (no odds published)
-  GW+5 (GW11): xG model (no odds published)
-  GW+6 (GW12): xG model (no odds published)
+  GW+1 (GW8): xG model (no odds published)
+  GW+2 (GW9): xG model (no odds published)
+  GW+3 (GW10): xG model (no odds published)
+  GW+4 (GW11): xG model (no odds published)
+  GW+5 (GW12): xG model (no odds published)
+  GW+6 (GW13): xG model (no odds published)
 
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   RECOMMENDED ✓
-               rebuild value: +44 pts / 6 weeks vs
+               rebuild value: +35 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): Yes
                free transfers banked (roll through
                WC): 2
   Bench Boost: Used GW1
-               bench EV this GW: 11.9   |   peak
-               remaining this half: 13.9
+               bench EV this GW: 10.9   |   peak
+               remaining this half: 13.0
   Triple Cap:  Used GW3
-               captain EV this GW: 5.6   |   best
-               remaining captain week this half: 6.3
+               captain EV this GW: 6.1   |   best
+               remaining captain week this half: 7.4
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +9.1 pts vs current
+               free-hit team gain: +6.3 pts vs current
                XI
   → RECOMMENDATION: play WC this week (confirm via the
     phone form). One chip per week max.
@@ -335,12 +315,12 @@ TRANSFER DECISION
 ━━━━━━━━━━━━━━━━━
   Best target: OUT Schade (MID BRE) → IN Tavernier
     (BOU £6.2)
-    P(60+) assumed: Schade 0.57 → Tavernier 0.96 — if
+    P(60+) assumed: Schade 0.42 → Tavernier 0.96 — if
       you know better, override in the form and re-run
       for a revised call
     fixture swing · effective-out adjusted for bench
       cover · 6-GW hold
-    gain: GW+1 +2.9 · GW+1&2 +4.1 · full 6-GW +11.8
+    gain: GW+1 +2.4 · GW+1&2 +5.4 · full 6-GW +16.3
     → TRANSFER ✓ (free)    (budget after £0.6m ITB, 2
       banked)
 
@@ -373,29 +353,27 @@ FORECAST ACCURACY (locked predictions vs what
 
 WATCHLIST (monitor, not acting)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  • N.Williams: DEF with MID-level xA (0.13) —
-    attacking-defender value
-  • Ajer: DC90 9.7, P(DC bonus) 43% — DC-point engine,
+  • Ajer: DC90 9.9, P(DC bonus) 45% — DC-point engine,
     hold
 
 CAPTAIN — highest-EV starter (doubles)
 ━━━━━━━
-  Captain: Haaland — EV 5.6 (×2 = 11.2), MCI vs IPS
-  Vice:    Mbeumo — EV 4.9
+  Captain: Haaland — EV 6.1 (×2 = 12.3), MCI vs AVL
+  Vice:    Mbeumo — EV 5.5
 
 STARTING XI — 3-4-3
 ━━━━━━━━━━━━━━━━━━━━━━━━
-  GK: Kinsky
+  GK: Verbruggen
   DEF: Calafiori, Konsa, N.Williams
-  MID: Mbeumo, Groß, Palmer, Rogers
+  MID: Mbeumo, Palmer, Rogers, Groß
   FWD: Haaland, Calvert-Lewin, João Pedro
-  Bench: Verbruggen, F.Kadıoğlu, Ajer, Schade
+  Bench: Kinsky, Ajer, F.Kadıoğlu, Schade
 
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  GW7  GW8  GW9  GW10  GW11  GW12
-    54    55    50    57    54    52   (min 50)
-  GW7 = XI 47 + captain bonus 6 + auto-sub 1.2
+  GW8  GW9  GW10  GW11  GW12  GW13
+    56    52    58    56    53    56   (min 52)
+  GW8 = XI 50 + captain bonus 6 + auto-sub 0.3
     (auto-sub small by design)
 
 PLANNED TRANSFERS
@@ -403,7 +381,7 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW7 — not hand-entered.
   GW7: 77 pts, 12 left on the bench. 516 overall, rank
-    156,348.
+    156,345.
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £0.6m in the bank, 2 free transfer(s).
 ══════════════════════════════════════════════════════
