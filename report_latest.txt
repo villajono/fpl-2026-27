@@ -1,5 +1,6 @@
 ⟳ Refreshing models from live FPL API (detect → ingest → refresh)...
-   ingested GW7: 305 players played
+   all 7 completed GW(s) already ingested — no new
+     data
    Bayesian team ratings updated from 7 live GW(s) of
      xG (20 clubs)
    overrides: 0 active for GW8; players.json refreshed
@@ -10,7 +11,7 @@
 players_2026-27.csv refreshed: 668 -> 668 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW8, by Fri 23 Oct, 18:30 UK (52.8h)
+DO THIS  --  GW8, by Fri 23 Oct, 18:30 UK (28.8h)
 ======================================================
 
   SANTA CLAUDE (AI TEAM)
@@ -19,11 +20,10 @@ DO THIS  --  GW8, by Fri 23 Oct, 18:30 UK (52.8h)
     2. CAPTAIN   B.Fernandes (MUN v BOU), vice Gabriel
     3. XI        GK  Suzuki
                  DEF  Gabriel, Calafiori, Thomas,
-                 Thiaw
-                 MID  B.Fernandes, Saka, Tavernier,
-                 Palmer
+                 Thiaw, De Cuyper
+                 MID  B.Fernandes, Tavernier, Palmer
                  FWD  Calvert-Lewin, Gonzalo
-                 bench: Tzolakis, De Cuyper, Barry,
+                 bench: Tzolakis, Barry, Saka,
                  Anderson
 
   JON'S TEAM
@@ -77,12 +77,14 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW8 DECISIONS
 Models updated: GW7 data ingested ✓ (7 GWs played →
   Bayesian blended)
-⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 52.8h)
+⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 28.8h)   ⚠
+  ACT BEFORE DEADLINE
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━
-  ⟳ ingested GW7: 305 players played
+  ⟳ all 7 completed GW(s) already ingested — no new
+    data
   ⟳ Bayesian team ratings updated from 7 live GW(s) of
     xG (20 clubs)
   ⟳ overrides: 0 active for GW8; players.json
@@ -108,12 +110,12 @@ MODEL UPDATES THIS WEEK
   from the form, then re-run the workflow for a
     revised call.
   player          team   P(60+)  source
+  Saka            ARS      0.47  model
   Anderson        MCI      0.60  model
   Barry           EVE      0.94  model
   Calafiori       ARS      0.94  model
   De Cuyper       BHA      0.94  model
   Gonzalo         FUL      0.94  model
-  Saka            ARS      0.94  model
   → Mbeumo        MUN      0.96  model  (transfer
     target)
 
@@ -132,21 +134,21 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   Used GW4
-               rebuild value: +17 pts / 6 weeks vs
+               rebuild value: +27 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): Yes
                free transfers banked (roll through
                WC): 2
   Bench Boost: Monitoring
-               bench EV this GW: 12.5   |   peak
-               remaining this half: 15.4
+               bench EV this GW: 12.2   |   peak
+               remaining this half: 14.0
   Triple Cap:  Used GW3
                captain EV this GW: 5.9   |   best
-               remaining captain week this half: 6.8
+               remaining captain week this half: 6.7
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +3.5 pts vs current
+               free-hit team gain: +6.7 pts vs current
                XI
   → No chip this week — hold all available chips.
   Transfer threshold this week: 4.0 pts
@@ -204,19 +206,19 @@ CAPTAIN — highest-EV starter (doubles)
     BOU
   Vice:    Gabriel — EV 5.9
 
-STARTING XI — 4-4-2
+STARTING XI — 5-3-2
 ━━━━━━━━━━━━━━━━━━━━━━━━
   GK: Suzuki
-  DEF: Gabriel, Calafiori, Thomas, Thiaw
-  MID: B.Fernandes, Saka, Tavernier, Palmer
+  DEF: Gabriel, Calafiori, Thomas, Thiaw, De Cuyper
+  MID: B.Fernandes, Tavernier, Palmer
   FWD: Calvert-Lewin, Gonzalo
-  Bench: Tzolakis, De Cuyper, Barry, Anderson
+  Bench: Tzolakis, Barry, Saka, Anderson
 
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
   GW8  GW9  GW10  GW11  GW12  GW13
-    58    55    64    56    57    56   (min 55)
-  GW8 = XI 52 + captain bonus 6 + auto-sub 0.1
+    56    54    61    54    56    54   (min 54)
+  GW8 = XI 50 + captain bonus 6 + auto-sub 0.1
     (auto-sub small by design)
 
 PLANNED TRANSFERS
@@ -226,7 +228,7 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW7 — not hand-entered.
   GW7: 45 pts, 21 left on the bench. 405 overall, rank
-    5,404,166.
+    5,404,155.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £1.7m in the bank, 2 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -235,12 +237,14 @@ PLANNED TRANSFERS
 JON'S TEAM — GW8 DECISIONS
 Models updated: GW7 data ingested ✓ (7 GWs played →
   Bayesian blended)
-⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 52.8h)
+⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 28.8h)   ⚠
+  ACT BEFORE DEADLINE
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━
-  ⟳ ingested GW7: 305 players played
+  ⟳ all 7 completed GW(s) already ingested — no new
+    data
   ⟳ Bayesian team ratings updated from 7 live GW(s) of
     xG (20 clubs)
   ⟳ overrides: 0 active for GW8; players.json
@@ -290,7 +294,7 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   RECOMMENDED ✓
-               rebuild value: +35 pts / 6 weeks vs
+               rebuild value: +34 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): Yes
@@ -304,7 +308,7 @@ CHIP EVALUATION
                remaining captain week this half: 7.4
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +6.3 pts vs current
+               free-hit team gain: +7.0 pts vs current
                XI
   → RECOMMENDATION: play WC this week (confirm via the
     phone form). One chip per week max.
@@ -385,3 +389,62 @@ PLANNED TRANSFERS
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £0.6m in the bank, 2 free transfer(s).
 ══════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════
+CHIP AND TRANSFER PLAN — searched, not guessed
+══════════════════════════════════════════════════════
+
+players_2026-27.csv refreshed: 668 -> 668 players
+  no squad changes since the last refresh
+  forecast: _forecast_long_gw5_17.json
+
+  ENTRY 4180925 - planning GW5-17
+  budget 101.0 - 1 free transfer(s) - chips available: bboost, freehit
+
+  searching wildcard weeks:
+    none      687.4
+  -> best wildcard: none (687.4)
+
+  bboost    best weeks: GW5 +15.2, GW7 +14.0, GW6 +13.8
+  freehit   best weeks: GW5 +6.4, GW14 +3.3, GW13 +2.5
+
+  ==================== PLAN ====================
+   BBOOST     GW5   worth +15.2
+   FREEHIT    GW14  worth +3.3
+   projected GW5-17: 705.9  (687.4 squad and transfers, +18.5 remaining chips)
+
+   GW5 XI: Suzuki, Thiaw, Gabriel, Calafiori, B.Fernandes, Saka, Calvert-Lewin, Anderson, Palmer, João Pedro, Tavernier
+   bench:  Tzolakis, De Cuyper, Emersonn, Thomas
+
+players_2026-27.csv refreshed: 668 -> 668 players
+  no squad changes since the last refresh
+  forecast: _forecast_long_gw5_17.json
+
+  ENTRY 1169767 - planning GW5-17
+  budget 101.3 - 1 free transfer(s) - chips available: freehit, wildcard
+
+  searching wildcard weeks:
+    none      662.5
+    GW5       688.9
+    GW6       685.6
+    GW7       680.2
+    GW8       677.7
+    GW9       675.8
+    GW10      671.4
+    GW11      670.3
+    GW12      671.1
+    GW13      666.7
+    GW14      665.8
+    GW15      663.7
+    GW16      663.4
+  -> best wildcard: GW5 (688.9)
+
+  freehit   best weeks: GW5 +5.4, GW14 +3.8, GW10 +2.3
+
+  ==================== PLAN ====================
+   WILDCARD   GW5
+   FREEHIT    GW14  worth +3.8
+   projected GW5-17: 692.7  (688.9 squad and transfers, +3.8 remaining chips)
+
+   GW5 XI: Suzuki, Guéhi, Gabriel, Calafiori, Mbeumo, Saka, Haaland, João Pedro, Tavernier, Emersonn, E.Le Fée
+   bench:  Tzolakis, Davis, De Cuyper, Gomez
