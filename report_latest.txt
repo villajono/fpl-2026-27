@@ -11,12 +11,12 @@
 players_2026-27.csv refreshed: 668 -> 668 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW8, by Fri 23 Oct, 18:30 UK (28.8h)
+DO THIS  --  GW8, by Fri 23 Oct, 18:30 UK (5.1h)
 ======================================================
 
   SANTA CLAUDE (AI TEAM)
-    1. TRANSFER  Anderson -> Mbeumo (MUN £7.8)
-                 +12.6 over 6 GWs, £0.2m left
+    1. TRANSFER  Anderson -> Mbeumo (MUN £7.9)
+                 +12.6 over 6 GWs, £0.1m left
     2. CAPTAIN   B.Fernandes (MUN v BOU), vice Gabriel
     3. XI        GK  Suzuki
                  DEF  Gabriel, Calafiori, Thomas,
@@ -77,8 +77,7 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW8 DECISIONS
 Models updated: GW7 data ingested ✓ (7 GWs played →
   Bayesian blended)
-⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 28.8h)   ⚠
-  ACT BEFORE DEADLINE
+⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 5.1h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -156,14 +155,14 @@ CHIP EVALUATION
 TRANSFER DECISION
 ━━━━━━━━━━━━━━━━━
   Best target: OUT Anderson (MID MCI) → IN Mbeumo (MUN
-    £7.8)
+    £7.9)
     P(60+) assumed: Anderson 0.60 → Mbeumo 0.96 — if
       you know better, override in the form and re-run
       for a revised call
     quality upgrade · effective-out adjusted for bench
       cover · 6-GW hold
     gain: GW+1 +2.8 · GW+1&2 +4.5 · full 6-GW +12.6
-    → TRANSFER ✓ (free)    (budget after £0.2m ITB, 2
+    → TRANSFER ✓ (free)    (budget after £0.1m ITB, 2
       banked)
 
 STAGE 1 — RE-CALIBRATION (what moved in the inputs)
@@ -228,7 +227,7 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW7 — not hand-entered.
   GW7: 45 pts, 21 left on the bench. 405 overall, rank
-    5,404,155.
+    5,404,094.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £1.7m in the bank, 2 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -237,8 +236,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW8 DECISIONS
 Models updated: GW7 data ingested ✓ (7 GWs played →
   Bayesian blended)
-⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 28.8h)   ⚠
-  ACT BEFORE DEADLINE
+⏰ GW8 DEADLINE: Fri 23 Oct, 18:30 UK  (in 5.1h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -385,66 +383,7 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW7 — not hand-entered.
   GW7: 77 pts, 12 left on the bench. 516 overall, rank
-    156,345.
+    156,339.
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £0.6m in the bank, 2 free transfer(s).
 ══════════════════════════════════════════════════════
-
-══════════════════════════════════════════════════════
-CHIP AND TRANSFER PLAN — searched, not guessed
-══════════════════════════════════════════════════════
-
-players_2026-27.csv refreshed: 668 -> 668 players
-  no squad changes since the last refresh
-  forecast: _forecast_long_gw5_17.json
-
-  ENTRY 4180925 - planning GW5-17
-  budget 101.0 - 1 free transfer(s) - chips available: bboost, freehit
-
-  searching wildcard weeks:
-    none      687.4
-  -> best wildcard: none (687.4)
-
-  bboost    best weeks: GW5 +15.2, GW7 +14.0, GW6 +13.8
-  freehit   best weeks: GW5 +6.4, GW14 +3.3, GW13 +2.5
-
-  ==================== PLAN ====================
-   BBOOST     GW5   worth +15.2
-   FREEHIT    GW14  worth +3.3
-   projected GW5-17: 705.9  (687.4 squad and transfers, +18.5 remaining chips)
-
-   GW5 XI: Suzuki, Thiaw, Gabriel, Calafiori, B.Fernandes, Saka, Calvert-Lewin, Anderson, Palmer, João Pedro, Tavernier
-   bench:  Tzolakis, De Cuyper, Emersonn, Thomas
-
-players_2026-27.csv refreshed: 668 -> 668 players
-  no squad changes since the last refresh
-  forecast: _forecast_long_gw5_17.json
-
-  ENTRY 1169767 - planning GW5-17
-  budget 101.3 - 1 free transfer(s) - chips available: freehit, wildcard
-
-  searching wildcard weeks:
-    none      662.5
-    GW5       688.9
-    GW6       685.6
-    GW7       680.2
-    GW8       677.7
-    GW9       675.8
-    GW10      671.4
-    GW11      670.3
-    GW12      671.1
-    GW13      666.7
-    GW14      665.8
-    GW15      663.7
-    GW16      663.4
-  -> best wildcard: GW5 (688.9)
-
-  freehit   best weeks: GW5 +5.4, GW14 +3.8, GW10 +2.3
-
-  ==================== PLAN ====================
-   WILDCARD   GW5
-   FREEHIT    GW14  worth +3.8
-   projected GW5-17: 692.7  (688.9 squad and transfers, +3.8 remaining chips)
-
-   GW5 XI: Suzuki, Guéhi, Gabriel, Calafiori, Mbeumo, Saka, Haaland, João Pedro, Tavernier, Emersonn, E.Le Fée
-   bench:  Tzolakis, Davis, De Cuyper, Gomez
