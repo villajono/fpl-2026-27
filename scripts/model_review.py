@@ -24,9 +24,13 @@ the guessed constants these checks exist to catch.
 """
 from __future__ import annotations
 
+import pathlib
+
 import pandas as pd
 
-RAW = "data/raw/merged_gw_2025-26.csv"
+# Anchored to the project root — the cloud job runs from scripts/, where a relative path failed and
+# the elite compression check printed "unavailable" every week instead of a result.
+RAW = pathlib.Path(__file__).resolve().parent.parent / "data" / "raw" / "merged_gw_2025-26.csv"
 
 # Elite compression check. Shrinking a thin sample towards the position average is right; doing it
 # to a player with 2,900 minutes is not, and it costs most exactly where it matters — the premium

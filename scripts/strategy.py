@@ -83,14 +83,30 @@ def live(entry, gw=None):
     picks = json.load(urllib.request.urlopen(API + "/entry/%d/event/%d/picks/" % (entry, gw)))
     hist = json.load(urllib.request.urlopen(API + "/entry/%d/history/" % entry))
     used = {c["name"] for c in hist.get("chips", [])}
+    # SELLING price, not current price. FPL keeps half of any rise (rounded down to £0.1m), so
+    # valuing the squad at now_cost overstated the budget whenever a held player had gone up -
+    # enough to make a "£0.1m left" wildcard squad unaffordable in the app. Purchase price is the
+    # cost of the latest transfer that brought him in, else his price at the first deadline.
+    bought = {}
+    for t in sorted(json.load(urllib.request.urlopen(API + "/entry/%d/transfers/" % entry)),
+                    key=lambda t: t["time"]):
+        bought[t["element_in"]] = t["element_in_cost"]
     keys, meta, spend = [], {}, 0.0
     for p in picks["picks"]:
         e = el[p["element"]]
         k = e["web_name"] + "|" + short[e["team"]]
         keys.append(k)
-        spend += e["now_cost"] / 10.0
-        meta[k] = dict(pos=POS[e["element_type"]], team=short[e["team"]],
-                       price=e["now_cost"] / 10.0)
+        now = e["now_cost"]
+        buy = bought.get(p["element"])
+        if buy is None:
+            try:
+                h = json.load(urllib.request.urlopen(API + "/element-summary/%d/" % p["element"]))
+                buy = h["history"][0]["value"] if h.get("history") else now
+            except Exception:                         # unknown: assume no profit, the safe side
+                buy = now
+        sell = now if now <= buy else buy + (now - buy) // 2
+        spend += sell / 10.0
+        meta[k] = dict(pos=POS[e["element_type"]], team=short[e["team"]], price=sell / 10.0)
     bank = picks["entry_history"]["bank"] / 10.0
     # The free-transfer rule now lives in fetch_squads.free_transfers, so weekly.py and this file
     # cannot drift apart on it. Same rule, one copy.
@@ -156,10 +172,17 @@ def free_hit_gain(P, squads, w, budget, pool=55):
 def main():
     entry = _arg("--entry", 4180925, int)
     fpath = _arg("--forecast", None)
-    if fpath is None:                                  # newest long forecast on disk
+    if fpath is None:
+        # The forecast that starts LATEST wins; a long one only on a tie. Long forecasts are built
+        # by hand and nothing refreshes them, so preferring them meant planning GW7 off a GW5
+        # forecast for a month. forecast.py locks a 6-week one before every deadline (the cloud
+        # job runs it just before this), so this is never more than a week old.
         import glob, re as _re
-        cands = glob.glob(str(ROOT / "data" / "processed" / "_forecast_long_gw*_*.json"))
-        fpath = max(cands, key=lambda f: int(_re.search(r"_gw(\d+)_", f).group(1)))
+        cands = glob.glob(str(ROOT / "data" / "processed" / "_forecast_long_gw*_*.json")) + \
+            glob.glob(str(ROOT / "data" / "processed" / "forecast_gw*.json"))
+        cands = [f for f in cands if _re.search(r"forecast(?:_long)?_gw(\d+)(?:_\d+)?\.json$", f)]
+        fpath = max(cands, key=lambda f: (int(_re.search(r"_gw(\d+)", f).group(1)),
+                                          "_long" in f))
     fc = json.load(open(fpath, encoding="utf-8"))
     print("  forecast:", fpath.split("\\")[-1].split("/")[-1])
     H = min(_arg("--horizon", 13, int), fc["horizon"])
@@ -173,6 +196,7 @@ def main():
     for k in held:
         if k not in P:
             P[k] = dict(meta[k], ev=[0.0] * H, p60=0.0, confidence=0.0)
+        P[k]["price"] = meta[k]["price"]              # keeping him costs what selling would raise
     avail = {"wildcard", "bboost", "3xc", "freehit"} - used
     print("\n  ENTRY %d - planning GW%d-%d" % (entry, gw0, gw0 + H - 1))
     print("  budget %.1f - %d free transfer(s) - chips available: %s"
@@ -221,6 +245,24 @@ def main():
     print("   projected GW%d-%d: %.1f  (%.1f squad and transfers, %+.1f remaining chips)"
           % (gw0, gw0 + H - 1, base_tot + gain, base_tot, gain))
     x, b, _ = xi(squads[0], 0, P)
+    if wc != 0 and "wildcard" in avail:
+        # weekly.py's chip rule and this search can disagree; say so rather than leave the
+        # do-this block pointing at a squad that is not here
+        print("\n   Wildcard THIS week: not what the search recommends (%s) — no squad to enter."
+              % ("hold it" if wc is None else "best week GW%d" % (gw0 + wc)))
+    if wc == 0:
+        # A wildcard THIS week is only actionable with the squad attached (Jon, 2026-10-17: "a
+        # recommendation to play the Wildcard, without the recommended team to choose, is not
+        # actable on"). So spell it out as the app needs it: who goes, who comes, what is left.
+        out = [k for k in held if k not in squads[0]]
+        inn = [k for k in squads[0] if k not in held]
+        left = budget - sum(P[k]["price"] for k in squads[0])
+        print("\n   WILDCARD SQUAD FOR GW%d  (selling prices used; £%.1fm left)" % (gw0, left))
+        print("   SELL: %s" % ", ".join("%s £%.1f" % (k.split("|")[0], P[k]["price"]) for k in out))
+        print("   BUY:  %s" % ", ".join("%s (%s) £%.1f" % (k.split("|")[0], P[k]["team"], P[k]["price"])
+                                       for k in inn))
+        cap = max(x, key=lambda k: P[k]["ev"][0])
+        print("   CAPTAIN: %s" % cap.split("|")[0])
     print("\n   GW%d XI: %s" % (gw0, ", ".join(k.split("|")[0] for k in x)))
     print("   bench:  %s" % ", ".join(k.split("|")[0] for k in b))
 

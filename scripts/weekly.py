@@ -740,6 +740,63 @@ def _wrap_report(lines, cols=WRAP_COLS):
 ACTIONS = []          # one dict per team, filled by report(), rendered by tldr()
 
 
+def _set_in_app(entry):
+    """The lineup currently SET in the app: last gameweek's picks with auto-subs undone.
+
+    FPL carries captain, XI and bench order over from one gameweek to the next, so this is what
+    stands at the deadline if nothing is touched — and therefore what the do-this block must be
+    measured against. Returns None if it cannot be read; tldr() then prints the full lineup."""
+    try:
+        import reconcile as RC
+        last = (int(DL_INFO["next_gw"]) - 1) if DL_INFO.get("next_gw") else CURRENT_GW
+        if not entry or last < 1:
+            return None
+        els = {e["id"]: dict(name=e["web_name"]) for e in RC.get("bootstrap-static/")["elements"]}
+        act = RC.actual(entry, last, els)
+        if act.get("chip") == "FH":                  # a Free Hit squad reverts — nothing carries
+            return None
+        return act
+    except Exception:
+        return None
+
+
+def _lineup_changes(a, cur):
+    """Lines for only what has to change in the app. Empty list = nothing to touch.
+
+    Jon, 2026-10-21: the email "should say the actions to take - often selections don't need an
+    action (e.g. the same captain as last week)". A full XI restated every week hides the one swap
+    that matters among ten names that are already right."""
+    xi, bench = list(cur["xi"]), list(cur["bench"])
+    t = a["transfer"]
+    if t.get("do"):                                  # the incoming player takes the outgoing slot
+        xi = [t["inn"] if n == t["out"] else n for n in xi]
+        bench = [t["inn"] if n == t["out"] else n for n in bench]
+    want_xi, want_bench = set(a["xi_names"]), a["bench_names"]
+    if set(xi) | set(bench) != want_xi | set(want_bench):
+        return None                                  # squads disagree (e.g. wildcard): can't diff
+    to_start = [n for n in a["xi_names"] if n not in xi]
+    to_bench = [n for n in xi if n not in want_xi]
+    L = []
+    if to_start:
+        L.append(f"START {', '.join(to_start)}  /  BENCH {', '.join(to_bench)}")
+    # Simulate the swaps (keeper for keeper, outfield in order) to see the bench order that would
+    # result, and only ask for a re-order if it differs from the recommended one.
+    pos = a.get("pos", {})
+    gk_in = [n for n in to_start if pos.get(n) == "GK"]
+    gk_out = [n for n in to_bench if pos.get(n) == "GK"]
+    of_in = [n for n in to_start if pos.get(n) != "GK"]
+    of_out = [n for n in to_bench if pos.get(n) != "GK"]
+    swap = dict(zip(gk_in, gk_out)) | dict(zip(of_in, of_out))
+    bench = [swap.get(n, n) for n in bench]
+    if bench[1:] != want_bench[1:]:                  # slot 1 is the keeper, fixed by the rules
+        L.append(f"BENCH ORDER  {', '.join(want_bench[1:])}")
+    if a["captain_name"] != cur["captain"]:
+        L.append(f"CAPTAIN  {a['captain']} (was {cur['captain']})")
+    if a["vice"] and a["vice"] != cur["vice"]:
+        L.append(f"VICE  {a['vice']} (was {cur['vice']})")
+    return L
+
+
 def tldr(acts):
     """The do-this-now block that opens the email.
 
@@ -773,13 +830,42 @@ def tldr(acts):
             L.append(f"                 {t['gain']:+.1f} over {t['hold']} GWs"
                      + (f" BEFORE the -4" if hit else "")
                      + f", £{t['itb_after']:.1f}m left")
+        # No transfer is not an action, so it is not numbered — the numbers count things to DO.
         elif t.get("out"):
-            L.append(f"    {step}. NO MOVE   bank it. Best available was {t['out']} -> {t['inn']} at {t['gain']:+.1f}")
+            step = 0
+            L.append(f"    No transfer — bank it (best was {t['out']} -> {t['inn']}, {t['gain']:+.1f})")
         else:
-            L.append(f"    {step}. NO MOVE   {t['why']}")
+            step = 0
+            L.append(f"    No transfer — {t['why']}")
         if a["chips"]:
             step += 1
             L.append(f"    {step}. CHIP      play {', '.join(a['chips'])}")
+        if "WC" in a["chips"]:
+            # Diffing the lineup of a squad about to be rebuilt is noise. The squad itself, with
+            # sells, buys and prices, is printed by strategy.py in the plan at the end.
+            L.append("       the full wildcard squad (sell, buy, captain, XI) is in the CHIP AND")
+            L.append("       TRANSFER PLAN at the end of this report")
+            continue
+        cur = _set_in_app(a.get("entry")) if "xi_names" in a else None
+        try:                                         # never let the diff cost the email
+            changes = _lineup_changes(a, cur) if cur else None
+        except Exception:
+            changes = None
+        if changes is not None:
+            for c in changes:
+                step += 1
+                L.append(f"    {step}. {c}")
+            if not changes:
+                L.append(f"    No lineup changes — captain {a['captain_name']}, XI and bench "
+                         f"stay as set in the app.")
+            else:
+                kept = [x for x, same in (("captain", a["captain_name"] == cur["captain"]),
+                                          ("XI", not any(c.startswith("START") for c in changes)),
+                                          ("bench order", not any(c.startswith("BENCH ORDER")
+                                                                  for c in changes))) if same]
+                if kept:
+                    L.append(f"    Unchanged: {', '.join(kept)}.")
+            continue
         step += 1
         L.append(f"    {step}. CAPTAIN   {a['captain']}" + (f", vice {a['vice']}" if a["vice"] else ""))
         step += 1
@@ -788,7 +874,7 @@ def tldr(acts):
             L.append("                 " + extra)
         L.append(f"                 bench: {a['bench']}")
     L += ["", "  " + "-" * 50,
-          "  Everything below is the reasoning behind these four lines, and the watchlist.",
+          "  Everything below is the reasoning behind these actions, and the watchlist.",
           "  If you are in a hurry, you are done."]
     return _wrap_report(L)
 
@@ -962,7 +1048,11 @@ def report(team_name, squad_def, itb, banked, chips, planned, planned_wc=None, e
         vice=(caps[1][0]['name'] if len(caps) > 1 else ''),
         xi=[f"{po}  " + ", ".join(q['name'] for q in xi if q['pos'] == po)
             for po in ('GK', 'DEF', 'MID', 'FWD') if any(q['pos'] == po for q in xi)],
-        bench=', '.join(p['name'] for p in bench)))
+        bench=', '.join(p['name'] for p in bench),
+        # structured copies for tldr(), which diffs them against what is already set in the app
+        captain_name=(caps[0][0]['name'] if caps else ''),
+        xi_names=[q['name'] for q in xi], bench_names=[p['name'] for p in bench],
+        pos={p['name']: p['pos'] for p in xi + bench}))
     return "\n".join(_wrap_report(L))
 
 

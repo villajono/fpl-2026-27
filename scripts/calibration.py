@@ -37,7 +37,9 @@ import re
 
 import history as H
 
-STATE = pathlib.Path("data/processed")
+# Anchored to the project root. The cloud job runs from scripts/, where a relative path found no
+# locks, so every weekly report from GW4 to GW7 said "no locked forecasts yet" while four sat on disk.
+STATE = pathlib.Path(__file__).resolve().parent.parent / "data" / "processed"
 P60_FLOOR = 0.5
 
 
