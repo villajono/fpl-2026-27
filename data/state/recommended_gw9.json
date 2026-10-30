@@ -1,6 +1,6 @@
 {
  "gw": 9,
- "written": "2026-10-29T14:05:30+00:00",
+ "written": "2026-10-30T13:57:12+00:00",
  "teams": {
   "4180925": {
    "team": "SANTA CLAUDE (AI team)",
@@ -10,11 +10,11 @@
    },
    "chip": null,
    "captain": "Tavernier",
-   "vice": "Gabriel",
+   "vice": "Palmer",
    "bench": [
     "Tzolakis",
-    "Thomas",
     "Calafiori",
+    "Thomas",
     "Saka"
    ]
   },
