@@ -11,7 +11,7 @@
 players_2026-27.csv refreshed: 670 -> 670 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW9, by Fri 06 Nov, 18:30 UK (124.5h)
+DO THIS  --  GW9, by Fri 06 Nov, 18:30 UK (97.7h)
 ======================================================
 
   ⚠ DO NOT ACT — these are GW9 projections and GW9 has
@@ -22,8 +22,8 @@ DO THIS  --  GW9, by Fri 06 Nov, 18:30 UK (124.5h)
 
 
   SANTA CLAUDE (AI TEAM)
-    1. TRANSFER  Saka -> E.Le Fée (SUN £5.7)
-                 +22.9 over 6 GWs, £3.9m left
+    1. TRANSFER  Saka -> Rice (ARS £7.4)
+                 +22.9 over 6 GWs, £2.2m left
     2. CAPTAIN   Tavernier (BOU v LEE), vice Palmer
     3. XI        GK  Suzuki
                  DEF  Gabriel, De Cuyper, Thiaw
@@ -82,7 +82,7 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW9 DECISIONS
 Models updated: GW8 data ingested ✓ (8 GWs played →
   Bayesian blended)
-⏰ GW10 DEADLINE: Fri 06 Nov, 18:30 UK  (in 124.5h)
+⏰ GW10 DEADLINE: Fri 06 Nov, 18:30 UK  (in 97.7h)
 ⚠ STALE: these are GW9 projections, but the open
   deadline is GW10. GW9 is played and not yet
   finalised by FPL, so the model cannot see it. Do NOT
@@ -121,11 +121,11 @@ MODEL UPDATES THIS WEEK
   player          team   P(60+)  source
   Saka            ARS      0.00  model
   Thomas          COV      0.22  model
-  Calafiori       ARS      0.42  model
+  Calafiori       ARS      0.56  model
   Thiaw           NEW      0.59  model
   B.Fernandes     MUN      0.60  model
   Barry           EVE      0.94  model
-  → E.Le Fée      SUN      0.96  model  (transfer
+  → Rice          ARS      0.96  model  (transfer
     target)
 
 FIXTURE INPUTS — DATA SOURCES
@@ -143,15 +143,15 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   Used GW4
-               rebuild value: +44 pts / 6 weeks vs
+               rebuild value: +42 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): Yes
                free transfers banked (roll through
                WC): 3
   Bench Boost: Monitoring
-               bench EV this GW: 6.7   |   peak
-               remaining this half: 6.9
+               bench EV this GW: 7.3   |   peak
+               remaining this half: 7.8
   Triple Cap:  Used GW3
                captain EV this GW: 5.4   |   best
                remaining captain week this half: 7.0
@@ -165,15 +165,14 @@ CHIP EVALUATION
 
 TRANSFER DECISION
 ━━━━━━━━━━━━━━━━━
-  Best target: OUT Saka (MID ARS) → IN E.Le Fée (SUN
-    £5.7)
-    P(60+) assumed: Saka 0.00 → E.Le Fée 0.96 — if you
+  Best target: OUT Saka (MID ARS) → IN Rice (ARS £7.4)
+    P(60+) assumed: Saka 0.00 → Rice 0.96 — if you
       know better, override in the form and re-run for
       a revised call
     quality upgrade · effective-out adjusted for bench
       cover · 6-GW hold
-    gain: GW+1 +4.7 · GW+1&2 +8.7 · full 6-GW +22.9
-    → TRANSFER ✓ (free)    (budget after £3.9m ITB, 3
+    gain: GW+1 +4.3 · GW+1&2 +8.9 · full 6-GW +22.9
+    → TRANSFER ✓ (free)    (budget after £2.2m ITB, 3
       banked)
 
 STAGE 1 — RE-CALIBRATION (what moved in the inputs)
@@ -239,8 +238,8 @@ STARTING XI — 3-4-3
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
   GW9  GW10  GW11  GW12  GW13  GW14
-    51    59    52    53    51    57   (min 51)
-  GW9 = XI 45 + captain bonus 5 + auto-sub 1.1
+    51    60    52    54    51    58   (min 51)
+  GW9 = XI 45 + captain bonus 5 + auto-sub 1.4
     (auto-sub small by design)
 
 PLANNED TRANSFERS
@@ -249,8 +248,8 @@ PLANNED TRANSFERS
     exactly, no chip shaping.
   Squad, bank and chips read live from the FPL API
     after GW9 — not hand-entered.
-  GW9: 30 pts, 1 left on the bench. 492 overall, rank
-    4,739,980.
+  GW9: 44 pts, 1 left on the bench. 504 overall, rank
+    4,645,889.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £0.1m in the bank, 3 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -259,7 +258,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW9 DECISIONS
 Models updated: GW8 data ingested ✓ (8 GWs played →
   Bayesian blended)
-⏰ GW10 DEADLINE: Fri 06 Nov, 18:30 UK  (in 124.5h)
+⏰ GW10 DEADLINE: Fri 06 Nov, 18:30 UK  (in 97.7h)
 ⚠ STALE: these are GW9 projections, but the open
   deadline is GW10. GW9 is played and not yet
   finalised by FPL, so the model cannot see it. Do NOT
@@ -296,8 +295,8 @@ MODEL UPDATES THIS WEEK
   from the form, then re-run the workflow for a
     revised call.
   player          team   P(60+)  source
-  Calafiori       ARS      0.42  model
   F.Kadıoğlu      BHA      0.45  model
+  Calafiori       ARS      0.56  model
   Schade          BRE      0.74  model
   N.Jackson       AVL      0.82  model
   Ajer            BRE      0.94  model
@@ -327,8 +326,8 @@ CHIP EVALUATION
                free transfers banked (roll through
                WC): 2
   Bench Boost: Used GW1
-               bench EV this GW: 9.1   |   peak
-               remaining this half: 11.0
+               bench EV this GW: 9.7   |   peak
+               remaining this half: 11.7
   Triple Cap:  Used GW3
                captain EV this GW: 7.8   |   best
                remaining captain week this half: 7.8
@@ -414,7 +413,7 @@ STARTING XI — 3-4-3
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
   GW9  GW10  GW11  GW12  GW13  GW14
-    57    56    55    51    53    56   (min 51)
+    57    56    55    52    53    56   (min 52)
   GW9 = XI 49 + captain bonus 8 + auto-sub 0.5
     (auto-sub small by design)
 
@@ -422,8 +421,8 @@ PLANNED TRANSFERS
 ━━━━━━━━━━━━━━━━━
   Squad, bank and chips read live from the FPL API
     after GW9 — not hand-entered.
-  GW9: 58 pts, 13 left on the bench. 623 overall, rank
-    80,741.
+  GW9: 68 pts, 21 left on the bench. 633 overall, rank
+    80,704.
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £1.4m in the bank, 2 free transfer(s).
 ══════════════════════════════════════════════════════
