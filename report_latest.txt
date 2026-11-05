@@ -1,5 +1,6 @@
 ⟳ Refreshing models from live FPL API (detect → ingest → refresh)...
-   ingested GW9: 310 players played
+   all 9 completed GW(s) already ingested — no new
+     data
    Bayesian team ratings updated from 9 live GW(s) of
      xG (20 clubs)
    overrides: 0 active for GW10; players.json
@@ -10,7 +11,7 @@
 players_2026-27.csv refreshed: 670 -> 670 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW10, by Fri 06 Nov, 18:30 UK (51.5h)
+DO THIS  --  GW10, by Fri 06 Nov, 18:30 UK (27.4h)
 ======================================================
 
   SANTA CLAUDE (AI TEAM)
@@ -76,12 +77,14 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW10 DECISIONS
 Models updated: GW9 data ingested ✓ (9 GWs played →
   Bayesian blended)
-⏰ GW10 DEADLINE: Fri 06 Nov, 18:30 UK  (in 51.5h)
+⏰ GW10 DEADLINE: Fri 06 Nov, 18:30 UK  (in 27.4h)   ⚠
+  ACT BEFORE DEADLINE
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━
-  ⟳ ingested GW9: 310 players played
+  ⟳ all 9 completed GW(s) already ingested — no new
+    data
   ⟳ Bayesian team ratings updated from 9 live GW(s) of
     xG (20 clubs)
   ⟳ overrides: 0 active for GW10; players.json
@@ -98,10 +101,7 @@ MODEL UPDATES THIS WEEK
 ⚠ HUMAN CONFIRMATION (2-min review — override from the
   phone form)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  P(starts) moved >20% since last week — verify
-    against team news:
-    • Calafiori: P(60+) 0.56 → 0.79 (nailed upgrade) —
-      confirm?
+  No >20% P(starts) moves since last week.
   No overrides set — add one from the form when you
     know something the model can't.
 
@@ -237,7 +237,7 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW9 — not hand-entered.
   GW9: 51 pts, 1 left on the bench. 513 overall, rank
-    4,444,387.
+    4,444,370.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £0.1m in the bank, 3 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -246,12 +246,14 @@ PLANNED TRANSFERS
 JON'S TEAM — GW10 DECISIONS
 Models updated: GW9 data ingested ✓ (9 GWs played →
   Bayesian blended)
-⏰ GW10 DEADLINE: Fri 06 Nov, 18:30 UK  (in 51.5h)
+⏰ GW10 DEADLINE: Fri 06 Nov, 18:30 UK  (in 27.4h)   ⚠
+  ACT BEFORE DEADLINE
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━
-  ⟳ ingested GW9: 310 players played
+  ⟳ all 9 completed GW(s) already ingested — no new
+    data
   ⟳ Bayesian team ratings updated from 9 live GW(s) of
     xG (20 clubs)
   ⟳ overrides: 0 active for GW10; players.json
@@ -404,3 +406,60 @@ PLANNED TRANSFERS
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £1.4m in the bank, 2 free transfer(s).
 ══════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════
+CHIP AND TRANSFER PLAN — searched, not guessed
+══════════════════════════════════════════════════════
+
+players_2026-27.csv refreshed: 670 -> 670 players
+  no squad changes since the last refresh
+  forecast: forecast_gw10.json
+
+  ENTRY 4180925 - planning GW10-15
+  budget 99.8 - 3 free transfer(s) - chips available: bboost, freehit
+
+  searching wildcard weeks:
+    none      309.8
+  -> best wildcard: none (309.8)
+
+  bboost    best weeks: GW10 +15.1, GW12 +12.7, GW15 +11.9
+  freehit   best weeks: GW10 +3.0, GW14 +2.7, GW11 +2.1
+
+  ==================== PLAN ====================
+   BBOOST     GW10  worth +15.1
+   FREEHIT    GW14  worth +2.7
+   projected GW10-15: 327.6  (309.8 squad and transfers, +17.8 remaining chips)
+
+   GW10 XI: Suzuki, Gabriel, Calafiori, Silva, Mbeumo, Tavernier, Barry, B.Fernandes, Palmer, De Cuyper, Van Hecke
+   bench:  Tzolakis, Calvert-Lewin, Gonzalo, Manzambi
+
+players_2026-27.csv refreshed: 670 -> 670 players
+  no squad changes since the last refresh
+  forecast: forecast_gw10.json
+
+  ENTRY 1169767 - planning GW10-15
+  budget 100.6 - 2 free transfer(s) - chips available: freehit, wildcard
+
+  searching wildcard weeks:
+    none      308.4
+    GW10      317.2
+    GW11      315.7
+    GW12      313.6
+    GW13      312.7
+    GW14      310.3
+  -> best wildcard: GW10 (317.2)
+
+  freehit   best weeks: GW11 +1.5, GW10 +1.1, GW12 +1.0
+
+  ==================== PLAN ====================
+   WILDCARD   GW10
+   FREEHIT    GW11  worth +1.5
+   projected GW10-15: 318.7  (317.2 squad and transfers, +1.5 remaining chips)
+
+   WILDCARD SQUAD FOR GW10  (selling prices used; £0.3m left)
+   SELL: Kinsky £4.4, Ajer £4.5, Palmer £9.7, Schade £6.1, Rogers £7.9, N.Jackson £6.9, Verbruggen £4.5, Calafiori £5.7, F.Kadıoğlu £4.4, Groß £6.0
+   BUY:  Barry (EVE) £5.6, E.Le Fée (SUN) £5.7, Gabriel (ARS) £8.0, Gibbs-White (NFO) £7.8, Manzambi (AVL) £6.1, Raya (ARS) £6.2, Tavernier (BOU) £6.6, Trafford (LEE) £5.0, Van Hecke (TOT) £5.0, Vuskovic (BHA) £5.2
+   CAPTAIN: Gabriel
+
+   GW10 XI: Raya, Gabriel, Konsa, Silva, Mbeumo, Tavernier, Haaland, Barry, E.Le Fée, Gibbs-White, Vuskovic
+   bench:  Trafford, Calvert-Lewin, Manzambi, Van Hecke
