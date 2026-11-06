@@ -1,6 +1,6 @@
 {
  "gw": 10,
- "written": "2026-11-05T15:12:31+00:00",
+ "written": "2026-11-06T14:56:32+00:00",
  "teams": {
   "4180925": {
    "team": "SANTA CLAUDE (AI team)",
@@ -10,7 +10,7 @@
    },
    "chip": null,
    "captain": "Gabriel",
-   "vice": "Mbeumo",
+   "vice": "Tavernier",
    "bench": [
     "Tzolakis",
     "Thiaw",
@@ -25,11 +25,11 @@
     "in": "Van Hecke"
    },
    "chip": "WC",
-   "captain": "Mbeumo",
-   "vice": "Haaland",
+   "captain": "Haaland",
+   "vice": "Mbeumo",
    "bench": [
     "Kinsky",
-    "Schade",
+    "Calvert-Lewin",
     "Ajer",
     "F.Kadıoğlu"
    ]
