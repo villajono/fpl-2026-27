@@ -8,10 +8,10 @@
 
    squads read live from the FPL API (after GW10)
 
-players_2026-27.csv refreshed: 670 -> 670 players
+players_2026-27.csv refreshed: 671 -> 671 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW10, by Sat 21 Nov, 11:00 UK (333.3h)
+DO THIS  --  GW10, by Sat 21 Nov, 11:00 UK (309.0h)
 ======================================================
 
   ⚠ DO NOT ACT — these are GW10 projections and GW10
@@ -23,7 +23,7 @@ DO THIS  --  GW10, by Sat 21 Nov, 11:00 UK (333.3h)
 
   SANTA CLAUDE (AI TEAM)
     1. TRANSFER  Saka -> Manzambi (AVL £6.2)
-                 +24.4 over 6 GWs, £3.4m left
+                 +24.4 over 6 GWs, £3.3m left
     2. CAPTAIN   Gabriel (ARS v HUL), vice Tavernier
     3. XI        GK  Suzuki
                  DEF  Gabriel, Calafiori, De Cuyper
@@ -34,7 +34,7 @@ DO THIS  --  GW10, by Sat 21 Nov, 11:00 UK (333.3h)
 
   JON'S TEAM
     1. TRANSFER  F.Kadıoğlu -> Van Hecke (TOT £5.0)
-                 +19.2 over 6 GWs, £0.8m left
+                 +17.2 over 6 GWs, £0.8m left
     2. CHIP      play WC
        the full wildcard squad (sell, buy, captain,
        XI) is in the CHIP AND
@@ -80,7 +80,7 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW10 DECISIONS
 Models updated: GW9 data ingested ✓ (9 GWs played →
   Bayesian blended)
-⏰ GW11 DEADLINE: Sat 21 Nov, 11:00 UK  (in 333.3h)
+⏰ GW11 DEADLINE: Sat 21 Nov, 11:00 UK  (in 309.0h)
 ⚠ STALE: these are GW10 projections, but the open
   deadline is GW11. GW10 is played and not yet
   finalised by FPL, so the model cannot see it. Do NOT
@@ -108,10 +108,7 @@ MODEL UPDATES THIS WEEK
 ⚠ HUMAN CONFIRMATION (2-min review — override from the
   phone form)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  P(starts) moved >20% since last week — verify
-    against team news:
-    • Calvert-Lewin: P(60+) 0.71 → 0.95 (nailed
-      upgrade) — confirm?
+  No >20% P(starts) moves since last week.
   No overrides set — add one from the form when you
     know something the model can't.
 
@@ -174,7 +171,7 @@ TRANSFER DECISION
     fixture swing · effective-out adjusted for bench
       cover · 6-GW hold
     gain: GW+1 +4.4 · GW+1&2 +8.9 · full 6-GW +24.4
-    → TRANSFER ✓ (free)    (budget after £3.4m ITB, 4
+    → TRANSFER ✓ (free)    (budget after £3.3m ITB, 4
       banked)
 
 STAGE 1 — RE-CALIBRATION (what moved in the inputs)
@@ -246,8 +243,8 @@ PLANNED TRANSFERS
     exactly, no chip shaping.
   Squad, bank and chips read live from the FPL API
     after GW10 — not hand-entered.
-  GW10: 0 pts, 16 left on the bench. 514 overall, rank
-    4,551,685.
+  GW10: 20 pts, 22 left on the bench. 533 overall,
+    rank 4,769,219.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £0.1m in the bank, 4 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -256,7 +253,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW10 DECISIONS
 Models updated: GW9 data ingested ✓ (9 GWs played →
   Bayesian blended)
-⏰ GW11 DEADLINE: Sat 21 Nov, 11:00 UK  (in 333.3h)
+⏰ GW11 DEADLINE: Sat 21 Nov, 11:00 UK  (in 309.0h)
 ⚠ STALE: these are GW10 projections, but the open
   deadline is GW11. GW10 is played and not yet
   finalised by FPL, so the model cannot see it. Do NOT
@@ -293,7 +290,7 @@ MODEL UPDATES THIS WEEK
   from the form, then re-run the workflow for a
     revised call.
   player          team   P(60+)  source
-  F.Kadıoğlu      BHA      0.34  model
+  F.Kadıoğlu      BHA      0.45  model
   Calafiori       ARS      0.79  model
   N.Jackson       AVL      0.83  model
   Schade          BRE      0.87  model
@@ -324,8 +321,8 @@ CHIP EVALUATION
                free transfers banked (roll through
                WC): 3
   Bench Boost: Used GW1
-               bench EV this GW: 10.5   |   peak
-               remaining this half: 12.8
+               bench EV this GW: 10.9   |   peak
+               remaining this half: 13.2
   Triple Cap:  Used GW3
                captain EV this GW: 7.2   |   best
                remaining captain week this half: 7.2
@@ -342,12 +339,12 @@ TRANSFER DECISION
 ━━━━━━━━━━━━━━━━━
   Best target: OUT F.Kadıoğlu (DEF BHA) → IN Van Hecke
     (TOT £5.0)
-    P(60+) assumed: F.Kadıoğlu 0.34 → Van Hecke 0.97 —
+    P(60+) assumed: F.Kadıoğlu 0.45 → Van Hecke 0.97 —
       if you know better, override in the form and
       re-run for a revised call
     better clean-sheet team · effective-out adjusted
       for bench cover · 6-GW hold
-    gain: GW+1 +3.0 · GW+1&2 +6.8 · full 6-GW +19.2
+    gain: GW+1 +2.6 · GW+1&2 +6.0 · full 6-GW +17.2
     → TRANSFER ✓ (free)    (budget after £0.8m ITB, 3
       banked)
 
@@ -416,8 +413,8 @@ PLANNED TRANSFERS
 ━━━━━━━━━━━━━━━━━
   Squad, bank and chips read live from the FPL API
     after GW10 — not hand-entered.
-  GW10: 0 pts, 0 left on the bench. 634 overall, rank
-    125,144.
+  GW10: 20 pts, 2 left on the bench. 653 overall, rank
+    177,328.
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £1.4m in the bank, 3 free transfer(s).
 ══════════════════════════════════════════════════════
