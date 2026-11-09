@@ -1,0 +1,38 @@
+{
+ "gw": 11,
+ "written": "2026-11-09T17:13:48+00:00",
+ "teams": {
+  "4180925": {
+   "team": "SANTA CLAUDE (AI team)",
+   "transfer": {
+    "out": "Saka",
+    "in": "E.Le Fée"
+   },
+   "chip": null,
+   "captain": "Gabriel",
+   "vice": "De Cuyper",
+   "bench": [
+    "Tzolakis",
+    "Thiaw",
+    "Thomas",
+    "Saka"
+   ]
+  },
+  "1169767": {
+   "team": "JON'S TEAM",
+   "transfer": {
+    "out": "F.Kadıoğlu",
+    "in": "Van Hecke"
+   },
+   "chip": "WC",
+   "captain": "Haaland",
+   "vice": "N.Jackson",
+   "bench": [
+    "Kinsky",
+    "Calvert-Lewin",
+    "Ajer",
+    "F.Kadıoğlu"
+   ]
+  }
+ }
+}
