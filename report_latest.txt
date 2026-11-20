@@ -11,12 +11,12 @@
 players_2026-27.csv refreshed: 672 -> 672 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW11, by Sat 21 Nov, 11:00 UK (42.8h)
+DO THIS  --  GW11, by Sat 21 Nov, 11:00 UK (19.1h)
 ======================================================
 
   SANTA CLAUDE (AI TEAM)
-    1. TRANSFER  Saka -> E.Le Fée (SUN £5.7)
-                 +25.1 over 6 GWs, £3.8m left
+    1. TRANSFER  Saka -> Groß (BHA £6.3)
+                 +25.2 over 6 GWs, £3.2m left
     2. CAPTAIN   Gabriel (ARS v NEW), vice De Cuyper
     3. XI        GK  Suzuki
                  DEF  Gabriel, De Cuyper, Calafiori
@@ -26,8 +26,8 @@ DO THIS  --  GW11, by Sat 21 Nov, 11:00 UK (42.8h)
                  bench: Tzolakis, Thiaw, Thomas, Saka
 
   JON'S TEAM
-    1. TRANSFER  F.Kadıoğlu -> Van Hecke (TOT £5.1)
-                 +17.2 over 6 GWs, £0.6m left
+    1. TRANSFER  F.Kadıoğlu -> Vuskovic (BHA £5.3)
+                 +17.0 over 6 GWs, £0.4m left
     2. CHIP      play WC
        the full wildcard squad (sell, buy, captain,
        XI) is in the CHIP AND
@@ -73,7 +73,8 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW11 DECISIONS
 Models updated: GW10 data ingested ✓ (10 GWs played →
   Bayesian blended)
-⏰ GW11 DEADLINE: Sat 21 Nov, 11:00 UK  (in 42.8h)
+⏰ GW11 DEADLINE: Sat 21 Nov, 11:00 UK  (in 19.1h)   ⚠
+  ACT BEFORE DEADLINE
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -113,7 +114,7 @@ MODEL UPDATES THIS WEEK
   Calafiori       ARS      0.88  model
   B.Fernandes     MUN      0.91  model
   Barry           EVE      0.94  model
-  → E.Le Fée      SUN      0.96  model  (transfer
+  → Groß          BHA      0.97  model  (transfer
     target)
 
 FIXTURE INPUTS — DATA SOURCES
@@ -121,7 +122,7 @@ FIXTURE INPUTS — DATA SOURCES
   Bookmaker odds ON — market average
     (football-data.co.uk), 1X2 + O/U, overround
     removed ✓  (GW+4+ always xG model)
-  GW+1 (GW11): xG model (no odds published)
+  GW+1 (GW11): odds — 10/10 fixtures priced
   GW+2 (GW12): xG model (no odds published)
   GW+3 (GW13): xG model (no odds published)
   GW+4 (GW14): xG model (no odds published)
@@ -131,21 +132,21 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   Used GW4
-               rebuild value: +35 pts / 6 weeks vs
+               rebuild value: +36 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): Yes
                free transfers banked (roll through
                WC): 4
   Bench Boost: Monitoring
-               bench EV this GW: 7.1   |   peak
+               bench EV this GW: 7.0   |   peak
                remaining this half: 7.8
   Triple Cap:  Used GW3
-               captain EV this GW: 5.3   |   best
+               captain EV this GW: 5.7   |   best
                remaining captain week this half: 6.5
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +8.1 pts vs current
+               free-hit team gain: +9.7 pts vs current
                XI
   → No chip this week — hold all available chips.
   Transfer threshold this week: 2.0 pts (4 banked —
@@ -153,15 +154,14 @@ CHIP EVALUATION
 
 TRANSFER DECISION
 ━━━━━━━━━━━━━━━━━
-  Best target: OUT Saka (MID ARS) → IN E.Le Fée (SUN
-    £5.7)
-    P(60+) assumed: Saka 0.00 → E.Le Fée 0.96 — if you
+  Best target: OUT Saka (MID ARS) → IN Groß (BHA £6.3)
+    P(60+) assumed: Saka 0.00 → Groß 0.97 — if you
       know better, override in the form and re-run for
       a revised call
-    quality upgrade · effective-out adjusted for bench
+    fixture swing · effective-out adjusted for bench
       cover · 6-GW hold
-    gain: GW+1 +4.9 · GW+1&2 +9.3 · full 6-GW +25.1
-    → TRANSFER ✓ (free)    (budget after £3.8m ITB, 4
+    gain: GW+1 +5.4 · GW+1&2 +9.7 · full 6-GW +25.2
+    → TRANSFER ✓ (free)    (budget after £3.2m ITB, 4
       banked)
 
 STAGE 1 — RE-CALIBRATION (what moved in the inputs)
@@ -209,8 +209,8 @@ WATCHLIST (monitor, not acting)
 
 CAPTAIN — highest-EV starter (doubles)
 ━━━━━━━
-  Captain: Gabriel — EV 5.3 (×2 = 10.5), ARS vs NEW
-  Vice:    De Cuyper — EV 5.1
+  Captain: Gabriel — EV 5.7 (×2 = 11.3), ARS vs NEW
+  Vice:    De Cuyper — EV 5.7
 
 STARTING XI — 3-4-3
 ━━━━━━━━━━━━━━━━━━━━━━━━
@@ -223,8 +223,8 @@ STARTING XI — 3-4-3
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
   GW11  GW12  GW13  GW14  GW15  GW16
-    54    56    53    60    54    56   (min 53)
-  GW11 = XI 48 + captain bonus 5 + auto-sub 0.4
+    57    56    53    60    54    56   (min 53)
+  GW11 = XI 51 + captain bonus 6 + auto-sub 0.3
     (auto-sub small by design)
 
 PLANNED TRANSFERS
@@ -234,7 +234,7 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW10 — not hand-entered.
   GW10: 53 pts, 22 left on the bench. 566 overall,
-    rank 4,596,198.
+    rank 4,596,178.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £0.1m in the bank, 4 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -243,7 +243,8 @@ PLANNED TRANSFERS
 JON'S TEAM — GW11 DECISIONS
 Models updated: GW10 data ingested ✓ (10 GWs played →
   Bayesian blended)
-⏰ GW11 DEADLINE: Sat 21 Nov, 11:00 UK  (in 42.8h)
+⏰ GW11 DEADLINE: Sat 21 Nov, 11:00 UK  (in 19.1h)   ⚠
+  ACT BEFORE DEADLINE
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -283,7 +284,7 @@ MODEL UPDATES THIS WEEK
   Schade          BRE      0.92  model
   Ajer            BRE      0.94  model
   Silva           BOU      0.94  model
-  → Van Hecke     TOT      0.97  model  (transfer
+  → Vuskovic      BHA      0.94  model  (transfer
     target)
 
 FIXTURE INPUTS — DATA SOURCES
@@ -291,7 +292,7 @@ FIXTURE INPUTS — DATA SOURCES
   Bookmaker odds ON — market average
     (football-data.co.uk), 1X2 + O/U, overround
     removed ✓  (GW+4+ always xG model)
-  GW+1 (GW11): xG model (no odds published)
+  GW+1 (GW11): odds — 10/10 fixtures priced
   GW+2 (GW12): xG model (no odds published)
   GW+3 (GW13): xG model (no odds published)
   GW+4 (GW14): xG model (no odds published)
@@ -301,21 +302,21 @@ FIXTURE INPUTS — DATA SOURCES
 CHIP EVALUATION
 ━━━━━━━━━━━━━━━
   Wildcard 1:   RECOMMENDED ✓
-               rebuild value: +33 pts / 6 weeks vs
+               rebuild value: +32 pts / 6 weeks vs
                current squad
                fixture swing next 4: Yes   |   lineup
                data (3+ GW): Yes
                free transfers banked (roll through
                WC): 3
   Bench Boost: Used GW1
-               bench EV this GW: 12.8   |   peak
-               remaining this half: 12.8
+               bench EV this GW: 12.4   |   peak
+               remaining this half: 12.6
   Triple Cap:  Used GW3
-               captain EV this GW: 6.4   |   best
-               remaining captain week this half: 7.0
+               captain EV this GW: 7.9   |   best
+               remaining captain week this half: 7.9
   Free Hit:    Monitoring
                players blanking this GW: 0   |
-               free-hit team gain: +6.1 pts vs current
+               free-hit team gain: +6.8 pts vs current
                XI
   → RECOMMENDATION: play WC this week (confirm via the
     phone form). One chip per week max.
@@ -324,15 +325,15 @@ CHIP EVALUATION
 
 TRANSFER DECISION
 ━━━━━━━━━━━━━━━━━
-  Best target: OUT F.Kadıoğlu (DEF BHA) → IN Van Hecke
-    (TOT £5.1)
-    P(60+) assumed: F.Kadıoğlu 0.39 → Van Hecke 0.97 —
+  Best target: OUT F.Kadıoğlu (DEF BHA) → IN Vuskovic
+    (BHA £5.3)
+    P(60+) assumed: F.Kadıoğlu 0.39 → Vuskovic 0.94 —
       if you know better, override in the form and
       re-run for a revised call
-    better clean-sheet team · effective-out adjusted
-      for bench cover · 6-GW hold
-    gain: GW+1 +3.8 · GW+1&2 +6.8 · full 6-GW +17.2
-    → TRANSFER ✓ (free)    (budget after £0.6m ITB, 3
+    quality upgrade · effective-out adjusted for bench
+      cover · 6-GW hold
+    gain: GW+1 +3.7 · GW+1&2 +6.7 · full 6-GW +17.0
+    → TRANSFER ✓ (free)    (budget after £0.4m ITB, 3
       banked)
 
 STAGE 1 — RE-CALIBRATION (what moved in the inputs)
@@ -378,22 +379,22 @@ WATCHLIST (monitor, not acting)
 
 CAPTAIN — highest-EV starter (doubles)
 ━━━━━━━
-  Captain: Haaland — EV 6.4 (×2 = 12.7), MCI vs FUL
-  Vice:    N.Jackson — EV 5.3
+  Captain: Haaland — EV 7.9 (×2 = 15.8), MCI vs FUL
+  Vice:    Groß — EV 5.4
 
 STARTING XI — 3-5-2
 ━━━━━━━━━━━━━━━━━━━━━━━━
   GK: Verbruggen
-  DEF: Silva, Konsa, Calafiori
-  MID: Groß, Palmer, Rogers, Mbeumo, Schade
+  DEF: Silva, Calafiori, Konsa
+  MID: Groß, Palmer, Mbeumo, Rogers, Schade
   FWD: Haaland, N.Jackson
   Bench: Kinsky, Calvert-Lewin, Ajer, F.Kadıoğlu
 
 PROJECTED WEEKLY POINTS (XI + captain + auto-sub)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
   GW11  GW12  GW13  GW14  GW15  GW16
-    57    54    56    58    54    60   (min 54)
-  GW11 = XI 50 + captain bonus 6 + auto-sub 0.7
+    62    54    56    58    54    60   (min 54)
+  GW11 = XI 54 + captain bonus 8 + auto-sub 0.7
     (auto-sub small by design)
 
 PLANNED TRANSFERS
@@ -401,7 +402,64 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW10 — not hand-entered.
   GW10: 47 pts, 14 left on the bench. 680 overall,
-    rank 269,894.
+    rank 269,889.
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £1.4m in the bank, 3 free transfer(s).
 ══════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════
+CHIP AND TRANSFER PLAN — searched, not guessed
+══════════════════════════════════════════════════════
+
+players_2026-27.csv refreshed: 672 -> 672 players
+  no squad changes since the last refresh
+  forecast: forecast_gw11.json
+
+  ENTRY 4180925 - planning GW11-16
+  budget 99.5 - 4 free transfer(s) - chips available: bboost, freehit
+
+  searching wildcard weeks:
+    none      316.3
+  -> best wildcard: none (316.3)
+
+  bboost    best weeks: GW11 +15.6, GW12 +14.6, GW14 +12.9
+  freehit   best weeks: GW11 +3.6, GW15 +2.2, GW13 +1.7
+
+  ==================== PLAN ====================
+   BBOOST     GW11  worth +15.6
+   FREEHIT    GW15  worth +2.2
+   projected GW11-16: 334.1  (316.3 squad and transfers, +17.8 remaining chips)
+
+   GW11 XI: Suzuki, Van Hecke, Gabriel, Vuskovic, Tavernier, E.Le Fée, N.Jackson, De Cuyper, Palmer, B.Fernandes, Barry
+   bench:  Tzolakis, Calafiori, Calvert-Lewin, Mbeumo
+
+players_2026-27.csv refreshed: 672 -> 672 players
+  no squad changes since the last refresh
+  forecast: forecast_gw11.json
+
+  ENTRY 1169767 - planning GW11-16
+  budget 100.7 - 3 free transfer(s) - chips available: freehit, wildcard
+
+  searching wildcard weeks:
+    none      313.9
+    GW11      321.1
+    GW12      317.8
+    GW13      316.4
+    GW14      315.3
+    GW15      315.7
+  -> best wildcard: GW11 (321.1)
+
+  freehit   best weeks: GW12 +2.1, GW14 +1.7, GW13 +1.6
+
+  ==================== PLAN ====================
+   WILDCARD   GW11
+   FREEHIT    GW12  worth +2.1
+   projected GW11-16: 323.2  (321.1 squad and transfers, +2.1 remaining chips)
+
+   WILDCARD SQUAD FOR GW11  (selling prices used; £0.9m left)
+   SELL: Verbruggen £4.6, Konsa £4.6, Calafiori £5.7, Palmer £9.7, Schade £6.0, Rogers £7.9, Calvert-Lewin £6.0, Kinsky £4.4, Ajer £4.5, F.Kadıoğlu £4.3
+   BUY:  Barry (EVE) £5.7, De Cuyper (BHA) £5.5, E.Le Fée (SUN) £5.7, Gabriel (ARS) £8.1, Manzambi (AVL) £6.2, Martinez (CHE) £4.9, Tavernier (BOU) £6.7, Trafford (LEE) £5.0, Van Hecke (TOT) £5.1, Vuskovic (BHA) £5.3
+   CAPTAIN: Haaland
+
+   GW11 XI: Trafford, Van Hecke, Gabriel, Vuskovic, Tavernier, E.Le Fée, Haaland, N.Jackson, De Cuyper, Manzambi, Groß
+   bench:  Martinez, Barry, Mbeumo, Silva

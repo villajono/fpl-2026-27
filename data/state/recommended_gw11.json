@@ -1,12 +1,12 @@
 {
  "gw": 11,
- "written": "2026-11-19T16:26:17+00:00",
+ "written": "2026-11-20T16:03:09+00:00",
  "teams": {
   "4180925": {
    "team": "SANTA CLAUDE (AI team)",
    "transfer": {
     "out": "Saka",
-    "in": "E.Le Fée"
+    "in": "Groß"
    },
    "chip": null,
    "captain": "Gabriel",
@@ -22,11 +22,11 @@
    "team": "JON'S TEAM",
    "transfer": {
     "out": "F.Kadıoğlu",
-    "in": "Van Hecke"
+    "in": "Vuskovic"
    },
    "chip": "WC",
    "captain": "Haaland",
-   "vice": "N.Jackson",
+   "vice": "Groß",
    "bench": [
     "Kinsky",
     "Calvert-Lewin",
