@@ -8,10 +8,10 @@
 
    squads read live from the FPL API (after GW11)
 
-players_2026-27.csv refreshed: 672 -> 672 players
+players_2026-27.csv refreshed: 674 -> 674 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW11, by Fri 27 Nov, 18:30 UK (147.4h)
+DO THIS  --  GW11, by Fri 27 Nov, 18:30 UK (123.5h)
 ======================================================
 
   ⚠ DO NOT ACT — these are GW11 projections and GW11
@@ -34,7 +34,7 @@ DO THIS  --  GW11, by Fri 27 Nov, 18:30 UK (147.4h)
 
   JON'S TEAM
     1. TRANSFER  Rogers -> Tavernier (BOU £6.7)
-                 +5.2 over 6 GWs, £1.9m left
+                 +5.2 over 6 GWs, £2.0m left
     2. CHIP      play WC
        the full wildcard squad (sell, buy, captain,
        XI) is in the CHIP AND
@@ -78,7 +78,7 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW11 DECISIONS
 Models updated: GW10 data ingested ✓ (10 GWs played →
   Bayesian blended)
-⏰ GW12 DEADLINE: Fri 27 Nov, 18:30 UK  (in 147.4h)
+⏰ GW12 DEADLINE: Fri 27 Nov, 18:30 UK  (in 123.5h)
 ⚠ STALE: these are GW11 projections, but the open
   deadline is GW12. GW11 is played and not yet
   finalised by FPL, so the model cannot see it. Do NOT
@@ -243,8 +243,8 @@ PLANNED TRANSFERS
     exactly, no chip shaping.
   Squad, bank and chips read live from the FPL API
     after GW11 — not hand-entered.
-  GW11: 0 pts, 0 left on the bench. 567 overall, rank
-    4,766,521.
+  GW11: 35 pts, 3 left on the bench. 602 overall, rank
+    4,080,669.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £0.1m in the bank, 5 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -253,7 +253,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW11 DECISIONS
 Models updated: GW10 data ingested ✓ (10 GWs played →
   Bayesian blended)
-⏰ GW12 DEADLINE: Fri 27 Nov, 18:30 UK  (in 147.4h)
+⏰ GW12 DEADLINE: Fri 27 Nov, 18:30 UK  (in 123.5h)
 ⚠ STALE: these are GW11 projections, but the open
   deadline is GW12. GW11 is played and not yet
   finalised by FPL, so the model cannot see it. Do NOT
@@ -347,7 +347,7 @@ TRANSFER DECISION
     quality upgrade · effective-out adjusted for bench
       cover · 6-GW hold
     gain: GW+1 +0.9 · GW+1&2 +1.9 · full 6-GW +5.2
-    → TRANSFER ✓ (free)    (budget after £1.9m ITB, 3
+    → TRANSFER ✓ (free)    (budget after £2.0m ITB, 3
       banked)
 
 STAGE 1 — RE-CALIBRATION (what moved in the inputs)
@@ -417,8 +417,8 @@ PLANNED TRANSFERS
 ━━━━━━━━━━━━━━━━━
   Squad, bank and chips read live from the FPL API
     after GW11 — not hand-entered.
-  GW11: 0 pts, 0 left on the bench. 684 overall, rank
-    271,852.
+  GW11: 30 pts, 9 left on the bench. 713 overall, rank
+    268,396.
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £0.4m in the bank, 3 free transfer(s).
 ══════════════════════════════════════════════════════
