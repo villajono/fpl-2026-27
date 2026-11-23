@@ -11,7 +11,7 @@
 players_2026-27.csv refreshed: 674 -> 674 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW11, by Fri 27 Nov, 18:30 UK (123.5h)
+DO THIS  --  GW11, by Fri 27 Nov, 18:30 UK (95.6h)
 ======================================================
 
   ⚠ DO NOT ACT — these are GW11 projections and GW11
@@ -78,7 +78,7 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW11 DECISIONS
 Models updated: GW10 data ingested ✓ (10 GWs played →
   Bayesian blended)
-⏰ GW12 DEADLINE: Fri 27 Nov, 18:30 UK  (in 123.5h)
+⏰ GW12 DEADLINE: Fri 27 Nov, 18:30 UK  (in 95.6h)
 ⚠ STALE: these are GW11 projections, but the open
   deadline is GW12. GW11 is played and not yet
   finalised by FPL, so the model cannot see it. Do NOT
@@ -243,8 +243,8 @@ PLANNED TRANSFERS
     exactly, no chip shaping.
   Squad, bank and chips read live from the FPL API
     after GW11 — not hand-entered.
-  GW11: 35 pts, 3 left on the bench. 602 overall, rank
-    4,080,669.
+  GW11: 41 pts, 13 left on the bench. 607 overall,
+    rank 4,186,902.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £0.1m in the bank, 5 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -253,7 +253,7 @@ PLANNED TRANSFERS
 JON'S TEAM — GW11 DECISIONS
 Models updated: GW10 data ingested ✓ (10 GWs played →
   Bayesian blended)
-⏰ GW12 DEADLINE: Fri 27 Nov, 18:30 UK  (in 123.5h)
+⏰ GW12 DEADLINE: Fri 27 Nov, 18:30 UK  (in 95.6h)
 ⚠ STALE: these are GW11 projections, but the open
   deadline is GW12. GW11 is played and not yet
   finalised by FPL, so the model cannot see it. Do NOT
@@ -417,8 +417,8 @@ PLANNED TRANSFERS
 ━━━━━━━━━━━━━━━━━
   Squad, bank and chips read live from the FPL API
     after GW11 — not hand-entered.
-  GW11: 30 pts, 9 left on the bench. 713 overall, rank
-    268,396.
+  GW11: 34 pts, 12 left on the bench. 714 overall,
+    rank 305,977.
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £0.4m in the bank, 3 free transfer(s).
 ══════════════════════════════════════════════════════
