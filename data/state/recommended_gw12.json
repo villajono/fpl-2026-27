@@ -1,0 +1,38 @@
+{
+ "gw": 12,
+ "written": "2026-11-24T18:42:03+00:00",
+ "teams": {
+  "4180925": {
+   "team": "SANTA CLAUDE (AI team)",
+   "transfer": {
+    "out": "Saka",
+    "in": "Gibbs-White"
+   },
+   "chip": null,
+   "captain": "B.Fernandes",
+   "vice": "Calvert-Lewin",
+   "bench": [
+    "Suzuki",
+    "Thomas",
+    "Gonzalo",
+    "Saka"
+   ]
+  },
+  "1169767": {
+   "team": "JON'S TEAM",
+   "transfer": {
+    "out": "Schade",
+    "in": "E.Le Fée"
+   },
+   "chip": "WC",
+   "captain": "Calvert-Lewin",
+   "vice": "N.Jackson",
+   "bench": [
+    "Verbruggen",
+    "Mbeumo",
+    "Ajer",
+    "Schade"
+   ]
+  }
+ }
+}
