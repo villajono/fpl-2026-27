@@ -1,5 +1,6 @@
 ⟳ Refreshing models from live FPL API (detect → ingest → refresh)...
-   ingested GW11: 313 players played
+   all 11 completed GW(s) already ingested — no new
+     data
    Bayesian team ratings updated from 11 live GW(s) of
      xG (20 clubs)
    overrides: 0 active for GW12; players.json
@@ -10,7 +11,7 @@
 players_2026-27.csv refreshed: 674 -> 674 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW12, by Fri 27 Nov, 18:30 UK (71.9h)
+DO THIS  --  GW12, by Fri 27 Nov, 18:30 UK (48.7h)
 ======================================================
 
   SANTA CLAUDE (AI TEAM)
@@ -72,12 +73,13 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW12 DECISIONS
 Models updated: GW11 data ingested ✓ (11 GWs played →
   Bayesian blended)
-⏰ GW12 DEADLINE: Fri 27 Nov, 18:30 UK  (in 71.9h)
+⏰ GW12 DEADLINE: Fri 27 Nov, 18:30 UK  (in 48.7h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━
-  ⟳ ingested GW11: 313 players played
+  ⟳ all 11 completed GW(s) already ingested — no new
+    data
   ⟳ Bayesian team ratings updated from 11 live GW(s)
     of xG (20 clubs)
   ⟳ overrides: 0 active for GW12; players.json
@@ -94,10 +96,7 @@ MODEL UPDATES THIS WEEK
 ⚠ HUMAN CONFIRMATION (2-min review — override from the
   phone form)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  P(starts) moved >20% since last week — verify
-    against team news:
-    • Mbeumo: P(60+) 0.96 → 0.59 (rotation risk
-      emerging) — confirm?
+  No >20% P(starts) moves since last week.
   No overrides set — add one from the form when you
     know something the model can't.
 
@@ -235,7 +234,7 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW11 — not hand-entered.
   GW11: 41 pts, 15 left on the bench. 607 overall,
-    rank 4,303,727.
+    rank 4,303,702.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £0.1m in the bank, 5 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -244,12 +243,13 @@ PLANNED TRANSFERS
 JON'S TEAM — GW12 DECISIONS
 Models updated: GW11 data ingested ✓ (11 GWs played →
   Bayesian blended)
-⏰ GW12 DEADLINE: Fri 27 Nov, 18:30 UK  (in 71.9h)
+⏰ GW12 DEADLINE: Fri 27 Nov, 18:30 UK  (in 48.7h)
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
 ━━━━━━━━━━━━━━━━━━━━━━━━
-  ⟳ ingested GW11: 313 players played
+  ⟳ all 11 completed GW(s) already ingested — no new
+    data
   ⟳ Bayesian team ratings updated from 11 live GW(s)
     of xG (20 clubs)
   ⟳ overrides: 0 active for GW12; players.json
@@ -402,7 +402,7 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW11 — not hand-entered.
   GW11: 35 pts, 18 left on the bench. 715 overall,
-    rank 301,573.
+    rank 301,572.
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £0.4m in the bank, 3 free transfer(s).
 ══════════════════════════════════════════════════════
