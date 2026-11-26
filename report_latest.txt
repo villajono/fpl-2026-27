@@ -11,7 +11,7 @@
 players_2026-27.csv refreshed: 674 -> 674 players
   no squad changes since the last refresh
 ======================================================
-DO THIS  --  GW12, by Fri 27 Nov, 18:30 UK (48.7h)
+DO THIS  --  GW12, by Fri 27 Nov, 18:30 UK (25.0h)
 ======================================================
 
   SANTA CLAUDE (AI TEAM)
@@ -73,7 +73,8 @@ LAST GAMEWEEK — RECOMMENDED vs WHAT THE FPL SITE
 SANTA CLAUDE (AI team) — GW12 DECISIONS
 Models updated: GW11 data ingested ✓ (11 GWs played →
   Bayesian blended)
-⏰ GW12 DEADLINE: Fri 27 Nov, 18:30 UK  (in 48.7h)
+⏰ GW12 DEADLINE: Fri 27 Nov, 18:30 UK  (in 25.0h)   ⚠
+  ACT BEFORE DEADLINE
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -234,7 +235,7 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW11 — not hand-entered.
   GW11: 41 pts, 15 left on the bench. 607 overall,
-    rank 4,303,702.
+    rank 4,303,672.
   Chips played: TC GW3, WC GW4. Still held: BB, FH.
   £0.1m in the bank, 5 free transfer(s).
 ══════════════════════════════════════════════════════
@@ -243,7 +244,8 @@ PLANNED TRANSFERS
 JON'S TEAM — GW12 DECISIONS
 Models updated: GW11 data ingested ✓ (11 GWs played →
   Bayesian blended)
-⏰ GW12 DEADLINE: Fri 27 Nov, 18:30 UK  (in 48.7h)
+⏰ GW12 DEADLINE: Fri 27 Nov, 18:30 UK  (in 25.0h)   ⚠
+  ACT BEFORE DEADLINE
 ══════════════════════════════════════════════════════
 
 MODEL UPDATES THIS WEEK
@@ -402,7 +404,64 @@ PLANNED TRANSFERS
   Squad, bank and chips read live from the FPL API
     after GW11 — not hand-entered.
   GW11: 35 pts, 18 left on the bench. 715 overall,
-    rank 301,572.
+    rank 301,569.
   Chips played: BB GW1, TC GW3. Still held: WC, FH.
   £0.4m in the bank, 3 free transfer(s).
 ══════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════
+CHIP AND TRANSFER PLAN — searched, not guessed
+══════════════════════════════════════════════════════
+
+players_2026-27.csv refreshed: 674 -> 674 players
+  no squad changes since the last refresh
+  forecast: forecast_gw12.json
+
+  ENTRY 4180925 - planning GW12-17
+  budget 99.5 - 5 free transfer(s) - chips available: bboost, freehit
+
+  searching wildcard weeks:
+    none      309.2
+  -> best wildcard: none (309.2)
+
+  bboost    best weeks: GW12 +14.3, GW13 +13.3, GW14 +13.1
+  freehit   best weeks: GW13 +3.3, GW12 +3.3, GW15 +2.1
+
+  ==================== PLAN ====================
+   BBOOST     GW12  worth +14.3
+   FREEHIT    GW13  worth +3.3
+   projected GW12-17: 326.7  (309.2 squad and transfers, +17.6 remaining chips)
+
+   GW12 XI: Tzolakis, Gabriel, De Cuyper, Silva, B.Fernandes, Tavernier, Calvert-Lewin, Haaland, E.Le Fée, Barry, Gomez
+   bench:  Suzuki, Calafiori, Rudoni, Thiaw
+
+players_2026-27.csv refreshed: 674 -> 674 players
+  no squad changes since the last refresh
+  forecast: forecast_gw12.json
+
+  ENTRY 1169767 - planning GW12-17
+  budget 100.6 - 3 free transfer(s) - chips available: freehit, wildcard
+
+  searching wildcard weeks:
+    none      306.7
+    GW12      316.6
+    GW13      311.7
+    GW14      310.6
+    GW15      309.4
+    GW16      308.0
+  -> best wildcard: GW12 (316.6)
+
+  freehit   best weeks: GW13 +2.0, GW15 +1.1, GW12 +0.9
+
+  ==================== PLAN ====================
+   WILDCARD   GW12
+   FREEHIT    GW13  worth +2.0
+   projected GW12-17: 318.6  (316.6 squad and transfers, +2.0 remaining chips)
+
+   WILDCARD SQUAD FOR GW12  (selling prices used; £0.0m left)
+   SELL: Kinsky £4.4, Konsa £4.6, Calafiori £5.7, Vuskovic £5.3, Palmer £9.7, Schade £6.0, Rogers £7.9, N.Jackson £7.0, Verbruggen £4.6, Ajer £4.5, Mbeumo £7.8
+   BUY:  B.Fernandes (MUN) £11.6, Barry (EVE) £5.7, De Cuyper (BHA) £5.5, E.Le Fée (SUN) £5.7, Gabriel (ARS) £8.1, Justin (LEE) £4.5, Rudoni (COV) £5.0, Tavernier (BOU) £6.8, Trafford (LEE) £5.1, Tzolakis (HUL) £4.7, Van Hecke (TOT) £5.2
+   CAPTAIN: B.Fernandes
+
+   GW12 XI: Trafford, Gabriel, Justin, Van Hecke, B.Fernandes, Tavernier, Calvert-Lewin, Groß, Haaland, E.Le Fée, De Cuyper
+   bench:  Tzolakis, Barry, Rudoni, Silva
