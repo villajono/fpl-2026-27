@@ -1,6 +1,6 @@
 {
  "gw": 12,
- "written": "2026-11-26T17:41:41+00:00",
+ "written": "2026-11-27T17:15:42+00:00",
  "teams": {
   "4180925": {
    "team": "SANTA CLAUDE (AI team)",
@@ -9,8 +9,8 @@
     "in": "Gibbs-White"
    },
    "chip": null,
-   "captain": "B.Fernandes",
-   "vice": "Calvert-Lewin",
+   "captain": "Calvert-Lewin",
+   "vice": "De Cuyper",
    "bench": [
     "Suzuki",
     "Thomas",
@@ -25,10 +25,10 @@
     "in": "E.Le Fée"
    },
    "chip": "WC",
-   "captain": "Calvert-Lewin",
-   "vice": "N.Jackson",
+   "captain": "Haaland",
+   "vice": "Calvert-Lewin",
    "bench": [
-    "Verbruggen",
+    "Kinsky",
     "Mbeumo",
     "Ajer",
     "Schade"
